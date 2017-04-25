@@ -96,6 +96,10 @@ class Notification extends WixComponent {
     }
   }
 
+  componentWillUnmount() {
+    this.clearCloseTimeout();
+  }
+
   shouldShowNotification() {
     return this.props.show && !this.state.hideByCloseClick && !this.state.hideByTimer;
   }
