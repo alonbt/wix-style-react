@@ -1,0 +1,85 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: G10, B20, R10, D20, R30, G30, B30, D40, D80, O10, Y10, D70, Y30, P10;
+}
+
+:import {
+  -st-from: "../ListItemSelect/ListItemSelect.st.css";
+  -st-default: ListItemSelect;
+}
+
+:vars {
+  borderSize: 2px;
+  widthSize: 18px;
+  heightSize: 10px;
+}
+
+ .root{
+   -st-extends: ListItemSelect;
+ }
+
+.root::prefix:subtitle {
+  margin: auto 0;
+}
+
+.marker {
+  -st-states: skin(enum(general,standard,danger,success,neutral,neutralLight,warning,warningLight,urgent, neutralStandard,neutralSuccess, neutralDanger, premium));
+  box-sizing: content-box !important;
+  width: value(widthSize);
+  height:value(heightSize);
+  border-radius: 2px;
+  border: solid  value(borderSize) value(D80);
+  background-color: value(D20);
+}
+
+.marker:skin(general){
+  background-color: value(D20);
+}
+
+.marker:skin(standard)  {
+  background-color: value(B20);
+}
+
+.marker:skin(danger) {
+  background-color: value(R10);
+}
+
+.marker:skin(success) {
+  background-color: value(G10);
+}
+
+.marker:skin(neutral)  {
+  background-color: value(D40);
+}
+
+.marker:skin(neutralLight)  {
+  background-color: value(D70);
+}
+
+.marker:skin(warning){
+  background-color: value(Y10);
+}
+
+.marker:skin(warningLight) {
+  background-color: value(Y30);
+}
+
+.marker:skin(urgent)  {
+  background-color: value(O10);
+}
+
+.marker:skin(neutralStandard) {
+  background-color: value(B30);
+}
+
+.marker:skin(neutralSuccess) {
+  background-color: value(G30);
+}
+
+.marker:skin(neutralDanger) {
+  background-color: value(R30);
+}
+
+.marker:skin(premium) {
+  background-color: value(P10);
+}

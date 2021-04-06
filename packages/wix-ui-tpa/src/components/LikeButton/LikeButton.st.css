@@ -1,0 +1,70 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: fallback, color, font;
+}
+
+:import {
+    -st-from: "../IconToggle/IconToggle.st.css";
+    -st-default: IconToggle;
+}
+
+/*Defaults*/
+:vars {
+    DefaultColor: color-5;
+    CheckedIconColor: '#F64D43';
+    DefaultFont: "{theme: 'Body-M', size: '12px', lineHeight: '16px'}";
+}
+
+/*Overrides*/
+:vars {
+     /*
+      The color of the icon border instead of the default color (checked state color cannot be changed)
+      @default color-5, when checked - #F64D43
+    */
+    IconColor: --overridable;
+     /*
+      The color of the label instead of the default color
+      @default color-5
+    */
+    LabelColor: --overridable;
+     /*
+      The font of the label instead of the default font
+      @default {theme: 'Body-M', size: '12px', lineHeight: '16px'}
+    */
+    LabelFont: --overridable;
+}
+
+:vars {
+    iconColor: color(fallback(value(IconColor), value(DefaultColor)));
+    checkedIconColor: value(CheckedIconColor);
+    labelColor: color(fallback(value(LabelColor), value(DefaultColor)));
+    labelFont: font(fallback(value(LabelFont), font(value(DefaultFont))));
+}
+
+.root {
+    -st-states: checked;
+    -st-extends: IconToggle;
+    -st-mixin: IconToggle(
+        IconColor value(iconColor),
+        LabelColor value(labelColor),
+        LabelFont value(labelFont)
+    );
+}
+
+.root:checked {
+    -st-mixin: IconToggle(
+        IconColor value(checkedIconColor),
+        LabelColor value(labelColor),
+        LabelFont value(labelFont)
+    );
+}
+
+.root::spacer,
+.root:checked::spacer {
+    width: 3px;
+}
+
+
+.likeButton {
+    display: inline-block;
+}

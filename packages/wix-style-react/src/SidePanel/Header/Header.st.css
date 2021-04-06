@@ -1,0 +1,18 @@
+.root {
+  flex: 0 1 auto;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 12px 24px 24px;
+}
+
+.titleContainer .title {
+  flex: 1;
+}
+
+.titleContainer .closeButton {
+  margin-left: 12px;
+}

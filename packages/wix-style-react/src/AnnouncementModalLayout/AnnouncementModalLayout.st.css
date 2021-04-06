@@ -1,0 +1,57 @@
+:import {
+  -st-from: "../Foundation/stylable/spacing.st.css";
+  -st-named: spacing12, spacing18, spacing24, spacing30, spacing42, spacing48, spacing78;
+}
+
+:import {
+  -st-from: "../BaseModalLayout/BaseModalLayout.st.css";
+  -st-default: BaseModalLayout
+}
+
+/** Extending BaseModalLayout */
+.announcementModalLayout {
+  -st-extends: BaseModalLayout;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: value(spacing48);
+  width: 600px;
+}
+
+/** Styling proprietary components */
+.announcementModalLayout .link {
+  margin-top: value(spacing18);
+}
+
+.announcementModalLayout .bottomSpacing {
+  width: 100%;
+  height: value(spacing48);
+}
+
+/* Extending BaseModalLayout Blocks */
+.announcementModalLayout::illustration {
+  margin-bottom: value(spacing30);
+  max-height: 200px;
+  min-height: 120px;
+  max-width: 444px;
+  overflow: hidden;
+}
+
+.announcementModalLayout::header {
+  padding: 0 value(spacing78);
+  margin-bottom: value(spacing12);
+}
+
+.announcementModalLayout::content::innerContent {
+  padding: 0 value(spacing78);
+}
+
+.announcementModalLayout::footer::innerContent {
+  padding: value(spacing42) value(spacing78) 0 value(spacing78);
+}
+
+.announcementModalLayout::footnote::innerContent {
+  padding-right: value(spacing78);
+  padding-left: value(spacing78);
+}

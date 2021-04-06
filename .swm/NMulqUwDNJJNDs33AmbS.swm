@@ -1,0 +1,105 @@
+{
+    "id": "NMulqUwDNJJNDs33AmbS",
+    "name": "Themes | create a new component override",
+    "dod": "In this unit you should Create a new style override for a Button component",
+    "description": "",
+    "summary": "",
+    "hunksOrder": [
+        "src/Themes/businessDashboard/components/Button.st.css_0",
+        "src/Themes/businessDashboard/components/Button.st.css_1",
+        "src/Themes/businessDashboard/components/Button.st.css_2"
+    ],
+    "tests": [],
+    "hints": [],
+    "play_mode": "walkthrough",
+    "swimmPatch": {
+        "src/Themes/businessDashboard/components/Button.st.css": {
+            "diffType": "MODIFIED",
+            "fileDiffHeader": "diff --git a/src/Themes/businessDashboard/components/Button.st.css b/src/Themes/businessDashboard/components/Button.st.css\nindex d4ab4fa81..d4ab4fa81 100644\n--- a/src/Themes/businessDashboard/components/Button.st.css\n+++ b/src/Themes/businessDashboard/components/Button.st.css",
+            "hunks": [
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "1. First, under the `components` folder of the dedicated theme, create a new file with the same name of the component you would like to theme - `Button.st.css`",
+                            "2. Import the original component stylesheet, this will be used to extend the original component structure"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -1,7 +1,3 @@",
+                        "-:import {",
+                        "-  -st-from: \"../../../Button/Button.st.css\";",
+                        "-  -st-default: Button;",
+                        "-}",
+                        " ",
+                        " :import {",
+                        "   -st-from: \"../foundations/colors.st.css\";"
+                    ]
+                },
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Create a root class which extends the original stylesheet"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -13,9 +13,6 @@",
+                        "   -st-named: normal, bold;",
+                        " }",
+                        " ",
+                        "-.root {",
+                        "-  -st-extends: Button;",
+                        "-}",
+                        " ",
+                        " .root:focus-visible {",
+                        "   box-shadow: 0 0 0 3px value(B40);"
+                    ]
+                },
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Target any internal part or state, and provide your own styling.",
+                            "Note: in this specific snippet, we need to override the specific `skin` and `priority` states in order to style a specific variant. In other case, styling might be less speific"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -22,31 +22,6 @@",
+                        " }",
+                        " ",
+                        " /* Skin standard primary */",
+                        "-.root:skin(standard):priority(primary) {",
+                        "-  -st-mixin: bold;",
+                        "-",
+                        "-  background-color: value(B10);",
+                        "-  border-color: value(B10);",
+                        "-  color: value(D80);",
+                        "-}",
+                        "-",
+                        "-.root:skin(standard):priority(primary):hover {",
+                        "-  background-color: value(B05);",
+                        "-  border-color: value(B10);",
+                        "-  color: value(D80);",
+                        "-}",
+                        "-",
+                        "-.root:skin(standard):priority(primary):active {",
+                        "-  background-color: value(B10);",
+                        "-  border-color: value(B10);",
+                        "-  color: value(D80);",
+                        "-}",
+                        "-",
+                        "-.root:skin(standard):priority(primary):disabled {",
+                        "-  background-color: value(D70);",
+                        "-  border-color: transparent;",
+                        "-  color: value(D10-40);",
+                        "-}",
+                        " ",
+                        " ",
+                        " /* Skin: standard - secondary */"
+                    ]
+                }
+            ]
+        }
+    },
+    "app_version": "0.2.7",
+    "file_version": "1.0.4",
+    "last_commit_sha_for_swimm_patch": "b0b99f950fa354f519112d5497b7c974609b34cd"
+}

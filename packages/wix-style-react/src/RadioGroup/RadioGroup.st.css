@@ -1,0 +1,141 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: F00, D80, D10, D60, THEME-COLOR-10, THEME-COLOR-20, THEME-COLOR-40,
+    THEME-COLOR-50, THEME-COLOR-60, D10-30, D10-05;
+}
+
+:import {
+  -st-from: '../Radio/Radio.st.css';
+  -st-default: Radio;
+}
+
+.root {
+  -st-states: orientation(enum(vertical, horizontal));
+  display: flex;
+}
+
+.radio {
+  -st-extends: Radio;
+  width: 100%;
+}
+
+.radioContainer {
+  display: flex;
+  align-items: center;
+} 
+
+.optionContainer {
+  -st-states: selectionArea(enum(always, hover, none)), 
+    selectionAreaSkin(enum(filled, outlined)), checked, disabled;
+}
+
+.root:orientation(vertical) {
+  flex-direction: column;
+}
+
+.root:orientation(horizontal) {
+  flex-direction: row;
+}
+
+.root:orientation(horizontal) .optionContainer:selectionArea(always) .radio,
+.root:orientation(horizontal) .optionContainer:selectionArea(hover) .radio {
+  margin-inline-end: 18px;
+}
+
+.optionContainer:selectionArea(always) .radioContainer,
+.optionContainer:selectionArea(hover) .radioContainer {
+  padding: 2px;
+}
+
+.optionContainer:selectionArea(always) .radio,
+.optionContainer:selectionArea(hover) .radio {
+  cursor: pointer;
+  padding-block-start: 10px;
+  padding-inline-end: 0;
+  padding-block-end: 10px;
+  padding-inline-start: 14px;
+}
+
+.optionContainer:selectionArea(always) .radio:checked,
+.optionContainer:selectionArea(hover) .radio:checked {
+  cursor: default;
+}
+
+.root:orientation(horizontal) .radio::label {
+  padding-inline-start: 6px;
+}
+
+/* Margin between radios in a group */
+.root:orientation(vertical) :not(:first-child).optionContainer:selectionArea(none) {
+  margin-block-start: 12px;
+}
+
+.root:orientation(horizontal) :not(:first-child).optionContainer:selectionArea(none) {
+  margin-inline-start: 20px;
+}
+
+.root:orientation(vertical) :not(:first-child).optionContainer:selectionArea(always),
+.root:orientation(vertical) :not(:first-child).optionContainer:selectionArea(hover) {
+  margin-block-start: 6px;
+}
+
+.root:orientation(horizontal) :not(:first-child).optionContainer:selectionArea(always),
+.root:orientation(horizontal) :not(:first-child).optionContainer:selectionArea(hover) {
+  margin-inline-start: 6px;
+}
+
+/* Selection Area */
+.optionContainer:selectionArea(always) .radioContainer,
+.optionContainer:selectionArea(hover) .radioContainer {
+  border-radius: 8px;
+}
+
+.optionContainer:selectionArea(always):disabled .radioContainer,
+.optionContainer:selectionArea(hover):disabled .radioContainer {
+  cursor: initial;
+}
+
+.optionContainer:selectionArea(always):selectionAreaSkin(outlined):disabled .radioContainer {
+  border: solid 1px value(D60);
+  padding: 1px;
+}
+
+.optionContainer:selectionArea(always):selectionAreaSkin(filled):checked:not(:disabled) .radioContainer,
+.optionContainer:selectionArea(hover):selectionAreaSkin(filled):checked:not(:disabled) .radioContainer {
+  background-color: value(THEME-COLOR-40);
+}
+
+.optionContainer:selectionArea(always):selectionAreaSkin(outlined):checked:not(:disabled) .radioContainer,
+.optionContainer:selectionArea(hover):selectionAreaSkin(outlined):checked:not(:disabled) .radioContainer {
+  border: solid 2px value(THEME-COLOR-10);
+  padding: 0;
+}
+
+.optionContainer:selectionArea(always) .radio::label,
+.optionContainer:selectionArea(hover) .radio::label {
+  padding-inline-start: 12px;
+}
+
+.optionContainer:selectionArea(always):selectionAreaSkin(filled):not(:checked):not(:disabled):hover .radioContainer,
+.optionContainer:selectionArea(hover):selectionAreaSkin(filled):not(:checked):not(:disabled):hover .radioContainer {
+  background-color: value(THEME-COLOR-50);
+}
+
+.optionContainer:selectionArea(always):selectionAreaSkin(outlined):not(:checked):not(:disabled):hover .radioContainer,
+.optionContainer:selectionArea(hover):selectionAreaSkin(outlined):not(:checked):not(:disabled):hover .radioContainer {
+  border: solid 1px value(THEME-COLOR-20);
+  padding: 1px;
+}
+
+.optionContainer:selectionArea(always):selectionAreaSkin(filled):not(:disabled) .radioContainer {
+  background-color: value(THEME-COLOR-60);
+}
+
+.optionContainer:selectionArea(always):selectionAreaSkin(outlined):not(:disabled) .radioContainer {
+  border: solid 1px value(THEME-COLOR-40);
+  padding: 1px;
+}
+
+.content {
+  margin-block-start: 6px;
+}

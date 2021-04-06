@@ -1,0 +1,9 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: D70;
+}
+
+.root {
+  height: 6px;
+  background-color: value(D70);
+}

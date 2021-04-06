@@ -1,0 +1,185 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: applyUnit, applyOpacity, font, fallback, color, zeroAsTrue;
+}
+
+:import {
+    -st-from: "../../common/palette.st.css";
+    -st-named: errorColor, successColor, focusRing;
+}
+
+/*Defaults*/
+:vars {
+    DefaultContainerWidth: 280px;
+    DefaultContainerHeight: 92px;
+    DefaultBorderColor: color-5;
+    DefaultBackgroundColor: color-1;
+    DefaultTextColor: color-5;
+    DefaultDisabledTextColor: color-3;
+    DefaultPlaceholderColor: color-3;
+    DefaultFocusFontColor: color-1;
+    DefaultDisabledBorderColor: color-3;
+    DefaultTextFont: "{theme: 'Body-M', size: '16px', lineHeight: '1.5em'}";
+}
+
+/*Overrides*/
+:vars {
+    /* Container width */
+    ContainerWidth: --overridable;
+
+    /* Container height */
+    ContainerHeight: --overridable;
+
+    /* Border color */
+    BorderColor: --overridable;
+
+    /* Background color */
+    BackgroundColor: --overridable;
+
+    /* Color of value text */
+    TextColor: --overridable;
+
+    /* Color of value text when text area is disabled */
+    DisabledTextColor: --overridable;
+
+    /* Placeholder text color */
+    PlaceholderColor: --overridable;
+
+    /* Text font */
+    TextFont: --overridable;
+
+    /*
+        Border color in case of error
+        @default #DF3131
+    */
+    ErrorBorderColor: --overridable;
+
+    /*
+        Border color in case of success
+        @default #008250
+    */
+    SuccessBorderColor: --overridable;
+
+    /* Border color when text area is disabled */
+    DisabledBorderColor: --overridable;
+}
+
+:vars {
+    containerWidth: fallback(value(ContainerWidth), value(DefaultContainerWidth));
+    containerHeight: fallback(value(ContainerHeight), value(DefaultContainerHeight));
+    borderColor: color(fallback(value(BorderColor), value(DefaultBorderColor)));
+    backgroundColor: color(fallback(value(BackgroundColor), value(DefaultBackgroundColor)));
+    textColor: color(fallback(value(TextColor), value(DefaultTextColor)));
+    disabledTextColor: color(fallback(value(DisabledTextColor), value(DefaultDisabledTextColor)));
+    placeholderColor: color(fallback(value(PlaceholderColor), value(DefaultPlaceholderColor)));
+    successBorderColor: color(fallback(value(SuccessBorderColor), value(successColor)));
+    errorBorderColor: color(fallback(value(ErrorBorderColor), value(errorColor)));
+}
+
+.root {
+    -st-states: theme(enum(line, box)), disabled, error, success, rtl, errorDescription;
+    background-color: value(backgroundColor);
+    border: 1px solid applyOpacity(value(borderColor), 0.6);
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    padding: 8px 0;
+    width: value(containerWidth);
+    height: value(containerHeight);
+}
+
+.root:active,
+.root:hover,
+.root:focus
+{
+    border-color: value(borderColor);
+}
+
+.textArea {
+    resize: none;
+    border: none;
+    height: 100%;
+    width:  100%;
+    box-sizing: border-box;
+    color: value(textColor);
+    padding: 0 12px;
+    overflow: hidden;
+    background-color: inherit;
+    font: fallback(font(value(TextFont)), font(value(DefaultTextFont)));
+    font-size: 16px;
+}
+
+.textArea:hover,
+.textArea:focus
+{
+    overflow: auto;
+}
+
+.textArea::placeholder,
+.textArea::-webkit-input-placeholder
+{
+    color: value(placeholderColor);
+}
+
+.focused {
+    -st-mixin: focusRing();
+}
+
+.errorIconWrapper {
+    height: 24px;
+    position: absolute;
+    display: flex;
+    padding: 0 8px;
+    box-sizing: border-box;
+    top: 5px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.root:theme(line) .textArea {
+    padding-left: 0;
+    padding-right: 0;
+}
+.root:theme(line) {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.root:error {
+    border-color: applyOpacity(value(errorBorderColor), 0.6);
+}
+
+.root:hover:error,
+.root:focus:error
+{
+    border-color: value(errorBorderColor);
+}
+
+.root:error:errorDescription:not(:rtl) .textArea {
+    padding-right: 38px;
+}
+
+.root:error:errorDescription:rtl .textArea {
+    padding-left: 38px;
+}
+
+.root:success {
+    border-color: applyOpacity(value(successBorderColor), 0.6);
+}
+
+.root:hover:success,
+.root:focus:success
+{
+    border-color: value(successBorderColor);
+}
+
+.root:disabled {
+    border-color: color(fallback(value(DisabledBorderColor), value(DefaultDisabledBorderColor)));
+}
+
+.root:disabled .textArea {
+    color: value(disabledTextColor);
+}

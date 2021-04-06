@@ -1,0 +1,28 @@
+:import {
+  -st-from: "../../../CustomModalLayout/CustomModalLayout.st.css";
+  -st-default: CustomModalLayout;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D40, D55;
+}
+
+.root {
+  -st-extends: CustomModalLayout;
+}
+
+.root::content::innerContent::-webkit-scrollbar {
+  width: 12px;
+}
+
+.root::content::innerContent::-webkit-scrollbar-thumb {
+  background-color: value(D55);
+  border-width: 4px;
+  border-radius: 14px;
+}
+
+.root::content::innerContent::-webkit-scrollbar-thumb:hover,
+.root::content::innerContent::-webkit-scrollbar-thumb:active {
+  background-color: value(D40);
+}

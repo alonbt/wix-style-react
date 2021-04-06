@@ -1,0 +1,40 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: B50,B30,D60,D10-03;
+}
+
+
+.root {
+  -st-states: skin(enum(standard, neutral)), reducedSpacingAndImprovedLayout;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  justify-content: space-between;
+  padding: 12px 30px;
+  box-sizing: border-box;
+}
+
+.root:reducedSpacingAndImprovedLayout{
+  min-height: 42px;
+  padding: 9px 24px;
+}
+
+.root:skin(standard) {
+  background-color: value(B50);
+  border-top: 1px value(B30) solid;
+  border-bottom: 1px value(B30) solid;
+}
+
+.root:skin(neutral) {
+  background-color: value(D10-03);
+  border-top: 1px value(D60) solid;
+  border-bottom: 1px value(D60) solid;
+}
+
+.suffix {
+  height: 0;
+  flex-shrink: 0;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+}

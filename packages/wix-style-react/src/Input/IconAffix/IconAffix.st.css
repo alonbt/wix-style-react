@@ -1,0 +1,38 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, D10-30;
+}
+
+.root {
+  -st-states: size(enum(small, medium, large)),
+              border(enum(standard, round, bottomLine)),
+              inPrefix, inSuffix, disabled;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: value(THEME-COLOR-10);
+}
+
+.root:size(small):inPrefix {
+  margin: auto 0;
+}
+
+.root:size(small):inSuffix,
+.root:size(medium):inSuffix {
+  margin: auto 3px;
+}
+
+.root:size(medium):border(round):inSuffix,
+.root:size(large):inSuffix {
+  margin: auto 0 auto 3px;
+}
+
+:global([dir="rtl"]) .root:size(medium):border(round):inSuffix,
+:global([dir="rtl"]) .root:size(large):inSuffix {
+  margin: auto 3px auto 0;
+}
+
+.root:disabled {
+  color: value(D10-30);
+}

@@ -1,0 +1,27 @@
+@import '../../common';
+
+.header
+{
+    @include FontRoman();
+    box-sizing:border-box;
+    min-height      : 60px;
+    padding         : 18px;
+    padding-left    : 30px;
+    font-weight     : normal;
+    font-size       : 20px;
+    color           : white;
+    display         : flex;
+    justify-content : space-between;
+    border-radius   : 8px 8px 0px 0px;
+    line-height     : 24px;
+}
+.title-label{
+    display: inline-block;
+    width: calc(100% - 40px);
+    word-break: break-word;
+}
+
+.red          { background-color: $paletteR1 }
+.blue         { background-color: var(--wsr-color-10, $paletteB1) }
+.purple       { background-color: $P10 }
+

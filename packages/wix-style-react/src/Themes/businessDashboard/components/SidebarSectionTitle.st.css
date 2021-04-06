@@ -1,0 +1,26 @@
+:import {
+  -st-from: "../../../SidebarSectionTitle/SidebarSectionTitle.st.css";
+  -st-default: SidebarSectionTitle;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: sidebarBackgroundColor;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/colors.st.css";
+  -st-named: D40;
+}
+
+.root {
+  -st-extends: SidebarSectionTitle;
+}
+
+.root:skin(dark) {
+  background-color: value(sidebarBackgroundColor);
+}
+
+.root:skin(dark):size(tiny):weight(bold) {
+  color: value(D40);
+}

@@ -1,0 +1,232 @@
+@st-global-custom-property --wsr-font-family;
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80, D10, D70, D10, D55, F00,
+  THEME-COLOR-10, THEME-COLOR-20, THEME-COLOR-50;
+}
+:import {
+  -st-from: "../Foundation/stylable/typography.st.css";
+  -st-named: text-small-thin;
+}
+
+:import {
+  -st-from: "./DatePickerHead/DatePickerHead.st.css";
+  -st-default: Header;
+}
+
+:vars {
+    rootPadding: 24px;
+    rootBackgroundColor: value(D80);
+    dayHoverColor: value(THEME-COLOR-50);
+    calendarWidth: 300px;
+    dayBadgeSize: 36px;
+    focusBoxShadowWidth: 3px;
+    focusBoxShadow: 0 0 0 value(focusBoxShadowWidth) value(F00);
+    boxShadow: 0 0 0 value(focusBoxShadowWidth) value(rootBackgroundColor) inset;
+}
+.root {
+}
+
+.container {
+  -st-mixin: text-small-thin;
+}
+
+.months {
+  -st-states: twoMonths;
+}
+
+.month {
+  width: value(calendarWidth);
+}
+
+.header {
+  -st-extends: Header;
+}
+
+.weekdays {
+  background-color: value(rootBackgroundColor);
+  padding: 0 value(rootPadding);
+}
+
+.weekdaysRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.weekday {
+  width: 17px;
+  padding: 18px 0 12px;
+  color: value(D10);
+}
+
+.weekday abbr {
+  text-decoration: none;
+}
+
+.body {
+  background-color: value(rootBackgroundColor);
+  padding: 0 value(rootPadding) value(rootPadding);
+}
+
+.week {
+  display: flex;
+  justify-content: space-around;
+}
+
+.day {
+  -st-states: today, selected, disabled, outside, start, end, firstOfMonth, lastOfMonth, singleDay, unfocused;
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: value(dayBadgeSize);
+  height: value(dayBadgeSize);
+  border-radius: 50%;
+  cursor: pointer;
+  color: value(D10);
+  z-index: 1;
+  position: relative;
+}
+
+.day:focus {
+  outline: none;
+  z-index: 10;
+}
+
+.day:focus::after {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border-radius: 50%;
+  outline: none;
+  border-color: value(THEME-COLOR-10);
+  box-shadow: value(focusBoxShadow);
+  content: " ";
+  display: block;
+  z-index: 11;
+}
+
+.day:focus .dayCircle {
+  box-shadow: value(focusBoxShadow);
+}
+
+.day:unfocused, .day:focus:hover {
+  box-shadow: none;
+}
+
+.day:today:not(:selected):not(:hover) {
+  background-color: value(D70);
+  box-shadow: value(boxShadow);
+  z-index: 0;
+}
+
+.day:today:not(:selected):not(:hover):focus {
+  box-shadow: value(boxShadow), value(focusBoxShadow);
+}
+
+.day:hover {
+  background-color: value(THEME-COLOR-50);
+}
+
+.day:selected:not(:outside) {
+  background-color: value(THEME-COLOR-10);
+  color: value(D80);
+}
+
+.day:outside, .day:disabled {
+  pointer-events: none;
+  color: value(D55);
+}
+
+/** for selection mode type range **/
+.day:selected:not(:start):not(:end):not(:outside):not(:singleDay) {
+  background-color: value(THEME-COLOR-50);
+  border-radius: 0;
+  box-shadow: none;
+  color: value(D10);
+}
+
+.day:selected:not(:outside):last-of-type,
+.day:lastOfMonth:not(:outside) {
+  border-top-right-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
+}
+
+.day:selected:not(:outside):first-of-type,
+.day:firstOfMonth:not(:outside) {
+  border-top-left-radius: 50% !important;
+  border-bottom-left-radius: 50% !important;
+}
+/**************************************************************/
+
+.day:singleDay:not(:outside),
+.day:start:end:not(:outside) {
+  background: none !important;
+  border-radius: 50% !important;
+}
+
+.day:selected:start:not(:outside) .dayWrapper,
+.day:selected:end:not(:outside) .dayWrapper,
+.day:selected:singleDay:not(:outside) .dayWrapper {
+  background-color: value(THEME-COLOR-10);
+}
+
+.day:selected:start:not(:outside):hover .dayWrapper,
+.day:selected:end:not(:outside):hover .dayWrapper,
+.day:selected:singleDay:not(:outside):hover .dayWrapper {
+  background-color: value(THEME-COLOR-20);
+}
+
+.dayWrapper {
+  -st-states: hasIndication;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dayWrapper:hasIndication {
+  justify-content: flex-end;
+}
+
+.dayText {
+  text-align: center;
+  line-height: 1;
+}
+
+.dayIndicationContainer {
+  height: 11px;
+  padding: 3px 0 4px 0;
+  box-sizing: border-box;
+}
+
+/** for selection mode type range **/
+.day:selected:start:not(:outside) {
+  background: linear-gradient(to left, value(THEME-COLOR-50) 0%,value(THEME-COLOR-50) 50%,#000000 50%,transparent 50%,transparent 100%);
+  border-radius: 0;
+}
+
+.day:selected:end:not(:outside) {
+  background: linear-gradient(to right, value(THEME-COLOR-50) 0%,value(THEME-COLOR-50) 50%,#000000 50%,transparent 50%,transparent 100%);
+  border-radius: 0;
+}
+/************************************************/
+
+/** Two months mode **/
+.months:twoMonths {
+  display: flex;
+}
+
+.months:twoMonths .month:first-child .header::arrowRight,
+.months:twoMonths .month:last-child .header::arrowLeft,
+.months:twoMonths .day:outside {
+  visibility: hidden;
+}
+/************************************************/

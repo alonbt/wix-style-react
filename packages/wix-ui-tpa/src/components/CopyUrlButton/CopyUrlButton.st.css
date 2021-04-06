@@ -1,0 +1,89 @@
+:import {
+  -st-from: "../../common/fonts.st.css";
+  -st-named: fixedFont55;
+}
+
+/*Defaults*/
+:vars {
+  CheckButtonHeight: 19px;
+  SuccessTextPadding: 10px;
+}
+
+.root {
+  -st-states: theme(enum(light, dark)), mobile;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.root:theme(light) .checkIcon path {
+  fill: black;
+}
+
+.root:theme(dark) .checkIcon path {
+  fill: white;
+}
+
+.root:theme(light) .successText {
+  color: black;
+}
+
+.root:theme(dark) .successText {
+  color: white;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+}
+
+.root:not(:mobile) .success {
+  flex-direction: column;
+  animation: bounce-in 0.5s ease 0s 1 normal;
+  position: relative;
+}
+
+.successText {
+  font-size: 14px;
+  line-height: 1.2;
+  font-family: value(fixedFont55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.root:not(:mobile) .successText {
+  position: absolute;
+  top: calc(value(CheckButtonHeight) + value(SuccessTextPadding));
+  text-align: center;
+  max-width: 150px;
+}
+
+.root:mobile .successText {
+  padding-left: 10px;
+  color: white;
+}
+
+.copyInput {
+  position: absolute;
+  left: -9999px;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  32% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+  68% {
+    transform: translateY(2px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

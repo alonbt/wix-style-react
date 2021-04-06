@@ -1,0 +1,28 @@
+:import {
+  -st-from: "../Foundation/stylable/spacing.st.css";
+  -st-named: spacing06, spacing18;
+}
+
+.root {
+}
+
+.testimonialItem {
+  display: flex;
+}
+
+.testimonialItemAvatar {
+  margin-right: value(spacing18);
+}
+
+:global(.rtl) .testimonialItemAvatar, :global([dir='rtl']) .testimonialItemAvatar {
+  margin-right: 0;
+  margin-left: value(spacing18);
+}
+
+.testimonialItemTextArea {
+  flex-grow: 1
+}
+
+.testimonialItemText {
+  margin-bottom: value(spacing06);
+}

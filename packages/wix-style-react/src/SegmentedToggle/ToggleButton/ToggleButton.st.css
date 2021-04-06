@@ -1,0 +1,92 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: F00, D10, D10-30, D80,  THEME-COLOR-10,  THEME-COLOR-50;
+}
+
+:import {
+  -st-from: "../../Text/Text.st.css";
+  -st-default: Text;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: selected;
+  /* Positioning */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Styling */
+  color: value(D10);
+  cursor: pointer;
+
+  /* Sizing */
+  flex-grow: 1;
+  height: 36px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  /* Border & Spacing */
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 1px transparent;
+  border-radius: 6px;
+  padding: 0 24px;
+  margin: 0;
+
+  /* Disable native focus */
+  outline: none;
+}
+
+.root:not(:disabled):hover {
+  background-color: value(THEME-COLOR-50);
+}
+
+.root:not(:disabled):focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.root:disabled {
+  color: value(D10-30);
+  cursor: not-allowed;
+}
+
+/* Selected styles */
+
+.root:selected:not(:disabled) {
+  border: 1px solid value(THEME-COLOR-10);
+  box-shadow: 0 0 0 1px value(THEME-COLOR-10);
+  z-index: 1000;
+}
+
+.root:selected:not(:disabled):focus-visible{
+  border: 1px solid value(THEME-COLOR-10);
+  box-shadow: 0 0 0 1px value(THEME-COLOR-10) , 0 0 0 4px value(F00);
+}
+
+.root:selected:disabled {
+  border: 1px solid value(D10-30);
+  cursor: not-allowed;
+  box-shadow: 1px 0 0 0 value(D10-30);
+}
+
+.root:selected:not(:hover){
+  background-color: value(D80);
+}
+
+/* Additional classes */
+
+.prefix {
+  flex-shrink: 0;
+  margin: 0 6px 0 -6px;
+}
+
+:global([dir='rtl']) .prefix {
+  flex-shrink: 0;
+  margin: 0 -6px 0 6px;
+}

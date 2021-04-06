@@ -1,0 +1,20 @@
+:import {
+  -st-from: "../../Foundation/stylable/spacing.st.css";
+  -st-named: spacing30, spacing36;
+}
+
+.root {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  --cols: 3;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-gap: value(spacing30);
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  padding: value(spacing36) 0;
+  width: 100%;
+}

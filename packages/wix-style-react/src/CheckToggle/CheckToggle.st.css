@@ -1,0 +1,123 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: G10, G20, G50, D10-30, D80, F00,  THEME-COLOR-10,  THEME-COLOR-20,  THEME-COLOR-50;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: checked, disabled, size(enum(small, medium)),
+    skin(enum(standard, success)), size(enum(small, medium));
+
+  outline: none;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 100%;
+}
+
+/* Input */
+.input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.toggle {
+  outline: none;
+  border: 1px solid;
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: content-box;
+}
+
+.root .toggle svg {
+  color: value(D80);
+  transform: translate(-1px, -1px);
+}
+
+/* Size */
+.root:size(small) {
+  height: 18px;
+  width: 18px;
+}
+
+.root:size(medium) {
+  height: 24px;
+  width: 24px;
+}
+
+.root:size(small) .toggle {
+  height: 16px;
+  width: 16px;
+}
+
+.root:size(medium) .toggle {
+  height: 22px;
+  width: 22px;
+}
+
+/* Focus */
+.root:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.root:not(:checked) svg {
+  visibility: hidden;
+}
+
+/* Skin */
+.root:skin(standard) .toggle {
+  border-color: value(THEME-COLOR-10);
+  background-color: value(THEME-COLOR-10);
+}
+
+.root:skin(success) .toggle {
+  border-color: value(G10);
+  background-color: value(G10);
+}
+
+/* Disabled */
+.root:disabled .toggle {
+  cursor: initial;
+  border-color: value(D10-30);
+  background-color: value(D10-30);
+}
+
+.root:disabled:checked .toggle {
+  border-color: transparent;
+}
+
+/* Hover */
+.root:not(:disabled):skin(standard):checked:hover .toggle {
+  border-color: value(THEME-COLOR-20);
+  background-color: value(THEME-COLOR-20);
+}
+
+.root:not(:disabled):skin(success):checked:hover .toggle {
+  border-color: value(G20);
+  background-color: value(G20);
+}
+
+.root:not(:disabled):skin(standard):hover .toggle {
+  border-color: value(THEME-COLOR-10);
+  background-color: value(THEME-COLOR-50);
+}
+
+.root:not(:disabled):skin(success):hover .toggle {
+  border-color: value(G10);
+  background-color: value(G50);
+}
+
+/* Checked */
+.root:not(:checked) .toggle {
+  background-color: unset;
+}

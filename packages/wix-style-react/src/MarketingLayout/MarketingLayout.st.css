@@ -1,0 +1,175 @@
+:import {
+  -st-from: "../Foundation/stylable/typography.st.css";
+  -st-named: text-medium-bold;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D10;
+}
+
+.root {
+  -st-states: reducedSpacingAndImprovedLayout, size(enum(tiny, small, medium, large)), alignItems(enum(center, stretch)), badge, hiddenBadge, inverted, withActions, withImageBackground;
+  writing-mode: horizontal-tb;
+}
+
+.root:size(tiny) {
+  padding-block-start: 18px;
+  padding-block-end: 18px;
+  padding-inline-start: 30px;
+  padding-inline-end: 30px;
+}
+
+.root:size(small) {
+  padding-block-start: 30px;
+  padding-block-end: 30px;
+  padding-inline-start: 48px;
+  padding-inline-end: 30px;
+}
+
+.root:size(small):reducedSpacingAndImprovedLayout {
+  padding-block-start: 24px;
+  padding-block-end: 24px;
+  padding-inline-start: 30px;
+  padding-inline-end: 30px;
+}
+
+.root:size(medium) {
+  padding-block-start: 30px;
+  padding-block-end: 30px;
+  padding-inline-start: 48px;
+  padding-inline-end: 30px;
+}
+
+.root:size(medium):reducedSpacingAndImprovedLayout {
+  padding-block-start: 24px;
+  padding-block-end: 24px;
+  padding-inline-start: 48px;
+  padding-inline-end: 30px;
+}
+
+.root:size(large) {
+  padding-block-start: 30px;
+  padding-block-end: 30px;
+  padding-inline-start: 60px;
+  padding-inline-end: 30px;
+}
+
+.root:inverted {
+  padding-inline-start: 30px;
+  padding-inline-end: 30px;
+}
+
+.root:badge,
+.root:hiddenBadge {
+  position: relative;
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
+.contentContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.root:inverted:withImageBackground .contentContainer {
+  padding-inline-start: 30px;
+  padding-inline-end: 0;
+}
+
+.root:alignItems(stretch) {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.root:alignItems(stretch) .contentContainer {
+  justify-content: space-between;
+}
+
+.title {
+  padding-bottom: 18px;
+}
+
+.root:reducedSpacingAndImprovedLayout .title {
+  padding-bottom: 12px;
+}
+
+.root:size(tiny) .title, .root:size(small) .title  {
+  padding-bottom: 12px;
+}
+
+.root:size(tiny) .title {
+  -st-mixin: text-medium-bold;
+  font-size: 20px;
+  color: value(D10);
+}
+
+.root:size(tiny):reducedSpacingAndImprovedLayout .title,
+.root:size(small):reducedSpacingAndImprovedLayout .title {
+  padding-bottom: 6px;
+}
+
+.root:withActions .description {
+  padding-bottom: 36px;
+}
+
+.root:withActions:reducedSpacingAndImprovedLayout .description {
+  padding-bottom: 24px;
+}
+
+.root:size(tiny):withActions .description {
+  padding-bottom: 18px;
+}
+
+.root:size(small):withActions .description {
+  padding-bottom: 24px;
+}
+
+.root:size(small):withActions:reducedSpacingAndImprovedLayout .description {
+  padding-bottom: 18px;
+}
+
+.badge {
+  position: absolute;
+  top: 9px;
+  left: -3px;
+}
+
+:global(.rtl) .badge ,
+:global([dir='rtl']) .root:inverted .badge {
+  right: -3px;
+  left: auto;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 100%;
+}
+
+.imageContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.imagePlaceholder {
+  background-color: transparent;
+  height: 100%;
+}
+
+.imageBackground {
+  position: absolute;
+  left: -30px;
+  top: -30px;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+}

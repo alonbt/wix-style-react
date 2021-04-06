@@ -1,0 +1,97 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60;
+}
+
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: "../Heading/Heading.st.css";
+  -st-default: Heading;
+}
+
+.root {
+  -st-states: theme(enum(page, page-no-border, section)), align(enum(start, center, end));
+  display: flex;
+  padding: 42px;
+}
+
+.root:theme(page) {
+  border: solid 1px value(D60);
+  border-radius: 8px;
+}
+
+.root:theme(page-no-border) {
+  border: 0;
+  border-radius: 8px;
+}
+
+.root:theme(section) {
+  padding: 0;
+}
+
+.root:align(start), .root:align(start) .imageContainer, .root:align(start) .childrenContainer {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.root:align(center), .root:align(center) .imageContainer, .root:align(center) .childrenContainer {
+  text-align: center;
+  justify-content: center;
+}
+
+.root:align(end), .root:align(end) .imageContainer, .root:align(end) .childrenContainer {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+:global([dir='rtl']) .root:align(start), :global(.rtl) .root:align(start){
+  text-align: right;
+}
+
+:global([dir='rtl']) .root:align(end), :global(.rtl) .root:align(end){
+  text-align: left;
+}
+
+.container {
+  max-width: 540px;
+}
+
+.imageContainer {
+  margin-bottom: 36px;
+  min-height: 120px;
+  max-height: 150px;
+  display: flex;
+}
+
+.imageElement {
+  min-height: 120px;
+  max-height: 150px;
+}
+
+.titleContainer {
+  margin-bottom: 6px;
+}
+
+.title {
+  -st-extends: Heading;
+}
+
+.sectionTitle {
+  -st-extends: Text;
+}
+
+.subtitle {
+  -st-extends: Text;
+}
+
+.subtitleContainer {
+}
+
+.childrenContainer {
+  margin-top: 18px;
+  display: flex;
+}

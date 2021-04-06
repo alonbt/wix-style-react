@@ -1,0 +1,109 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, D60;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-medium-normal, text-small-normal;
+}
+
+:vars {
+  sidePadding: 0;
+  sideMargin: 30px;
+  compactSideMargin: 18px;
+}
+
+.container {
+  -st-states: size(enum(small, medium)), hasDivider;
+
+  display: flex;
+  max-width: 100%;
+  border-bottom: 1px solid transparent;
+}
+
+.container:size(medium) {
+  -st-mixin: text-medium-normal;
+}
+
+.container:size(small) {
+  -st-mixin: text-small-normal;
+}
+
+.itemsContainer {
+  min-width: 628px;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tab {
+  -st-states: size(enum(small, medium)), active;
+
+  position: relative;
+  margin: 0 0 -1px;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.tab:size(small) {
+  padding: 12px 12px 10px;
+}
+
+.tab:size(medium) {
+  padding: 18px 18px 16px;
+}
+
+.compact .tab {
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.uniformFull .tab {
+  flex: 1;
+}
+
+.compactSide .tab {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.compactSide .tab:not(:first-child) {
+  margin-left: 18px;
+}
+
+.compactSide .tab:not(:last-child) {
+  margin-right: 18px;
+}
+
+.tab span.tabText:hover {
+  color: value(THEME-COLOR-10);
+}
+
+.tab:active {
+  border-color: value(THEME-COLOR-10);
+}
+
+.tab:active span.tabText {
+  color: value(THEME-COLOR-10);
+}
+
+.container:hasDivider {
+  border-color: value(D60);
+}
+
+.sideContent {
+  max-width: 314px;
+  overflow: hidden;
+  margin-left: 24px;
+  flex-shrink: 0;
+}

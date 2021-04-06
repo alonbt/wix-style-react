@@ -1,0 +1,23 @@
+# Monorepo tags - add a dedicated tag for each repository in the monorepo
+
+name: Monorepo PR Labeler
+
+on: pull_request
+
+jobs:
+  labelPR:
+    name: Label PR
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@main
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+  contributor:
+    name: Label contributors
+    if: ${{ !contains('EgoziE, shlomitc, argshook, mykas, TalZa1810, gendeld, sivanharel, bamai, Zivilekin, egidijusja, roibWix, daugerdas, shahata, mosheKenshoo, jonathanadler, nitayneeman', github.actor) }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@main
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: .github/labeler-contribution.yml

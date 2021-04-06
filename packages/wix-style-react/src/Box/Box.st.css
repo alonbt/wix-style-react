@@ -1,0 +1,73 @@
+.root {
+  -st-states: inline, direction(enum(horizontal, vertical)),
+    alignItems(enum(left, center, right, space-between)),
+    justifyContent(enum(top, middle, bottom, space-between));
+  display: flex;
+  gap: var(--gap);
+}
+
+/* Detect if the browser is safari */
+@supports not (appearance: auto) {
+  .root {
+    gap: 0;
+    margin: calc(var(--gap) / -2) calc(var(--gap) / -2);
+  }
+  .root > * {
+    margin: calc(var(--gap) / 2) calc(var(--gap) / 2);
+  }
+}
+
+.root:inline {
+  display: inline-flex;
+}
+
+.root:direction(horizontal) {
+  flex-direction: row;
+}
+.root:direction(horizontal):alignItems(left) {
+  justify-content: flex-start;
+}
+.root:direction(horizontal):alignItems(center) {
+  justify-content: center;
+}
+.root:direction(horizontal):alignItems(right) {
+  justify-content: flex-end;
+}
+.root:direction(horizontal):justifyContent(top) {
+  align-items: flex-start;
+}
+.root:direction(horizontal):justifyContent(middle) {
+  align-items: center;
+}
+.root:direction(horizontal):justifyContent(bottom) {
+  align-items: flex-end;
+}
+
+.root:direction(vertical) {
+  flex-direction: column;
+}
+.root:direction(vertical):alignItems(left) {
+  align-items: flex-start;
+}
+.root:direction(vertical):alignItems(center) {
+  align-items: center;
+}
+.root:direction(vertical):alignItems(right) {
+  align-items: flex-end;
+}
+.root:direction(vertical):justifyContent(top) {
+  justify-content: flex-start;
+}
+.root:direction(vertical):justifyContent(middle) {
+  justify-content: center;
+}
+.root:direction(vertical):justifyContent(bottom) {
+  justify-content: flex-end;
+}
+
+.root:direction(horizontal):alignItems(space-between),
+.root:direction(horizontal):justifyContent(space-between),
+.root:direction(vertical):alignItems(space-between),
+.root:direction(vertical):justifyContent(space-between) {
+  justify-content: space-between;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "wix-style-react",
+  "rootDir": "storybook-static",
+  "files": [
+    "*"
+  ],
+  "exposure": [
+    "custom"
+  ],
+  "customUrls": {
+    "main": "https://wix-style-react.com",
+    "preview": "https://preview.wix-style-react.com/<%= tag %>"
+  }
+}

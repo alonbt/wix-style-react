@@ -1,0 +1,102 @@
+:import {
+  -st-from: "../Foundation/stylable/mixins/calc.js";
+  -st-default: calc;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: speed-medium-2;
+}
+
+:vars{
+  iterationDely: 700ms;
+  loopDuration: calc(value(speed-medium-2) + value(iterationDely))
+}
+
+@keyframes easeOutElasticSmall {
+  0% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.07);
+  }
+  84% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes easeOutElasticMedium {
+  0% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.03);
+  }
+  84% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* values were calculated as explained here: https://css-tricks.com/css-keyframe-animation-delay-iterations */
+@keyframes easeOutElasticSmallLoop {
+  0% {
+    transform: scale(1);
+  }
+
+  12.6% {
+    transform: scale(1.07);
+  }
+
+  25.2%{
+    transform: scale(0.98);
+  }
+
+  30%, 100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes easeOutElasticMediumLoop {
+  0% {
+    transform: scale(1);
+  }
+
+  12.6% {
+    transform: scale(1.03);
+  }
+
+  25.2%{
+    transform: scale(0.98);
+  }
+
+  30%, 100% {
+    transform: scale(1);
+  }
+}
+
+.root {
+  -st-states: active, loop, size(enum(small,medium));
+}
+
+.root:active:size(small) {
+  animation: easeOutElasticSmall value(speed-medium-2);
+}
+
+.root:active:size(small):loop {
+  animation: easeOutElasticSmallLoop value(loopDuration) infinite;
+}
+
+.root:active:size(medium) {
+  animation: easeOutElasticMedium value(speed-medium-2);
+}
+
+.root:active:size(medium):loop {
+  animation: easeOutElasticMediumLoop value(loopDuration) infinite;
+}
+

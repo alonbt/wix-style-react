@@ -1,0 +1,45 @@
+:import {
+  -st-from: "wix-ui-core/hocs.st.css";
+  -st-named: Focusable;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: Y10, D10-20, D20, F00;
+}
+
+.root {
+  -st-extends: Focusable;
+  outline: none;
+  min-width: 0;
+  border: none;
+  padding: 0;
+  background: none;
+  font-size: 0;
+}
+
+.root:focus-visible .star {
+  box-shadow: 0 0 0 3px value(F00);
+  border-radius: 2px;
+}
+
+.star {
+  -st-states: filled, empty, hovered;
+  margin-right: 6px;
+}
+
+.root:last-child .star {
+  margin-right: 0;
+}
+
+.star:filled {
+  color: value(Y10);
+}
+
+.star:empty {
+  color: value(Y10);
+}
+
+.star:hovered {
+  cursor: pointer;
+}

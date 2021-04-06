@@ -1,0 +1,102 @@
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D10, D20, D40, D60, D70, D80;
+}
+
+.root {
+  -st-states: skin(enum(social, twitter)), size(enum(small, large));
+  width: 100%;
+  border: solid 1px value(D60);
+  background-color: value(D70);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.root:skin(twitter) {
+  border-radius: 12px;
+  background-color: value(D80);
+}
+
+.root:skin(twitter):size(small) {
+  display: flex;
+  flex-direction: row;
+}
+
+.mediaContainer {
+  -st-states: skin(enum(social, twitter)), size(enum(small, large));
+}
+
+.mediaContainer:skin(twitter):size(small) {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.container {
+  -st-states: skin(enum(social, twitter)), size(enum(small, large));
+  padding: 9px 12px 9px 12px;
+  border-top: solid 1px value(D60);
+}
+
+.container:skin(twitter):size(small) {
+  border-top: none;
+  border-left: solid 1px value(D60);
+  min-width: 0; /* needed to support text with ellipsis inside a container in flex. see https://css-tricks.com/flexbox-truncated-text/ */
+}
+
+.socialPreviewUrl {
+  -st-states: skin(enum(social, twitter));
+  -st-extends: Text;
+}
+
+.socialPreviewUrlContainer {
+  -st-states: skin(enum(social, twitter));
+}
+
+.socialPreviewUrlContainer:skin(twitter) {
+  display: flex;
+  direction: horizontal;
+}
+
+.socialPreviewUrl:size(tiny) {
+  color: value(D40);
+  display: block;
+}
+
+.socialPreviewUrl:skin(twitter) {
+  color: value(D20);
+}
+
+.socialPreviewTitle{
+  -st-states: skin(enum(social, twitter));
+  -st-extends: Text;
+}
+
+.socialPreviewTitle:size(small) {
+  color: value(D10);
+}
+
+.socialPreviewTitle:skin(twitter) {
+  color: value(D10);
+  margin-bottom: 3px;
+}
+
+.socialPreviewDescription {
+  -st-states: skin(enum(social, twitter));
+  -st-extends: Text;
+}
+
+.socialPreviewDescription:size(tiny) {
+  color: value(D20);
+}
+
+.socialPreviewDescription:skin(twitter) {
+  color: value(D20);
+  margin-bottom: 3px;
+}

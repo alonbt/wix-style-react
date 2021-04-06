@@ -1,0 +1,102 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, THEME-COLOR-20, THEME-COLOR-40, D10-30, D10-05, D80,
+    F00;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: alignItems(enum(top, center)), disabled, checked;
+  cursor: initial;
+  display: flex;
+  flex-direction: row;
+}
+
+.input {
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+  border: 0;
+  height: 0;
+  width: 0;
+}
+
+.root:alignItems(center) {
+  align-items: center;
+}
+
+.root:alignItems(top) > .icon {
+  top: 4px;
+}
+
+.root:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.root:checked > .label,
+.root:checked > .icon {
+  cursor: default;
+}
+
+.root:disabled > .icon {
+  color: value(D10-30);
+  border-color: value(D10-30);
+  background-color: value(D10-05);
+}
+
+.root:focus-visible > .icon {
+  border-color: value(THEME-COLOR-10);
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.root:active > .icon::after {
+  background-color: value(THEME-COLOR-20);
+}
+
+.root:checked > .icon::after {
+  background-color: value(THEME-COLOR-10);
+}
+
+.root:disabled:checked > .icon::after {
+  background-color: value(D10-30);
+}
+
+.root:not(:checked) > .icon:hover:not(:active) {
+  background-color: value(THEME-COLOR-40);
+}
+
+.root > .icon {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  min-width: 16px;
+  height: 16px;
+  border: 1px solid value(THEME-COLOR-10);
+  background-color: value(D80);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.root > .icon::after {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  left: 0;
+  margin: 2px;
+}
+
+.root > .label {
+  cursor: pointer;
+  padding-inline-start: 12px;
+  width: 100%;
+}

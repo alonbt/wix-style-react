@@ -1,0 +1,51 @@
+:import {
+-st-from: '../../Foundation/stylable/colors.st.css';
+-st-named: D20, D80, B10, F00;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+.badge {
+  -st-extends: Focusable;
+  position: relative;
+  box-sizing: border-box;
+  width: 40px;
+  text-align: center;
+
+  border-radius: 2px;
+  background: value(D20);
+  outline:0;
+}
+
+.badge:focus-visible {
+  box-shadow: 0 0 4px 2px value(B10);
+}
+
+.badge::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+
+  width: 17px;
+  height: 17px;
+
+  content: '';
+  transform: translate(42%, -50%) rotate(-45deg);
+
+  background: value(D20);
+  outline:0;
+  border-radius: 2px;
+}
+
+.badge:focus-visible::before {
+  box-shadow: 3px 3px 4px 0 value(B10);
+}
+
+.badgeContent {
+  position: relative;
+  display: inline-block;
+  padding: 3px 8px;
+}

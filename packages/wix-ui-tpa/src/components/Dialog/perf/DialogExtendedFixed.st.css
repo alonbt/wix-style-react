@@ -1,0 +1,11 @@
+:import {
+    -st-from: "../Dialog.st.css";
+    -st-named: skin-fixed;
+}
+
+.dialogComponent {
+    -st-mixin: skin-fixed(
+            CloseButtonColor '"color(--customCloseButtonColor)"',
+            BackgroundColor '"color(--customBackgroundColor)"'
+    );
+}

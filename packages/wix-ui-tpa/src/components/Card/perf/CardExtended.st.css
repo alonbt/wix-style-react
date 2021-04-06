@@ -1,0 +1,15 @@
+:import {
+  -st-from: "../Card.st.css";
+  -st-default: TPACard;
+}
+
+.root {
+  -st-mixin: TPACard(
+    MainCardColor blue,
+    MainBorderWidth 1,
+    MainBorderColor blue,
+    MainInfoColor blue,
+    MainMediaColor blue,
+    StackedInfoSidePadding 1,
+  );
+}

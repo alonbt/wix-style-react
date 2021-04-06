@@ -1,0 +1,90 @@
+:import {
+    -st-from: "../../../common/formatters.st";
+    -st-named: color, applyOpacity;
+}
+
+:import {
+    -st-from: "../Tab/Tab.st.css";
+    -st-default: Tab;
+}
+
+:vars {
+    scrollAnimationDuration: .4s;
+}
+
+:vars {
+    selectedIndicatorColor: --overridable;
+}
+
+.root {
+    -st-states: alignment(enum(center, left, right)), variant(enum(fullWidth, fit)), animateIndicator;
+    overflow: hidden;
+    min-height: 100%;
+}
+
+.nav {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    white-space:nowrap;
+    position: absolute;
+}
+
+.nav::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    -st-extends: Tab;
+    -st-mixin: Tab(
+        focusIndicatorColor applyOpacity(color(value(selectedIndicatorColor)), 0.2),
+        activeIndicatorColor value(selectedIndicatorColor)
+    );
+    display: inline-block;
+}
+
+.selectedIndicator {
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    background-color: value(selectedIndicatorColor);
+}
+
+.border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+}
+
+.root:animateIndicator .selectedIndicator {
+    height: 3px;
+    transition: left value(scrollAnimationDuration) ease-in-out, width value(scrollAnimationDuration) ease-in-out;
+}
+
+.root:alignment(left) .itemsList {
+    text-align: left;
+}
+
+.root:alignment(right) .itemsList {
+    text-align: right;
+}
+
+.root:variant(fullWidth) .itemsList {
+    display: flex;
+}
+
+.root:variant(fullWidth) .tab {
+    flex: 1;
+}
+
+.itemsList {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
+}

@@ -1,0 +1,14 @@
+@st-global-custom-property --wsr-font-family, --wsr-font-weight-regular, --wsr-font-weight-medium, --wsr-font-weight-bold, --wix-font-stack, --wix-font-weight-regular, --wix-font-weight-medium, --wix-font-weight-bold;
+
+.root {
+  -st-states: vietnamese;
+
+  --wsr-font-family: var(--wix-font-stack);
+  --wsr-font-weight-regular: var(--wix-font-weight-regular);
+  --wsr-font-weight-medium: var(--wix-font-weight-medium);
+  --wsr-font-weight-bold: var(--wix-font-weight-bold);
+}
+
+.root:vietnamese {
+  --wsr-font-family: Arial, var(--wix-font-stack);
+}

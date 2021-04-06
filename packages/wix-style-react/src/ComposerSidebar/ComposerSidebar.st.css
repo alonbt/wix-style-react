@@ -1,0 +1,37 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80, D60;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/default-scroll-bar.st.css';
+  -st-named: defaultScrollBar;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right: 1px solid value(D60);
+  padding: 12px 0;
+  background: value(D80);
+  -st-mixin: defaultScrollBar;
+  overflow: auto;
+}
+
+.item {
+  -st-states: labelPlacement(enum(end, bottom));
+
+  max-width: 240px;
+}
+
+.item:labelPlacement(end) {
+  padding: 9px 15px;
+}
+
+.item:labelPlacement(bottom) {
+  display: flex;
+  justify-content: center;
+  width: 78px;
+  padding: 12px 6px;
+}

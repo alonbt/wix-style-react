@@ -1,0 +1,121 @@
+:import {
+  -st-from: "../../../IconButton/IconButton.st.css";
+  -st-default: IconButton;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: B05, B10, B40, B50, D10, D20, D30, D55, D70, D80, D10-30, D10-40, D80-70;
+}
+
+.root {
+  -st-extends: IconButton;
+  background-color: value(B10);
+  border-color: value(B10);
+  color: value(D80);
+}
+
+.root:focus-visible {
+  box-shadow: 0 0 0 3px value(B40);
+}
+
+.root:hover {
+  background-color: value(B50);
+  border-color: value(B50);
+  color: value(B05);
+}
+
+.root:active {
+  background-color: value(B10);
+  border-color: value(B10);
+  color: value(D80);
+}
+
+
+.root:size(small) {
+  width: 32px;
+  height: 32px;
+}
+
+.root:disabled {
+  background-color: value(D70);
+  border-color: value(D70);
+  color: value(D10-40);
+}
+
+/* Skin: Standard - Secondary */
+.root:priority(secondary) {
+  border: solid 1px value(D55);
+  background: transparent;
+  color: value(B10);
+}
+
+.root:priority(secondary):hover {
+  color: value(B05);
+  border-color: transparent;
+  background-color: value(B50);
+}
+
+.root:priority(secondary):active {
+  border: solid 1px value(D55);
+  background: transparent;
+  color: value(B10);
+}
+
+.root:priority(secondary):disabled {
+  background-color: value(D70);
+  border-color: value(D70);
+  color: value(D10-40);
+}
+
+/* Skin: inverted */
+
+.root:skin(inverted) {
+  border: none;
+  background-color: value(D80);
+  color: value(B10);
+}
+
+.root:skin(inverted):hover {
+  color: value(D80);
+  border-color: transparent;
+  background-color: value(B05);
+}
+
+.root:skin(inverted):active {
+  border: none;
+  background-color: value(D80);
+  color: value(B10);
+}
+
+.root:skin(inverted):disabled {
+  background-color: value(D80);
+  border-color: transparent;
+  color: value(D10-40);
+}
+
+/* Skin: inverted - Secondary */
+
+.root:skin(inverted):priority(secondary) {
+  border: none;
+  background-color: value(D80);
+  color: value(D10);
+}
+
+.root:skin(inverted):priority(secondary):hover {
+  color: value(D80);
+  border-color: transparent;
+  background-color: value(B05);
+}
+
+.root:skin(inverted):priority(secondary):active {
+  border: none;
+  background-color: value(D80);
+  color: value(D10);
+}
+
+.root:skin(inverted):priority(secondary):disabled {
+  background-color: value(D80);
+  border-color: transparent;
+  color: value(D10-40);
+}

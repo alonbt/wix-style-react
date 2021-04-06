@@ -1,0 +1,26 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: calculate, string;
+}
+
+:vars {
+    /*Overrides*/
+    BorderWidth: --overridable;
+    BorderColor: --overridable;
+    PaddingSize: --overridable;
+}
+
+.withBorder {
+    border-style: solid;
+    border-color: value(BorderColor);
+    border-width: value(BorderWidth);
+}
+
+.withDynamicPadding {
+    padding: calculate(string(-), value(PaddingSize), value(BorderWidth));
+}
+
+.withDynamicSidePadding {
+    padding-left: calculate(string(-), value(PaddingSize), value(BorderWidth));
+    padding-right: calculate(string(-), value(PaddingSize), value(BorderWidth));
+}

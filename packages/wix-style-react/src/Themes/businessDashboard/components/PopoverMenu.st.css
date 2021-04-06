@@ -1,0 +1,43 @@
+:import {
+  -st-from: "../../../PopoverMenu/PopoverMenu.st.css";
+  -st-default: PopoverMenu;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/shadows.st.css";
+  -st-named: shadow10;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
+  -st-named: popoverContent;
+}
+
+.root {
+  -st-extends: PopoverMenu;
+}
+
+.root::popoverContent {
+  box-shadow: value(shadow10);
+}
+
+.root::popover[data-placement*="top"],
+.root::popover[data-placement*="left"],
+.root::popover[data-placement*="right"],
+.root::popover[data-placement*="bottom"] {
+  padding: 0;
+}
+
+.root:withArrow::popover[data-placement*="top"],
+.root:withArrow::popover[data-placement*="left"],
+.root:withArrow::popover[data-placement*="right"],
+.root:withArrow::popover[data-placement*="bottom"] {
+  padding: 6px 0;
+}
+
+.root:withArrow::popover[data-placement*="top"] .popoverContent,
+.root:withArrow::popover[data-placement*="left"] .popoverContent,
+.root:withArrow::popover[data-placement*="right"] .popoverContent,
+.root:withArrow::popover[data-placement*="bottom"] .popoverContent {
+  padding: 0;
+}

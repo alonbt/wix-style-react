@@ -1,0 +1,404 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, applyOpacity, fallback, font, zeroAsTrue, applyUnit;
+}
+
+:import {
+    -st-from: "wix-style-react/dist/src/Calendar/Calendar.st.css";
+    -st-default: WSRCalendar;
+    -st-named: dayWrapper; /* currently due to a stylable issue this is the best way to override styling of nested classes */
+}
+
+:import {
+    -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
+    -st-named: popoverContent;
+}
+
+:import {
+    -st-from: "../../common/palette.st.css";
+    -st-named: focusRing;
+}
+
+/* Defaults - default params */
+:vars {
+    calendarWidth: 100%;
+    calendarHeight: 100%;
+    sidePadding: 21px;
+    minFontSize: 14;
+
+    DefaultBackgroundColor: color-1;
+
+    DefaultNavigationArrowsColor: color-5;
+    DefaultMonthAndYearCaptionFont: "{theme: 'Body-M', size: '16px', lineHeight: '24px'}";
+    DefaultMonthAndYearCaptionColor: color-5;
+
+    DefaultWeekdayTextColor: color-8;
+
+    DefaultDayFont: "{theme: 'Body-M', size: '14px', lineHeight: '20px'}";
+    DeafultDayColor: color-5;
+    DefaultSelectedDayColor: color-1;
+    DefaultSelectedDayBGColor: color-8;
+    DefaultSelectedDayBorderRadius: 100%;
+    DefaultDisabledDayColor: color-3;
+
+    DefaultWeeksVerticalSpacing: 0;
+}
+
+/*Overrides*/
+:vars {
+    /*
+        The calendar background color
+        @default color-1
+    */
+    BackgroundColor: --overridable;
+    /*
+        The color of the calendar navigation arrows
+        @default color-5
+    */
+    NavigationArrowsColor: --overridable;
+    /*
+        The font of the calendar month snd year caption.
+        @default {theme: 'Body-M', size: '16px' lineHeight: '24px'}
+    */
+    MonthAndYearCaptionFont: --overridable;
+    /*
+        The color of the calendar month and year caption
+        @default color-5
+    */
+    MonthAndYearCaptionColor: --overridable;
+    /*
+        The font color of the calendar's weekdays.
+        @default color-8
+    */
+    WeekdayTextColor: --overridable;
+    /*
+        The font of a specific date and the weekday texts. The minimum font size is 14px and the maximum is 24px.
+        @default {theme: 'Body-M', size: '14px', lineHeight: 1 }
+        @fixed The line height is 1 and could not be overridden.
+    */
+    DayFont: --overridable;
+    /*
+        The font color of a specific day.
+        @default color-5
+    */
+    DayColor: --overridable;
+    /*
+        The font color of the selected day.
+        @default color-1
+    */
+    SelectedDayColor: --overridable;
+    /*
+        The background color of the selected day.
+        @default color-color-8
+    */
+    SelectedDayBGColor: --overridable;
+    /*
+        The border radius of the selected day. The value could be in px or %.
+        @default 100%
+    */
+    SelectedDayBorderRadius: --overridable;
+    /*
+        The background color of a disabled day. Disabled day is a date that are not selectable.
+        @default color-3
+    */
+    DisabledDayColor: --overridable;
+    /*
+        The vertical space between weeks.
+        @default 0
+    */
+    WeeksVerticalSpacing: --overridable;
+}
+
+/* Overrides - deceleration of overridable parameters by the consumer */
+:vars {
+    CurrentBackgroundColor: color(fallback(value(BackgroundColor), value(DefaultBackgroundColor)));
+
+    CurrentNavigationArrowsColor: color(fallback(value(NavigationArrowsColor), value(DefaultNavigationArrowsColor)));
+    CurrentMonthAndYearCaptionFont: fallback(font(value(MonthAndYearCaptionFont)), font(value(DefaultMonthAndYearCaptionFont)));
+    CurrentMonthAndYearCaptionColor: color(fallback(value(MonthAndYearCaptionColor), value(DefaultMonthAndYearCaptionColor)));
+    DropdownOptionSelectedAndHoverBGColor: applyOpacity(value(CurrentDayColor), 0.06);
+
+    CurrentWeekdayTextColor: color(fallback(value(WeekdayTextColor), value(DefaultWeekdayTextColor)));
+
+    CurrentDayFont: fallback(font(value(DayFont)), font(value(DefaultDayFont)));
+    CurrentDayColor: color(fallback(value(DayColor), value(DeafultDayColor)));
+    CurrentDayBGColorHover: applyOpacity(value(CurrentSelectedDayBGColor), 0.1);
+    CurrentSelectedDayColor: color(fallback(value(SelectedDayColor), value(DefaultSelectedDayColor)));
+    CurrentSelectedDayBGColor: color(fallback(value(SelectedDayBGColor), value(DefaultSelectedDayBGColor)));
+    CurrentSelectedDayBorderRadius: fallback(value(SelectedDayBorderRadius),value(DefaultSelectedDayBorderRadius));
+    CurrentDisabledDayColor: color(fallback(value(DisabledDayColor), value(DefaultDisabledDayColor)));
+
+    CurrentWeeksVerticalSpacing: applyUnit(fallback(value(WeeksVerticalSpacing),value(DefaultWeeksVerticalSpacing)), px);
+}
+
+/* The component's css without the overrideStyleParams */
+
+.root {
+}
+
+.root .popoverContent {
+    border-radius: 0;
+}
+
+.calendar {
+    -st-extends: WSRCalendar;
+    -st-states: removeOuterPadding;
+}
+
+.calendar::month {
+    width: value(calendarWidth);
+    height: value(calendarHeight);
+    font: value(CurrentDayFont);
+    min-height: 332px;
+
+    /* The minimum width should be 280px in order to support mobile.
+       Since the minimum font size is 14px the expression `280em/value(minFontSize)` will be reduced to 280px in this case.
+    */
+    min-width: calc(280em/value(minFontSize));
+}
+
+/* calendar header */
+
+.calendar::header {
+    padding: 28px value(sidePadding) 0;
+    background-color: value(CurrentBackgroundColor);
+    border-radius: 0;
+}
+
+.calendar::header::arrowLeft:skin(light), .calendar::header::arrowRight:skin(light) {
+    color: value(CurrentNavigationArrowsColor);
+    background: none;
+    width: 24px;
+    height: 24px;
+}
+
+.calendar::header::arrowLeft:skin(light) {
+    margin-right: 0;
+}
+
+.calendar::header::arrowRight:skin(light) {
+    margin-left: 0;
+}
+
+.calendar::header::arrowLeft:skin(light):hover, .calendar::header::arrowRight:skin(light):hover {
+    background: none;
+    border: none;
+    color: applyOpacity(value(CurrentNavigationArrowsColor), 0.7);
+}
+
+.calendar::header::arrowLeft:skin(light):active, .calendar::header::arrowRight:skin(light):active {
+    background: none;
+    color: applyOpacity(value(CurrentNavigationArrowsColor), 0.7);
+}
+
+.calendar::header::yearAndMonthWrapper {
+    width: 12.6em;
+    min-width: 192px;
+    font: value(CurrentMonthAndYearCaptionFont);
+}
+
+.calendar::header::caption {
+    font: value(CurrentMonthAndYearCaptionFont);
+    color: value(CurrentMonthAndYearCaptionColor);
+}
+
+/******************************************************/
+
+/* calendar Weekdays */
+
+.calendar::weekdays {
+    padding: 0 value(sidePadding);
+    background-color: value(CurrentBackgroundColor);
+}
+
+.calendar::weekday {
+    padding: 20px 0 16px;
+    font: value(CurrentDayFont);
+    color: value(CurrentWeekdayTextColor);
+    width: calc(34em/value(minFontSize));
+    justify-content: center;
+    display: flex;
+    flex-shrink: 0;
+}
+
+/******************************************************/
+
+/* calendar body */
+
+.calendar::body {
+    padding: 0 value(sidePadding) 20px;
+    background-color: value(CurrentBackgroundColor);
+}
+
+.calendar:removeOuterPadding::header {
+    padding: 0;
+}
+
+.calendar:removeOuterPadding::body {
+    padding: 0;
+}
+
+.calendar:removeOuterPadding::weekdays {
+    padding: 0;
+}
+
+.calendar:removeOuterPadding::month {
+    min-width: calc(240em/value(minFontSize));
+    min-height: 284px;
+}
+
+.calendar::week:not(:last-child) {
+    margin-bottom: value(CurrentWeeksVerticalSpacing);
+}
+
+.calendar::day {
+    font: value(CurrentDayFont);
+    color: value(CurrentDayColor);
+    width: calc(34em/value(minFontSize));
+    height: calc(34em/value(minFontSize));
+    border-radius: value(CurrentSelectedDayBorderRadius);
+    flex-shrink: 0;
+}
+
+.calendar::dayText {
+    line-height: 1;
+}
+
+.calendar::dayIndicationContainer {
+    padding: calc(3em/value(minFontSize)) 0;
+    height: calc(10em/value(minFontSize));
+}
+
+.calendar::day:hover {
+    color: color(value(DeafultDayColor));
+    background-color: value(CurrentDayBGColorHover);
+}
+
+.calendar::day:today:not(:selected):not(:hover) {
+    background: none;
+    color: value(CurrentSelectedDayBGColor);
+    box-shadow: none;
+}
+
+.calendar::day:today:not(:selected):hover {
+    color: value(CurrentSelectedDayBGColor);
+    background-color: value(CurrentDayBGColorHover);
+}
+
+.calendar::day:today:not(:selected):not(:hover):focus {
+    box-shadow: none;
+}
+
+.calendar::day:selected:not(:outside) {
+    color: value(CurrentSelectedDayColor);
+}
+
+.calendar::day:outside, .calendar::day:disabled {
+    color: value(CurrentDisabledDayColor);
+}
+
+/* removing the range design of WSR */
+/* todo: remove the important after removing the WSR important (https://jira.wixpress.com/browse/DSM-1585) */
+.calendar::day:selected:not(:outside):last-of-type,
+.calendar::day:lastOfMonth:not(:outside) {
+    border-radius: value(CurrentSelectedDayBorderRadius) !important;
+}
+
+.calendar::day:selected:not(:outside):first-of-type,
+.calendar::day:firstOfMonth:not(:outside) {
+    border-radius: value(CurrentSelectedDayBorderRadius) !important;
+}
+/*********/
+
+/* todo: need to check if it's really override the viewer focus ring and if we should remove it..  */
+.calendar::day:focus::after {
+    border-radius: value(CurrentSelectedDayBorderRadius);
+    box-shadow: none;
+}
+
+.calendar::day:singleDay:not(:outside) .dayWrapper {
+    background-color: value(CurrentSelectedDayBGColor);
+}
+
+.calendar::day:singleDay:not(:outside):hover .dayWrapper {
+    background-color: applyOpacity(value(CurrentSelectedDayBGColor), 0.7);
+}
+
+.root .dayWrapper {
+    border-radius: value(CurrentSelectedDayBorderRadius);
+}
+
+
+/******************************************************/
+
+
+/* month and years dropdowns */
+
+.calendar::header::monthDropdown::caption ,
+.calendar::header::yearDropdown::caption {
+    font: value(CurrentMonthAndYearCaptionFont);
+    color: value(CurrentMonthAndYearCaptionColor);
+    height: 24px;
+}
+
+/* List */
+
+.calendar::header::monthDropdown::dropdown::list::contentContainer,
+.calendar::header::yearDropdown::dropdown::list::contentContainer {
+    background-color: value(CurrentBackgroundColor);
+    padding: 12px 0;
+}
+
+/* List: Scroll */
+.calendar::header::monthDropdown::dropdown::list::options::-webkit-scrollbar,
+.calendar::header::yearDropdown::dropdown::list::options::-webkit-scrollbar {
+    width: 16px;
+}
+
+.calendar::header::monthDropdown::dropdown::list::options::-webkit-scrollbar-thumb,
+.calendar::header::yearDropdown::dropdown::list::options::-webkit-scrollbar-thumb {
+    /* https://stackoverflow.com/a/16829330/5343330 */
+    background-color: value(DropdownOptionSelectedAndHoverBGColor);
+    background-clip: content-box;
+    border-radius: calc(4px * 2);
+    border: 4px solid transparent;
+    height: 72px;
+}
+
+.calendar::header::monthDropdown::dropdown::list::options::-webkit-scrollbar-thumb:hover,
+.calendar::header::yearDropdown::dropdown::list::options::-webkit-scrollbar-thumb:hover {
+    background-color: applyOpacity(value(CurrentDayColor), 0.15);
+}
+
+.calendar::header::monthDropdown::dropdown::list::options::-webkit-scrollbar-thumb:active,
+.calendar::header::yearDropdown::dropdown::list::options::-webkit-scrollbar-thumb:active {
+    background-color: applyOpacity(value(CurrentDayColor), 0.25);
+}
+/*************************/
+
+.calendar::header::monthDropdown::dropdown::list::selectableOption,
+.calendar::header::yearDropdown::dropdown::list::selectableOption {
+    background-color: value(CurrentBackgroundColor);
+    padding: 0 20px;
+}
+
+.calendar::header::monthDropdown::dropdown::list::selectableOption:not(:disabled):not(:selected):hover,
+.calendar::header::yearDropdown::dropdown::list::selectableOption:not(:disabled):not(:selected):hover {
+    background-color: value(DropdownOptionSelectedAndHoverBGColor);
+}
+
+.calendar::header::monthDropdown::dropdown::list::selectableOption:selected,
+.calendar::header::yearDropdown::dropdown::list::selectableOption:selected {
+    background-color: value(DropdownOptionSelectedAndHoverBGColor);
+}
+
+.calendar::header::monthDropdown::dropdown::list::selectableOption:selected:hover,
+.calendar::header::yearDropdown::dropdown::list::selectableOption:selected:hover {
+    background-color: value(DropdownOptionSelectedAndHoverBGColor);
+}
+
+.calendar::header::monthDropdown::dropdown::list::selectableOption::title,
+.calendar::header::yearDropdown::dropdown::list::selectableOption::title {
+    color: value(CurrentDayColor);
+    font: font("{theme: 'Body-M', size: '14px', lineHeight: '20px'}");
+}

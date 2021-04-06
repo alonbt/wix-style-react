@@ -1,0 +1,22 @@
+:import {
+  -st-from: "../../../../Input/IconAffix/IconAffix.st.css";
+  -st-default: IconAffix;
+}
+
+:import {
+  -st-from: "../../foundations/colors.st.css";
+  -st-named: B10, D10-40;
+}
+
+.root {
+  -st-extends: IconAffix;
+}
+
+/* Color */
+.root {
+  color: value(B10);
+}
+
+.root:disabled {
+  color: value(D10-40);
+}

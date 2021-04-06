@@ -1,0 +1,6 @@
+{
+  "name": "atlas-address-input",
+  "main": "../dist/src/AtlasAddressInput/index.js",
+  "module": "../dist/es/src/AtlasAddressInput/index.js",
+  "typings": "../dist/es/src/AtlasAddressInput/index.d.ts"
+}

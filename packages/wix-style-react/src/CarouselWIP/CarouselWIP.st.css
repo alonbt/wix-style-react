@@ -1,0 +1,156 @@
+:import {
+  -st-from: '../Foundation/stylable/shadows.st.css';
+  -st-named: shadow30;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-00, THEME-COLOR-30, THEME-COLOR-50, D70;
+}
+
+:vars {
+  horizontalSpacingSize: 50px;
+  verticalSpacingSize: 7px;
+}
+
+.root {
+  -st-states: controlsPosition(enum(sides, overlay, bottom, none)),
+  controlsSize(enum(tiny, small, medium, large)),
+  showControlsShadow,
+  showSidesGradients;
+  position: relative;
+}
+
+.root:controlsSize(tiny) {
+  --arrow-size: 24px
+}
+
+.root:controlsSize(small) {
+  --arrow-size: 30px
+}
+
+.root:controlsSize(medium) {
+  --arrow-size: 36px;
+}
+
+.root:controlsSize(large) {
+  --arrow-size: 42px;
+}
+
+.carousel {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: hidden;
+  position: relative;
+  transition: all .25s ease-in-quint;
+  outline: none;
+}
+
+.control {
+  position: absolute;
+  display: block;
+  height: 20px;
+  width: 20px;
+  line-height: 0;
+  font-size: 0;
+  cursor: pointer;
+  background: transparent;
+  color: transparent;
+  top: 50%;
+  transform: translate(0, -50%);
+  padding: 0;
+  border: none;
+  outline: none;
+  align-content: center;
+}
+
+.prev {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+.root:controlsPosition(sides) .carousel {
+  width: calc(100% - (2 * var(--arrow-size)) - value(horizontalSpacingSize));
+  margin: auto;
+}
+
+.root:controlsPosition(sides) .control {
+  top: calc(50% - (var(--arrow-size) / 2 + value(verticalSpacingSize)));
+  transform: none;
+}
+
+.root:controlsPosition(overlay) .control {
+  top: calc(50% - (var(--arrow-size) / 2 + value(verticalSpacingSize)));
+  transform: none;
+  z-index: 3;
+}
+
+.root:controlsPosition(bottom) {
+  margin-bottom: var(--arrow-size);
+}
+.root:controlsPosition(bottom) .control {
+  top: calc(100% + value(verticalSpacingSize));
+  transform: none;
+}
+
+.root:showControlsShadow .control {
+  box-shadow: value(shadow30);
+}
+
+.root:showSidesGradients .start,
+.root:showSidesGradients .end {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 30px;
+  top: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.root:showSidesGradients .start {
+  left: 0;
+  background: linear-gradient(to left, rgba(240, 244, 247, 0) 50%, value(D70));
+  background: linear-gradient(to left, rgba(240, 244, 247, 0) 50%, var(--sidesGradientColor, value(D70)));
+}
+
+.root:showSidesGradients .end {
+  right: 0;
+  background: linear-gradient(to right, rgba(240, 244, 247, 0) 50%, value(D70));
+  background: linear-gradient(to right, rgba(240, 244, 247, 0) 50%, var(--sidesGradientColor, value(D70)));
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.dot {
+  -st-states: active;
+
+  width: 12px;
+  height: 4px;
+  margin: 0 6px 2px 0;
+  border-radius: 2px;
+  background-color: value(THEME-COLOR-30);
+  cursor: pointer;
+}
+
+.dot:active {
+  background-color: value(THEME-COLOR-00);
+}
+
+.loader {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: value(THEME-COLOR-50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

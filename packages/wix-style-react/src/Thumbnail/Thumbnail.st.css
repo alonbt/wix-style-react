@@ -1,0 +1,201 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named:  B00-24, THEME-COLOR-10, THEME-COLOR-20, D50, D80, D10-30, F00;
+}
+
+:vars {
+  borderRadius: 6px;
+}
+
+
+.root {
+  -st-states: disabled;
+}
+
+.root:not(:disabled) {
+  cursor: pointer;
+}
+
+
+.thumbnail {
+  -st-extends: Focusable;
+  -st-states: selected, disabled, size(enum(tiny, small, medium)), hasBackground, hasChildren, contentAlignment(enum(top, center));
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  padding: 18px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  border-radius: value(borderRadius);
+  box-sizing: border-box;
+  outline: none;
+}
+
+.thumbnail::after {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 0 0 1px value(B00-24) inset;
+  border-radius: value(borderRadius);
+  content: ' ';
+}
+
+.thumbnail:hover::after {
+  box-shadow: 0 0 0 1px value(THEME-COLOR-20) inset;
+}
+
+.thumbnail:focus-visible::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 0 0 3px value(F00);
+  border-radius: value(borderRadius);
+  content: ' ';
+}
+
+.thumbnail:size(tiny) {
+  padding: 15px;
+}
+
+.thumbnail:contentAlignment(center) {
+  justify-content: center;
+}
+
+.thumbnail:contentAlignment(top) {
+  justify-content: start;
+}
+
+.thumbnail:selected::after {
+  box-shadow: 0 0 0 2px value(THEME-COLOR-10) inset;
+}
+
+.thumbnail:selected:disabled::after {
+  box-shadow: 0 0 0 2px value(D10-30) inset;
+}
+
+.thumbnail:disabled::after {
+  box-shadow: 0 0 0 1px value(D10-30) inset;
+  cursor: default;
+}
+
+.thumbnail:disabled .image {
+  opacity: .42;
+}
+
+.thumbnail:disabled .selectedIcon {
+  color: value(D80);
+  background: value(D50);
+}
+
+.thumbnail:disabled .title,
+.thumbnail:disabled .description {
+  color: value(D10-30);
+}
+
+
+.thumbnail:hasChildren {
+  padding: 0;
+  align-items: stretch;
+}
+
+
+.thumbnail:hasBackground,
+.thumbnail:hasChildren {
+  padding: 0;
+  background-color: value(D80);
+}
+
+.customChild {
+  -st-states: disabled;
+  overflow: auto; /* is required to make thumbnail border be always on top of custom child */
+  border-radius: value(borderRadius);
+}
+
+.customChild:disabled {
+  opacity: 0.3;
+}
+
+
+.title,
+.description,
+.image {
+  word-break: break-word;
+  text-align: center;
+}
+
+.title:last-child,
+.description:last-child,
+.image:last-child {
+  padding: 0;
+}
+
+
+.title {
+  padding-bottom: 6px;
+}
+
+.bottomTitle {
+  -st-states: selected, disabled;
+  text-align: center;
+  padding-top: 6px;
+}
+
+.bottomTitle:selected {
+  color: value(THEME-COLOR-10);
+}
+
+.bottomTitle:disabled {
+  color: value(D10-30);
+}
+
+.image {
+  padding-bottom: 12px;
+}
+
+.backgroundImage {
+  -st-states: disabled;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: value(borderRadius);
+}
+
+.backgroundImage:disabled {
+  opacity: 0.3;
+}
+
+.selectedIcon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: value(THEME-COLOR-10);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: value(D80);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:global([dir="rtl"]) .selectedIcon {
+  left: -10px;
+  right: auto;
+}

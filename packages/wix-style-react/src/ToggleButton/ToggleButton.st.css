@@ -1,0 +1,361 @@
+:import {
+  -st-from: 'wix-ui-core/dist/src/components/button-next/button-next.st.css';
+  -st-default: ButtonNext;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D55, D80, B40, F00, D10, D20, D30, D60, D10-30, D80-70, R10, R20, R30, G10, G20, G30,
+    THEME-COLOR-10, THEME-COLOR-20, THEME-COLOR-30, THEME-COLOR-40, THEME-COLOR-50;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-9;
+}
+
+/* root */
+.root {
+  -st-extends: ButtonNext;
+  -st-states: selected, disabled, skin(enum(standard, dark, inverted, destructive, success)),
+    labelPlacement(enum(tooltip, end, bottom)), shape(enum(square, round));
+
+  padding: 0;
+
+  box-sizing: border-box;
+  text-align: center;
+
+  border: none;
+  outline: none;
+
+  background-color: transparent;
+  color: value(D10);
+}
+
+.root::content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.root:hover:not(:disabled),
+.root:hover:not(:disabled) .label {
+  color: value(THEME-COLOR-10);
+}
+
+.root:active:not(:disabled),
+.root:selected:not(:disabled),
+.root:active:not(:disabled) .label,
+.root:selected:not(:disabled) .label {
+  color: value(THEME-COLOR-20);
+}
+
+.root:selected:not(:disabled) .icon {
+  background-color: value(THEME-COLOR-40);
+}
+
+.root:selected:hover:not(:disabled),
+.root:selected:hover:not(:disabled) .label {
+  color: value(THEME-COLOR-20);
+}
+
+.root:selected:hover:not(:disabled) .icon {
+  background-color: value(THEME-COLOR-50);
+}
+
+.root:disabled,
+.root:disabled .label {
+  color: value(D55);
+  cursor: default;
+}
+
+.root:disabled .icon {
+  background-color: value(D80);
+}
+
+.root:disabled:selected .icon {
+  color: value(D80-70);
+  background-color: value(D10-30);
+}
+
+.root:labelPlacement(end),
+.root:labelPlacement(bottom) {
+  display: block;
+  max-width: 100%;
+}
+
+/* skin Dark */
+.root:skin(dark):hover:not(:disabled),
+.root:skin(dark):hover:not(:disabled) .label {
+  color: value(D30);
+}
+
+.root:skin(dark):active:not(:disabled),
+.root:skin(dark):selected:not(:disabled),
+.root:skin(dark):active:not(:disabled) .label,
+.root:skin(dark):selected:not(:disabled) .label {
+  color: value(D80);
+}
+
+.root:skin(dark):labelPlacement(bottom):active:not(:disabled) .label,
+.root:skin(dark):labelPlacement(bottom):selected:not(:disabled) .label {
+  color: value(D10);
+}
+
+.root:skin(dark):active:not(:disabled) .icon,
+.root:skin(dark):selected:not(:disabled) .icon {
+  background-color: value(D10);
+}
+
+.root:skin(dark):active:not(:disabled),
+.root:skin(dark):selected:hover:not(:disabled),
+.root:skin(dark):active:not(:disabled) .label,
+.root:skin(dark):selected:hover:not(:disabled) .label {
+  color: value(D80);
+}
+
+.root:skin(dark):labelPlacement(bottom):active:not(:disabled) .label,
+.root:skin(dark):labelPlacement(bottom):selected:hover:not(:disabled) .label {
+  color: value(D10);
+}
+
+.root:skin(dark):active:not(:disabled) .icon,
+.root:skin(dark):selected:hover:not(:disabled) .icon {
+  background-color: value(D20);
+}
+
+.root:skin(dark):disabled,
+.root:skin(dark):disabled .label {
+  color: value(D55);
+}
+
+.root:skin(dark):disabled .icon {
+  background-color: value(D80);
+}
+
+/* skin Inverted */
+.root:skin(inverted):selected:hover:not(:disabled),
+.root:skin(inverted):selected:not(:disabled) {
+  color: value(D80);
+}
+
+.root:skin(inverted):selected:not(:disabled) .icon {
+  background-color: value(THEME-COLOR-10);
+}
+
+.root:skin(inverted):selected:hover:not(:disabled) .icon {
+  background-color: value(THEME-COLOR-20);
+}
+
+/* skin Destructive */
+.root:skin(destructive):selected:not(:disabled),
+.root:skin(destructive):selected:hover:not(:disabled) {
+  color: value(D80);
+}
+
+.root:skin(destructive):hover:not(:disabled),
+.root:skin(destructive):hover:not(:disabled) .label,
+.root:skin(destructive):selected:not(:disabled) .label {
+  color: value(R10);
+}
+
+.root:skin(destructive):shape(square):labelPlacement(end):selected:not(:disabled) .label {
+  color: value(D80);
+}
+
+
+.root:skin(destructive):selected:not(:disabled) .icon {
+  background-color: value(R10);
+}
+
+.root:skin(destructive):selected:hover:not(:disabled) .icon {
+  background-color: value(R20);
+}
+
+.root:skin(destructive):selected:not(:disabled) .icon:border {
+  border: solid 1px value(R10);
+}
+
+.root:skin(destructive):selected:hover:not(:disabled) .icon:border {
+  border: solid 1px value(R20);
+}
+
+.root:skin(destructive):hover:not(:disabled) .icon:border {
+  border: solid 1px value(R30);
+}
+
+/* skin Success */
+.root:skin(success):selected:not(:disabled),
+.root:skin(success):selected:hover:not(:disabled) {
+  color: value(D80);
+}
+
+.root:skin(success):hover:not(:disabled),
+.root:skin(success):hover:not(:disabled) .label,
+.root:skin(success):selected:not(:disabled) .label {
+  color: value(G10);
+}
+
+.root:skin(success):shape(square):labelPlacement(end):selected:not(:disabled) .label {
+  color: value(D80);
+}
+
+.root:skin(success):selected:not(:disabled) .icon {
+  background-color: value(G10);
+}
+
+.root:skin(success):selected:hover:not(:disabled) .icon {
+  background-color: value(G20);
+}
+
+.root:skin(success):selected:not(:disabled) .icon:border {
+  border: solid 1px value(G10);
+}
+
+.root:skin(success):selected:hover:not(:disabled) .icon:border {
+  border: solid 1px value(G20);
+}
+
+.root:skin(success):hover:not(:disabled) .icon:border {
+  border: solid 1px value(G30);
+}
+
+/* icon */
+.icon {
+  -st-extends: Focusable;
+  -st-states: border, size(enum(tiny, small, medium, large));
+
+  display: flex;
+  align-items: center;
+
+  outline: none;
+  background-color: value(D80);
+  transition: all 100ms value(ease-9);
+}
+
+.icon:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.icon:size(tiny) {
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.icon:size(small) {
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.icon:size(medium) {
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.icon:size(large) {
+  border-radius: 6px;
+  padding: 9px;
+}
+
+.icon:size(tiny):border {
+  padding: 2px;
+}
+
+.icon:size(small):border {
+  padding: 5px;
+}
+
+.icon:size(medium):border {
+  padding: 5px;
+}
+
+.icon:size(large):border {
+  padding: 8px;
+}
+
+/* shape Round */
+.root:shape(round) .icon {
+  border-radius: 100%;
+}
+
+.root:labelPlacement(end) .icon,
+.root:labelPlacement(bottom) .icon {
+  max-width: 100%;
+}
+
+/* label */
+.label {
+  -st-states: placement(enum(tooltip, end, bottom)),
+    size(enum(tiny, small, medium, large));
+
+  transition: all 100ms value(ease-9);
+}
+
+.label:placement(end):size(tiny) {
+  padding: 0 3px;
+}
+
+.label:placement(end):size(small),
+.label:placement(end):size(medium) {
+  padding: 0 6px;
+}
+
+.label:placement(end):size(large) {
+  padding: 0 9px;
+}
+
+.label:placement(bottom) {
+  margin-top: 9px;
+}
+
+.root:skin(inverted):shape(square):labelPlacement(end):active:not(:disabled) .label,
+.root:skin(inverted):shape(square):labelPlacement(end):selected:not(:disabled) .label {
+  color: value(D80);
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tooltip {
+  max-width: 100%;
+}
+
+/* Border */
+.icon:border {
+  border: solid 1px value(D60);
+}
+
+.root:hover .icon:border {
+  border: solid 1px value(THEME-COLOR-40);
+}
+
+.root:active .icon:border,
+.root:selected .icon:border,
+.root:selected:hover .icon:border {
+  border: solid 1px value(THEME-COLOR-30);
+}
+
+.root:disabled .icon:border {
+  border: solid 1px value(D10-30);
+}
+
+.root:selected:skin(inverted) .icon:border {
+  border: solid 1px value(THEME-COLOR-10);
+}
+
+.root:selected:skin(inverted):hover .icon:border {
+  border: solid 1px value(THEME-COLOR-20);
+}
+
+.root:disabled:selected .icon:border {
+  border: solid 1px transparent;
+}

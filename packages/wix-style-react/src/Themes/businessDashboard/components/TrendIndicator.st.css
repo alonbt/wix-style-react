@@ -1,0 +1,25 @@
+:import {
+  -st-from: "../../../TrendIndicator/TrendIndicator.st.css";
+  -st-default: TrendIndicator;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D40, G10, R20;
+}
+
+.root {
+  -st-extends: TrendIndicator;
+}
+
+.root:skin(neutral) {
+  color: value(D40);
+}
+
+.root:skin(positive) {
+  color: value(G10);
+}
+
+.root:skin(negative) {
+  color: value(R20);
+}

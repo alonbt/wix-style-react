@@ -1,0 +1,156 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B10, B30, B60, D50, D60, D80;
+}
+
+:import {
+  -st-from: "../TableActionCell/TableActionCell.st.css";
+  -st-default: TableActionCell;
+  -st-named: onHover, notOnHover;
+}
+
+:vars {
+  horizontalPadding: 24px;
+  checkedBorderWidth: 2px;
+  smallVerticalPadding: 12px;
+  mediumVerticalPadding: 18px;
+  newVerticalSmallPadding: 15px;
+  tinyVerticalPadding: 12px;
+}
+
+.root {
+  -st-states: reducedSpacingAndImprovedLayout, checked, showDivider, dragging, verticalPadding(enum(tiny, small, medium)), draggable, clickable;
+  background-color: value(D80);
+  padding: 0 value(horizontalPadding);
+}
+
+.root:reducedSpacingAndImprovedLayout {
+  padding-inline-start: 18px;
+  padding-inline-end: 24px;
+}
+
+.root:checked {
+  border-left-width: value(checkedBorderWidth);
+  border-left-style: solid;
+  border-left-color: value(B10);
+  padding-left: calc(value(horizontalPadding) - value(checkedBorderWidth));
+  padding-right: value(horizontalPadding);
+}
+
+.root:showDivider {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: value(D60);
+}
+
+.root:verticalPadding(tiny) {
+  padding-block-start: value(tinyVerticalPadding);
+  padding-block-end: value(tinyVerticalPadding);
+}
+
+.root:verticalPadding(small) {
+  padding-block-start: value(smallVerticalPadding);
+  padding-block-end: value(smallVerticalPadding);
+}
+
+.root:verticalPadding(small):reducedSpacingAndImprovedLayout {
+  padding-block-start: value(newVerticalSmallPadding);
+  padding-block-end: value(newVerticalSmallPadding);
+}
+
+.root:verticalPadding(medium) {
+  padding-block-start: value(mediumVerticalPadding);
+  padding-block-end: value(mediumVerticalPadding);
+}
+
+.root:draggable:hover {
+  background-color: value(B60);
+  cursor: move;
+}
+
+.root:dragging {
+  background-color: value(B60);
+}
+
+.root:dragging .dragHandle {
+  color: value(B10);
+}
+
+.root:draggable:hover .dragHandle {
+  color: value(B10);
+}
+
+.root:clickable:hover {
+  background-color: value(B60);
+  cursor: pointer;
+}
+
+.optionsContainer {
+  display: grid;
+  width: 100%;
+  align-items: center;
+}
+
+.align {
+  -st-states: position(enum(left, center, right));
+  display: grid;
+  margin-left: 6px;
+}
+
+.align:not(:last-child) {
+  margin-right: 18px;
+}
+
+.align:position(left) {
+  justify-self: start;
+}
+
+.align:position(center) {
+  justify-self: center;
+}
+
+.align:position(right) {
+  justify-self: end;
+}
+
+.checkbox {
+  display: flex;
+  cursor: pointer;
+  padding: 0 12px 0 6px;
+}
+
+.dragHandle {
+  -st-states: disabled;
+  display: flex;
+  align-items: center;
+  color: value(B30);
+  margin-right: 18px;
+}
+
+.dragHandle:disabled {
+  color: value(D50);
+}
+
+/* TODO: this needs to be covered by visual tests */
+/* `onHover` HoverSlot */
+.root TableActionCell::hoverSlot.onHover {
+  visibility: hidden;
+}
+
+.root:hover TableActionCell::hoverSlot.onHover {
+  visibility: visible;
+}
+
+/* `notOnHover` HoverSlot */
+.root TableActionCell::hoverSlot.notOnHover {
+  visibility: visible;
+}
+
+.root:hover TableActionCell::hoverSlot.notOnHover {
+  visibility: hidden;
+}
+
+/* Placeholder icon */
+.root:hover TableActionCell::placeholderIcon {
+  display: none;
+}

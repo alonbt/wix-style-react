@@ -1,0 +1,316 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named:
+    THEME-COLOR-10, THEME-COLOR-20, THEME-COLOR-30, THEME-COLOR-40, THEME-COLOR-50,
+    D20, D60, D70, D80,
+    D10-05, D10-10, D10-30,
+    F00,
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-9;
+}
+
+:import {
+  -st-from: '../Tooltip/Tooltip.st.css';
+  -st-default: Tooltip;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/opacity.st.css';
+  -st-named: opacity48;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/border.st.css';
+  -st-named: radius08;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Text/Text.st.css';
+  -st-default: Text;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: theme(enum(dashes, plain, filled, image)), size(enum(tiny, small, medium, large)), alignItems(enum(left, right, center)), removePadding, disabled;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
+  color: value(THEME-COLOR-10);
+}
+
+.root:size(small) {
+  padding: 18px 30px;
+}
+
+.root:size(medium) {
+  padding: 24px 30px;
+}
+
+.root:size(large) {
+  padding: 30px 30px;
+}
+
+.root:removePadding {
+  padding: 0;
+}
+
+.root:not(:disabled):focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+/* Theme plain */
+
+.root:theme(plain) {
+  background-color: value(D80);
+  border: none;
+}
+
+.root:theme(plain):hover {
+  background-color: value(THEME-COLOR-40);
+}
+
+.root:theme(plain):active {
+  background-color: value(THEME-COLOR-30);
+}
+
+.root:theme(plain):disabled {
+  cursor: not-allowed;
+  background-color: value(D10-10);
+  color: value(D10-30);
+}
+
+/* Theme dashes */
+
+.root:theme(dashes) {
+  border: dashed 1px value(THEME-COLOR-20);
+  background-color: value(opacity48);
+  border-radius: value(radius08);
+}
+
+.root:theme(dashes):hover {
+  background-color: value(THEME-COLOR-40);
+}
+
+.root:theme(dashes):active {
+  background-color: value(THEME-COLOR-30);
+}
+
+.root:theme(dashes):disabled {
+  cursor: not-allowed;
+  background-color: value(D10-05);
+  color: value(D10-30);
+  border-color: value(D10-30);
+}
+
+.root:not(:disabled):focus-visible:theme(dashes) {
+  box-shadow: 0 0 0 3px value(F00);
+  border-color: transparent;
+}
+
+/* Theme filled */
+
+.root:theme(filled) {
+  background-color: value(THEME-COLOR-50);
+  border-radius: value(radius08);
+  border: none;
+}
+
+.root:theme(filled):hover {
+  background-color: value(THEME-COLOR-40);
+}
+
+.root:theme(filled):active {
+  background-color: value(THEME-COLOR-30);
+}
+
+.root:theme(filled):disabled {
+  cursor: not-allowed;
+  background-color: value(D70);
+  color: value(D10-30);
+}
+
+/* Theme image */
+
+.root:theme(image) {
+  display: block;
+  height: 100%;
+  padding: 12px;
+  border: none;
+  transition: background 0.2s value(ease-9);
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  background-color: value(THEME-COLOR-50);
+  border-radius: value(radius08);
+}
+
+.root:theme(image):hover {
+  background-color: value(THEME-COLOR-40);
+}
+
+.root:theme(image):active {
+  background-color: value(THEME-COLOR-30);
+}
+
+.root:theme(image):disabled {
+  background-color: value(D70);
+}
+
+.root:size(tiny) .icon,
+.root:size(tiny) .illustration {
+  flex-shrink: 0;
+  margin: 0px 6px;
+}
+
+.root:size(tiny):alignItems(left) .icon,
+.root:size(tiny):alignItems(right) .icon {
+  margin: 0 6px 0 0;
+}
+
+.illustration {
+  background-color: initial;
+}
+
+/* Content container */
+
+.contentContainer {
+  -st-states: theme(enum(image)), alignItems(enum(center, right, left)), size(enum(tiny)), disabled;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Specific theme image classname */
+.contentContainer:theme(image) {
+  border: dashed 1px value(THEME-COLOR-20);
+  border-radius: 3px;
+  padding: 12px;
+}
+
+.contentContainer:disabled:theme(image) {
+  cursor: not-allowed;
+  background-color: value(D70);
+  color: value(D10-30);
+  border: dashed 1px value(D60);
+}
+
+.contentContainer:alignItems(center) {
+  align-items: center;
+}
+
+.contentContainer:alignItems(left) {
+  align-items: flex-start;
+}
+
+.contentContainer:alignItems(right) {
+  align-items: flex-end;
+}
+
+/* Content */
+
+.content {
+  -st-states: size(enum(tiny));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content:size(tiny) {
+  flex-direction: row;
+}
+
+/* Text */
+
+.textWrapper {
+  -st-states:size(enum(tiny, small, medium, large));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textWrapper:size(tiny) {
+  max-width: 100%;
+  flex-basis: auto;
+}
+
+.textWrapper:size(small) {
+  width: 100%;
+  padding-top: 6px;
+}
+
+.textWrapper:size(medium) {
+  width: 100%;
+  padding-top: 12px;
+}
+
+.textWrapper:size(large) {
+  width: 100%;
+  padding-top: 12px;
+}
+
+.textContent {
+  -st-extends: Text;
+}
+
+.textContent:skin(standard) {
+  color: value(THEME-COLOR-10);
+}
+
+.root:disabled .textContent:skin(standard) {
+  color: value(D10-30);
+}
+
+.subtitle {
+  -st-extends: Text;
+  -st-states: size(enum(tiny, small));
+  padding-top: 12px;
+}
+
+.subtitle:size(tiny) {
+  padding-top: 6px;
+}
+
+.subtitle:size(small) {
+  padding-top: 6px;
+}
+
+.subtitle:skin(standard) {
+  color: value(D20);
+}
+
+.tooltip {
+  -st-extends: Tooltip;
+  display: flex;
+}
+
+.tooltip::root {
+  width: 100%;
+  height: 100%;
+}
+
+.tooltip::popoverElement  {
+  width: 100%;
+  height: 100%;
+}
+
+/* Disabling pointer events in order to delegate mouse enter/leave events */
+.root:disabled {
+  pointer-events: none;
+}

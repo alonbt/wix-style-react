@@ -1,0 +1,44 @@
+:import {
+  -st-from: "../../../LinearProgressBar/LinearProgressBar.st.css";
+  -st-default: LinearProgressBar;
+}
+
+:import {
+  -st-from: "../../../StatusIndicator/StatusIndicator.st.css";
+  -st-default: StatusIndicator;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: G20, D60, B10, R10;
+}
+
+.root {
+  -st-extends: LinearProgressBar;
+  padding: 0 0 0 8px;
+  height: 16px;
+}
+
+.root:skin(success):not(:error)::barForeground {
+  background: value(G20);
+}
+
+.root:skin(success)::barBackground {
+  background: value(D60);
+}
+
+.root:skin(standard):not(:error)::barForeground {
+  background: value(B10);
+}
+
+.root:error::barForeground {
+  background: value(R10);
+}
+
+.root:error StatusIndicator {
+  color: value(R10);
+}
+
+.root:skin(standard)::barBackground {
+  background: value(D60);
+}

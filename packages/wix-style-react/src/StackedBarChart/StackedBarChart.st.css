@@ -1,0 +1,47 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D55, F00;
+}
+
+.root {
+  position: relative;
+}
+
+.xAxis,
+.yAxis {
+  font-family: Madefor;
+  font-size: 12px;
+  height: 15px;
+  line-height: 15px;
+}
+
+.yAxis line {
+  stroke-dasharray: 5,5;
+}
+
+.xAxis path,
+.yAxis line {
+  stroke: value(D55)
+}
+
+.yAxis path {
+  display: none;
+}
+
+.yAxis text {
+  text-anchor: end;
+}
+
+.tooltip {
+  position: absolute;
+}
+
+.tooltipInner {
+  width: 50px;
+  background: none;
+  border: none;
+}
+
+.tooltipInner:focus {
+  box-shadow: 0 0 0 3px value(F00);
+}

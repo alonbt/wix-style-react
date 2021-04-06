@@ -1,0 +1,57 @@
+import {
+  testkitFactoryCreator,
+  uniTestkitFactoryCreator,
+} from 'wix-ui-test-utils/vanilla';
+
+const load = module => {
+  const MODULE_META_KEYS = ['__esModule'];
+
+  const moduleFields = Object.keys(module).reduce((total, key) => {
+    if (!MODULE_META_KEYS.includes(key)) {
+      return total.concat(module[key]);
+    }
+    return total;
+  }, []);
+
+  let defaultOrFirstExport;
+  if (module.default) {
+    defaultOrFirstExport = module.default;
+  } else if (moduleFields.length === 1) {
+    defaultOrFirstExport = moduleFields[0];
+  } else {
+    defaultOrFirstExport = module;
+  }
+  return defaultOrFirstExport;
+};
+
+// Legacy
+<% components
+  .filter(component => !component.noTestkit)
+  .filter(component => !component.manualExport)
+  .map(component => {
+    const camelName = utils.toCamel(component.name);
+    const driverPath = component.testkitPath || [
+      '../src',
+      component.name,
+      component.name + (component.vanillaLegacyTestkit ? '.driver' : '.uni.driver'),
+    ].join('\/');
+
+    const testkitName = camelName + 'TestkitFactory';
+    const factoryName = component.vanillaLegacyTestkit ? 'testkitFactoryCreator' : 'uniTestkitFactoryCreator';
+%>
+export const <%= testkitName %> = <%= factoryName%>(load(require('<%= driverPath %>')));<% }) %>
+
+// Unidriver
+<% components
+        .filter(component => !component.noTestkit)
+        .filter(component => !component.manualExport)
+        .filter(component => !component.noUnidriver)
+.map(component => {
+  const componentName = component.exportName || utils.toPascal(component.name);
+  const driverPath = component.unidriverPath || [
+    '../src',
+    component.name,
+    component.name + '.uni.driver'
+  ].join('\/');
+%>
+export const <%= componentName %>Testkit = uniTestkitFactoryCreator(load(require('<%= driverPath %>')));<% }) %>

@@ -1,0 +1,21 @@
+.root {
+  -st-states: reducedSpacingAndImprovedLayout, size(enum(medium,large)) , emptyStateContent(boolean) ;
+  padding: 24px 30px 30px;
+}
+
+.root:reducedSpacingAndImprovedLayout,
+.root:size(medium):reducedSpacingAndImprovedLayout {
+  padding: 24px;
+}
+
+.root:size(medium){
+  padding: 30px;
+}
+
+.root:size(large){
+  padding: 36px;
+}
+
+.root:emptyStateContent {
+  padding: 42px;
+}

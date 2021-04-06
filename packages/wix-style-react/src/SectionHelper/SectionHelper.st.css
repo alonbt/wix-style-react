@@ -1,0 +1,87 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: Y50, Y30, B50, B30, R50, R30, G50, G30, P50, P30, D70, D60, D10;
+}
+
+.root {
+  -st-states: withCloseBtn, withTitle, fullWidth, appearance(enum(warning, standard, danger, success, premium, preview, experimentalDark));
+
+  position: relative;
+  width: 100%;
+  padding: 18px 24px;
+  border-radius: 6px;
+  border: 1px solid;
+  box-sizing: border-box;
+}
+
+.root:withCloseBtn {
+  padding: 18px 42px 18px 24px;
+}
+
+:global([dir='rtl']) .root:withCloseBtn {
+  padding: 18px 24px 18px 42px;
+}
+
+.root:appearance(warning) {
+  background-color: value(Y50);
+  border-color: value(Y30);
+}
+
+.root:appearance(standard) {
+  background-color: value(B50);
+  border-color: value(B30);
+}
+
+.root:appearance(danger) {
+  background-color: value(R50);
+  border-color: value(R30);
+}
+
+.root:appearance(success) {
+  background-color: value(G50);
+  border-color: value(G30);
+}
+
+.root:appearance(premium) {
+  background-color: value(P50);
+  border-color: value(P30);
+}
+
+.root:appearance(preview) {
+  background-color: value(D70);
+  border-color: value(D60);
+}
+
+.root:appearance(experimentalDark) {
+  background-color: value(D10);
+  border-color: value(D10);
+}
+
+
+.close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+:global([dir='rtl']) .close {
+  left: 6px;
+  right: unset;
+}
+
+.title {
+  max-width: 420px;
+  margin-bottom: 6px;
+}
+
+.content {
+  max-width: 540px;
+}
+
+.root:fullWidth .content {
+  max-width: none;
+}
+
+.action {
+  padding-top: 1em;
+}

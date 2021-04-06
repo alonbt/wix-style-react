@@ -1,0 +1,11 @@
+:import {
+    -st-from: "../TextButton.st.css";
+    -st-default: TPAButton;
+}
+
+.root {
+    -st-mixin: TPAButton(
+            MainTextColor '"--textButtonTextColor"',
+            MainTextFont '"--textButtonTextFont"'
+    );
+}

@@ -1,0 +1,73 @@
+:import {
+  -st-from: "../Foundation/stylable/spacing.st.css";
+  -st-named: spacing30, spacing48, spacing90;
+}
+
+.root {
+  -st-states: horizontalSize(enum(medium, large)), verticalSize(enum(medium, large)), removeImageHorizontalPadding, removeImageVerticalPadding;
+}
+
+.contentContainer {
+  min-width: 360px;
+  max-width: 576px;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.root:horizontalSize(medium) .contentContainer {
+  padding-right: value(spacing48);
+  padding-left: value(spacing48);
+}
+
+.root:horizontalSize(large) .contentContainer {
+  padding-right: value(spacing90);
+  padding-left: value(spacing90);
+}
+
+.root:verticalSize(medium) .contentContainer {
+  padding-top: value(spacing30);
+  padding-bottom: value(spacing30);
+}
+
+.root:verticalSize(large) .contentContainer {
+  padding-top: value(spacing48);
+  padding-bottom: value(spacing48);
+}
+
+.imageContainer {
+  min-width: 360px;
+  max-width: 1020px;
+
+  min-height: 240px;
+  max-height: 768px;
+
+  box-sizing: border-box;
+}
+
+.root:not(:removeImageVerticalPadding):verticalSize(medium) .imageContainer {
+  padding-top: value(spacing30);
+  padding-bottom: value(spacing30);
+}
+.root:not(:removeImageVerticalPadding):verticalSize(large) .imageContainer {
+  padding-top: value(spacing48);
+  padding-bottom: value(spacing48);
+}
+
+.root:not(:removeImageHorizontalPadding):horizontalSize(medium) .imageContainer {
+  padding-right: value(spacing48);
+}
+
+.root:not(:removeImageHorizontalPadding):horizontalSize(large) .imageContainer {
+  padding-right: value(spacing90);
+}
+
+.footerContainer {
+}
+
+.root:horizontalSize(medium) .footerContainer {
+  padding: 0 value(spacing48);
+}
+
+.root:horizontalSize(large) .footerContainer {
+  padding: 0 value(spacing90);
+}

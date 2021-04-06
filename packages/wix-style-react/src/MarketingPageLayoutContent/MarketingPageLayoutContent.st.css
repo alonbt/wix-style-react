@@ -1,0 +1,17 @@
+:import {
+  -st-from: "../Foundation/stylable/spacing.st.css";
+  -st-named: spacing12;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60;
+}
+
+.root {
+}
+
+.overlineDividerContainer {
+  width: 36px;
+  margin: 17px 0 value(spacing12) 0;
+}

@@ -1,0 +1,20 @@
+:import {
+  -st-from: '../CalendarCell.st.css';
+  -st-default: CalendarCell;
+}
+
+.root {
+  -st-mixin: CalendarCell(
+          BackgroundColor '"--backgroundColor"',
+          FutureBackgroundColor '"--futureBackgroundColor"',
+          PastBackgroundColor '"--pastBackgroundColor"',
+          BorderColor '"--borderColor"',
+          BorderWidth '"unit(fallback(--borderWidth, 1), px)"',
+          BorderOpacity '"unit(fallback(zeroAsTrue(--borderOpacity), 1), "")"',
+          TodayColor '"--todayColor"',
+          PastFontColor '"--pastFontColor"',
+          FontColor '"--fontColor"',
+          FutureFontColor '"--futureFontColor"',
+          FontStyle '"--fontStyle"'
+  )
+}

@@ -1,0 +1,67 @@
+:import {
+  -st-from: "../../../../Input/Input.st.css";
+  -st-default: Input;
+}
+
+:import {
+  -st-from: '../../../../Input/Input.mixins.js';
+  -st-named: placeholderMixin;
+}
+
+:import {
+  -st-from: "../../foundations/colors.st.css";
+  -st-named: B05, B10, B50, D10, D10-40, D20, D40, D55, D80;
+}
+
+:import {
+  -st-from: '../../../../Foundation/stylable/typography.st.css';
+  -st-named: text-tiny-normal;
+}
+
+.root {
+  -st-extends: Input;
+  border-color: value(D55);
+  background-color: value(D80);
+  box-shadow: none;
+}
+
+.root::wrapper {
+  padding: 0 3px 0 6px;
+}
+
+/* Reset Button */
+.root::clearButton {
+  background-color: value(B50);
+  color: value(B10);
+  width: 24px;
+  height: 24px;
+}
+
+/* Focus */
+.root:hasFocus:not(:border(bottomLine)) {
+  outline: none;
+  border-color: value(B05);
+  box-shadow: none;
+}
+
+/* Hover */
+.root:hover:not(:hasFocus):not(:disabled),
+.root:forceHover:not(:disabled) {
+  background-color: value(B50);
+}
+
+/* Text */
+.root::input {
+  -st-mixin: placeholderMixin(value(D40));
+  color: value(D20);
+}
+
+.root:disabled::input {
+  -st-mixin: placeholderMixin(value(D10-40));
+  color: value(D10-40);
+}
+
+.root:size(small)::input {
+  -st-mixin: text-tiny-normal;
+  line-height: 18px;
+}

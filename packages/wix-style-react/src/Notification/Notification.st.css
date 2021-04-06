@@ -1,0 +1,110 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80, D10, B20, R20, G20, Y10, P20;
+}
+
+:vars {
+  zIndex_NOTIFICATION: 4000;
+}
+
+.root {
+  -st-states: theme(enum(standard, error, success,warning,premium )), type(enum(local, global, sticky));
+  position: relative;
+  z-index: value(zIndex_NOTIFICATION);
+}
+
+/*
+This is targeting the internal Animator element that will get the dynamic `max-height` set by Animator,
+We set is as an anchor for the `position:absolute` `notification` element to stick to.
+Without it you will get the classic "fold" animation from animator.
+*/
+
+.animatorContent > * {
+  position: relative;
+}
+
+.wrapper{}
+
+.notification {
+  position: absolute;
+  bottom: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 3px 12px;
+}
+
+.root:theme(standard) .notification{
+  background-color: value(B20);
+}
+
+.root:theme(error) .notification{
+  background-color: value(R20);
+}
+
+.root:theme(success) .notification{
+  background-color: value(G20);
+}
+
+.root:theme(warning) .notification {
+  background-color: value(Y10);
+}
+
+.root:theme(premium) .notification{
+  background-color: value(P20);
+}
+
+
+/* Positions */
+.root:type(local) .animator {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+.root:type(global) .animator {
+  position: relative;
+  width: 100%;
+}
+
+.root:type(sticky) .animator{
+  position: fixed;
+  right: 0;
+  width: 100%;
+  top: 0;
+}
+
+
+.labelWrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.label {
+  max-width: 720px;
+  margin-right: 12px;
+  padding: 9px 0;
+}
+
+.button {
+  margin: 6px 0;
+}
+
+.textLink {
+  margin: 8px 0;
+}
+
+.iconStyling{
+  color: value(D80);
+  margin-right: 12px;
+  margin-top: 9px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 12px;
+}

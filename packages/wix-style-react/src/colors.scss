@@ -1,0 +1,261 @@
+$D10: #162D3D;   // Main input text, titles
+$D20: #32536A;   // Titles, texts
+$D30: #577083;   // Texts
+$D40: #7A92A5;   // Dividers, texts, Placeholder
+$D50: #B6C1CD;   // Dividers, texts
+$D55: #CBD3DC;   // Disabled button - new version - naming not final
+$D60: #DFE5EB;   // Dividers
+$D70: #F0F4F7;   // Page background, dividers
+$D80: #FFFFFF;   // Content box background
+
+$D10-03: rgba($D10, 0.03);
+$D10-05: rgba($D10, 0.05);
+$D10-10: rgba($D10, 0.1);
+$D10-20: rgba($D10, 0.2);
+$D10-30: rgba($D10, 0.3);
+$D10-42: rgba($D10, 0.42);
+$D10-66: rgba($D10, 0.66);
+
+$D40-20: rgba($D40, 0.2);
+
+$D80-20: rgba($D80, 0.2);
+$D80-42:rgba($D80 , 0.42);
+$D80-66: rgba($D80 , 0.66);
+$D80-70: rgba($D80, 0.7);
+
+$B00: #2B81CB;   // Buttons
+$B05: #308DDD;   // CTA
+$B10: #3899EC;   // Main action color, active, buttons
+$B20: #4EB7F5;   // Hover for elements with B10, buttons
+$B25: #A1D7FB;
+$B27: #B3E0FB;
+$B30: #C1E4FE;   // Notifications
+$B40: #DAEFFE;   // Dividers, table selected, table headers
+$B50: #EAF7FF;   // Dividers
+$B60: #F4FAFE;   // Table hover
+
+$B00-24: rgba($B00, 0.24);
+$B00-42: rgba($B00, 0.42);
+
+$F00:  #AADBFC;  // Focus Outline
+
+$P00: #8E21B1;
+$P10: #AA4DC8;   // Wix premium
+$P20: #CD68ED;
+$P30: #E5C9EE;
+$P40: #EEDBF4;
+$P50: #FAEEFF;   // Section Helper
+$P60: #FAF7FC;
+
+$O00: #EA5F0E;
+$O10: #FB7D33;
+$O20: #FF9A48;
+
+$R00: #D6453D;
+$R05: #D8504C;   // CTA
+$R10: #EE5951;   // Errors, CTA hover
+$R20: #FF6666;   // Notifications
+$R30: #FFD7D7;   // Notifications, Focus Errors
+$R40: #FFE1E1;
+$R50: #FFEBEB;   // Section Helper
+$R60: #FFF5F5;
+$R70: #FDB10C;
+
+$G00: #44823F;
+$G05: #61AD5A;   // CTA
+$G10: #60BC57;   // CTA hover
+$G20: #80C979;   // Notifications
+$G30: #C9EEBC;   // Notifications
+$G40: #DEF4D4;
+$G50: #EDF9E5;   // Section Helper
+$G60: #F2FBEF;
+
+$Y00: #C68801;
+$Y05: #EDA200;   // CTA
+$Y10: #FDB10C;   // CTA hover
+$Y20: #FAC249;   // Notifications
+$Y30: #FEF0BA;   // Notifications
+$Y40: #FEF4CD;
+$Y50: #FDF7DF;   // Section Helper
+$Y60: #FFFCF0;
+
+// Categories
+$A1: #3370FB;
+$A2: #7852D2;
+$A3: #17B0E2;
+$A4: #C53E99;
+$A5: #FDB10C;
+$A6: #3D9FA1;
+$B1: #EF73C0;
+$B2: #FF8D41;
+$B3: #ED6779;
+$B4: #125b8f;
+$C1: #4abd81;
+$C2: #2682CD;
+$C3: #68A4D5;
+$C4: #FF8E8C;
+
+$S10 : rgba(22, 45, 61, 0.12);
+$S20 : rgba(22, 45, 61, 0.48);
+$S30 : rgba(22, 45, 61, 0.06);
+$S40 : rgba(22, 45, 61, 0.18);
+$S50: rgba(255, 255, 255, 0.48);
+
+$Shadow10: 0 2px 1px 0 $S20, 0 0 3px 0 $S10;
+$Shadow20: 0 2px 4px 0 $S10, 0 0 6px 0 $S10;
+$Shadow30: 0 6px 6px 0 $S30, 0 0 18px 0 $S10;
+$Shadow40: 0 8px 8px 0 $S10, 0 3px 24px 0 $S40;
+
+:export {
+  D10: $D10;
+  D20: $D20;
+  D30: $D30;
+  D40: $D40;
+  D50: $D50;
+  D55: $D55;
+  D60: $D60;
+  D70: $D70;
+  D80: $D80;
+
+  B00: $B00;
+  B05: $B05;
+  B10: $B10;
+  B20: $B20;
+  B25: $B25;
+  B27: $B27;
+  B30: $B30;
+  B40: $B40;
+  B50: $B50;
+  B60: $B60;
+
+  F00: $F00;
+
+  P00: $P00;
+  P10: $P10;
+  P20: $P20;
+  P30: $P30;
+  P40: $P40;
+  P50: $P50;
+  P60: $P60;
+
+  O00: $O00;
+  O10: $O10;
+  O20: $O20;
+
+  R00: $R00;
+  R05: $R05;
+  R10: $R10;
+  R20: $R20;
+  R30: $R30;
+  R40: $R40;
+  R50: $R50;
+  R60: $R60;
+
+  G00: $G00;
+  G05: $G05;
+  G10: $G10;
+  G20: $G20;
+  G30: $G30;
+  G40: $G40;
+  G50: $G50;
+  G60: $G60;
+
+  Y00: $Y00;
+  Y05: $Y05;
+  Y10: $Y10;
+  Y20: $Y20;
+  Y30: $Y30;
+  Y40: $Y40;
+  Y50: $Y50;
+  Y60: $Y60;
+
+  A1: $A1;
+  A2: $A2;
+  A3: $A3;
+  A4: $A4;
+  A5: $A5;
+  A6: $A6;
+  B1: $B1;
+  B2: $B2;
+  B3: $B3;
+  B4: $B4;
+  C1: $C1;
+  C2: $C2;
+  C3: $C3;
+  C4: $C4;
+
+  D10-05: $D10-05;
+  D10-10: $D10-10;
+  D10-20: $D10-20;
+  D10-30: $D10-30;
+  D40-20: $D40-20;
+  D80-20: $D80-20;
+}
+
+/*********************************************
+*              DEPRECATED SECTION - START!
+* TODO: The ALL variable below this message.
+***********************************************/
+
+$WR00: #e05050; // Wix Restaurant red
+
+$GR10: #c8c8c8; // Disabled buttons
+$GR20: #dadada; // Disabled fields
+$GR30: #f1f1f1; // Disabled background
+$GR40: #cbd3dc; // Disabled button - new version - naming not final
+$GR50: #eff1f2;
+$GR60: #a3abb0; // placeholder for InputArea theme="amaterial"
+
+$paletteB1: #3899ec;
+$paletteB2: #4eb7f5;
+$paletteB3: #7fccf7;
+$paletteB4: #d3edff;
+$paletteB5: #eaf7ff;
+
+$paletteD1: #162d3d;
+$paletteD2: #2b5672;
+$paletteD3: #7a92a5;
+$paletteD4: #d9e1e8;
+$paletteD5: #f0f3f5;
+$paletteD6: #ffffff;
+
+$paletteE1: #2b81cb;
+$paletteE2: #0d487f;
+$paletteE3: rgba(255, 255, 255, 0.96);
+$paletteE4: #2d4150;
+$paletteE5: #b1ddf8;
+$paletteE6: #b6c1cd;
+$paletteE7: #5effff;
+$paletteE8: #18d2de;
+
+$paletteP1: #aa4dc8;
+$paletteP2: #bb71d3;
+$paletteP3: #e5c9ee;
+$paletteP4: #eedbf4;
+
+$paletteG1: #60bc57;
+$paletteG2: #80c979;
+$paletteG3: #cfebcc;
+$paletteG4: #dff2dd;
+
+$paletteO1: #fb7d33;
+$paletteO2: #fc975c;
+$paletteO3: #fed8c1;
+$paletteO4: #fee5d6;
+
+$paletteY1: #ffc233;
+$paletteY2: #ffce5c;
+$paletteY3: #ffedc1;
+$paletteY4: #fff3d6;
+
+$paletteR1: #ee5951;
+$paletteR2: #f1726b;
+$paletteR3: #facdca;
+$paletteR4: #fce6e5;
+$paletteR5: #fdb10c;
+
+$BMCounter: #f4553f;
+
+/*********************************************
+*              DEPRECATED SECTION - END!!
+***********************************************/

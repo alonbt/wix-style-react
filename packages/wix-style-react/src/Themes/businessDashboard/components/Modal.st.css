@@ -1,0 +1,27 @@
+:import {
+  -st-from: "../../../Modal/Modal.st.css";
+  -st-default: Modal;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: D10-50;
+}
+
+.root {
+  -st-extends: Modal;
+}
+
+.root::closeButton {
+  width: 24px;
+  height: 24px;
+}
+
+.root::closeButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+::modal-overlay {
+  background: value(D10-50);
+}

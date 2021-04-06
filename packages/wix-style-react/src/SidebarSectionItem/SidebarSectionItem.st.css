@@ -1,0 +1,151 @@
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: "../Sidebar/colors.st.css";
+  -st-named:
+    sidebarBackgroundColor, hoveredBackgroundColor, selectedBackgroundColor, disabledBackgroundColor, textColor, selectedTextColor,
+    sidebarLightBackgroundColor, hoveredLightBackgroundColor, selectedLightBackgroundColor, disabledLightBackgroundColor, lightTextColor, selectedLightTextColor,
+}
+
+:import {
+    -st-from: '../Foundation/stylable/colors.st.css';
+    -st-named: D80, B30, B10, F00
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: "../Sidebar/Sidebar.st.css";
+  -st-named: sidebarWidth
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: selected, disabled, prefix, suffix, drillable, alwaysDisplayChevron, skin(enum(dark, light));
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px 0 24px;
+  max-width: value(sidebarWidth);
+  width: 100%;
+  min-height: 36px;
+  box-sizing: border-box;
+  border: none;
+
+  /* not supported in IE11 & Edge; 'left' as fallback */
+  text-align: left;
+  text-align: start;
+}
+
+.root:not(:disabled):focus-visible {
+  box-shadow: inset 0 0 0 3px value(F00);
+}
+
+/* Basic */
+
+.root:skin(dark) {
+  background-color: value(sidebarBackgroundColor);
+  color: value(textColor);
+}
+
+.root:skin(light) {
+  background-color: value(sidebarLightBackgroundColor);
+  color: value(lightTextColor);
+}
+
+/* Selected */
+
+.root:skin(dark):selected {
+  background-color: value(selectedBackgroundColor);
+  color: value(selectedTextColor);
+}
+
+.root:skin(dark):selected .text {
+  color: value(selectedTextColor);
+}
+
+.root:skin(light):selected {
+  background-color: value(selectedLightBackgroundColor);
+  color: value(selectedLightTextColor);
+}
+
+.root:skin(light):selected .text {
+  color: value(selectedLightTextColor);
+}
+
+/* Hovered */
+
+.root:hover, .root:hover:selected:not(:disabled) {
+  background-color: value(hoveredBackgroundColor);
+  cursor: pointer;
+}
+
+.root:skin(light):hover, .root:skin(light):hover:selected:not(:disabled) {
+  background-color: value(hoveredLightBackgroundColor);
+}
+
+/* Disabled */
+
+.root:disabled {
+  background-color: value(disabledBackgroundColor);
+  pointer-events: none;
+}
+
+.root:skin(light):disabled {
+  background-color: value(disabledLightBackgroundColor);
+}
+
+/* Others */
+
+.root:focus {
+  outline: none;
+}
+
+.root:drillable .chevron {
+  opacity: 0;
+}
+.root:drillable:alwaysDisplayChevron .chevron {
+  opacity: 0.6;
+}
+
+.root:drillable:hover .chevron, .root:drillable:focus-visible .chevron {
+  position: static;
+  opacity: 1;
+  transition: all .5s;
+}
+
+.root:suffix,
+.root:drillable {
+  padding: 0 18px 0 24px;
+}
+
+.prefix {
+  margin-right: 12px;
+}
+
+.textWrapper {
+  flex: 1 1 auto;
+}
+
+.text {
+  -st-extends: Text;
+  display: block;
+  word-break: break-word;
+  margin: 9px 0 9px 0;
+}
+
+.suffix {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  min-width: 24px;
+  max-width: 30%;
+  margin-left: 6px;
+}

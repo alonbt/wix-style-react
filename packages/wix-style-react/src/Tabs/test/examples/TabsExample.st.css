@@ -1,0 +1,32 @@
+:import {
+  -st-from: '../../../Foundation/stylable/colors.st.css';
+  -st-named: D50;
+}
+.radioGroup {
+  margin-top: 10px;
+}
+
+.controlGroup + .controlGroup {
+  margin-top: 15px;
+}
+
+.preview {
+  margin-top: 12px;
+  border: 10px solid value(D50);
+  height: 100px;
+}
+
+.sideContentExample {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+.sideContentExample button {
+  margin-right: 12px;
+}
+
+.sideContentExample button:last-of-type {
+  margin-right: 48px;
+}

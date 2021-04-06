@@ -1,0 +1,33 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: Y10, D10-20, D20;
+}
+
+.root {
+}
+
+.starsContainer {
+  display: inline-block;
+}
+
+.star {
+  -st-states: filled, empty, readOnly, hovered;
+}
+
+.star:readOnly:filled {
+  color: value(Y10);
+}
+
+.star:readOnly:empty {
+  color: value(D10-20);
+}
+
+.star:hovered {
+  cursor: pointer;
+}
+
+.rateCaption {
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px 0 0 18px;
+}

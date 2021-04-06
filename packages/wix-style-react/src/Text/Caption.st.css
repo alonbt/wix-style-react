@@ -1,0 +1,24 @@
+
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-medium-bold;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-TEXT-COLOR-PRIMARY-LIGHT;
+}
+
+.root {
+  -st-states: caption(enum(c1))
+}
+
+/* C1 */
+.c1,
+.root:caption(c1) {
+  -st-mixin: text-medium-bold;
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+  font-size: 10px;
+  line-height: 14px;
+}

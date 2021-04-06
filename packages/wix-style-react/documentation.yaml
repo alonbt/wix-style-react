@@ -1,0 +1,70 @@
+apiDoc:
+  title: Wix Style React
+  description: Our official Dashboard© and Back-Office© design system
+  category: fe-guild
+  status: ga
+  gitUrl: js
+  markdownOnlyAutoUpdate: true
+  docs:
+    - file: README.md
+      title: Getting Started
+    - file: MIGRATION.md
+      title: Migration
+    - file: docs/usage/LAYOUTING.md
+      title: Layouting
+    - file: docs/usage/MOBILE_WEB_GUIDELINES.md
+      title: Mobile
+    - file: docs/usage/usage-with-create-stylable-app.md
+      title: Create Stylable App
+    - file: docs/usage/testing.md
+      title: Testing/Overview
+    - file: docs/usage/testing_examples.md
+      title: Testing/Examples
+    - file: docs/usage/COMPONENTS_DRIVERS.md
+      title: Testing/Component Drivers
+    - file: docs/usage/testing_pitfalls.md
+      title: Testing/Pitfalls
+    - file: docs/internal/DEPRECATION_GUIDE.md
+      title: Deprecation
+    - file: docs/FAQ/README.md
+      title: FAQ/Questions
+    - file: docs/FAQ/TYPES.MD
+      title: FAQ/TypeScript
+    - file: docs/contribution/CREATE_PR.md
+      title: Contribution/Pull Requests
+    - file: docs/contribution/CHEATSHEET_GUIDLINES.md
+      title: Contribution/Cheatsheet
+    - file: docs/contribution/COMPONENT-SPEC-EXAMPLE.md
+      title: Contribution/Example
+    - file: docs/contribution/ADDING_ICONS.md
+      title: Contribution/Icons
+    - file: docs/contribution/TESTING.md
+      title: Contribution/Testing/Intro
+    - file: docs/contribution/TEST_DRIVERS_GUIDELINES.md
+      title: Contribution/Testing/Test Drivers
+    - file: docs/contribution/VISUAL_TESTING.md
+      title: Contribution/Testing/Visual Testing
+    - file: docs/contribution/WRITING_E2E_TESTS.md
+      title: Contribution/Testing/End2End Testing
+    - file: docs/contribution/DOCUMENTING_COMPONENTS.md
+      title: Contribution/Documentation
+    - file: docs/contribution/COMPONENT_GUIDELINES.md
+      title: Contribution/Component Guidelines
+    - file: docs/contribution/COMPONENT_STRUCTURE.md
+      title: Contribution/Component Structure
+    - file: docs/contribution/CONTROLLED_VS_UNCONTROLLED.md
+      title: Contribution/Controlled-Uncontrolled Components
+    - file: SUPPORT.md
+      title: Support
+    - file: CHANGELOG.md
+      title: Change Log/WSR9
+    - file: CHANGELOG-V8.md
+      title: Change Log/WSR8
+    - file: CHANGELOG-V7.md
+      title: Change Log/WSR7
+    - file: CHANGELOG-V3-V6.md
+      title: Change Log/Earlier Versions
+    - file: RELEASE_NOTES_v9.md
+      title: Release Notes/V9
+    - file: RELEASE_NOTES_v8.md
+      title: Release Notes/V8

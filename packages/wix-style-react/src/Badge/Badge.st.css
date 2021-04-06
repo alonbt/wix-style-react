@@ -1,0 +1,424 @@
+:import {
+  -st-from: 'wix-ui-core/hocs.st.css';
+  -st-named: Focusable;
+}
+
+:import {
+  -st-from: "../Text/Caption.st.css";
+  -st-default: Caption;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named:
+    THEME-COLOR-10, THEME-COLOR-20, THEME-COLOR-30,
+    D20, D40, D70, D80,
+    F00,
+    G10, G30,
+    O10,
+    P10,
+    R10, R30,
+    Y10, Y30,
+}
+
+
+.root {
+  -st-extends: Focusable;
+  -st-states: skin(string), type(string), size(string), clickable(boolean), uppercase(boolean);
+
+  border: 1px solid;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1;
+  max-width: 100%;
+}
+
+/* Focus when clickable */
+.root:focus {
+  outline: none;
+}
+
+.root:focus-visible {
+  outline: none;
+  border-color: value(THEME-COLOR-10);
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+:vars {
+  backgroundColor: grey;
+  borderColor: grey;
+  color: value(D80);
+  padding: 5px 12px;
+  medium: 0px 12px;
+  small: 0px 6px;
+  mediumHeight: 24px;
+  smallHeight: 18px;
+}
+
+.prefix, .suffix {
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.BadgeStyle {
+  border-color: value(borderColor);
+  color: value(color);
+  background: value(backgroundColor);
+}
+
+.text {
+  -st-extends: Caption;
+}
+
+.root .text {
+  color: currentColor;
+  letter-spacing: 1px;
+  margin: auto 0px;
+}
+
+.root >:not(:last-child) {
+  margin-inline-end: 6px;
+}
+
+.root:uppercase .text {
+  text-transform: uppercase;
+}
+
+/* type = transparent */
+.root:type(transparent):skin(general) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(D20)
+  );
+}
+
+.root:type(transparent):skin(standard) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(THEME-COLOR-20)
+  );
+}
+
+.root:type(transparent):skin(danger) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(R10)
+  );
+}
+
+.root:type(transparent):skin(success) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(G10)
+  );
+}
+
+.root:type(transparent):skin(neutral) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(D40)
+  );
+}
+
+.root:type(transparent):skin(warning) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(Y10)
+  );
+}
+
+.root:type(transparent):skin(urgent) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(O10)
+  );
+}
+
+.root:type(transparent):skin(neutralStandard) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(THEME-COLOR-30)
+  );
+}
+
+.root:type(transparent):skin(neutralSuccess) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(G30)
+  );
+}
+
+.root:type(transparent):skin(neutralDanger) {
+  -st-mixin: BadgeStyle(
+    backgroundColor transparent,
+    borderColor transparent,
+    color value(R30)
+  );
+}
+
+.root:type(transparent):skin(premium) {
+  -st-mixin: BadgeStyle(
+          backgroundColor transparent,
+          borderColor transparent,
+          color value(P10)
+  );
+}
+
+.root:type(transparent):skin(neutralLight) {
+  -st-mixin: BadgeStyle(
+          backgroundColor transparent,
+          borderColor transparent,
+          color value(D70)
+  );
+}
+
+.root:type(transparent):skin(warningLight) {
+  -st-mixin: BadgeStyle(
+          backgroundColor transparent,
+          borderColor transparent,
+          color value(Y30)
+  );
+}
+
+/* type = solid */
+.root:type(solid):skin(general) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(D20),
+    borderColor value(D20),
+    color white
+  );
+}
+
+.root:type(solid):skin(standard) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(THEME-COLOR-20),
+    borderColor value(THEME-COLOR-20),
+    color white
+  );
+}
+
+.root:type(solid):skin(danger) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(R10),
+    borderColor value(R10),
+    color white
+  );
+}
+
+.root:type(solid):skin(success) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(G10),
+    borderColor value(G10),
+    color white
+  );
+}
+
+.root:type(solid):skin(neutral) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(D40),
+    borderColor value(D40),
+    color white
+  );
+}
+
+.root:type(solid):skin(warning) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(Y10),
+    borderColor value(Y10),
+    color white
+  );
+}
+
+.root:type(solid):skin(urgent) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(O10),
+    borderColor value(O10),
+    color white
+  );
+}
+
+.root:type(solid):skin(neutralStandard) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(THEME-COLOR-30),
+    borderColor value(THEME-COLOR-30),
+    color value(D20)
+  );
+}
+
+.root:type(solid):skin(neutralSuccess) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(G30),
+    borderColor value(G30),
+    color value(D20)
+  );
+}
+
+.root:type(solid):skin(neutralDanger) {
+  -st-mixin: BadgeStyle(
+    backgroundColor value(R30),
+    borderColor value(R30),
+    color value(D20)
+  );
+}
+
+.root:type(solid):skin(premium) {
+  -st-mixin: BadgeStyle(
+          backgroundColor value(P10),
+          borderColor value(P10),
+          color value(D80)
+  );
+}
+
+.root:type(solid):skin(neutralLight) {
+  -st-mixin: BadgeStyle(
+          backgroundColor value(D70),
+          borderColor value(D70),
+          color value(D20)
+  );
+}
+
+.root:type(solid):skin(warningLight) {
+  -st-mixin: BadgeStyle(
+          backgroundColor value(Y30),
+          borderColor value(Y30),
+          color value(D20)
+  );
+}
+
+/* type = outlined */
+.root:type(outlined):skin(general) {
+  -st-mixin: BadgeStyle(
+    borderColor value(D20),
+    backgroundColor white,
+    color value(D20)
+  );
+}
+
+.root:type(outlined):skin(standard) {
+  -st-mixin: BadgeStyle(
+    borderColor value(THEME-COLOR-20),
+    backgroundColor white,
+    color value(THEME-COLOR-20)
+  );
+}
+
+.root:type(outlined):skin(danger) {
+  -st-mixin: BadgeStyle(
+    borderColor value(R10),
+    backgroundColor white,
+    color value(R10)
+  );
+}
+
+.root:type(outlined):skin(success) {
+  -st-mixin: BadgeStyle(
+    borderColor value(G10),
+    backgroundColor white,
+    color value(G10)
+  );
+}
+
+.root:type(outlined):skin(neutral) {
+  -st-mixin: BadgeStyle(
+    borderColor value(D40),
+    backgroundColor white,
+    color value(D40)
+  );
+}
+
+.root:type(outlined):skin(warning) {
+  -st-mixin: BadgeStyle(
+    borderColor value(Y10),
+    backgroundColor white,
+    color value(Y10)
+  );
+}
+
+.root:type(outlined):skin(urgent) {
+  -st-mixin: BadgeStyle(
+    borderColor value(O10),
+    backgroundColor white,
+    color value(O10)
+  );
+}
+
+.root:type(outlined):skin(neutralStandard) {
+  -st-mixin: BadgeStyle(
+    borderColor value(THEME-COLOR-30),
+    backgroundColor white,
+    color value(D20)
+  );
+}
+
+.root:type(outlined):skin(neutralSuccess) {
+  -st-mixin: BadgeStyle(
+    borderColor value(G30),
+    backgroundColor white,
+    color value(D20)
+  );
+}
+
+.root:type(outlined):skin(neutralDanger) {
+  -st-mixin: BadgeStyle(
+    borderColor value(R30),
+    backgroundColor white,
+    color value(D20)
+  );
+}
+
+.root:type(outlined):skin(premium) {
+  -st-mixin: BadgeStyle(
+          borderColor value(P10),
+          backgroundColor white,
+          color value(P10)
+  );
+}
+
+.root:type(outlined):skin(neutralLight) {
+  -st-mixin: BadgeStyle(
+          borderColor value(D70),
+          backgroundColor white,
+          color value(D20)
+  );
+}
+
+.root:type(outlined):skin(warningLight) {
+  -st-mixin: BadgeStyle(
+          borderColor value(Y30),
+          backgroundColor white,
+          color value(D20)
+  );
+}
+
+.BadgeStyle .text {
+  color: value(color);
+}
+
+/* size = medium */
+.root:size(medium) {
+  padding: value(medium);
+  height: value(mediumHeight);
+}
+
+/* size = small */
+.root:size(small) {
+  padding: value(small);
+  height: value(smallHeight);
+}
+
+/* cursor = pointer */
+.root:clickable {
+  cursor: pointer;
+}

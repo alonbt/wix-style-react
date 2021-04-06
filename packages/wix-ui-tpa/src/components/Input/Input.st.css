@@ -1,0 +1,126 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: applyStyleMethod, applyOpacity;
+}
+
+:import {
+    -st-from: "wix-ui-core/index.st.css";
+    -st-named: Input;
+}
+
+:import {
+    -st-from: "../../common/palette.st.css";
+    -st-named: errorColor;
+}
+
+:vars {
+    MainBorderColor: applyStyleMethod(color, color-5);
+    MainBackgroundColor: applyStyleMethod(color, color-1);
+    MainTextColor: applyStyleMethod(color, color-5);
+    MainTextFont: applyStyleMethod(font, "{theme: 'Body-M', size: '16px'}");
+}
+
+:vars {
+    color: value(MainTextColor);
+    colorPlaceholder: applyOpacity(value(MainTextColor), 0.6);
+    backgroundColor: value(MainBackgroundColor);
+    borderColor: applyOpacity(value(MainBorderColor), 0.6);
+    border: 1px solid value(borderColor);
+    font: value(MainTextFont);
+}
+
+:vars {
+    /*Hover*/
+    colorHover: value(MainTextColor);
+    backgroundColorHover: applyOpacity(value(MainTextColor), 0.05);
+    borderColorHover: value(borderColor);
+}
+
+:vars {
+    /*Focus*/
+    colorFocus: value(MainTextColor);
+    backgroundColorFocus: value(MainBackgroundColor);
+    borderColorFocus: value(borderColor);
+}
+
+:vars {
+    /*Disabled*/
+    disabledOpacity: 0.3;
+    colorDisabled: applyOpacity(value(MainTextColor), value(disabledOpacity));
+    backgroundColorDisabled: applyOpacity(value(MainBackgroundColor), value(disabledOpacity));
+    borderColorDisabled: applyOpacity(value(MainBorderColor), value(disabledOpacity));
+}
+
+.inputStyling {
+    /*This abstraction is useful to make containers have same styling as input. e.g. Autocomplete*/
+    box-sizing: border-box;
+    border-color: value(borderColor);
+    border: value(border);
+    border-radius: 0;
+    transition: border-color .1s ease-in;
+    background-color: value(backgroundColor);
+    /* todo - Define fonts somewhere*/
+    font: value(font);
+}
+
+.root {
+    -st-extends: Input;
+    -st-states: error;
+    -st-mixin: inputStyling;
+}
+
+.root:hover {
+    border-color: value(borderColorHover);
+}
+
+.root:disabled {
+    border-color: value(borderColorDisabled);
+}
+
+.root:focus {
+    border-color: value(borderColorFocus);
+}
+
+.root:error {
+    border-color: value(errorColor);
+}
+
+.root::nativeInput {
+    width: 100%;
+    font: value(font);
+    line-height: 24px;
+    height: 40px;
+    padding: 0 14px;
+    border: 0;
+    color: value(color);
+    box-sizing: border-box;
+    background-color: value(backgroundColor);
+}
+
+.root:hover::nativeInput {
+    color: value(colorHover);
+    background-color: value(backgroundColorHover);
+}
+
+.root:disabled::nativeInput {
+    color: value(colorDisabled);
+    background-color: value(backgroundColorDisabled);
+}
+
+.root:focus::nativeInput {
+    outline: 0;
+    color: value(colorFocus);
+    background-color: value(backgroundColorFocus);
+}
+
+.root::nativeInput::selection {
+    background: applyOpacity(value(MainTextColor), 0.2);
+}
+
+/* Placeholder color */
+.root::nativeInput::-webkit-input-placeholder,
+.root::nativeInput::-moz-placeholder,
+.root::nativeInput:-moz-placeholder,
+.root::nativeInput:-ms-input-placeholder {
+    color: value(colorPlaceholder);
+}

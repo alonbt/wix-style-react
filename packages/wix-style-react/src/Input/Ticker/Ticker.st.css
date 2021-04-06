@@ -1,0 +1,62 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, D10-30;
+}
+
+.root {
+  -st-states: size(enum(small, medium, large)), border(enum(standard, round, bottomLine));
+  user-select: none;
+}
+
+.root:size(small),
+.root:size(medium) {
+  margin: auto 0;
+}
+
+.root:size(medium):border(round) {
+  margin: auto 3px auto 0;
+}
+
+:global([dir="rtl"]) :size(medium):border(round) {
+  margin: auto 0 auto 3px;
+}
+
+.root:size(large) {
+  margin: auto 0 auto 3px;
+}
+
+:global([dir="rtl"]) :size(large) {
+  margin: auto 3px auto 0;
+}
+
+.root:size(large):border(round) {
+  margin: auto 3px;
+}
+
+.up {
+  -st-states: disabled;
+}
+
+.down {
+  -st-states: disabled;
+}
+
+.up,
+.down {
+  padding: 4px 6px;
+  color: value(THEME-COLOR-10);
+  cursor: pointer;
+}
+
+.up svg,
+.down svg {
+  display: block;
+  width: 10px;
+  height: 5px;
+}
+
+.up:disabled,
+.down:disabled {
+  cursor: not-allowed;
+  color: value(D10-30);
+}

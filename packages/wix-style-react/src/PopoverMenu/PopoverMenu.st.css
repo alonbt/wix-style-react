@@ -1,0 +1,52 @@
+:import {
+  -st-from: "../DropdownBase/DropdownBase.st.css";
+  -st-default: DropdownBase;
+}
+
+:import {
+  -st-from: "../ListItemAction/ListItemAction.st.css";
+  -st-default: ListItemAction;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
+  -st-named: popoverContent;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60;
+}
+
+.root {
+  -st-extends: DropdownBase;
+}
+
+.root:withArrow::popover[data-placement*="top"] .popoverContent,
+.root:withArrow::popover[data-placement*="left"] .popoverContent,
+.root:withArrow::popover[data-placement*="right"] .popoverContent,
+.root:withArrow::popover[data-placement*="bottom"] .popoverContent {
+  /* very important rule to make sure that width is defined by the text.
+   * not supported in Edge yet.
+   */
+  width: max-content;
+  padding: 12px 0;
+  overflow: visible;
+}
+
+.root::popover[data-placement*="top"],
+.root::popover[data-placement*="left"],
+.root::popover[data-placement*="right"],
+.root::popover[data-placement*="bottom"] {
+  /* very important rule to make sure that width is defined by the text.
+   * not supported in Edge yet.
+   */
+  width: max-content;
+  padding: 12px 0;
+  overflow: visible;
+}
+
+.listItem {
+  -st-extends: ListItemAction;
+  border-radius: 2px;
+}

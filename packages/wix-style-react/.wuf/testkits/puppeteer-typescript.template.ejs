@@ -1,0 +1,69 @@
+import {Page, ElementHandle} from 'puppeteer';
+import {BaseUniDriver} from 'wix-ui-test-utils/base-driver';
+
+type PuppeteerTestkitFactory<T> = (
+  params: PuppeteerTestkitParams
+) => Promise<T>;
+
+type PuppeteerUniTestkitFactory<T extends BaseUniDriver> = (
+  params: PuppeteerTestkitParams
+) => Promise<T>;
+
+interface PuppeteerTestkitParams {
+  dataHook: string;
+  page: Page;
+  wrapper?: ElementHandle | null;
+}
+
+type DeprecatedPuppeteerTestkit = any;
+
+<%
+  const deprecated = [
+    'Draggable',
+    'FieldLabelAttributes'
+  ];
+
+  const withGenerics = [
+    'MediaOverlay'
+  ]
+
+  const legacyWithGenerics = [
+    'MediaOverlay'
+  ]
+
+  components
+    .filter(component => !component.noTestkit)
+    .filter(component => !component.noPuppeteerTestkit)
+    .filter(component => !component.manualExport)
+    .filter(component => !deprecated.includes(component.name))
+    .map(component => {
+      const isLegacy = component.puppeteerLegacyTestkit;
+      // Component Name
+      const componentName = component.exportName || utils.toPascal(component.name);
+      const legacyComponentName = utils.toCamel(component.name) + 'TestkitFactory';
+      // Import Name
+      const importName = component.name + 'UniDriver'
+      const legacyImportName = isLegacy ? component.puppeteerTypeImportName || (component.name + 'Driver') : importName
+      // Path
+      const importPath = component.unidriverPath || `../src/${component.name}/${component.name}.uni.driver`
+      const legacyImportPath = component.testkitPath || `../src/${component.name}/${component.name}.puppeteer.driver`
+      // Factory
+      const factory = 'PuppeteerUniTestkitFactory'
+      const legacyFactory = isLegacy ? 'PuppeteerTestkitFactory' : factory
+      // Generics
+      const generics = withGenerics.includes(component.name) ? '<HTMLElement>' : '';
+      const legacyGenerics = legacyWithGenerics.includes(component.name) ? '<HTMLElement>' : '';
+%>
+<%- !component.noUnidriver ? `import { ${importName} } from '${importPath}';` : ''%>
+<%- isLegacy ? `import { ${legacyImportName} } from '${legacyImportPath}';` : ''%>
+<%- !component.noUnidriver ? `export const ${componentName}Testkit: ${factory}<${importName}${generics}>;` : ''%>
+<%- `export const ${legacyComponentName}: ${legacyFactory}<${legacyImportName}${legacyGenerics}>;` %>
+<% }) %>
+
+<%
+  components
+    .filter(component => deprecated.includes(component.name))
+    .map(component => {
+      const name = component.puppeteerTestkitExportName || utils.toCamel(component.name) + 'TestkitFactory'
+%>
+export const <%= name %>: DeprecatedPuppeteerTestkit;<% }) %>

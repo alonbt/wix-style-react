@@ -1,0 +1,71 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named:
+    B00,
+    B00-24, B00-42,
+    F00
+}
+
+.root {
+  display: flex;
+  padding: 12px 18px;
+}
+
+.colorInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.preview {
+  -st-extends: Focusable;
+  -st-states: clickable, noColorSelected;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  margin-left: 12px;
+  border-radius: 6px;
+  border: solid 1px value(B00-24);
+}
+
+.preview:noColorSelected {
+  background: linear-gradient(to top left,
+           rgba(214,69,61,0) 0%,
+           rgba(214,69,61,0) calc(50% - 0.8px),
+           rgba(214,69,61,1) 50%,
+           rgba(214,69,61,0) calc(50% + 0.8px),
+           rgba(214,69,61,0) 100%)
+}
+
+.preview:clickable:hover {
+  border-color: value(B00-42);
+}
+
+.preview:clickable {
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Disable native focus */
+  outline: none;
+}
+
+.preview:clickable:not(:disabled):focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.distribute {
+  display: flex;
+  min-width: 0;
+  justify-content: space-between;
+}
+
+.distributedItem {
+  width: 31%;
+}

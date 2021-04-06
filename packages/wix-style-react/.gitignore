@@ -1,0 +1,50 @@
+*.swp
+node_modules
+npm-debug.log
+lib/
+test-kit-lib/
+dist
+target
+coverage
+.history
+storybook-static
+/.idea/
+*.iml
+.vscode
+test/e2e
+.happypack
+yarn.lock
+package-lock.json
+.DS_Store
+autodocs-registry
+
+# we ignore all *.js, *.d.ts and *.scss in root folder to avoid committing component export
+# files that appear in root after build
+/*.js
+/*.d.ts
+!ignore.d.ts
+
+
+!.prettierrc.js
+!wallaby.js
+!protractor.conf.js
+!babel.config.js
+!perfer.config.js
+!jest.config.js
+.DS_Store
+/*.scss
+/bundles
+
+# applitools private config
+!applitools.config.js
+applitools.private.config.js
+
+# Generated testkit files
+testkit/enzyme.d.ts
+testkit/enzyme.js
+testkit/index.d.ts
+testkit/index.js
+testkit/protractor.d.ts
+testkit/protractor.js
+testkit/puppeteer.d.ts
+testkit/puppeteer.js

@@ -1,0 +1,65 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-TEXT-COLOR-PRIMARY, THEME-TEXT-COLOR-SECONDARY, THEME-TEXT-COLOR-PRIMARY-LIGHT
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: heading-h1, heading-h2, heading-h3, heading-h4, heading-h5, heading-h6, heading-h1-spacing, heading-h2-spacing, heading-h3-spacing;
+}
+
+.root {
+  -st-states: appearance(enum(H1, H2, H3, H4, H5, H6)), light(boolean), reducedSpacingAndImprovedLayout;
+  font-weight: normal;
+  margin: 0;
+}
+
+.root:appearance(H1) {
+  -st-mixin: heading-h1;
+  color: value(THEME-TEXT-COLOR-PRIMARY);
+}
+
+.root:appearance(H1):reducedSpacingAndImprovedLayout {
+  -st-mixin: heading-h1-spacing ;
+}
+
+.root:appearance(H2) {
+  -st-mixin: heading-h2;
+  color: value(THEME-TEXT-COLOR-PRIMARY);
+}
+
+.root:appearance(H2):reducedSpacingAndImprovedLayout {
+  -st-mixin: heading-h2-spacing;
+}
+
+.root:appearance(H3) {
+  -st-mixin: heading-h3;
+  color: value(THEME-TEXT-COLOR-PRIMARY);
+}
+
+.root:appearance(H3):reducedSpacingAndImprovedLayout{
+  -st-mixin: heading-h3-spacing;
+}
+
+.root:appearance(H4) {
+  -st-mixin: heading-h4;
+  color: value(THEME-TEXT-COLOR-PRIMARY);
+}
+
+.root:appearance(H5) {
+  -st-mixin: heading-h5;
+  color: value(THEME-TEXT-COLOR-SECONDARY);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.root:appearance(H6) {
+  -st-mixin: heading-h6;
+  color: value(THEME-TEXT-COLOR-PRIMARY);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.root:light {
+  color: value(THEME-TEXT-COLOR-PRIMARY-LIGHT);
+}

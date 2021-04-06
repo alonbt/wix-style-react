@@ -1,0 +1,17 @@
+:import {
+  -st-from: "../../../SidebarDivider/SidebarDivider.st.css";
+  -st-default: SidebarDivider;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: dividerColor;
+}
+
+.root {
+  -st-extends: SidebarDivider;
+}
+
+.root::divider:skin(dark) {
+  background-color: value(dividerColor);
+}

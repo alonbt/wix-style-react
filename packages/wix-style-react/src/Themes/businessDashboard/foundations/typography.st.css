@@ -1,0 +1,22 @@
+:import {
+  -st-from: "../../../Foundation/stylable/typography.st.css";
+  -st-named: bold;
+}
+
+/* Typography */
+.heading-h3 {
+  -st-mixin: bold;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.heading-h4 {
+  -st-mixin: bold;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.heading-h5 {
+  font-size: 12px;
+  line-height: 16px;
+}

@@ -1,0 +1,75 @@
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named:
+    B10, B40, B50,
+    D10, D55, D80, D10-30,
+    F00,
+    G30,
+    R10, R30;
+}
+
+.root {
+  -st-states: disabled, action, title, suffixIcon, prefixIcon, selected;
+
+  display: flex;
+  padding: 12px 30px;
+  align-items: center;
+  background-color: value(D80);
+  cursor: pointer;
+  outline:none;
+  border: none;
+}
+.root:hover {
+  background-color: value(B50);
+}
+
+.root:disabled {
+  pointer-events: none;
+  color: value(D10-30);
+}
+.root:title {
+  cursor: default;
+  padding-top: 20px;
+}
+.root:title:hover,
+.root:action:hover {
+  background-color: value(D80);
+  cursor: default;
+}
+
+.root:selected {
+  background-color: value(B40);
+}
+.root:suffixIcon {
+  justify-content: space-between;
+  padding-right: 12px;
+}
+.root:prefixIcon {
+  padding-left: 24px;
+}
+
+.text {
+  -st-extends: Text;
+}
+
+.prefixIcon {
+  -st-states: action;
+  margin-right: 6px;
+}
+.suffixIcon {
+  margin-left: 6px;
+}
+.prefixIcon,
+.suffixIcon {
+  flex-shrink: 0;
+}
+
+
+.prefixIcon:action {
+  color: value(B10);
+}

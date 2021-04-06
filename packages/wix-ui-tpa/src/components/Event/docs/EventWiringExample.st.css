@@ -1,0 +1,22 @@
+:import {
+    -st-from: "../Event.st.css";
+    -st-default: TPAEvent;
+}
+
+.root {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.event {
+    -st-mixin: TPAEvent(
+            TimeFont '"--timeFont"',
+            TimeColor '"--timeColor"',
+            TitleFont '"--titleFont"',
+            TitleColor '"--titleColor"',
+            FulldayBgColor '"--fulldayBgColor"',
+            HoverOverlayColor '"--hoverOverlayColor"',
+            SelectedOverlayColor '"--selectedOverlayColor"'
+        );
+}

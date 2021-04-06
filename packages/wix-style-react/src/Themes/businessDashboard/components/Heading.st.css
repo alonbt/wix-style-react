@@ -1,0 +1,39 @@
+:import {
+  -st-from: "../../../Heading/Heading.st.css";
+  -st-default: Heading;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D10;
+}
+
+:import {
+  -st-from: "../foundations/typography.st.css";
+  -st-named: heading-h3, heading-h4, heading-h5;
+}
+
+.root {
+  -st-extends: Heading;
+}
+
+.root:appearance(H2) {
+  color: value(D10);
+}
+
+.root:appearance(H3) {
+  -st-mixin: heading-h3;
+  color: value(D10);
+}
+
+.root:appearance(H4) {
+  -st-mixin: heading-h4;
+  color: value(D10);
+}
+
+.root:appearance(H5) {
+  -st-mixin: heading-h5;
+  color: value(D10);
+  text-transform: none;
+  letter-spacing: initial;
+}

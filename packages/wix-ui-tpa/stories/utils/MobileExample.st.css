@@ -1,0 +1,25 @@
+.root {
+  width: 349px;
+  height: 600px;
+  position: relative;
+}
+
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+.root iframe {
+  position: absolute;
+  top: 52px;
+  left: 14px;
+  z-index: 2;
+  width: 320px;
+  height: 512px;
+  background-color: white;
+  border-radius: 11px;
+}

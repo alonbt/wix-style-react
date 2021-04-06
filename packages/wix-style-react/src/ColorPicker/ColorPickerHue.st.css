@@ -1,0 +1,49 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/shadows.st.css';
+  -st-named: shadow10;
+}
+
+
+.root {
+  position: relative;
+  height: 12px;
+  background-image: linear-gradient(to right,
+    #f00      0%,
+    #ff4d00   5%,
+    #f90     10%,
+    #ffe600  15%,
+    #cf0     20%,
+    #80ff00  25%,
+    #3f0     30%,
+    #00ff1a  35%,
+    #0f6     40%,
+    #00ffb3  45%,
+    #0ff     50%,
+    #06f     60%,
+    #001aff  65%,
+    #30f     70%,
+    #8000ff  75%,
+    #c0f     80%,
+    #ff00e6  85%,
+    #f09     90%,
+    #ff004d  95%,
+    #f00    100%);
+}
+
+.handle {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  margin-left: -8px;
+  height: 16px;
+  width: 16px;
+  background-color: value(D80);
+  border-radius: 50%;
+  box-shadow: value(shadow10);
+  cursor: pointer;
+}

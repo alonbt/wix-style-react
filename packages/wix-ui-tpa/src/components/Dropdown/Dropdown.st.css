@@ -1,0 +1,385 @@
+:import {
+    -st-from: "wix-ui-core/index.st.css";
+    -st-named: Dropdown;
+}
+
+:import {
+    -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
+    -st-named: popoverContent;
+}
+
+:import {
+    -st-from: "../Input/Input.st.css";
+    -st-named: colorPlaceholder;
+}
+
+:import {
+    -st-from: "wix-ui-core/index.st.css";
+    -st-named: Divider;
+}
+
+:import {
+    -st-from: "../../common/palette.st.css";
+    -st-named: errorColor;
+}
+
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: applyUnit, color, font, zeroAsTrue, fallback, applyOpacity;
+}
+
+:import {
+    -st-from: "../Text/Text.st.css";
+    -st-default: TPAText;
+}
+
+:import {
+    -st-from: "../Input/Input.st.css";
+    -st-default: TPAInput;
+    -st-named: backgroundColorHover;
+}
+
+:import {
+    -st-from: "./DropdownBase.st.css";
+    -st-default: DropdownBase;
+    -st-named: borderHoverColor;
+}
+
+:import {
+    -st-from: "./DropdownNativeSelect.st.css";
+    -st-default: DropdownNativeSelect;
+    -st-named: overrideStyleParams as overrideStyleParamsDropdownNativeSelectMixin
+}
+
+:import {
+    -st-from: "./DropdownError.st.css";
+    -st-default: DropdownError;
+}
+
+:import {
+    -st-from: "./DropdownOption.st.css";
+    -st-default: DropdownOption;
+    -st-named: overrideStyleParams as overrideStyleParamsOptionMixin;
+}
+
+/* Defaults - default param */
+:vars {
+    DefaultButtonTextColor: color-5;
+    DefaultButtonTextDisabledColor: color-3;
+    DefaultButtonBorderColor: color-5;
+    DefaultBorderDisabledColor: color-3;
+    DefaultBorderWidth: 1px;
+    DefaultBackgroundColor: color-1;
+    DefaultPlaceholderColor: color-4;
+    DefaultTextFont: "{theme: 'Body-M', size: '16px', lineHeight: '1.5'}";
+    DefaultMobileTextFont: "{theme: 'Body-M', size: '14px', lineHeight: '1.5'}";
+    DefaultDropdownBackgroundColor: color-1;
+    DefaultItemTextColor: color-5;
+    DefaultItemTextFont: "{theme: 'Body-M', size: '16px', lineHeight: '1.5'}";
+    DefaultItemTextDisabledColor: color-3;
+}
+
+/*Overrides*/
+:vars {
+    /*
+        The button’s text color
+        @default 0
+    */
+    MainButtonTextColor: --overridable;
+    /*
+        The disabled button’s text color
+        @default 0
+    */
+    MainButtonTextDisabledColor: --overridable;
+    /*
+        The button's border color
+        @default color-1
+    */
+    MainButtonBorderColor: --overridable;
+    /*
+        The disabled button's border color
+        @default color-1
+    */
+    MainBorderDisabledColor: --overridable;
+    /*
+        The button's border width
+        @default 1px
+    */
+    MainBorderWidth: --overridable;
+    /*
+        The button's background color
+        @default color-1
+    */
+    MainBackgroundColor: --overridable;
+    /*
+        The button's placeholder color
+        @default color-1
+    */
+    MainPlaceholderColor: --overridable;
+    /*
+        The button's font
+        @default "{theme: 'Body-M', size: '14px'}"
+    */
+    MainTextFont: --overridable;
+    /*
+        Dropdown's background color
+        @default color-1
+    */
+    MainDropdownBackgroundColor: --overridable;
+    /*
+        Item text color
+        @default color-1
+    */
+    MainItemTextColor: --overridable;
+    /*
+        Item text font
+        @default "{theme: 'Body-M', size: '16px'}"
+    */
+    MainItemTextFont: --overridable;
+    /*
+        Item text disabled color
+        @default color-3
+    */
+    MainItemTextDisabledColor: --overridable;
+}
+
+:vars {
+    CurrentButtonTextColor: color(fallback(value(MainButtonTextColor), value(DefaultButtonTextColor)));
+    CurrentButtonTextDisabledColor: color(fallback(value(MainButtonTextDisabledColor), value(DefaultButtonTextDisabledColor)));
+    CurrentButtonBorderColor: color(fallback(value(MainButtonBorderColor), value(DefaultButtonBorderColor)));
+    CurrentBorderDisabledColor: color(fallback(value(MainBorderDisabledColor), value(DefaultBorderDisabledColor)));
+    CurrentBorderWidth: fallback(value(MainBorderWidth), value(DefaultBorderWidth));
+    CurrentBackgroundColor: color(fallback(value(MainBackgroundColor), value(DefaultBackgroundColor)));
+    CurrentPlaceholderColor: color(fallback(value(MainPlaceholderColor), value(DefaultPlaceholderColor)));
+    CurrentTextFont: fallback(font(value(MainTextFont)), font(value(DefaultTextFont)));
+    CurrentDropdownBackgroundColor: color(fallback(value(MainDropdownBackgroundColor), value(DefaultDropdownBackgroundColor)));
+    CurrentItemTextColor: color(fallback(value(MainItemTextColor), value(DefaultItemTextColor)));
+    CurrentItemTextFont: fallback(font(value(MainItemTextFont)), font(value(MainTextFont)), font(value(DefaultTextFont)));
+    CurrentItemTextDisabledColor: color(fallback(value(MainItemTextDisabledColor), value(DefaultItemTextDisabledColor)));
+}
+
+
+.root {
+    -st-states: alignment(enum(center)), mobile, error;
+}
+
+.root:mobile .label {
+    -st-mixin: TPAText(
+        MainTextFont "{theme: 'Body-M', size: '12px'}"
+    );
+}
+
+.label {
+    -st-mixin: TPAText(
+        MainTextFont "{theme: 'Body-M', size: '14px'}"
+    );
+    display: block;
+    margin-bottom: 8px;
+}
+
+.dropdownBase {
+    -st-extends: DropdownBase;
+}
+
+.dropdownOption {
+  -st-extends: DropdownOption;
+}
+
+.dropdownOption{
+     -st-mixin: overrideStyleParamsOptionMixin(
+         MainTitleTextColor value(DefaultItemTextColor),
+         MainTitleTextFont value(DefaultItemTextFont),
+         MainItemTextDisabledColor value(DefaultItemTextDisabledColor),
+    );
+}
+
+.root.overrideStyleParams .dropdownOption{
+     -st-mixin: overrideStyleParamsOptionMixin(
+         MainTitleTextFont value(CurrentItemTextFont),
+         MainTitleTextColor value(CurrentItemTextColor),
+         MainItemTextDisabledColor value(CurrentItemTextDisabledColor),
+    );
+}
+
+.dropdownNativeSelect {
+    -st-extends: DropdownNativeSelect;
+    -st-mixin: overrideStyleParamsDropdownNativeSelectMixin(
+        MainButtonTextColor value(DefaultButtonTextColor),
+        MainButtonTextDisabledColor value(DefaultButtonTextDisabledColor),
+        MainButtonBorderColor value(DefaultButtonBorderColor),
+        MainBorderDisabledColor value(DefaultBorderDisabledColor),
+        MainBackgroundColor value(DefaultBackgroundColor),
+    );
+}
+
+.root.overrideStyleParams .dropdownNativeSelect {
+    -st-mixin: overrideStyleParamsDropdownNativeSelectMixin(
+        MainButtonTextColor value(CurrentButtonTextColor),
+        MainButtonTextDisabledColor value(CurrentButtonTextDisabledColor),
+        MainButtonBorderColor value(CurrentButtonBorderColor),
+        MainBorderDisabledColor value(CurrentBorderDisabledColor),
+        MainBackgroundColor value(CurrentBackgroundColor),
+    );
+}
+
+.dropdownError {
+    -st-extends: DropdownError;
+}
+
+.dropdown {
+    -st-extends: Dropdown;
+    width: 100%;
+}
+
+.dropdown,
+.dropdownBase::root,
+.dropdownNativeSelect::root {
+    min-width: 68px;
+}
+
+.dropdown .dropdownBase {
+     color: value(DefaultButtonTextColor) !important;
+    border-width: value(DefaultBorderWidth) !important;
+    background: value(DefaultBackgroundColor) !important;
+    font: font(value(DefaultTextFont)) !important;
+}
+
+.dropdown .dropdownBase:not(:error) {
+    border-color: applyOpacity(color(value(DefaultButtonBorderColor)), 0.6) !important;
+}
+
+.dropdown .dropdownBase:not(:error):focus-within,
+.dropdown .dropdownBase:not(:error):hover {
+    border-color: applyOpacity(color(value(DefaultButtonBorderColor)), 1) !important;
+}
+
+.root.overrideStyleParams .dropdown .dropdownBase
+{
+    color: value(CurrentButtonTextColor) !important;
+    border-width: value(CurrentBorderWidth) !important;
+    background: value(CurrentBackgroundColor) !important;
+    font: value(CurrentTextFont) !important;
+}
+
+.root.overrideStyleParams .dropdown .dropdownBase:not(:error)
+{
+    border-color: applyOpacity(color(value(CurrentButtonBorderColor)), 0.6) !important;
+}
+
+.root.overrideStyleParams .dropdown .dropdownBase:not(:error):focus-within,
+.root.overrideStyleParams .dropdown .dropdownBase:not(:error):hover {
+    border-color: applyOpacity(color(value(CurrentButtonBorderColor)), 1) !important;
+}
+
+.dropdown .dropdownBase::arrowIcon {
+    color: value(DefaultButtonTextColor);
+}
+
+.root.overrideStyleParams .dropdown .dropdownBase::arrowIcon {
+    color: value(CurrentButtonTextColor);
+}
+
+.dropdown .dropdownBase::root:disabled {
+    color: value(DefaultButtonTextDisabledColor) !important;
+    border-color: value(DefaultBorderDisabledColor) !important;
+}
+
+.root.overrideStyleParams .dropdown .dropdownBase::root:disabled {
+    color: value(CurrentButtonTextDisabledColor) !important;
+    border-color: value(CurrentBorderDisabledColor) !important;
+}
+
+.dropdown .dropdownBase::root:placeholder {
+    color: value(DefaultPlaceholderColor);
+}
+
+.root.overrideStyleParams .dropdown .dropdownBase::root:placeholder {
+    color: value(CurrentPlaceholderColor);
+}
+
+.dropdown:content-visible .dropdownBase::root {
+    border-color: value(borderHoverColor);
+}
+
+.dropdown:content-visible .dropdownBase::root:error {
+    border-color: applyOpacity(color(value(errorColor)), 0.6) important!;
+}
+
+.dropdown:content-visible .dropdownBase::root:error:focus-within,
+.dropdown:content-visible .dropdownBase::root:error:hover {
+    border-color: applyOpacity(color(value(errorColor)), 1) important!;
+}
+
+.dropdown:content-visible .dropdownBase::arrowIcon {
+    transform: rotate(180deg);
+}
+
+.dropdown .dropdownBase::arrowIcon path,
+.dropdown:hover .dropdownBase::arrowIcon path,
+.root:mobile .dropdown .dropdownBase::arrowIcon path,
+.root:mobile .dropdown:hover .dropdownBase::arrowIcon path {
+    fill: currentColor !important;;
+    stroke: none !important;;
+}
+
+.dropdown::popoverContent {
+    box-sizing: border-box;
+    /* Popover fix. For some reason popover has inline style with transform: translate3d(-1px, 42px, 0px); */
+    margin-left: 1px;
+    max-width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    background-color: color(color-1);
+    border: 1px solid applyOpacity(color(color-5), 0.4);
+}
+
+.root.overrideStyleParams .dropdown > .popoverContent {
+    border: 1px solid applyOpacity(value(CurrentItemTextColor), 0.4);
+    background-color: value(CurrentDropdownBackgroundColor);
+}
+
+.dropdownError::popoverContent {
+    background-color: value(errorColor) !important;
+}
+
+.dropdown::dropdownContent {
+    padding: 12px 0;
+}
+
+.dropdown::dropdownContent::dropdownOption:hovered,
+.dropdown::dropdownContent::dropdownOption:selected,
+.dropdown::dropdownContent::dropdownOption:selected:hovered {
+    background-color: applyOpacity(color(color-5), 0.06);
+}
+
+.root.overrideStyleParams .dropdown::dropdownContent::dropdownOption:hovered,
+.root.overrideStyleParams .dropdown::dropdownContent::dropdownOption:selected,
+.root.overrideStyleParams .dropdown::dropdownContent::dropdownOption:selected:hovered {
+    background-color: applyOpacity(value(CurrentItemTextColor), 0.06);
+}
+
+.root:alignment(center) {
+    text-align: center;
+}
+
+.root:alignment(center) .dropdownBase::root::content {
+    flex: 1;
+}
+
+.root:alignment(center) .dropdownOption {
+    justify-content: center;
+}
+
+.divider {
+    opacity: 30%;
+    background-color: value(DefaultItemTextColor);
+}
+
+.root.overrideStyleParams .divider {
+    background-color: value(CurrentItemTextColor);
+}
+
+.divider:not(.customDivider) {
+    margin: 10px 13px;
+    width: auto;
+    opacity: 0.2;
+}

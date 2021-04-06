@@ -1,0 +1,13 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: D10-03, D60;
+}
+
+.root {
+  background-color: value(D10-03);
+  height: 47px;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px value(D60);
+  padding: 0 30px;
+}

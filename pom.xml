@@ -18,11 +18,10 @@
     <modelVersion>4.0.0</modelVersion>
     <version>1.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <developers>
-        <developer>
-            <name>Yoav Amit</name>
-            <email>yoava@wix.com</email>
+         <developer>
+            <name>Shlomi Toussia-Cohen</name>
+            <email>shlomitc@wix.com</email>
             <roles>
                 <role>owner</role>
             </roles>
@@ -34,26 +33,11 @@
                 <role>owner</role>
             </roles>
         </developer>
-        <developer>
-            <name>Yaniv Efraim</name>
-            <email>yanivef@wix.com</email>
-            <roles>
-                <role>owner</role>
-            </roles>
-        </developer>
-        <developer>
-            <name>Ronen Amiel</name>
-            <email>ronena@wix.com</email>
-            <roles>
-                <role>owner</role>
-            </roles>
-        </developer>
-        <developer>
-            <name>Nir Hartmann</name>
-            <email>nirh@wix.com</email>
-            <roles>
-                <role>owner</role>
-            </roles>
-        </developer>
     </developers>
+    <mailingLists>
+       <mailingList>
+             <name>Slack</name>
+             <subscribe>wix-ui</subscribe>
+       </mailingList>
+    </mailingLists>
 </project>

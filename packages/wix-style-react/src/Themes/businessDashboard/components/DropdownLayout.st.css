@@ -1,0 +1,42 @@
+:import {
+  -st-from: "../../../Foundation/stylable/shadows.st.css";
+  -st-named: shadow10;
+}
+
+:import {
+  -st-from: "../../../DropdownLayout/DropdownLayout.st.css";
+  -st-default: DropdownLayout;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D40, D55;
+}
+
+.root {
+  -st-extends: DropdownLayout;
+}
+
+.root:containerStyles::contentContainer {
+  box-shadow: value(shadow10);
+}
+
+.root:visible::contentContainer {
+  padding: 8px 0;
+  border-radius: 8px;
+}
+
+.root::options::-webkit-scrollbar {
+  width: 12px;
+}
+
+.root::options::-webkit-scrollbar-thumb {
+  background-color: value(D55);
+  border-width: 4px;
+  border-radius: 14px;
+}
+
+.root::options::-webkit-scrollbar-thumb:hover,
+.root::options::-webkit-scrollbar-thumb:active {
+  background-color: value(D40);
+}

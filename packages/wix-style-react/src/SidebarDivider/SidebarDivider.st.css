@@ -1,0 +1,36 @@
+:import {
+  -st-from: "../Divider/Divider.st.css";
+  -st-default: Divider;
+}
+
+:import {
+  -st-from: "../Sidebar/colors.st.css";
+  -st-named: dividerColor
+}
+
+:import {
+  -st-from: "../Sidebar/Sidebar.st.css";
+  -st-named: sidebarWidth
+}
+
+.root {
+  border: 0;
+  height: 1px;
+  box-sizing: border-box;
+  padding: 17px 24px 18px 24px;
+  max-width: value(sidebarWidth);
+  width: 100%;
+}
+
+.fullWidth {
+  padding: 0;
+}
+
+.divider {
+  -st-extends: Divider;
+}
+
+.divider:skin(dark) {
+  /* Overrides the color as part of UX decision */
+  background-color: value(dividerColor);
+}

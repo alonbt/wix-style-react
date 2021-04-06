@@ -1,0 +1,22 @@
+:import {
+    -st-from: "./DatePicker.st.css";
+    -st-default: DatePicker;
+}
+
+.dayFontSizeOverride {
+    -st-mixin: DatePicker(
+        DayFont "{theme: 'Body-M', size: '24px' }",
+    );
+}
+
+.selectedDayBorderRadius{
+    -st-mixin: DatePicker(
+       SelectedDayBorderRadius 0,
+    );
+}
+
+.weeksVerticalSpacing{
+    -st-mixin: DatePicker(
+       WeeksVerticalSpacing 8,
+    );
+}

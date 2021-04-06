@@ -1,0 +1,73 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B40, A1, A2, A3, A4, A5, A6;
+}
+
+
+:vars {
+  height: 72px;
+}
+
+.wrapper {
+  display: flex;
+  background: linear-gradient(value(B40) value(height), transparent value(height));
+}
+
+.root {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+}
+
+.item {
+  min-width: 30px;
+  flex-grow: var(--barValue);
+  flex-basis: calc(var(--barValue) * 1px);
+  flex-shrink: calc(1 / var(--barValue) + 1);
+}
+
+.value {
+  overflow: hidden;
+  padding: 0 24px;
+  height: value(height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.value:empty {
+  padding: 0 12px;
+}
+
+.item:nth-child(6n-5) .value {
+  background-color: value(A1);
+}
+
+.item:nth-child(6n-4) .value {
+  background-color: value(A2);
+}
+
+.item:nth-child(6n-3) .value {
+  background-color: value(A3);
+}
+
+.item:nth-child(6n-2) .value {
+  background-color: value(A4);
+}
+
+.item:nth-child(6n-1) .value {
+  background-color: value(A5);
+}
+
+.item:nth-child(6n) .value {
+  background-color: value(A6);
+}
+
+.item:hover .value {
+  filter: brightness(120%);
+}
+
+.description {
+  padding: 0 12px;
+}

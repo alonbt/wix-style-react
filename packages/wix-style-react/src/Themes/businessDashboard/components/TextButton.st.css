@@ -1,0 +1,150 @@
+:import {
+  -st-from: "../../../TextButton/TextButton.st.css";
+  -st-default: TextButton;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: B05, B10, B40, B50, D10, D20, D30, D80, D10-30, D10-40, D80-70, P10, P20, R10;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/typography.st.css";
+  -st-named: thin, normal, bold;
+}
+
+.root {
+  -st-extends: TextButton;
+  color: value(B10);
+  align-items: flex-start;
+}
+
+.root:hover {
+  color: value(B05);
+}
+
+.root:active {
+  color: value(B05);
+}
+
+.root:disabled {
+  color: value(D10-40);
+}
+
+.root::prefix {
+  padding-right: 4px;
+}
+
+.root::suffix {
+  padding-left: 4px;
+}
+
+.root:focus-visible {
+  box-shadow: 0 0 0 3px value(B40);
+}
+
+/****** Weights ******/
+.root:size(tiny):weight(normal) {
+  -st-mixin: bold;
+}
+
+.root:size(small):weight(normal) {
+  -st-mixin: bold;
+}
+
+.root:size(medium):weight(normal) {
+  -st-mixin: bold;
+}
+
+.root:size(tiny):weight(thin) {
+  -st-mixin: thin;
+}
+
+.root:size(small):weight(thin) {
+  -st-mixin: thin;
+}
+
+.root:size(medium):weight(thin) {
+  -st-mixin: thin;
+}
+
+.root:size(tiny) {
+  line-height: 16px;
+  height: 16px;
+  font-size: 12px;
+  align-items: center;
+}
+
+.root:size(small) {
+  line-height: 20px;
+  height: 20px;
+  align-items: center;
+}
+
+/* Skin: light */
+
+.root:skin(light) {
+  color: value(D80);
+}
+
+.root:skin(light):hover {
+  color: value(B50);
+}
+
+.root:skin(light):disabled {
+  color: value(D80-70);
+}
+
+/* Skin: dark */
+
+.root:skin(dark) {
+  color: value(D10);
+}
+
+.root:skin(dark):hover {
+  color: value(D10);
+}
+
+.root:skin(dark):active {
+  color: value(D10);
+}
+
+.root:skin(dark):weight(thin) {
+  color: value(D20);
+}
+
+.root:skin(dark):weight(thin):hover {
+  color: value(D10);
+}
+
+.root:skin(dark):weight(thin):active {
+  color: value(D10);
+}
+
+.root:skin(dark):disabled,
+.root:skin(dark):disabled:hover {
+  color: value(D10-40);
+}
+
+/* skin: premium */
+
+.root:skin(premium) {
+  color: value(P10);
+}
+
+.root:skin(premium):hover {
+  color: value(P20);
+}
+
+.root:skin(premium):active {
+  color: value(P10);
+}
+
+.root:skin(premium):disabled {
+  color: value(D10-30);
+}
+
+/* skin: error */
+.root:skin(destructive) {
+  color: value(R10);
+}

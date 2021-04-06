@@ -1,0 +1,18 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80;
+}
+
+.root {
+  width: 240px;
+  background: value(D80);
+  border-radius: 8px;
+}
+
+.root, .root * {
+  box-sizing: border-box;
+}
+
+.children {
+  padding: 9px 18px 12px;
+}

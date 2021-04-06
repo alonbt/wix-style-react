@@ -1,0 +1,18 @@
+:import {
+    -st-from: "../Tags.st.css";
+    -st-default: Tags;
+}
+.root {
+    -st-mixin: Tags(
+            MainBorderRadius '"unit(--borderRadius, px)"',
+            MainVerticalSpacing '"unit(fallback(zeroAsTrue(--verticalSpacing), 4), px)"',
+            MainHorizontalSpacing '"unit(fallback(zeroAsTrue(--horizontalSpacing), 4), px)"',
+            MainTextColor '"--textColor"',
+            MainBackgroundColor '"--bgColor"',
+            HoverTextColor '"--hoverTextColor"',
+            HoverBackgroundColor '"--hoverBgColor"',
+            CheckedTextColor '"--checkedTextColor"',
+            CheckedBackgroundColor '"--checkedBgColor"',
+            MainTextFont '"--textFont"'
+    );
+}

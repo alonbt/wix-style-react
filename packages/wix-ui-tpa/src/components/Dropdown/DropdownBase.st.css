@@ -1,0 +1,155 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color;
+}
+
+:import {
+    -st-from: "../Button/Button.st.css";
+    -st-default: TPAButton;
+}
+
+:import {
+    -st-from: "../Input/Input.st.css";
+    -st-default: TPAInput;
+    -st-named: backgroundColor, colorDisabled, colorPlaceholder, color as inputColor, errorColor, borderColor;
+}
+
+:vars {
+    BorderHoverColor: color-5;
+}
+
+:vars {
+    borderHoverColor: color(value(BorderHoverColor));
+}
+
+.root {
+    -st-extends: TPAButton;
+    -st-mixin: TPAButton(
+        MainBackgroundColor 'value(backgroundColor)',
+        MainBorderWidth '1px',
+        MainBorderColor 'value(borderColor)',
+        MainTextColor 'value(inputColor)'
+    );
+    -st-states: error, placeholder, rtl;
+    display: flex;
+    cursor: pointer;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.root::content {
+    flex: 1;
+    text-align: start;
+}
+
+.root:mobile,
+.root {
+    padding: 8px 0;
+}
+
+.root:mobile::before,
+.root::before {
+    width: 12px;
+    content: '';
+}
+
+.root:mobile::after,
+.root::after {
+    width: 7px;
+    content: '';
+}
+
+.root::content {
+    margin: initial;
+}
+.root:focus,
+.root:hover {
+    border-color: value(borderHoverColor);
+    background-color: value(backgroundColor);
+}
+
+.root:error,
+.root:error:focus,
+.root:error:hover {
+    border-color: color(value(errorColor)) !important;
+}
+
+
+.root:placeholder {
+    color: value(colorPlaceholder);
+}
+
+.root:disabled {
+    cursor: default;
+    background-color: value(backgroundColor);
+    color: value(colorDisabled);
+    border-color: value(colorDisabled);
+}
+
+.root:disabled:hover {
+    border-color: value(colorDisabled);
+}
+
+.arrowIcon {
+    color: value(inputColor);
+}
+
+.root:disabled .arrowIcon {
+    color: value(colorDisabled);
+}
+
+.optionIcon::after {
+    width: 12px;
+    content: '';
+}
+
+.root .childrenWrapper{
+    display: inline-block;
+}
+
+/*--------------------upgrade------------------------*/
+
+:vars {
+    DefaultBorderWidth: 1px;
+}
+
+.root:mobile:upgrade::before,
+.root:upgrade::before {
+    width: 0px;
+    content: '';
+}
+.root:upgrade{
+    display: flex;
+}
+
+.root:upgrade::content{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.root:upgrade .childrenWrapper{
+    overflow: visible;
+}
+
+.root:mobile:upgrade::after,
+.root:upgrade::after {
+    width: 0px;
+    content: '';
+}
+
+.root:mobile:upgrade,
+.root:upgrade {
+    padding: 7px 7px 7px 12px;
+}
+
+.root:mobile:upgrade:rtl,
+.root:upgrade:rtl {
+    padding: 7px 12px 7px 7px;
+}
+
+.root::affixIcon {
+    line-height: 1.5;
+    display: flex;
+}

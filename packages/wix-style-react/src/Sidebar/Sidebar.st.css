@@ -1,0 +1,206 @@
+:import {
+  -st-from: "./colors.st.css";
+  -st-named: sidebarBackgroundColor, sidebarLightBackgroundColor, darkScrollbarThumbColor, darkScrollbarThumbHoverColor, lightScrollbarThumbColor, lightScrollbarThumbHoverColor
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60
+}
+
+:import {
+  -st-from: '../Foundation/stylable/mixins/calc_rgba';
+  -st-default: calc_rgba;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
+}
+
+:vars {
+  sidebarWidth: 228px;
+  gradientHeight: 36px;
+}
+
+.root {
+  -st-states: skin(enum(dark, light)), hidden;
+
+  width: value(sidebarWidth);
+  height: 100%;
+  position: relative;
+
+  overflow: hidden;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 2;
+  margin-left: 0;
+  margin-right: 0;
+
+  transition-property: margin-left, margin-right;
+  transition-duration: 0.6s;
+}
+
+.root:skin(dark) {
+  background-color: value(sidebarBackgroundColor);
+}
+
+.root:skin(light) {
+  background-color: value(sidebarLightBackgroundColor);
+  border-right: 1px solid value(D60);
+}
+
+.root:hidden {
+  margin-left: calc(-1 * value(sidebarWidth));
+  margin-right: 0;
+}
+
+:global([dir="rtl"]) .root:hidden {
+  margin-left: 0;
+  margin-right: calc(-1 * value(sidebarWidth));
+}
+
+.content {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+@keyframes inFromLeft {
+  from {
+    left: calc(-1 * value(sidebarWidth));
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes inFromRight {
+  from {
+    left: value(sidebarWidth);
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes outToRight {
+  from {
+    left: 0;
+  }
+  to {
+    left: value(sidebarWidth);
+  }
+}
+
+@keyframes outToLeft {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(-1 * value(sidebarWidth));
+  }
+}
+
+.slider {
+  -st-states: skin(enum(dark, light));
+
+  position: absolute;
+  width: value(sidebarWidth);
+  overflow-y: auto;
+  height: 100%;
+
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: value(ease-8);
+}
+
+.slider::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 8px;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+.slider::-webkit-scrollbar-thumb:hover {
+  border-radius: 4px;
+}
+
+.slider:skin(dark)::-webkit-scrollbar-thumb {
+  background-color: value(darkScrollbarThumbColor);
+}
+
+.slider:skin(dark)::-webkit-scrollbar-thumb:hover {
+  background: value(darkScrollbarThumbHoverColor);
+}
+
+.slider:skin(light)::-webkit-scrollbar-thumb {
+  background-color: value(lightScrollbarThumbColor);
+}
+
+.slider:skin(light)::-webkit-scrollbar-thumb:hover {
+  background: value(lightScrollbarThumbHoverColor);
+}
+
+.sliderInFromRight {
+  animation-name: inFromRight;
+}
+
+:global([dir="rtl"]) .sliderInFromRight {
+  animation-name: inFromLeft;
+}
+
+.sliderOutToRight {
+  animation-name: outToRight;
+}
+
+:global([dir="rtl"]) .sliderOutToRight {
+  animation-name: outToLeft;
+}
+
+.sliderInFromLeft {
+  animation-name: inFromLeft;
+}
+
+:global([dir="rtl"]) .sliderInFromLeft {
+  animation-name: inFromRight;
+}
+
+.sliderOutToLeft {
+  animation-name: outToLeft;
+}
+
+:global([dir="rtl"]) .sliderOutToLeft {
+  animation-name: outToRight;
+}
+
+.childrenContent {
+  overflow: hidden;
+}
+
+.gradient {
+  -st-states: skin(enum(dark, light));
+
+  height: value(gradientHeight);
+  min-height: value(gradientHeight);
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  pointer-events: none
+}
+
+.gradient:skin(dark) {
+  background-image: linear-gradient(to bottom, calc_rgba(value(sidebarBackgroundColor), 0), value(sidebarBackgroundColor));
+}
+
+.gradient:skin(light) {
+  background-image: linear-gradient(to bottom, calc_rgba(value(sidebarLightBackgroundColor), 0), value(sidebarLightBackgroundColor));
+}

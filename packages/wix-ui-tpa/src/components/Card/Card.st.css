@@ -1,0 +1,176 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, applyUnit, fallback, zeroAsTrue, applyOpacity;
+}
+
+:import {
+    -st-from: "../NewCard/NewCard.st.css";
+    -st-default: NewCard;
+}
+
+:import {
+    -st-from: "./mixins.st.css";
+    -st-named: withBorder, withDynamicPadding, withDynamicSidePadding;
+}
+
+:vars {
+    /*Constance*/
+    DefaultCardBG: color-1;
+    DefaultInfoCardBG: color-1;
+    DefaultMediaCardBG: color-5;
+    DefaultBorderColor: color-5;
+    DefaultBorderWidth: 1;
+}
+
+:vars {
+    /*Overrides*/
+    MainCardColor: --overridable;
+    MainBorderWidth: --overridable;
+    MainBorderColor: --overridable;
+    MainInfoColor: --overridable;
+    MainMediaColor: --overridable;
+    StackedInfoSidePadding: --overridable;
+}
+
+:vars {
+    cardBGColor: color(fallback(value(MainCardColor), value(DefaultCardBG)));
+    borderWidth: applyUnit(fallback(zeroAsTrue(value(MainBorderWidth)), value(DefaultBorderWidth)), px);
+    borderColor: color(fallback(value(MainBorderColor), value(DefaultBorderColor)));
+    infoBGColor: color(fallback(value(MainInfoColor), value(DefaultInfoCardBG)));
+    mediaBGColor: color(fallback(value(MainMediaColor), applyOpacity(color(value(DefaultMediaCardBG)), 0.2)));
+}
+
+:vars {
+    infoPadding: 60px;
+    stackedInfoPadding: 32px;
+    mobileInfoPadding: 20px;
+    MinWidth: 700px;
+    MobileMinWidth: 130px;
+}
+
+.root {
+    background-color: value(cardBGColor);
+}
+
+.deprecated {
+    -st-states: ratio(enum(100, 50, 40, 30)), flippedRatio, invertInfoPosition, stacked, mediaAspectRatio, mobile;
+}
+
+.root.deprecated {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    -st-mixin: withBorder(
+            BorderColor value(borderColor),
+            BorderWidth value(borderWidth)
+    );
+    min-width: value(MinWidth);
+}
+
+.root.deprecated:stacked {
+    min-width: value(MobileMinWidth);
+}
+
+.root.deprecated:stacked:invertInfoPosition:mobile,
+.root.deprecated:stacked:mobile,
+.root.deprecated:stacked {
+    flex-direction: column;
+}
+
+.root.deprecated:invertInfoPosition {
+    flex-direction: row-reverse;
+}
+
+.root.deprecated:stacked:invertInfoPosition {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+}
+
+.root.deprecated:ratio(100) > .infoContainer {
+    flex: 100%;
+}
+
+.root.deprecated:ratio(50) > .mediaWrapper,
+.root.deprecated:ratio(50) > .infoContainer {
+    flex: 50%;
+}
+
+.root.deprecated:ratio(40):flippedRatio:invertInfoPosition > .mediaWrapper,
+.root.deprecated:ratio(40):invertInfoPosition > .infoContainer,
+.root.deprecated:ratio(40):flippedRatio > .infoContainer,
+.root.deprecated:ratio(40) > .mediaWrapper {
+    flex: 40%;
+}
+
+.root.deprecated:ratio(40):flippedRatio:invertInfoPosition > .infoContainer,
+.root.deprecated:ratio(40):invertInfoPosition > .mediaWrapper,
+.root.deprecated:ratio(40):flippedRatio > .mediaWrapper,
+.root.deprecated:ratio(40) > .infoContainer {
+    flex: 60%;
+}
+
+.root.deprecated:ratio(30):flippedRatio:invertInfoPosition > .mediaWrapper,
+.root.deprecated:ratio(30):invertInfoPosition > .infoContainer,
+.root.deprecated:ratio(30):flippedRatio > .infoContainer,
+.root.deprecated:ratio(30) > .mediaWrapper {
+    flex: 30%;
+}
+
+.root.deprecated:ratio(30):flippedRatio:invertInfoPosition > .infoContainer,
+.root.deprecated:ratio(30):invertInfoPosition > .mediaWrapper,
+.root.deprecated:ratio(30):flippedRatio > .mediaWrapper,
+.root.deprecated:ratio(30) > .infoContainer {
+    flex: 70%;
+}
+
+.root.deprecated:stacked:mediaAspectRatio:invertInfoPosition > .mediaWrapper {
+    flex-grow: 0;
+    flex-basis: auto;
+}
+
+.root.deprecated:mediaAspectRatio > .mediaWrapper {
+    position: relative;
+    flex: 0 0 0;
+}
+
+.root.deprecated:mediaAspectRatio > .mediaWrapper > .mediaContainer {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.root .mediaContainer {
+    background-color: value(mediaBGColor);
+    height: 100%;
+}
+
+.root > .infoContainer {
+    box-sizing: border-box;
+    background-color: value(infoBGColor);
+    -st-mixin: withDynamicPadding(
+            PaddingSize value(infoPadding),
+            BorderWidth value(borderWidth)
+    );
+}
+
+.root.deprecated:stacked > .infoContainer {
+    -st-mixin: withDynamicPadding(
+            PaddingSize value(stackedInfoPadding),
+            BorderWidth value(borderWidth)
+    ), withDynamicSidePadding(
+            PaddingSize fallback(zeroAsTrue(value(StackedInfoSidePadding)), value(stackedInfoPadding)),
+            BorderWidth value(borderWidth)
+    );
+}
+
+.root.deprecated:mobile > .infoContainer {
+    -st-mixin: withDynamicPadding(
+            PaddingSize value(mobileInfoPadding),
+            BorderWidth value(borderWidth)
+    );
+}
+
+.upgraded {
+    -st-extends: NewCard;
+}

@@ -1,0 +1,347 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: B10, B30, B40, B50, B60, D10, D20, D10-03, D10-10, D60, D70, D80;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/typography.st.css';
+  -st-named: text-small-thin , text-small-normal, text-small-bold, text-medium-thin;
+}
+
+:vars {
+  cellHorizontalPadding: 12px;
+  cellHorizontalEdgePadding: 30px;
+}
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  background-color: white;
+}
+
+.table thead {
+  -st-mixin: text-small-normal;
+}
+
+.table tbody {
+  -st-mixin: text-small-thin;
+}
+
+.table.virtualized {
+  display: block;
+}
+
+.table.virtualized thead {
+  top: 0;
+  display: block;
+  position: sticky;
+  z-index: 2;
+}
+
+.table.virtualized thead th {
+  box-sizing: border-box;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  height: 42px;
+}
+
+.table.virtualized tbody {
+  display: block;
+  transform: translateY(0);
+}
+
+.table.virtualized tbody td {
+  box-sizing: border-box;
+}
+
+.table.virtualized tr {
+  display: flex;
+}
+
+.table.virtualized td, .table.virtualized th {
+  display: flex;
+  align-items: center;
+}
+
+.table td {
+  color: value(D20);
+}
+
+.table td, .table th {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.table td.sticky, .table th.sticky {
+  position: sticky;
+  z-index: 1;
+}
+
+.table td:last-child, .table th:last-child {
+  padding-left: 12px;
+  padding-right: 30px;
+}
+
+.table td:last-child.reducedSpacingAndImprovedLayout, .table th:last-child.reducedSpacingAndImprovedLayout {
+  padding-right: 24px;
+}
+
+.table td:first-child, .table th:first-child {
+  padding-left: 30px;
+  padding-right: 12px;
+}
+
+.table td:first-child.reducedSpacingAndImprovedLayout, .table th:first-child.reducedSpacingAndImprovedLayout {
+  padding-left: 24px;
+}
+
+.table th {
+  text-align: initial;
+  font-weight: initial;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  height: 24px;
+  color: value(D10);
+}
+
+.table th.thSkinStandard {
+  background-color: value(B40);
+  box-shadow: inset 0 1px 0 0 value(B30), inset 0 -1px 0 0 value(B30);
+}
+
+.table th.thSkinNeutral {
+  background-color: value(D10-03);
+  box-shadow: inset 0 1px 0 0 value(D60), inset 0 -1px 0 0 value(D60);
+}
+
+.table th.thSkinNeutral:first-child {
+  box-shadow: inset 1px 1px 0 0 value(D60), inset 0 -1px 0 0 value(D60);
+}
+
+.table th.thSkinNeutral:last-child {
+  box-shadow: inset -1px 1px 0 0 value(D60), inset 0 -1px 0 0 value(D60);
+}
+
+.table th .thContainer {
+  display: flex;
+  align-items: center;
+}
+
+.table th .thContainer.alignStart {
+  justify-content: flex-start;
+}
+
+.table th .thContainer.alignCenter {
+  justify-content: center;
+}
+
+.table th .thContainer.alignEnd {
+  justify-content: flex-end;
+}
+
+.table th .thContainer .infoTooltipWrapper {
+  margin-left: 6px;
+}
+
+.table td.largeVerticalPadding {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.table td.mediumVerticalPadding {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.table td.newSmallVerticalPadding {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.table td.smallVerticalPadding, .table td.tinyVerticalPadding {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.table td.alignStart {
+  text-align: left;
+  text-align: start;
+}
+
+.table td.alignCenter {
+  text-align: center;
+}
+
+.table td.alignEnd {
+  text-align: right;
+  text-align: end;
+}
+
+.table td.sticky {
+  background-color: value(D80);
+}
+
+.table.showLastRowDivider td {
+  box-shadow: inset 0 -1px 0 0 value(D60);
+}
+
+.table:not(.showLastRowDivider) tr:not(:last-child) td {
+  box-shadow: inset 0 -1px 0 0 value(D60);
+}
+
+.table:not(.showLastRowDivider) tr:nth-last-child(2) td.hasRowDetails {
+  box-shadow: none;
+}
+
+.table.showLastRowDivider tr:nth-last-child(2) td.hasRowDetails {
+  box-shadow: inset 0 -1px 0 0 value(D60);
+}
+
+.table td.details {
+  padding: 0;
+  height: 0;
+  box-shadow: none;
+}
+
+.table td.active {
+  padding: 0;
+  height: auto;
+  box-shadow: inset 0 -1px 0 0 value(D70);
+}
+
+.table td.important {
+  -st-mixin: text-medium-thin;
+  color: value(D10);
+}
+
+.clickableDataRow {
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: value(B60);
+}
+
+.highlight td {
+  -st-mixin: text-small-bold;
+  color: value(D10);
+}
+
+.highlight td.sticky {
+  background-color: value(B60);
+}
+
+.selected td:first-child:not(.sticky) {
+  position: relative;
+}
+
+.selected td:first-child::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background-color: value(B10);
+}
+
+.sortArrow {
+  font-size: 9px;
+  margin-left: 6px;
+  color: value(B10);
+  display: flex;
+  align-items: center;
+}
+
+.row-details:not(:last-child) {
+  box-shadow: inset 0 -1px 0 0 value(D70);
+}
+
+.animatedDataRow {
+  cursor: pointer;
+}
+
+.animatedDataRow td {
+  box-shadow: none;
+}
+
+.animatedDataRow:nth-last-child(2) td {
+  box-shadow: inset 0 1px 0 0 value(D70);
+}
+
+.tableHeaderScrollContent {
+  overflow-x: hidden;
+}
+
+.tableBodyScrollContent {
+  overflow-x: auto;
+}
+
+.scrollWrapper {
+  position: relative;
+}
+
+.scrollWrapper::before, .scrollWrapper::after, .scrollWrapper .lastSticky::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms linear;
+}
+
+.scrollWrapper.leftShadowVisible:not(.withStickyColumns)::before, .scrollWrapper.leftShadowVisible .lastSticky::after {
+  background-image: linear-gradient(to right, value(D10-10), transparent);
+  left: 0;
+  opacity: 1;
+}
+
+.scrollWrapper.leftShadowVisible .lastSticky::after {
+  left: auto;
+  right: -24px;
+}
+
+.scrollWrapper.rightShadowVisible::after {
+  background-image: linear-gradient(to left, value(D10-10), transparent);
+  right: 0;
+  opacity: 1;
+}
+
+/* sticky action cell */
+.stickyActionCell {
+  position: sticky;
+  right: 0;
+}
+
+.stickyActionCell [data-hook="table-action-cell-placeholder"] {
+  display: none;
+}
+
+.stickyActionCell [data-hook="table-action-cell-popover-menu"] {
+  visibility: hidden;
+}
+
+.table tr:hover .stickyActionCell {
+  background-color: value(D80);
+}
+
+.table tr:hover.clickableDataRow td {
+  cursor: pointer;
+  background-color: value(B50);
+}
+
+.table tr:hover .stickyActionCell [data-hook="table-action-cell-popover-menu"] {
+  visibility: visible;
+}
+
+.table tr:hover.highlight .stickyActionCell {
+  background-color: value(B60);
+}
+
+.table tr td.rowDetailsExtended {
+  box-shadow: none !important;
+}

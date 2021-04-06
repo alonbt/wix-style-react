@@ -1,0 +1,10 @@
+:import {
+    -st-from: "../ShareButton.st.css";
+    -st-default: ShareButton;
+}
+
+.root {
+    -st-mixin: ShareButton(
+        IconColor blue;
+    );
+}

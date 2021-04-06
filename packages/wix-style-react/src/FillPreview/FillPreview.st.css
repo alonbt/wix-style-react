@@ -1,0 +1,53 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/components/button-next/button-next.st.css";
+  -st-default: ButtonNext;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B00, B00-24, B00-42, B30, B40, B10, F00, D80, D10;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/mixins/calc_rgba.js";
+  -st-default: calc_rgba;
+}
+
+.root {
+  -st-states: selected;
+  display: flex;
+  min-width: 24px;
+  min-height: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.root:selected .button {
+  box-shadow: 0 0 0 2px hsl(0, 0%, 100%), 0 0 0 3px value(B10);
+}
+
+.button {
+  -st-extends: ButtonNext;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid value(B00-24);
+
+  /* Disable native focus */
+  outline: none;
+}
+
+.button:disabled {
+  background-color: calc_rgba(value(D10),0.1);
+  border: none;
+}
+
+.button:not(:disabled):focus-visible  {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+

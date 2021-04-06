@@ -1,0 +1,149 @@
+
+:import {
+    -st-from: '../Foundation/stylable/colors.st.css';
+    -st-named: D80, THEME-COLOR-30, THEME-COLOR-10, F00, THEME-COLOR-50, R10, D40, R30, D10-30, D60, D70
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-small-normal, text-small-thin, text-medium-normal, text-medium-thin;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/default-scroll-bar.st.css';
+  -st-named: defaultScrollBar;
+}
+.root {
+  -st-states: isMadefor, disabled, readOnly, status(enum(error, warning)), size(enum(small, medium, large)), singleLine;
+  --rows: 1;
+  --rowHeight: 24px;
+  --contentHeight: 7px;
+  position: relative;
+  text-align: left;
+  background-color: value(D80);
+  border-radius: 6px;
+  width: 100%;
+}
+.root:size(small) {
+  --rowHeight: 21px;
+  --contentHeight: 9px;
+}
+.root:size(medium) {
+  --rowHeight: 29px;
+}
+.root:size(large) {
+  --rowHeight: 35px;
+}
+.root :global(.public-DraftEditorPlaceholder-root) {
+  -st-mixin: text-medium-normal;
+  color: value(D40);
+  margin: 2px 0;
+  position: absolute;
+  pointer-events: none;
+  top: 4px;
+  left: 13px;
+}
+
+.root:isMadefor :global(.public-DraftEditorPlaceholder-root) {
+  -st-mixin: text-medium-thin;
+}
+
+.root:size(small) :global(.public-DraftEditorPlaceholder-root) {
+  -st-mixin: text-small-normal;
+}
+.root:size(small):isMadefor :global(.public-DraftEditorPlaceholder-root) {
+  -st-mixin: text-small-thin;
+}
+
+.root :global(.public-DraftEditor-content) {
+  -st-mixin: defaultScrollBar; /* TODO: hide will not hovering  */
+  background-color: value(D80);
+  height: calc(var(--rows) * var(--rowHeight) + var(--contentHeight));
+  padding: 2px 12px;
+  border: 1px solid value(THEME-COLOR-30);
+  border-radius: 6px;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.root :global(.public-DraftEditor-content):hover {
+  background-color: value(THEME-COLOR-50);
+  cursor: pointer;
+}
+.root :global(.public-DraftEditor-content):focus {
+  background-color: value(D80);
+  cursor: text;
+  border-color: value(THEME-COLOR-10);
+  box-shadow: 0 0 0 3px value(F00);
+}
+.root:disabled :global(.public-DraftEditorPlaceholder-root) {
+  color: value(D10-30);
+}
+.root:disabled :global(.public-DraftEditor-content) {
+    color: value(D10-30);
+    border-color: value(D60);
+}
+.root:disabled :global(.public-DraftEditor-content):hover {
+  background-color: value(D80);
+  cursor: default;
+}
+.root:readOnly:not(:disabled) :global(.public-DraftEditor-content) {
+  background-color: value(D70);
+  border-color: value(D60);
+}
+.root:hover:readOnly:not(:disabled) :global(.public-DraftEditor-content):not(:focus) {
+  background-color: value(THEME-COLOR-50);
+  border-color: value(THEME-COLOR-30);
+}
+.root .tagWrapper {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.root .textWrapper {
+  -st-mixin: text-medium-normal;
+  display: inline;
+}
+
+.root:isMadefor .textWrapper {
+  -st-mixin: text-medium-thin;
+}
+
+.root:size(small) .textWrapper {
+  -st-mixin: text-small-normal;
+}
+
+.root:size(small):isMadefor .textWrapper{
+  -st-mixin: text-small-thin;
+}
+
+.root :global(.public-DraftStyleDefault-block) {
+  line-height: var(--rowHeight);
+}
+
+.root:status(error) :global(.public-DraftEditor-content) {
+    border-color: value(R10);
+}
+.root:status(error) :global(.public-DraftEditor-content):focus {
+    border-color: value(R10);
+    box-shadow: 0 0 0 3px value(R30);
+}
+
+.root .indicatorWrapper {
+  position: absolute;
+  top: 9px;
+  right: 12px;
+}
+
+.root:size(small) .indicatorWrapper {
+  top: 6px;
+}
+
+
+.root:singleLine :global(.public-DraftEditor-content) {
+  overflow-x: auto;
+  white-space: pre !important;
+  -ms-overflow-style: none;
+}
+.root:singleLine :global(.public-DraftEditor-content)::-webkit-scrollbar {
+   display: none;
+ }

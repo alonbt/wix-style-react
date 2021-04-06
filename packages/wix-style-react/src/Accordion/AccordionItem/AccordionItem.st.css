@@ -1,0 +1,102 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: B60, B10, D10, D60, D80;
+}
+
+:import {
+  -st-from: "../../Foundation/stylable/shadows.st.css";
+  -st-named: shadow30InnerTop, shadow30InnerBottom;
+}
+
+.root {
+  -st-states: hover, disabled, open, hideShadow, last, reducedSpacingAndImprovedLayout,
+    skin(enum(standard, light)), size(enum(small, large));
+  overflow: hidden;
+}
+
+.header {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  transition: background-color .3s;
+  outline: none;
+}
+
+.root:size(small) .header {
+  height: 48px;
+}
+
+.root:size(large) .header {
+  height: 72px;
+}
+
+.root:not(:disabled):hover .header {
+  background-color: value(B60);
+  cursor: pointer;
+}
+
+.root:disabled .header .arrow {
+  color: value(D10);
+}
+
+.icon {
+  margin-right: 12px;
+  height: 24px;
+}
+
+.title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.children {
+  padding: 24px 30px 30px;
+  background-color: value(B60);
+}
+
+.root:reducedSpacingAndImprovedLayout .children {
+  padding: 18px 24px;
+}
+
+.root:open .children {
+  box-shadow: value(shadow30InnerTop), value(shadow30InnerBottom);
+}
+
+.root:last .children {
+  box-shadow: value(shadow30InnerTop);
+}
+
+.root:open:hideShadow .children {
+  box-shadow: none;
+}
+
+.root:open:skin(light):hideShadow .children {
+  background-color: initial;
+}
+
+.root:skin(standard) .children{
+  background-color: value(B60);
+}
+
+.root:skin(light) .children{
+  background-color: value(D80);
+}
+
+.root:skin(light):hideShadow .children{
+  padding-top: 0;
+}
+
+.root:open:skin(light):hideShadow .header:hover {
+  background-color: value(D80);
+}
+
+.toggleButton {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.arrow {
+  color: value(B10);
+}

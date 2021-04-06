@@ -1,0 +1,47 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: F00,B00, THEME-COLOR-10, D10, D50, D80;
+}
+
+:vars {
+  rootSize: 12px;
+  railHeight: 3px;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: disabled, hovered;
+  margin: auto;
+  width: value(rootSize);
+  height:  value(rootSize);
+  border-radius: 50%;
+  background-color: value(THEME-COLOR-10);
+}
+
+.root:disabled {
+  background-color: value(D50);
+  cursor: default;
+}
+
+.root:not(:disabled):hovered {
+  transform: scale(1.5);
+}
+
+.root:not(:disabled):not(:active):not(:hovered):focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+  z-index: 2;
+}
+
+.root:not(:disabled):focus {
+  box-shadow: 0 0 0 3px transparent;
+  /* rc-slider focus overwrite */
+  border: 0 solid transparent;
+  z-index: 2;
+  /* removing native browser focus */
+  outline: none;
+}

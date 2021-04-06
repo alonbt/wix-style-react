@@ -1,0 +1,21 @@
+:import {
+  -st-from: '../../../../Heading/Heading.st.css';
+  -st-default: Heading;
+}
+
+:import {
+  -st-from: '../../../../Foundation/stylable/typography.st.css';
+  -st-named: family-mixin, bold, helveticanueu65
+}
+
+.root {
+  -st-extends: Heading;
+  -st-states: custom;
+}
+
+.root:custom {
+  -st-mixin: family-mixin(family value(helveticanueu65)), bold;
+  font-size: 24px;
+  line-height: 32px;
+}
+

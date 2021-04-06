@@ -1,0 +1,12 @@
+:import {
+    -st-from: "../CounterBadge.st.css";
+    -st-default: TPACounterBadge;
+    -st-named: overrideStyleParams;
+}
+
+.root {
+    -st-mixin: overrideStyleParams(
+            CounterBadgeBgColor '"color(--counterBadgeBgColor)"',
+            CounterBadgeTextColor '"color(--counterBadgeTextColor)"',
+    );
+}

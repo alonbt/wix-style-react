@@ -1,0 +1,52 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: D60, B50, D80;
+}
+:import {
+  -st-from: "../TableActionCell.st.css";
+  -st-default: TableActionCell;
+  -st-named: onHover, notOnHover;
+}
+
+.root {}
+
+.example {
+  background-color: value(D60);
+  margin: 50px;
+  padding: 20px;
+  min-width: 874px;
+  max-width: 1234px;
+}
+
+.exampleRow {
+  display: block;
+  padding: 16px;
+  background-color: value(D80);
+}
+
+.exampleRow:hover {
+  background-color: value(B50);
+}
+
+/* `onHover` HoverSlot */
+.exampleRow TableActionCell::hoverSlot.onHover {
+  visibility: hidden;
+}
+
+.exampleRow:hover TableActionCell::hoverSlot.onHover {
+  visibility: visible;
+}
+
+/* `notOnHover` HoverSlot */
+.exampleRow TableActionCell::hoverSlot.notOnHover {
+  visibility: visible;
+}
+
+.exampleRow:hover TableActionCell::hoverSlot.notOnHover {
+  visibility: hidden;
+}
+
+/* Placeholder icon */
+.exampleRow:hover TableActionCell::placeholderIcon {
+  display: none;
+}

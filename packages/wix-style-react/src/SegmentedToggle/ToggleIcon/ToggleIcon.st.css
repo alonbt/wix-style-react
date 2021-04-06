@@ -1,0 +1,96 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: F00, D80, D10, D10-30,  THEME-COLOR-10,  THEME-COLOR-50;
+}
+
+:import {
+  -st-from: "../../Tooltip/Tooltip.st.css";
+  -st-default: Tooltip;
+}
+
+.tooltip {
+  -st-extends: Tooltip;
+  flex-grow: 1;
+}
+
+.tooltip::popoverElement {
+  flex-grow: 1;
+}
+.button {
+  -st-extends: Focusable;
+  -st-states: selected;
+  /* Positioning */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+
+  /* Sizing */
+  flex-grow: 1;
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  /* Styling */
+  color: value(D10);
+  cursor: pointer;
+
+  /* Border & Spacing */
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 1px transparent;
+  padding: 0 6px;
+  border-radius: 6px;
+  margin: 0;
+
+  /* Disable native focus */
+  outline: none;
+}
+
+.button:not(:disabled):hover {
+  background-color: value(THEME-COLOR-50);
+}
+
+.button:not(:disabled):focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.button:disabled {
+  color: value(D10-30);
+  cursor: not-allowed;
+}
+/* Selected styles */
+
+.button:selected:not(:disabled) {
+  border: 1px solid value(THEME-COLOR-10);
+  box-shadow: 0 0 0 1px value(THEME-COLOR-10);
+}
+
+.button:selected:not(:disabled):focus-visible{
+  border: 1px solid value(THEME-COLOR-10);
+  box-shadow: 0 0 0 1px value(THEME-COLOR-10) , 0 0 0 4px value(F00);
+}
+
+.button:selected:disabled {
+  border: 1px solid value(D10-30);
+  box-shadow: 0 0 0 1px value(D10-30);
+  cursor: not-allowed;
+}
+
+.button:selected:not(:hover){
+  background-color: value(D80);
+}
+
+/* Additional styles */
+
+.textWrapper {
+  padding: 12px 24px;
+  text-align: center;
+  color: value(D80);
+}

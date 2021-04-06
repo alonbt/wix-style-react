@@ -1,0 +1,56 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D10, F00, B40, B00-48, B30, B10, B00, D10-10, D10-30;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: fill;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  padding: 0;
+  border-radius: 4px;
+
+  background-color: value(B40);
+
+  outline:none;
+}
+
+.root:fill {
+  border: solid 1px value(B00-48);
+}
+
+.root:hover, .root:active {
+  background-color: value(B30);
+}
+
+.root:disabled {
+  background-color: value(D10-10);
+}
+
+.root:disabled > svg {
+  color: value(D10-30);
+}
+
+.root:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.root > svg {
+  color: value(B10);
+}
+
+.proportion {
+  min-width: 24px;
+}

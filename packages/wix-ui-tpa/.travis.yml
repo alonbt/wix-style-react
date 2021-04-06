@@ -1,0 +1,23 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - 8.9.1
+
+before_install:
+ - export CHROME_BIN=/usr/bin/google-chrome
+ - export DISPLAY=:99.0
+ - sh -e /etc/init.d/xvfb start
+ - sudo apt-get update
+ - sudo apt-get install -y libappindicator1 fonts-liberation
+ - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ - sudo dpkg -i google-chrome*.deb
+ 
+script:
+ - npm run build && npm run test
+ - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then npx surge-github-autorelease -r $TRAVIS_REPO_SLUG -s $STORYBOOK_DIST -b $TRAVIS_BUILD_DIR -p $TRAVIS_PULL_REQUEST -t $GITHUB_API_TOKEN ; fi'
+
+notifications:
+  email:
+    recipients:
+      - fed-infra@wix.com

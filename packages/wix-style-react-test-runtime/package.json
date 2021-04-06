@@ -1,0 +1,42 @@
+{
+  "name": "wix-style-react-test-runtime",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "Artem Yavorsky",
+    "email": "artemy@wix.com"
+  },
+  "scripts": {
+    "pretest": "NODE_ENV=production yoshi build",
+    "test": "NODE_ENV=production yoshi test --jest && npm run test:testkit-types",
+    "test:testkit-types": "tsc -p tsconfig.declarations.json",
+    "storybook:named-imports": "npm run transpile --prefix ../wix-style-react && ../wix-style-react/node_modules/.bin/start-storybook -c ./.storybook -p 6009"
+  },
+  "yoshi": {
+    "entry": {
+      "es": "./es",
+      "es-named": "./es-named",
+      "cjs": "./cjs",
+      "puppeteer-testkit": "./puppeteer-testkit"
+    },
+    "externals": {
+      "react": "React",
+      "react-dom": "ReactDOM"
+    }
+  },
+  "jest": {
+    "preset": "jest-yoshi-preset"
+  },
+  "babel": {
+    "presets": [
+      "yoshi"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "yoshi"
+  },
+  "devDependencies": {
+    "wix-style-react": "^9.56.0"
+  }
+}

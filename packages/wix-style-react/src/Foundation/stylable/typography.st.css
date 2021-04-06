@@ -1,0 +1,158 @@
+@st-global-custom-property --wsr-font-family, --wsr-font-weight-regular, --wsr-font-weight-medium, --wsr-font-weight-bold;
+
+:vars {
+  /* Fonts */
+  fontsfallback: '"Helvetica Neue", "Helvetica", "Arial", "メイリオ", "meiryo", "ヒラギノ角ゴ pro w3", "hiragino kaku gothic pro", "sans-serif"';
+  helveticanueu45: 'HelveticaNeueW01-45Ligh, HelveticaNeueW02-45Ligh, HelveticaNeueW10-45Ligh';
+  helveticanueu55: 'HelveticaNeueW01-55Roma, HelveticaNeueW02-55Roma, HelveticaNeueW10-55Roma';
+  helveticanueu65: 'HelveticaNeueW01-65Medi, HelveticaNeueW02-65Medi, HelveticaNeueW10-65Medi';
+  helveticanueu75: 'HelveticaNeueW01-75Bold, HelveticaNeueW02-75Bold, HelveticaNeueW10-75Bold';
+
+  /* Initial Values */
+  family: value(helveticanueu55);
+  fontSize: 16px;
+  lineHeight: 24px;
+  weight: var(--wsr-font-weight-medium, 400);
+}
+
+/* Family mixin */
+.family-mixin {
+  font-family: value(family), value(fontsfallback); /* IE11 */
+  font-family: var(--wsr-font-family, value(family)), value(fontsfallback);
+}
+
+/* Weight mixin */
+.weight-mixin {
+  font-weight: 400; /* IE11 */
+  font-weight: value(weight);
+}
+
+/* Size mixin */
+.size-mixin {
+  font-size: value(fontSize);
+  line-height: value(lineHeight);
+}
+
+/* Sizes */
+.tiny {
+  -st-mixin: size-mixin(fontSize 12px, lineHeight 15px );
+}
+
+.small {
+  -st-mixin: size-mixin(fontSize 14px, lineHeight 18px );
+}
+
+.medium {
+  -st-mixin: size-mixin(fontSize 16px, lineHeight 24px );
+}
+
+/* Weights */
+.thin {
+  -st-mixin: weight-mixin(weight var(--wsr-font-weight-regular, 400));
+}
+
+.normal {
+  -st-mixin: weight-mixin(weight var(--wsr-font-weight-medium, 400));
+}
+
+.bold {
+  -st-mixin: weight-mixin(weight var(--wsr-font-weight-bold, 400));
+}
+
+/* Typography API */
+.text-tiny-thin {
+  -st-mixin: tiny, thin, family-mixin(family value(helveticanueu55));
+}
+
+.text-tiny-normal {
+  -st-mixin: tiny, normal, family-mixin(family value(helveticanueu65));
+}
+
+.text-tiny-bold {
+  -st-mixin: tiny, bold, family-mixin(family value(helveticanueu75));
+}
+
+.text-small-thin {
+  -st-mixin: small, thin, family-mixin(family value(helveticanueu45));
+}
+
+.text-small-normal {
+  -st-mixin: small, normal, family-mixin(family value(helveticanueu55));
+}
+
+.text-small-bold {
+  -st-mixin: small, bold, family-mixin(family value(helveticanueu65));
+}
+
+.text-medium-thin {
+  -st-mixin: medium, thin, family-mixin(family value(helveticanueu45));
+}
+
+.text-medium-normal {
+  -st-mixin: medium, normal, family-mixin(family value(helveticanueu55));
+}
+
+.text-medium-bold {
+  -st-mixin: medium, bold, family-mixin(family value(helveticanueu65));
+}
+
+/* Heading */
+.heading-h1 {
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+    weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+    size-mixin(fontSize 36px, lineHeight 48px);
+}
+
+.heading-h2 {
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+    weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+    size-mixin(fontSize 28px, lineHeight 36px);
+}
+
+.heading-h3 {
+  -st-mixin: family-mixin(family value(helveticanueu55)),
+    weight-mixin(weight var(--wsr-font-weight-medium, 400)),
+    size-mixin(fontSize 20px, lineHeight 24px);
+}
+
+.heading-h4 {
+  -st-mixin: family-mixin(family value(helveticanueu55)),
+    weight-mixin(weight var(--wsr-font-weight-medium, 400)),
+    size-mixin(fontSize 18px, lineHeight 24px);
+}
+
+.heading-h5 {
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+    weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+    size-mixin(fontSize 12px, lineHeight 24px);
+}
+
+.heading-h6 {
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+    weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+    size-mixin(fontSize 10px, lineHeight 18px);
+}
+
+/* Heading Spacing Toggle */
+.heading-h1-spacing {
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+  weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+  size-mixin(fontSize 32px, lineHeight 42px);
+}
+
+.heading-h2-spacing {
+  -st-mixin: family-mixin(family value(helveticanueu65)),
+  weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+  size-mixin(fontSize 24px, lineHeight 30px);
+}
+
+.heading-h3-spacing {
+  -st-mixin: family-mixin(family value(helveticanueu55)),
+  weight-mixin(weight var(--wsr-font-weight-bold, 400)),
+  size-mixin(fontSize 20px, lineHeight 24px);
+}
+
+/* Caption */
+.caption-1 {
+  -st-mixin: bold, family-mixin(family value(helveticanueu65)), size-mixin(fontSize 10px, lineHeight 12px);
+}

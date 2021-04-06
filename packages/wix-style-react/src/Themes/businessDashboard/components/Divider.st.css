@@ -1,0 +1,17 @@
+:import {
+  -st-from: "../../../Divider/Divider.st.css";
+  -st-default: Divider;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D50;
+}
+
+.root {
+  -st-extends: Divider;
+}
+
+.root:skin(dark) {
+  background-color: value(D50);
+}

@@ -1,0 +1,182 @@
+:import {
+  -st-from: 'wix-ui-core/dist/src/components/button-next/button-next.st.css';
+  -st-default: ButtonNext;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, D80, THEME-COLOR-20, THEME-COLOR-40, THEME-COLOR-50, D80, D10, D20, B30, F00, D10-20, D20-48, D20-54, D20-60, D80-70, D10-30;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/shadows.st.css";
+  -st-named: s5, s6, s7;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-9, speed-fast-1;
+}
+
+.root {
+  -st-extends:ButtonNext;
+  -st-states: skin(string), size(string);
+  width: 18px;
+  height: 18px;
+  border-radius: 18px;
+  padding: 0;
+
+  box-sizing: border-box;
+  text-align: center;
+
+  border: none;
+  outline: none;
+
+  transition-duration: value(speed-fast-1);
+  transition-timing-function: value(ease-9);
+  transition-property: background-color, color, border-color;
+
+  border-color: transparent;
+  background-color: transparent;
+
+  color: value(THEME-COLOR-10);
+}
+
+.root:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.root:hover{
+  color: value(THEME-COLOR-20);
+}
+
+.root:active {
+  color: value(THEME-COLOR-10);
+}
+
+.root:disabled {
+  color: value(D10-30);
+}
+
+.root::content {
+  line-height: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Skin: standardFilled */
+
+.root:skin(standardFilled) {
+  background-color: value(THEME-COLOR-50);
+  color: value(THEME-COLOR-10);
+}
+
+.root:skin(standardFilled):hover {
+  background-color: value(THEME-COLOR-40);
+  color: value(THEME-COLOR-10);
+}
+
+.root:skin(standardFilled):active {
+  background-color: value(B30);
+  color: value(THEME-COLOR-10);
+}
+
+.root:skin(standardFilled):disabled {
+  color: value(D80);
+  background-color: value(D10-30);
+}
+
+/* Skin: light */
+
+.root:skin(light) {
+  color: value(D80);
+}
+
+.root:skin(light):hover {
+  color: value(THEME-COLOR-50);
+}
+
+.root:skin(light):active {
+  color: value(THEME-COLOR-40);
+}
+
+.root:skin(light):disabled {
+  color: value(D80-70);
+}
+
+/* Skin: dark */
+
+.root:skin(dark) {
+  color: value(D10);
+}
+
+.root:skin(dark):hover {
+  color: value(D20);
+}
+
+.root:skin(dark):active {
+  color: value(D10);
+}
+
+.root:skin(dark):disabled {
+  color: value(D10-30);
+}
+
+/* Skin: lightFilled */
+
+.root:skin(lightFilled) {
+  background-color: value(s5);
+  color: value(D80);
+}
+
+.root:skin(lightFilled):hover {
+  background-color: value(s6);
+  color: value(D80);
+}
+
+.root:skin(lightFilled):active {
+  background-color: value(s7);
+  color: value(D80);
+}
+
+.root:skin(lightFilled):disabled {
+  color: value(D80);
+  background-color: value(D10-30);
+}
+
+/* Skin: transparent */
+
+.root:skin(transparent) {
+  background-color: value(D20-48);
+  color: value(D80);
+}
+
+.root:skin(transparent):hover {
+  background-color: value(D20-54);
+  color: value(D80);
+}
+
+.root:skin(transparent):active {
+  background-color: value(D20-60);
+  color: value(D80);
+}
+
+.root:skin(transparent):disabled {
+  background-color: value(D10-20);
+  color: value(D80-70);
+}
+
+/* Size */
+
+.root:size(medium) {
+  width: 24px;
+  height: 24px;
+}
+
+.root:size(large) {
+  width: 30px;
+  height: 30px;
+}

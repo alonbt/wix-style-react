@@ -1,0 +1,23 @@
+:import {
+    -st-from: "../Card.st.css";
+    -st-default: Card;
+}
+
+.root {
+
+}
+
+.stacked {
+    max-width: 50%;
+}
+
+.override {
+    -st-mixin: Card(
+        MainCardColor cornflowerblue,
+        MainBorderWidth 5,
+        MainBorderColor crimson,
+        MainInfoColor rgba(255, 215, 0, 0.5),
+        MainMediaColor rgba(250, 128, 114, 0.5),
+        StackedInfoSidePadding 10px,
+    );
+}

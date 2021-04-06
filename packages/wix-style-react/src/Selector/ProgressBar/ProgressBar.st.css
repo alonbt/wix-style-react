@@ -1,0 +1,28 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, THEME-COLOR-40;
+}
+
+.root {
+  align-items: center;
+  display: flex;
+}
+
+.bar {
+  align-items: center;
+  background: white;
+  display: flex;
+  height: 2px;
+  margin-inline-start: 6px;
+  width: 108px;
+}
+
+.value {
+  background: value(THEME-COLOR-10);
+  height: 100%;
+}
+
+.leftover {
+  background: value(THEME-COLOR-40);
+  height: 100%;
+}

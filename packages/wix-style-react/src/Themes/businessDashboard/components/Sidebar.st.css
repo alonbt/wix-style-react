@@ -1,0 +1,34 @@
+:import {
+  -st-from: "../../../Sidebar/Sidebar.st.css";
+  -st-default: Sidebar;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/mixins/calc_rgba";
+  -st-default: calc_rgba;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: sidebarBackgroundColor, darkScrollbarThumbColor, darkScrollbarThumbHoverColor;
+}
+
+.root {
+  -st-extends: Sidebar;
+}
+
+.root:skin(dark) {
+  background-color: value(sidebarBackgroundColor);
+}
+
+.root::gradient:skin(dark) {
+  background-image: linear-gradient(to bottom, calc_rgba(value(sidebarBackgroundColor), 0), value(sidebarBackgroundColor));
+}
+
+.root::slider:skin(dark)::-webkit-scrollbar-thumb {
+  background-color: value(darkScrollbarThumbColor);
+}
+
+.root::slider:skin(dark)::-webkit-scrollbar-thumb:hover {
+  background: value(darkScrollbarThumbHoverColor);
+}

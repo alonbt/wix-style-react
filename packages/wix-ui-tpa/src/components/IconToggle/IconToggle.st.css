@@ -1,0 +1,122 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, fallback, font;
+}
+
+:vars {
+    /*Defaults*/
+    DefaultColor: color-5;
+    DisabledColor: color-3;
+    DefaultFont: "{theme: 'Body-M', size: '12px', lineHeight: '16px'}";
+}
+
+/*Overrides*/
+:vars {
+    /*
+        The color of the icon
+        @default color-5
+     */
+    IconColor: --overridable;
+    /*
+        The color of the label
+        @default color-5
+     */
+    LabelColor: --overridable;
+    /*
+        The color of the label
+        @default "{theme: 'Body-M', size: '12px', lineHeight: '16px'}"
+     */
+    LabelFont: --overridable;
+}
+
+.root {
+    -st-states: checked, disabled, labelPlacement( enum(start, end) ), animation;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.root:labelPlacement(start) .content {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.root:labelPlacement(end) .content {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.spacer {
+    width: 6px;
+}
+
+.root:hover .icon {
+    opacity: 0.6;
+    transition: opacity 0.2s cubic-bezier(.39,.11,.37,.99);
+}
+
+.root:hover .label {
+    opacity: 0.6;
+    transition: opacity 0.2s cubic-bezier(.39,.11,.37,.99);
+}
+
+.root:disabled:hover .icon {
+    opacity: 1;
+}
+
+.root:disabled:hover .label {
+    opacity: 1;
+}
+
+.icon svg {
+    display: block;
+}
+
+.icon path {
+    stroke: color(fallback(value(IconColor), value(DefaultColor)));
+}
+
+.root:checked .icon path {
+    fill: color(fallback(value(IconColor), value(DefaultColor)));
+}
+
+.root:disabled .icon path {
+    fill: color(value(DisabledColor));
+    stroke: color(value(DisabledColor));
+}
+
+.label {
+    color: color(fallback(value(LabelColor), value(DefaultColor)));
+    font: fallback(font(value(LabelFont)), font(value(DefaultFont)));
+    font-size: 12px;
+}
+
+.root:disabled .label {
+    color: color(value(DisabledColor));
+}
+
+@keyframes pop-in {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.03);
+        opacity: 0.32;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.root:animation:checked .icon {
+   animation: pop-in 0.2s ease 0s 1 normal;
+   animation-fill-mode: forwards;
+}

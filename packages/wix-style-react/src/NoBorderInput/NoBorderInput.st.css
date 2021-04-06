@@ -1,0 +1,194 @@
+:import {
+  -st-from: '../Input/Input.mixins.js';
+  -st-named: boxSizingMixin, placeholderMixin, borderRadiusMixin;
+}
+
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-tiny-normal, text-tiny-thin, text-small-normal, text-small-thin, text-medium-normal, text-medium-thin;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B10, D55, D60, R10, Y10;
+}
+
+.root {
+  -st-states: size(enum(small, medium, large)),
+              focus, hasValue, noLabel, disabled, isMadefor,
+              status(enum(error, warning));
+  -st-mixin: boxSizingMixin('border-box');
+  position: relative;
+  align-items: center;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
+}
+
+.root input {
+  -st-mixin: placeholderMixin(value(D55));
+  opacity: 0;
+}
+
+.label {
+  -st-extends: Text;
+  transition: all .2s value(ease-8);
+  position: absolute;
+  top: 6px;
+  padding: 0;
+}
+
+.label + div {
+  height: 100%;
+}
+
+.root div,
+.root input,
+.label + div {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Status indicator */
+.root input + div > div {
+  margin: auto;
+}
+
+/* Bottom Border */
+.border {
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  right: -1px;
+  height: 1px;
+  background: transparent;
+  transition: 0.3s ease all;
+}
+
+.border::before,
+.border::after {
+  content: '';
+  height: 1px;
+  width: 0;
+  bottom: 0;
+  position: absolute;
+  background: transparent;
+  transition: 0.3s all;
+}
+
+.root:not(:disabled):not(:status(error)):not(:status(warning)):hover .border {
+  transition: 0.3s ease all;
+  background: value(D60);
+}
+
+.statusMessage {
+  position: absolute;
+  top: 100%;
+}
+
+/* Size*/
+.root:size(small) {
+  height: 30px;
+}
+.root:size(small) .statusMessage {
+  margin-top: 8px;
+}
+
+.root:size(medium) {
+  height: 36px;
+}
+.root:size(medium) .statusMessage {
+  margin-top: 4px;
+}
+
+.root:size(large) {
+  height: 42px;
+}
+.root:size(large) .statusMessage {
+  margin-top: 2px;
+}
+
+/* Input - TODO - fix after Stylable migration */
+.root:size(small) input + div {
+  height: 28px;
+}
+
+.root:size(medium) input + div {
+  height: 34px;
+}
+
+.root:size(large) input + div {
+  height: 40px;
+}
+
+.root:size(small) input {
+  -st-mixin: text-small-normal;
+}
+
+.root:size(small):isMadefor input {
+  -st-mixin: text-small-thin;
+}
+
+.root:size(medium) input,
+.root:size(large) input {
+  -st-mixin: text-medium-normal;
+}
+
+.root:size(medium):isMadefor input,
+.root:size(large):isMadefor input {
+  -st-mixin: text-medium-thin;
+}
+
+
+/* Focus */
+.root:focus input,
+.root:hasValue input,
+.root:noLabel input {
+  border-bottom: 0;
+  transition: opacity .3s value(ease-8);
+  opacity: 1;
+}
+
+.root:focus .label,
+.root:hasValue .label,
+.root:noLabel .label {
+  -st-mixin: text-tiny-normal;
+  top: -12px;
+}
+
+.root:focus:isMadefor .label,
+.root:hasValue:isMadefor .label,
+.root:noLabel:isMadefor .label {
+  -st-mixin: text-tiny-thin;
+}
+
+.root:focus .border::before,
+.root:focus .border::after {
+  width:100%;
+  background: value(B10);
+}
+
+/* Status */
+.root:status(error) .border,
+.root:focus:status(error) .border::before,
+.root:focus:status(error) .border::after {
+  background: value(R10);
+}
+
+.root:status(warning) .border,
+.root:focus:status(warning) .border::before,
+.root:focus:status(warning) .border::after {
+  background: value(Y10);
+}
+
+/* Disabled */
+.root:disabled .label:skin(disabled) {
+  color: value(D55);
+}

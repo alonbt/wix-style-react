@@ -1,0 +1,76 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, fallback, font;
+}
+
+/*Defaults*/
+:vars {
+    DefaultTextColor: color-5;
+    DefaultSecondaryTextColor: color-4;
+    SmallTitleFont: "{theme: 'Page-title', size: '24px', lineHeight: '1.33em'}";
+    RunningTextFont: "{theme: 'Body-M', size: '16px', lineHeight: '1.5em'}";
+    ListTextFont: "{theme: 'Body-M', size: '16px', lineHeight: '2em'}";
+    LargeTitleFont: "{theme: 'Heading-M', size: '32px', lineHeight: '1.25em'}";
+    MobileSmallTitleFont: "{theme: 'Page-title', size: '20px', lineHeight: '1.4em'}";
+    MobileRunningTextFont: "{theme: 'Body-M', size: '14px', lineHeight: '1.42em'}";
+    MobileListTextFont: "{theme: 'Body-M', size: '14px', lineHeight: '1.72em'}";
+    MobileLargeTitleFont: "{theme: 'Heading-M', size: '24px', lineHeight: '1.33em'}";
+}
+
+/*Overrides*/
+:vars {
+    /*
+        The color of the text instead of the default color set by priority
+        @default for primary priority: color-5, for secondary priority: color-4
+    */
+    MainTextColor: --overridable;
+    /*
+        The font of the text instead of the default font set by typography
+        @default Depends on the typography prop
+    */
+    MainTextFont: --overridable;
+}
+
+.root {
+    -st-states: typography(enum(smallTitle, runningText, listText, largeTitle)), priority(enum(primary, secondary)), mobile;
+}
+
+.root:priority(primary){
+    color: color(fallback(value(MainTextColor), value(DefaultTextColor)));
+}
+
+.root:priority(secondary){
+    color: color(fallback(value(MainTextColor), value(DefaultSecondaryTextColor)));
+}
+
+.root:typography(smallTitle) {
+    font: fallback(font(value(MainTextFont)), font(value(SmallTitleFont)));
+}
+
+.root:typography(runningText) {
+    font: fallback(font(value(MainTextFont)), font(value(RunningTextFont)));
+}
+
+.root:typography(listText) {
+    font: fallback(font(value(MainTextFont)), font(value(ListTextFont)));
+}
+
+.root:typography(largeTitle) {
+    font: fallback(font(value(MainTextFont)), font(value(LargeTitleFont)));
+}
+
+.root:mobile:typography(smallTitle) {
+    font: fallback(font(value(MainTextFont)), font(value(MobileSmallTitleFont)));
+}
+
+.root:mobile:typography(runningText) {
+    font: fallback(font(value(MainTextFont)), font(value(MobileRunningTextFont)));
+}
+
+.root:mobile:typography(listText) {
+    font: fallback(font(value(MainTextFont)), font(value(MobileListTextFont)));
+}
+
+.root:mobile:typography(largeTitle) {
+    font: fallback(font(value(MainTextFont)), font(value(MobileLargeTitleFont)));
+}

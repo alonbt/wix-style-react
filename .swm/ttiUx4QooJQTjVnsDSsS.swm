@@ -1,0 +1,137 @@
+{
+    "id": "ttiUx4QooJQTjVnsDSsS",
+    "name": "Themes | Adding a visual test",
+    "dod": "You will have and additional section the visual tests storybook with the new themed component",
+    "description": "",
+    "summary": "",
+    "hunksOrder": [
+        "src/Themes/businessDashboard/test/businessDashboard.visual.js_0",
+        "src/Themes/businessDashboard/test/businessDashboard.visual.js_1",
+        "src/Button/test/Button.visual.js_0",
+        "src/Button/test/Button.visual.js_1",
+        "package.json_0"
+    ],
+    "tests": [],
+    "hints": [],
+    "play_mode": "walkthrough",
+    "swimmPatch": {
+        "src/Themes/businessDashboard/test/businessDashboard.visual.js": {
+            "diffType": "MODIFIED",
+            "fileDiffHeader": "diff --git a/src/Themes/businessDashboard/test/businessDashboard.visual.js b/src/Themes/businessDashboard/test/businessDashboard.visual.js\nindex 76414c3ce..76414c3ce 100644\n--- a/src/Themes/businessDashboard/test/businessDashboard.visual.js\n+++ b/src/Themes/businessDashboard/test/businessDashboard.visual.js",
+            "hunks": [
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "In order to save development time, simply apply import all of the visual tests of the original component"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -1,6 +1,5 @@",
+                        " import React from 'react';",
+                        " import businessDashboardTheme from '../BusinessDashboard';",
+                        "-import { runTests as ButtonTests } from '../../../Button/test/Button.visual';",
+                        " import { runTests as CircularProgressBarTests } from '../../../CircularProgressBar/test/CircularProgressBar.visual';",
+                        " import { runTests as LinearProgressBarTests } from '../../../LinearProgressBar/test/LinearProgressBar.visual';",
+                        " import { runTests as HeadingTests } from '../../../Heading/test/Heading.visual';"
+                    ]
+                },
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Then, run it with the `ThemeProvider` wrapper",
+                            "Note: this might be abstracted in the future"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -23,16 +23,6 @@",
+                        " import { runTests as EmptyStateTests } from '../../../EmptyState/test/EmptyState.visual';",
+                        " import { ThemeProvider } from '../../..';",
+                        " ",
+                        "-const themeName = 'Business Dashboard';",
+                        "-const testWithTheme = test => {",
+                        "-  return (",
+                        "-    <ThemeProvider theme={businessDashboardTheme()}>",
+                        "-      <>{test}</>",
+                        "-    </ThemeProvider>",
+                        "-  );",
+                        "-};",
+                        "-",
+                        "-ButtonTests({ themeName, testWithTheme });",
+                        " CircularProgressBarTests({ themeName, testWithTheme });",
+                        " LinearProgressBarTests({ themeName, testWithTheme });",
+                        " HeadingTests({ themeName, testWithTheme });"
+                    ]
+                }
+            ]
+        },
+        "src/Button/test/Button.visual.js": {
+            "diffType": "MODIFIED",
+            "fileDiffHeader": "diff --git a/src/Button/test/Button.visual.js b/src/Button/test/Button.visual.js\nindex 602d5b5c3..602d5b5c3 100644\n--- a/src/Button/test/Button.visual.js\n+++ b/src/Button/test/Button.visual.js",
+            "hunks": [
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Since not all components were themed before, you might need to refactor the original test file to support themed variation"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -36,10 +36,6 @@",
+                        "   },",
+                        " ];",
+                        " ",
+                        "-export const runTests = (",
+                        "-  { themeName, testWithTheme } = { testWithTheme: i => i },",
+                        "-) => {",
+                        "-  visualize(`${themeName ? `${themeName}|` : ''}Button`, () => {",
+                        "     blockOfTests.forEach(({ it, render }) => {",
+                        "       snap(it, render);",
+                        "     });"
+                    ]
+                },
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "And call the tested content with the `testWithTheme` function that is provided"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -46,7 +46,6 @@",
+                        " ",
+                        "     story('Size and Affix', () => {",
+                        "       snap('Size and Affix', () =>",
+                        "-        testWithTheme(",
+                        "           <Box direction=\"vertical\">",
+                        "             {sizes.map(size => (",
+                        "               <Box margin={1} key={size}>"
+                    ]
+                }
+            ]
+        },
+        "package.json": {
+            "diffType": "MODIFIED",
+            "fileDiffHeader": "diff --git a/package.json b/package.json\nindex 5cbcabf02..5cbcabf02 100644\n--- a/package.json\n+++ b/package.json",
+            "hunks": [
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "To verify the integration, run `npm run storybook:visual` and search for the visual tests"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -34,7 +34,6 @@",
+                        "     \"------start/watch modes (can also be used for testing against start)\": \"\",",
+                        "     \"start\": \"./scripts/npm-start.sh\",",
+                        "     \"storybook\": \"npm run prestorybook && start-storybook -s ./src/assets -p 6006\",",
+                        "-    \"storybook:visual\": \"npm run prestorybook && start-storybook -c ./.storybook/visual -p 6007\",",
+                        "     \"storybook:e2e\": \"start-storybook -c ./.storybook/e2e -s ./src/assets -p 6008\",",
+                        "     \"------test\": \"\",",
+                        "     \"pretest\": \"if [ ! \\\"$agentType\\\" = \\\"pullrequest\\\" ]; then npm run lint && ./scripts/ensure-dist.sh; fi\","
+                    ]
+                }
+            ]
+        }
+    },
+    "app_version": "0.2.7",
+    "file_version": "1.0.4",
+    "last_commit_sha_for_swimm_patch": "b0b99f950fa354f519112d5497b7c974609b34cd"
+}

@@ -1,0 +1,32 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80, D20, D10, B40, B30, B00, B10
+}
+:import {
+  -st-from: "../Foundation/stylable/mixins/calc_rgba.js";
+  -st-default: calc_rgba;
+}
+
+/* At the moment, it was decided by UX to not include the missing colors below as part of the design system palette */
+:vars {
+  /* Dark skin */
+  sidebarBackgroundColor:#23263c;
+  textColor: value(D80);
+  hoveredBackgroundColor:#2e3149;
+  selectedBackgroundColor:#3b3f57;
+  selectedTextColor: value(B10);
+  disabledBackgroundColor:#23263c;
+  dividerColor: #434567;
+  darkScrollbarThumbColor: calc_rgba(value(D80), 0.42);
+  darkScrollbarThumbHoverColor: calc_rgba(value(D80), 0.66);
+
+  /* Light skin */
+  sidebarLightBackgroundColor: value(D80);
+  lightTextColor: value(D20);
+  hoveredLightBackgroundColor: value(B40);
+  selectedLightBackgroundColor: value(B30);
+  selectedLightTextColor: value(B00);
+  disabledLightBackgroundColor: value(D80);
+  lightScrollbarThumbColor: calc_rgba(value(D10), 0.42);
+  lightScrollbarThumbHoverColor: calc_rgba(value(D10), 0.66);
+}

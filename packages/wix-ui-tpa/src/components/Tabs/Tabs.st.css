@@ -1,0 +1,189 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, fallback, applyOpacity, font, calculate;
+}
+
+:import {
+    -st-from: "./ScrollableTabs/ScrollableTabs.st.css";
+    -st-default: Navigation;
+}
+
+:import {
+    -st-from: "./TabsNavButton/TabsNavButton.st.css";
+    -st-default: NavButton;
+}
+
+:vars {
+    /* default values */
+    defaultTabColor: color-5;
+    defaultTabFont: "{theme: 'Body-M', size: '16px', lineHeight: '24px'}";
+    defaultMobileTabFont: "{theme: 'Body-M', size: '14px', lineHeight: '20px'}";
+    defaultSelectedTabIndicatorColor: color-8;
+    defaultIndicatorColor: color-5;
+}
+
+:vars {
+    MainTextColor: --overridable;
+    MainTextFont: --overridable;
+    SelectedTabIndicatorColor: --overridable;
+    IndicatorColor: --overridable;
+}
+
+:vars {
+    /* constants */
+    tabsHeight: 52px;
+    tabsMobileHeight: 48px;
+    navBtnSVGWidth: 24px;
+    navBtnWidth: 15px;
+    navBtnEase: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    calculatedBorderColor: color(fallback(value(IndicatorColor), applyOpacity(color(value(defaultIndicatorColor)), 0.2)));
+    calculatedSelectedBorderColor: color(fallback(value(SelectedTabIndicatorColor), value(defaultSelectedTabIndicatorColor)));
+}
+
+.root {
+    -st-states: skin(enum(fullUnderline, clear, fitUnderline)), navButtons(enum(none, left, right, both)), mobile;
+    color: color(fallback(value(MainTextColor), value(defaultTabColor)));
+    font:  fallback(font(value(MainTextFont)), font(value(defaultTabFont)));
+    width: 100%;
+    min-height: value(tabsHeight);
+    position: relative;
+    padding: 14px 0;
+    line-height: 1.5;
+}
+
+.root::before {
+    content: '\00a0';
+}
+
+.root,
+.root * {
+    box-sizing: border-box;
+}
+
+.navBtn {
+    -st-extends: NavButton;
+    width: 0;
+    overflow: hidden;
+    transition: width .3s value(navBtnEase) .2s, applyOpacity .2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+}
+
+.navBtn.navBtnLeft {
+    left: 0;
+}
+
+.navBtn.navBtnRight {
+    right: 0;
+}
+
+.navBtn svg {
+    width: value(navBtnSVGWidth);
+    height: value(navBtnSVGWidth);
+    flex-shrink: 0;
+}
+.navBtn svg path {
+    fill: currentColor;
+}
+
+.navBtn.navBtnLeft svg {
+    margin-left: calculate("-", value(navBtnWidth), value(navBtnSVGWidth));
+}
+
+.navBtn.navBtnRight svg {
+    margin-right: calculate("-", value(navBtnWidth), value(navBtnSVGWidth));
+}
+
+.navigation {
+    -st-extends: Navigation;
+    -st-mixin: Navigation(
+        indicatorColor value(calculatedBorderColor),
+        selectedIndicatorColor value(calculatedSelectedBorderColor)
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: left .3s value(navBtnEase), right .3s value(navBtnEase);
+}
+
+.border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+}
+
+.root:navButtons(right) .navBtn.navBtnRight,
+.root:navButtons(left) .navBtn.navBtnLeft,
+.root:navButtons(both) .navBtn {
+    width: value(navBtnWidth);
+    opacity: 1;
+    transition: width .3s value(navBtnEase), applyOpacity .2s ease .3s;
+}
+
+.root:navButtons(right) .navigation,
+.root:navButtons(both) .navigation {
+    right: value(navBtnWidth);
+}
+
+.root:navButtons(left) .navigation,
+.root:navButtons(both) .navigation {
+    left: value(navBtnWidth);
+}
+
+.navigation::nav {
+    transition: all .3s value(navBtnEase);
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+.root:navButtons(left) .navigation::nav,
+.root:navButtons(right) .navigation::nav {
+    width: calc(100% + value(navBtnWidth));
+}
+
+.root:navButtons(left) .navigation::nav,
+.root:navButtons(both) .navigation::nav {
+    left: calculate("*", -1, value(navBtnWidth));
+}
+
+.root:navButtons(right) .navigation::nav,
+.root:navButtons(both) .navigation::nav {
+    right: calculate("*", -1, value(navBtnWidth));
+}
+
+.root:navButtons(both) .navigation::nav {
+    width: calc(100% + (2 * value(navBtnWidth)));
+}
+
+.root:skin(fullUnderline) .border,
+.root:skin(fitUnderline) .navBtn::border {
+    height: 1px;
+    background-color: value(calculatedBorderColor);
+}
+
+.root:skin(fitUnderline) .navigation::tab {
+    border-bottom: 1px solid value(calculatedBorderColor);
+}
+
+.root:mobile .navigation::itemsList {
+    display: flex;
+}
+
+.root:mobile .navigation::tab {
+    flex: 1;
+}
+
+.root:mobile {
+    font: fallback(font(value(MainTextFont)), font(value(defaultMobileTabFont)));
+    line-height: 1.428;
+    min-height: value(tabsMobileHeight);
+}

@@ -1,0 +1,95 @@
+:import {
+  -st-from: "../Sidebar/colors.st.css";
+  -st-named: sidebarBackgroundColor, sidebarLightBackgroundColor, lightTextColor, textColor;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: F00
+}
+
+:import {
+  -st-from: "../Sidebar/Sidebar.st.css";
+  -st-named: sidebarWidth
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
+}
+
+@keyframes backAndForth {
+  0% {
+    transform: translateX(0px);
+  }
+  8% {
+    transform: translateX(-5px);
+  }
+  16% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+
+.root {
+  -st-extends: Focusable;
+  -st-states: skin(enum(dark, light));
+  cursor: pointer;
+  box-sizing: border-box;
+  border: none;
+
+  width: 100%;
+  max-width: value(sidebarWidth);
+  padding: 15px 24px 15px 18px;
+  display: flex;
+  align-items: center;
+
+  /* not supported in IE11 & Edge; 'left' as fallback */
+  text-align: left;
+  text-align: start;
+}
+
+.root:skin(dark) {
+  background: value(sidebarBackgroundColor);
+}
+
+.root:skin(light) {
+  background: value(sidebarLightBackgroundColor);
+}
+
+.root:focus {
+  outline: none;
+}
+.root:focus-visible {
+  box-shadow: inset 0 0 0 3px value(F00);
+}
+
+.arrow {
+  -st-states: animated;
+  transition: transform 0.5s;
+  position: relative;
+  color: value(textColor);
+}
+.root:skin(light) .arrow {
+  color: value(lightTextColor)
+}
+.root:hover .arrow, .root:focus-visible .arrow {
+  transition: transform 0.5s;
+  transform: translateX(-5px);
+}
+
+.root:not(:hover) .arrow:animated {
+  animation-name: backAndForth;
+  animation-duration: 4s;
+  animation-delay: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: value(ease-8);
+}

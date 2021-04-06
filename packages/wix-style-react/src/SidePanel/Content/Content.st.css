@@ -1,0 +1,18 @@
+:import {
+  -st-from: '../../Foundation/stylable/default-scroll-bar.st.css';
+  -st-named: defaultScrollBar;
+}
+
+.root {
+  -st-states: noPadding;
+  -st-mixin: defaultScrollBar;
+
+  overflow: auto;
+  height: 100%;
+  flex: 1;
+  padding: 24px;
+}
+
+.root:noPadding {
+  padding: 0;
+}

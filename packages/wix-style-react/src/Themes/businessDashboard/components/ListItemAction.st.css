@@ -1,0 +1,74 @@
+:import {
+  -st-from: "../../../ListItemAction/ListItemAction.st.css";
+  -st-default: ListItemAction;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: B10, B50, D10-40, D20, D80;
+}
+
+.root {
+  -st-extends: ListItemAction;
+  padding: 8px 20px 8px 12px;
+}
+
+.root::textBox {
+  margin-left: 4px;
+}
+
+/* Skin standard */
+
+.root:skin(standard)::text,
+.root:skin(standard)::prefixIcon,
+.root:skin(standard):active::text,
+.root:skin(standard):active::prefixIcon {
+  color: value(B10);
+}
+
+.root:skin(standard):highlighted,
+.root:skin(standard):hover {
+  background-color: value(B50);
+}
+
+.root:skin(standard):active {
+  background-color: value(D80);
+}
+
+.root:skin(standard):disabled::text,
+.root:skin(standard):disabled::prefixIcon {
+  color: value(D10-40);
+}
+
+/* Skin dark */
+
+.root:skin(dark):not(:disabled)::text,
+.root:skin(dark):not(:disabled)::prefixIcon {
+  color: value(D20);
+}
+
+.root:skin(dark):disabled::text,
+.root:skin(dark):disabled::prefixIcon {
+  color: value(D10-40);
+}
+
+.root:skin(dark):highlighted,
+.root:skin(dark):not(:disabled):hover {
+  background-color: value(B50);
+}
+
+.root:skin(dark):active {
+  background-color: value(D80);
+}
+
+.root:skin(dark):highlighted::text,
+.root:skin(dark):highlighted::prefixIcon,
+.root:skin(dark):not(:disabled):hover::text,
+.root:skin(dark):not(:disabled):hover::prefixIcon {
+  color: value(B10);
+}
+
+.root:skin(dark):active:not(:disabled)::text,
+.root:skin(dark):active:not(:disabled)::prefixIcon {
+  color: value(D20);
+}

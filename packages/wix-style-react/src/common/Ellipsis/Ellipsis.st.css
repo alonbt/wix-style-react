@@ -1,0 +1,41 @@
+:import {
+  -st-from: "../../Tooltip/Tooltip.st.css";
+  -st-default: Tooltip;
+}
+
+/* Text */
+.text {
+  -st-states:ellipsisLines(enum(singleLine, multiline));
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+  vertical-align: bottom !important;
+}
+
+.text:ellipsisLines(singleLine) {
+  white-space: nowrap !important;
+  display: inline-block !important;
+}
+
+.text:ellipsisLines(multiline) {
+  white-space: normal !important;
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-line-clamp: var(--maxLines);
+  -moz-line-clamp: var(--maxLines);
+}
+
+
+/* Tooltip */
+.tooltip {
+  -st-extends: Tooltip;
+  display: inline;
+  overflow: hidden;
+  height: max-content;
+}
+
+.tooltip::popoverElement {
+  max-width: 100%;
+}

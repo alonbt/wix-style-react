@@ -1,0 +1,85 @@
+{
+    "id": "ng1oByXSARd2YpgDLi34",
+    "name": "Themes | add a new themed component entry",
+    "dod": "In this unit you should have a new component theme file for the component overrides",
+    "description": "",
+    "summary": "",
+    "hunksOrder": [
+        "src/Themes/businessDashboard/BusinessDashboard.st.css_1",
+        "src/Themes/businessDashboard/BusinessDashboard.st.css_0",
+        "src/Themes/businessDashboard/BusinessDashboard.st.css_2"
+    ],
+    "tests": [],
+    "hints": [],
+    "play_mode": "walkthrough",
+    "swimmPatch": {
+        "src/Themes/businessDashboard/BusinessDashboard.st.css": {
+            "diffType": "MODIFIED",
+            "fileDiffHeader": "diff --git a/src/Themes/businessDashboard/BusinessDashboard.st.css b/src/Themes/businessDashboard/BusinessDashboard.st.css\nindex 122f324c1..122f324c1 100644\n--- a/src/Themes/businessDashboard/BusinessDashboard.st.css\n+++ b/src/Themes/businessDashboard/BusinessDashboard.st.css",
+            "hunks": [
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Before we apply the new overrides, we first need to import the original Button stylesheet"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -6,10 +6,6 @@",
+                        " }",
+                        " ",
+                        " /* Components */",
+                        "-:import {",
+                        "-  -st-from: \"../../Button/Button.st.css\";",
+                        "-  -st-default: Button;",
+                        "-}",
+                        " ",
+                        " :import {",
+                        "   -st-from: \"../../CircularProgressBar/CircularProgressBar.st.css\";"
+                    ]
+                },
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "In this step we are going to create a new override for the Button component. For that, we would create a new file that will contain the overrides and import it from the main css theme entry file"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -147,10 +147,6 @@",
+                        " }",
+                        " ",
+                        " /* Overrides */",
+                        "-:import {",
+                        "-  -st-from: \"./components/Button.st.css\";",
+                        "-  -st-default: ButtonOverrides;",
+                        "-}",
+                        " ",
+                        " :import {",
+                        "   -st-from: \"./components/CircularProgressBar.st.css\";"
+                    ]
+                },
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Once both original component stylesheet and overrides are imported, we mix the overrides on top of the original component under a shared `.root` class. This uses the -st-mixin() functionality of styable (https://stylable.io/docs/references/mixins) which creates a stronger css rules, alongside the scoping with the root theme class"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -288,9 +288,6 @@",
+                        " }",
+                        " ",
+                        " @st-scope .root {",
+                        "-  Button {",
+                        "-    -st-mixin: ButtonOverrides();",
+                        "-  }",
+                        "   CircularProgressBar {",
+                        "     -st-mixin: CircularProgressBarOverrides();",
+                        "   }"
+                    ]
+                }
+            ]
+        }
+    },
+    "app_version": "0.2.7",
+    "file_version": "1.0.4",
+    "last_commit_sha_for_swimm_patch": "b0b99f950fa354f519112d5497b7c974609b34cd"
+}

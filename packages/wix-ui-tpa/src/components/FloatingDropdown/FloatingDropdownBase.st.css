@@ -1,0 +1,166 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, font, fallback;
+}
+
+:import {
+    -st-from: "../TextButton/TextButton.st.css";
+    -st-default: TPAButton;
+}
+
+:vars {
+    iconHeight: 1em;
+    iconWith: 1em;
+    minWidth: 220px;
+}
+
+/*Constance*/
+:vars {
+    DefaultTextColor: color-5;
+    DefaultDisabledTextColor: color-3;
+    DefaultDropdownBackgroundColor: color-1;
+    DefaultTextFont: "{theme: 'Body-M', size: '16px', lineHeight: '1.5em'}";
+}
+
+/*Overrides*/
+:vars {
+    /*
+        The Button Text color
+        @default color-5
+    */
+    MainTextColor: --overridable;
+    /*
+        The Texts font
+        @default {theme: 'Body-M', size: '16px', lineHeight: '1.5em'}
+    */
+    MainTextFont: --overridable;
+}
+
+:vars {
+    TextColor: color(fallback(value(MainTextColor), value(DefaultTextColor)));
+    TextFont: fallback(font(value(MainTextFont)), font(value(DefaultTextFont)));
+}
+
+:vars {
+    ArrowTransformation: translateX(-0.25em) scale(1.5);
+}
+
+.root {
+    -st-states: mobile, disabled;
+    cursor: pointer;
+}
+
+.arrowIcon {
+    height: value(iconHeight);
+    width: value(iconWith);
+    transform: value(ArrowTransformation);
+    flex-shrink: 0;
+}
+
+.btn {
+    -st-extends: TPAButton;
+    display: flex;
+    cursor: pointer;
+    box-sizing: border-box;
+    outline: none;
+    transition: none;
+    padding: 8px 0;
+    width: 100%;
+}
+
+.displayBlock .btn {
+    width: 100%;
+}
+
+.displayBlock .content {
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.textContent {
+    overflow: hidden;
+    display: flex;
+    margin-right: 0.5em;
+}
+
+.label {
+    display: flex;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.selectedValue {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width: 0;
+    flex: 1 1 0;
+}
+
+.label::after {
+    width: 4px;
+    content: '';
+}
+
+.btn::content {
+    flex: 1;
+    text-align: start;
+    max-width: 100%;
+}
+
+.btn:disabled {
+    cursor: default;
+}
+
+.root:disabled {
+    cursor: default;
+}
+
+.root:mobile {
+    position: relative;
+}
+
+.root:not(.displayBlock):mobile {
+  display: inline-block;
+}
+
+.root:mobile select {
+    background-color: transparent;
+    border: none;
+    min-width: 0;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+}
+
+.root:mobile:disabled select {
+    cursor: default;
+}
+
+.overrideStyleParams .content {
+    color: value(TextColor);
+    font: value(TextFont);
+}
+.overrideStyleParams .arrowIcon path {
+    fill: value(TextColor);
+}
+
+.root:disabled .content .textContent {
+    color: color(value(DefaultDisabledTextColor));
+}
+
+.root:disabled .content .arrowIcon path {
+    fill: color(value(DefaultDisabledTextColor));
+}

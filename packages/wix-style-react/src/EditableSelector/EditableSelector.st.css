@@ -1,0 +1,90 @@
+:import {
+    -st-from: '../Foundation/stylable/typography.st.css';
+    -st-named: text-medium-normal;
+}
+
+:vars {
+    rowsMargin: 6px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    margin-top: rowsMargin;
+}
+
+.row:hover .optionMenu {
+    visibility: visible;
+}
+
+.row .editableSelectorItem {
+    padding: 0;
+    height: initial;
+}
+
+.row .editableSelectorItem:hover, .row .editableSelectorItem:hover:active {
+    background-color: transparent;
+}
+
+.title {
+    height: 34px;
+    line-height: 34px;
+}
+
+.optionMenu {
+    margin-left: auto;
+    visibility: hidden;
+    display: flex;
+}
+
+.optionMenu button {
+    transition: none;
+}
+
+.newRowButton {
+    margin-top: 12px;
+}
+
+.newRowButton .textLinkWithPrefix {
+    display: flex;
+}
+
+.newRowButton .textLinkWithPrefix .icon {
+    margin-right: 6px;
+}
+
+.newRowButton .textLinkWithPrefix .text {
+    -st-mixin: text-medium-normal;
+}
+
+/* EditableRow */
+.editableRowContainer {
+    display: flex;
+    margin-top: rowsMargin;
+}
+
+.editableRowInput {
+    flex: 1;
+}
+
+.editableRowInputWrap {
+    flex: 1;
+    margin-right: 18px;
+}
+
+.editRow {
+    margin-left: 12px;
+}
+
+.editableRowButtons {
+    display: flex;
+}
+
+.editableRowButtons > * {
+    margin-right: 12px;
+}
+
+.editableRowButtons > *:last-child {
+    margin-right: 0;
+}

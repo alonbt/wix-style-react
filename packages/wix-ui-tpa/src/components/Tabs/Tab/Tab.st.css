@@ -1,0 +1,63 @@
+:import {
+    -st-from: "../../../common/formatters.st";
+    -st-named: color;
+}
+
+:vars {
+    activeIndicatorColor: color-8;
+    focusIndicatorColor: color-8;
+}
+
+.root {
+    -st-states: isActive, indicateActive;
+    cursor: pointer;
+    height: 100%;
+    text-align: center;
+    white-space: nowrap;
+    padding: 14px 3%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+}
+
+.focusIndicatorWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.focusIndicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: transparent;
+}
+
+.root:isActive:indicateActive {
+    border-bottom: 3px solid !important;
+    border-bottom-color: color(value(activeIndicatorColor)) !important;
+}
+
+.root:focus,
+.focusIndicator:focus {
+    background-color: transparent;
+    outline: none;
+}
+
+.root:focus .focusIndicator {
+    background-color: color(value(focusIndicatorColor));
+}
+
+.root a {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    z-index: 1;
+}
+
+.root a:focus + .focusIndicatorWrapper > .focusIndicator {
+    background-color: color(value(focusIndicatorColor))
+}

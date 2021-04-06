@@ -1,0 +1,217 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, fallback, font, applyOpacity;
+}
+
+:import {
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: Checkbox;
+}
+
+:import {
+    -st-from: "../../common/palette.st.css";
+    -st-named: errorColor, focusRing;
+}
+
+/*Defaults*/
+:vars {
+    DefaultTextColor: color-5;
+    DefaultBorderColor: color-5;
+    DefaultIconColor: color-8;
+    DefaultBoxBorderColor: color-5;
+    DefaultBoxColor: color-1;
+    DisabledColor: color-3;
+    Font: font("{theme: 'Body-M', size: '16px', lineHeight: '24px'}");
+}
+
+/*Overrides*/
+:vars {
+    /*
+        The checkbox text color
+        @default color-5
+    */
+    TextColor: --overridable;
+    /*
+        The checkbox border color. FYI, An opacity of  0.6 will be added.
+        @default color-5
+    */
+    BorderColor: --overridable;
+    /*
+        The color of the icon
+        @default color-8
+    */
+    IconColor: --overridable;
+    /*
+        The box border color. FYI, This value won't be affected on disabled mode.
+        @default color-5
+    */
+    BoxBorderColor: --overridable;
+    /*
+        The box background color. FYI, This value won't be affected on disabled mode.
+        @default color-1
+    */
+    BoxColor: --overridable;
+}
+
+:vars {
+    CurrentBorderColor: color(fallback(value(BorderColor), value(DefaultBorderColor)));
+    CurrentBoxBorderColor: color(fallback(value(BoxBorderColor), value(DefaultBoxBorderColor)));
+    CurrentIconColor: color(fallback(value(IconColor), value(DefaultIconColor)));
+    CurrentTextColor: color(fallback(value(TextColor), value(DefaultTextColor)));
+    CurrentBoxColor: color(fallback(value(BoxColor), value(DefaultBoxColor)));
+}
+
+.root {
+    -st-extends: Checkbox;
+    -st-states: box, checked, disabled, error;
+
+    display: inline-flex;
+    box-sizing: border-box;
+
+    font: value(Font);
+    transition: background-color 0.2s linear, border-color 0.2s linear;
+}
+
+.root * {
+    box-sizing: inherit;
+}
+
+.root::childContainer {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.root::box {
+    line-height: 0;
+    display: flex;
+}
+
+.root::box::after {
+    content: '';
+    width: 12px;
+}
+
+.core {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.root:box {
+    display: flex;
+    background-color: color(value(CurrentBoxColor));
+    border: 1px solid applyOpacity(value(CurrentBoxBorderColor), 0.6);
+    box-sizing: border-box;
+    position: relative;
+    padding: 0 16px;
+}
+
+.root:box::childContainer {
+    padding: 15px 0;
+}
+
+.icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+
+    border: 1px solid;
+    border-color: applyOpacity(value(CurrentBorderColor), 0.6);
+    border-radius: 1px;
+    
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.2;
+    vertical-align: middle;
+    transition: border-color 0.2s linear;
+}
+
+.icon svg {
+    margin: 1px 3px;
+
+    width: 8px;
+    height: 7px;
+}
+
+.icon path {
+    fill: value(CurrentIconColor);
+}
+
+.label {
+    display: inline-block;
+    color: value(CurrentTextColor);
+    transition: color 0.2s linear;
+}
+
+.label.suffixed {
+    flex: 1;
+    display: flex;
+}
+
+.label.suffixed::after {
+    content: '';
+    width: 5px;
+    flex: 1 0 5px;
+}
+
+.suffix {
+    flex: 0;
+}
+
+.focused {
+    -st-mixin: focusRing();
+}
+
+/* STATES */
+.root:hover:box, .root:focus-within:box {
+    border-color: applyOpacity(value(CurrentBoxBorderColor), 1);
+}
+
+.root:box:checked {
+    background-color: applyOpacity(value(CurrentIconColor), 0.1);
+    border: 1px solid color(value(CurrentIconColor));
+}
+
+.root:box.disabled, .root:box:disabled {
+    border-color: color(value(DisabledColor));
+    background-color: color(value(DefaultBoxColor))
+}
+
+.root:box.disabled:hover:not(:checked), .root:box:disabled:focus-within:not(:checked) {
+    border-color: applyOpacity(value(CurrentBoxBorderColor), 0.6);
+}
+
+.root:box.disabled:checked, .root:box:disabled:checked {
+    border-color: color(value(DisabledColor));
+    background-color: applyOpacity(color(value(DisabledColor)), 0.1);
+}
+
+.root:box:checked::after {
+    opacity: 1;
+}
+
+.root:hover .icon, .root:focus-within .icon {
+    border-color: applyOpacity(value(CurrentBorderColor), 1);
+}
+
+.root:error:not(:hover) .icon {
+    border-color: color(value(errorColor));
+}
+
+.root:disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+.root:disabled .icon {
+    border-color: color(value(DisabledColor));
+}
+
+.root:disabled .label {
+    color: color(value(DisabledColor));
+}
+
+.root:disabled .icon path {
+    fill: color(value(DisabledColor));
+}

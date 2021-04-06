@@ -1,0 +1,132 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, applyOpacity, fallback, font;
+}
+
+:import {
+    -st-from: "../Text/Text.st.css";
+    -st-default: TPAText;
+}
+
+:import {
+    -st-from: "wix-ui-core/index.st.css";
+    -st-named: ButtonNext;
+}
+
+/*Defaults*/
+:vars {
+    defaultTextFont: "{theme: 'Body-M', size: '14px', lineHeight: '1'}";
+    defaultTimeColor: color-4;
+    defaultTitleColor: color-5;
+    defaultHoverOverlayColor: color-5;
+    defaultFulldayBgColor: color-8;
+    defaultBgColor: transparent;
+    defaultSelectedOverlayColor: color-8;
+}
+
+/*Overrides*/
+:vars {
+    TimeFont: --overridable;
+    TimeColor: --overridable;
+    TitleFont: --overridable;
+    TitleColor: --overridable;
+    FulldayBgColor: --overridable;
+    HoverOverlayColor:  --overridable;
+    BgColor: --overridable;
+    SelectedOverlayColor: --overridable;
+}
+
+/* Fallbacks */
+:vars {
+    currentTimeFont: fallback(value(TimeFont), font(value(defaultTextFont)));
+    currentTimeColor: color(fallback(value(TimeColor), value(defaultTimeColor)));
+    currentTitleFont: fallback(value(TitleFont), font(value(defaultTextFont)));
+    currentTitleColor: color(fallback(value(TitleColor), value(defaultTitleColor)));
+    currentFulldayBgColor: color(fallback(value(FulldayBgColor), value(defaultFulldayBgColor)));
+    currentHoverOverlayColor: color(fallback(value(HoverOverlayColor), value(defaultHoverOverlayColor)));
+    currentSelectedOverlayColor: color(fallback(value(SelectedOverlayColor), value(defaultSelectedOverlayColor)));
+    currentBgColor: color(fallback(value(BgColor), value(defaultBgColor)));
+}
+
+.root {
+    -st-states: selected, fullday;
+    position: relative;
+    background-color: value(currentBgColor);
+    display: flex;
+    align-items: center;
+}
+
+.root::before {
+    content: '';
+    flex: 0 0 12px;
+}
+
+.root::after {
+    content: '';
+    flex: 0 0 4px;
+}
+
+.buttonContainer {
+    -st-extends: ButtonNext;
+    width: 100%;
+    padding: 0;
+    background: value(currentBgColor);
+    border: none;
+}
+
+.buttonContainer::content {
+    width: 100%;
+}
+
+.overlay {
+    display: none;
+    background: applyOpacity(value(currentHoverOverlayColor), 0.06);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.root:hover .overlay {
+    display: block;
+}
+
+.root:selected .overlay{
+    display: block;
+    background: applyOpacity(value(currentSelectedOverlayColor), 0.1);
+}
+
+.root:fullday {
+    background: value(currentFulldayBgColor);
+}
+
+.time {
+    -st-mixin: TPAText(
+        MainTextFont value(currentTimeFont),
+        MainTextColor value(currentTimeColor)
+    );
+    display: flex;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.time::after {
+    content: ' ';
+    width: 2px;
+    height: 100%;
+    display: inline-block;
+}
+
+.title {
+  -st-mixin: TPAText(
+        MainTextFont value(currentTitleFont),
+        MainTextColor value(currentTitleColor)
+    );
+    display: inline;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

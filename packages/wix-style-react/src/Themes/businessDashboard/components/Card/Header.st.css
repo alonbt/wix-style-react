@@ -1,0 +1,19 @@
+:import {
+  -st-from: "../../../../Card/Header/Header.st.css";
+  -st-default: Header;
+}
+
+.root {
+  -st-extends: Header;
+  padding: 24px 24px 0;
+  align-items: flex-start;
+}
+
+.root::title {
+  margin-bottom: 4px;
+}
+
+.root::suffix {
+  margin-top: 6px;
+  height: auto;
+}

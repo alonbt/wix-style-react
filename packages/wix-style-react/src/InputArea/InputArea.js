@@ -1,0 +1,449 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import deprecationLog from '../utils/deprecationLog';
+import StatusIndicator from '../StatusIndicator';
+import debounce from 'lodash/debounce';
+import isNaN from 'lodash/isNaN';
+import { st, classes } from './InputArea.st.css';
+import { dataAttr, dataHooks } from './constants';
+import { filterObject } from '../utils/filterObject';
+import { FontUpgradeContext } from '../FontUpgrade/context';
+
+/**
+ * General inputArea container
+ */
+class InputArea extends React.PureComponent {
+  _computedStyle = null;
+  state = {
+    focus: false,
+    counter: (this.props.value || this.props.defaultValue || '').length,
+    computedRows: this.props.minRowsAutoGrow,
+  };
+
+  // For autoGrow prop min rows is 2 so the textarea does not look like an input
+  static MIN_ROWS = 2;
+
+  constructor(props) {
+    super(props);
+
+    if (props.size === 'normal') {
+      deprecationLog(
+        '<InputArea/> - change prop size="normal" to size="medium"',
+      );
+    }
+  }
+
+  // For testing purposes only
+  _getDataAttr = () => {
+    const {
+      size,
+      status,
+      disabled,
+      resizable,
+      forceHover,
+      forceFocus,
+    } = this.props;
+
+    return filterObject(
+      {
+        [dataAttr.SIZE]: size,
+        [dataAttr.STATUS]: !!status && !disabled,
+        [dataAttr.DISABLED]: !!disabled,
+        [dataAttr.RESIZABLE]: !!resizable && !disabled,
+        [dataAttr.HOVER]: !!forceHover,
+        [dataAttr.FOCUS]: !!(forceFocus || this.state.focus),
+      },
+      (key, value) => !!value,
+    );
+  };
+
+  componentDidMount() {
+    const { autoFocus, autoGrow, value } = this.props;
+
+    autoFocus && this._onFocus();
+    if (autoGrow) {
+      this._calculateComputedRows();
+    }
+    /*
+     * autoFocus doesn't automatically selects text like focus do.
+     * Therefore we set the selection range, but in order to support prior implementation we set the start position as the end in order to place the cursor there.
+     */
+    if (autoFocus && !!value) {
+      this.textArea.setSelectionRange(value.length, value.length);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      minRowsAutoGrow,
+      value,
+      defaultValue,
+      autoGrow,
+      hasCounter,
+    } = this.props;
+
+    if (autoGrow && prevProps.minRowsAutoGrow !== minRowsAutoGrow) {
+      this._calculateComputedRows();
+    }
+
+    if (hasCounter && prevProps.value !== value) {
+      this.setState({
+        counter: (value || defaultValue || '').length,
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    this._updateComputedStyle.cancel();
+  }
+
+  render() {
+    const {
+      dataHook,
+      className,
+      autoFocus,
+      defaultValue,
+      disabled,
+      forceFocus,
+      forceHover,
+      id,
+      name,
+      onKeyUp,
+      placeholder,
+      readOnly,
+      tabIndex,
+      rows,
+      autoGrow,
+      value,
+      required,
+      minHeight,
+      maxHeight,
+      maxLength,
+      resizable,
+      hasCounter,
+      size,
+      tooltipPlacement,
+      status,
+      statusMessage,
+    } = this.props;
+
+    const inlineStyle = {};
+    const rowsAttr = rows
+      ? rows
+      : autoGrow
+      ? this.state.computedRows
+      : undefined;
+    const onInput = !rows && autoGrow ? this._onInput : undefined;
+
+    if (minHeight) {
+      inlineStyle.minHeight = minHeight;
+    }
+
+    if (maxHeight) {
+      inlineStyle.maxHeight = maxHeight;
+    }
+
+    const ariaAttribute = {};
+    Object.keys(this.props)
+      .filter(key => key.startsWith('aria'))
+      .map(
+        key =>
+          (ariaAttribute['aria-' + key.substr(4).toLowerCase()] = this.props[
+            key
+          ]),
+      );
+
+    return (
+      <FontUpgradeContext.Consumer>
+        {({ active: isMadefor }) => (
+          <div
+            data-hook={dataHook}
+            className={st(
+              classes.root,
+              {
+                isMadefor,
+                disabled,
+                size,
+                status,
+                hasFocus: forceFocus || this.state.focus,
+                forceHover,
+                resizable,
+                readOnly,
+              },
+              className,
+            )}
+            {...this._getDataAttr()}
+          >
+            {/* Input Area */}
+            <div className={classes.inputArea}>
+              <textarea
+                rows={rowsAttr}
+                maxLength={maxLength}
+                ref={ref => (this.textArea = ref)}
+                id={id}
+                name={name}
+                style={inlineStyle}
+                defaultValue={defaultValue}
+                disabled={disabled}
+                value={value}
+                required={required}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                onKeyDown={this._onKeyDown}
+                onChange={this._onChange}
+                onInput={onInput}
+                placeholder={placeholder}
+                tabIndex={tabIndex}
+                autoFocus={autoFocus}
+                onKeyUp={onKeyUp}
+                {...ariaAttribute}
+                readOnly={readOnly}
+              />
+
+              {/* Counter */}
+              {hasCounter && maxLength && (
+                <span className={classes.counter} data-hook="counter">
+                  {this.state.counter}/{maxLength}
+                </span>
+              )}
+            </div>
+
+            {/* Status Indicator */}
+            <div className={classes.status}>
+              {!!status && !disabled && (
+                <StatusIndicator
+                  dataHook={dataHooks.tooltip}
+                  status={status}
+                  message={statusMessage}
+                  tooltipPlacement={tooltipPlacement}
+                />
+              )}
+            </div>
+          </div>
+        )}
+      </FontUpgradeContext.Consumer>
+    );
+  }
+
+  focus = () => {
+    this.textArea && this.textArea.focus();
+  };
+
+  blur = () => {
+    this.textArea && this.textArea.blur();
+  };
+
+  select = () => {
+    this.textArea && this.textArea.select();
+  };
+
+  _onFocus = e => {
+    this.setState({ focus: true });
+    this.props.onFocus && this.props.onFocus(e);
+
+    if (this.props.autoSelect) {
+      // Set timeout is needed here since onFocus is called before react
+      // gets the reference for the input (specifically when autoFocus
+      // is on. So setTimeout ensures we have the ref.input needed in select)
+      setTimeout(() => this.select(), 0);
+    }
+  };
+
+  _onBlur = e => {
+    this.setState({ focus: false });
+    this.props.onBlur && this.props.onBlur(e);
+  };
+
+  _onKeyDown = e => {
+    this.props.onKeyDown && this.props.onKeyDown(e);
+
+    if (e.key === 'Enter') {
+      this.props.onEnterPressed && this.props.onEnterPressed(e);
+    } else if (e.key === 'Escape') {
+      this.props.onEscapePressed && this.props.onEscapePressed();
+    }
+  };
+
+  _onChange = e => {
+    this.props.onChange && this.props.onChange(e);
+  };
+
+  _onInput = () => {
+    this._calculateComputedRows();
+  };
+
+  _calculateComputedRows = () => {
+    const { minRowsAutoGrow } = this.props;
+
+    this.setState({ computedRows: 1 }, () => {
+      const rowsCount = this._getRowsCount();
+      const computedRows = Math.max(minRowsAutoGrow, rowsCount);
+      this.setState({
+        computedRows,
+      });
+    });
+  };
+
+  _updateComputedStyle = debounce(
+    () => {
+      this._computedStyle = window.getComputedStyle(this.textArea);
+    },
+    500,
+    { leading: true },
+  );
+
+  _getComputedStyle = () => {
+    this._updateComputedStyle();
+    return this._computedStyle;
+  };
+
+  _getRowsCount = () => {
+    const computedStyle = this._getComputedStyle();
+    const fontSize = parseInt(computedStyle.getPropertyValue('font-size'), 10);
+    const lineHeight = parseInt(
+      computedStyle.getPropertyValue('line-height'),
+      10,
+    );
+    let lineHeightValue;
+
+    if (isNaN(lineHeight)) {
+      if (isNaN(fontSize)) {
+        return InputArea.MIN_ROWS;
+      }
+
+      lineHeightValue = this._getDefaultLineHeight() * fontSize;
+    } else {
+      lineHeightValue = lineHeight;
+    }
+
+    return Math.floor(this.textArea.scrollHeight / lineHeightValue);
+  };
+
+  _getDefaultLineHeight = () => {
+    if (!this._defaultLineHeight) {
+      const { parentNode } = this.textArea;
+      const computedStyles = this._getComputedStyle();
+      const fontFamily = computedStyles.getPropertyValue('font-family');
+      const fontSize = computedStyles.getPropertyValue('font-size');
+      const tempElement = document.createElement('span');
+      const defaultStyles =
+        'position:absolute;display:inline;border:0;margin:0;padding:0;line-height:normal;';
+      tempElement.setAttribute(
+        'style',
+        `${defaultStyles}font-family:${fontFamily};font-size:${fontSize};`,
+      );
+      tempElement.innerText = 'M';
+      parentNode.appendChild(tempElement);
+      this._defaultLineHeight =
+        parseInt(tempElement.clientHeight, 10) / parseInt(fontSize, 10);
+      tempElement.parentNode.removeChild(tempElement);
+    }
+
+    return this._defaultLineHeight;
+  };
+}
+
+InputArea.displayName = 'InputArea';
+
+InputArea.defaultProps = {
+  minRowsAutoGrow: InputArea.MIN_ROWS,
+  size: 'medium',
+};
+
+InputArea.propTypes = {
+  /** Applied as data-hook HTML attribute that can be used in the tests */
+  dataHook: PropTypes.string,
+
+  /** A css class to be applied to the component's root element */
+  className: PropTypes.string,
+
+  ariaControls: PropTypes.string,
+  ariaDescribedby: PropTypes.string,
+
+  /** Used to define a string that labels the current element in case where a text label is not visible on the screen. */
+  ariaLabel: PropTypes.string,
+
+  /** Standard React Input autoFocus (focus the element on mount) */
+  autoFocus: PropTypes.bool,
+
+  /** Standard React Input autoSelect (select the entire text of the element on focus) */
+  autoSelect: PropTypes.bool,
+
+  /** Specifies the size of the input */
+  size: PropTypes.oneOf(['small', 'medium', 'normal']),
+
+  /** Default value for those who wants to use this component un-controlled */
+  defaultValue: PropTypes.string,
+
+  /** Disables the input */
+  disabled: PropTypes.bool,
+
+  /** Sets UI to indicate a status */
+  status: PropTypes.oneOf(['error', 'warning', 'loading']),
+
+  /** The status message to display when hovering the status icon, if not given or empty there will be no tooltip */
+  statusMessage: PropTypes.node,
+
+  forceFocus: PropTypes.bool,
+  forceHover: PropTypes.bool,
+
+  /** When true a letters counter will appear */
+  hasCounter: PropTypes.bool,
+  id: PropTypes.string,
+
+  /** Name Attribute */
+  name: PropTypes.string,
+
+  /** i.e. '12px' */
+  maxHeight: PropTypes.string,
+
+  /** Define max length allowed in the inputArea */
+  maxLength: PropTypes.number,
+  menuArrow: PropTypes.bool,
+
+  /** i.e. '12px' */
+  minHeight: PropTypes.string,
+
+  /** onBlur callback */
+  onBlur: PropTypes.func,
+
+  /** onChange callback */
+  onChange: PropTypes.func,
+  onClear: PropTypes.func,
+  onEnterPressed: PropTypes.func,
+  onEscapePressed: PropTypes.func,
+
+  /** onFocus callback */
+  onFocus: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  onKeyUp: PropTypes.func,
+
+  /** Placeholder to display */
+  placeholder: PropTypes.string,
+
+  /** Sets the input to readOnly */
+  readOnly: PropTypes.bool,
+  resizable: PropTypes.bool,
+
+  /** Sets initial height according to the number of rows (chrome uses the rows for minHeight as well) */
+  rows: PropTypes.number,
+
+  /** Will cause the Input Area to grow and shrink according to user input */
+  autoGrow: PropTypes.bool,
+
+  /** Sets the minimum amount of rows the component can have when in autoGrow mode */
+  minRowsAutoGrow: PropTypes.number,
+
+  tabIndex: PropTypes.number,
+
+  /** Placement of the status tooltip */
+  tooltipPlacement: PropTypes.string,
+
+  /** Inputs value */
+  value: PropTypes.string,
+
+  /** Makes textarea required during form submission */
+  required: PropTypes.bool,
+};
+
+export default InputArea;

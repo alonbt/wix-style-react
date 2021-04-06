@@ -1,0 +1,56 @@
+:import {
+  -st-from: '../Text/Text.st.css';
+  -st-default: Text;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60, D80, D20;
+}
+
+:vars {
+  googlePreivewBlue: #1a0dab;
+  googlePreivewBlack: #202124;
+}
+
+.root {
+  -st-states: transparent;
+  padding: 12px;
+  border: solid 1px value(D60);
+  background-color: value(D80);
+  box-sizing: border-box;
+}
+.root:transparent {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.googlePreviewTitle {
+  -st-extends: Text;
+}
+
+.googlePreviewTitle:size(medium):weight(bold) {
+  color: value(googlePreivewBlue);
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.googlePreviewUrl {
+  -st-extends: Text;
+  display: block;
+}
+
+.googlePreviewUrl:size(tiny):weight(thin) {
+  color: value(googlePreivewBlack);
+  font-family: Arial;
+}
+
+.googlePreviewDescription {
+  -st-extends: Text;
+}
+
+.googlePreviewDescription:size(tiny):weight(thin) {
+  color: value(D20);
+  font-family: Arial;
+}
+

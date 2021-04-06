@@ -1,0 +1,86 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/spacing.st.css";
+  -st-named: spacing06, spacing18, spacing24, spacing30, spacing42;
+}
+
+:import {
+  -st-from: "../BaseModalLayout/BaseModalLayout.st.css";
+  -st-default: BaseModalLayout
+}
+
+:import {
+  -st-from: "../BaseModalLayout/control-button-padding.js";
+  -st-default: controlButtonPadding;
+}
+
+/** Extending BaseModalLayout */
+.root {
+  -st-extends: BaseModalLayout;
+  -st-states: hasIllustration;
+  width: 510px;
+  min-width: 510px;
+}
+
+/** Styling proprietary components */
+.topAreaContainer {
+  display: flex;
+  overflow-y: auto;
+}
+
+.contentAreaContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.root:hasIllustration {
+  width: 600px;
+  min-width: 600px;
+}
+
+/* Extending of BaseModalLayout Blocks */
+.root:controlButtonAmount(0)::header {
+  padding: value(spacing24) value(spacing30) value(spacing18) value(spacing30);
+}
+
+.root:controlButtonAmount(1)::header {
+  padding: value(spacing24) controlButtonPadding(1) value(spacing18) value(spacing30);
+}
+
+:global([dir='rtl']) .root:controlButtonAmount(1)::header {
+  padding: value(spacing24) value(spacing30) value(spacing18) controlButtonPadding(1);
+}
+
+.root:controlButtonAmount(2)::header {
+  padding: value(spacing24) controlButtonPadding(2) value(spacing18) value(spacing30);
+}
+
+:global([dir='rtl']) .root:controlButtonAmount(2)::header {
+  padding: value(spacing24) value(spacing30) value(spacing18) controlButtonPadding(2);
+}
+
+.root::content {
+  flex: 1;
+}
+
+.root::content::innerContent {
+  padding-bottom: value(spacing06);
+  padding-right: value(spacing30);
+  padding-left: value(spacing30);
+}
+
+.root::footnote::innerContent {
+  justify-content: flex-start;
+}
+
+.root::illustration {
+  margin: value(spacing24) 0 0 value(spacing30);
+  max-height: 120px;
+  max-width: 120px;
+  overflow: hidden;
+}

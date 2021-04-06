@@ -1,0 +1,120 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60, D80, D50;
+}
+
+.root {
+  background-color: value(D80);
+}
+
+.item {
+  -st-states: root, firstSibling, placeholder, preview, dragging, rootAction, focused,
+    withoutBottomBorder;
+  border: 1px solid value(D60);
+  border-right: none;
+  box-sizing: border-box;
+  margin-top: -1px;
+  width: 100%;
+}
+
+.item:root.item:firstSibling {
+  border-top: none;
+}
+
+.item:dragging {
+  pointer-events: none;
+}
+
+.item:placeholder {
+  border-left: 1px value(D50) dashed;
+  background-color: value(D60);
+}
+
+.item:placeholder > * {
+  visibility: hidden;
+}
+
+.item:withoutBottomBorder {
+  border-bottom: none;
+}
+
+.item:focused {
+  z-index: 100;
+}
+
+.item:preview,
+.item:focused {
+  border: none;
+  box-shadow: 0 2px 4px 0 rgba(22, 45, 61, 0.12),
+    0 0 6px 0 rgba(22, 45, 61, 0.12);
+}
+
+.item:root {
+  border-left: none;
+}
+
+.actionItem {
+  margin-left: 84px;
+  width: auto;
+}
+
+.item:rootAction {
+  border-left: none;
+  margin-left: 0;
+  position: relative;
+}
+
+.arrowContainer {
+  -st-states: firstChild, placehodler;
+  position: absolute;
+  height: calc(100% + 1px);
+  margin-top: -1px;
+  width: 84px;
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.arrow {
+  -st-states: lastChild, preview, placeholder;
+  position: absolute;
+  margin-left: 33px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid value(D60);
+}
+
+.arrow:lastChild {
+  height: calc(50% - 4px);
+  border-left: 1px solid value(D60);
+  align-items: flex-end;
+}
+
+.arrow:preview {
+  visibility: hidden;
+}
+
+.arrow:placeholder {
+  border-color: value(D50);
+}
+
+.horizontalArrow {
+  fill: value(D60);
+  margin-left: -1px;
+}
+
+.arrow:placeholder .horizontalArrow {
+  fill: value(D50);
+}
+
+.arrow:lastChild .horizontalArrow {
+  transform: translateY(100%);
+}
+
+.childArrow {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  left: -51px;
+  background-color: value(D60);
+}

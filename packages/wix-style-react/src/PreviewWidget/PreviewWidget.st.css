@@ -1,0 +1,50 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D55, D60;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/shadows.st.css";
+  -st-named: shadow30;
+}
+:import {
+  -st-from: '../Foundation/stylable/gradients.st.css';
+  -st-named: GR1;
+}
+
+.root{
+  -st-states: skin(enum(neutral, gradient, custom)), contentOutline(enum(shadow, border, none)), scrollable;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.root:skin(neutral){
+  background-color: value(D60);
+}
+
+.root:skin(gradient){
+  background-image: value(GR1);
+}
+
+.contentArea {
+  border-radius: 4px;
+  /* needed so that the inner element won't break the border-radius */
+  overflow:hidden;
+}
+
+.root:scrollable .contentArea {
+  overflow: auto;
+  max-height: 100%;
+}
+
+.root:contentOutline(shadow) .contentArea{
+  box-shadow: value(shadow30);
+}
+
+.root:contentOutline(border) .contentArea {
+  border: solid 1px value(D55);
+}

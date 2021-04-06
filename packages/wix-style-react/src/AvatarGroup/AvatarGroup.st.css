@@ -1,0 +1,92 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60, D20, D10-10;
+}
+
+.root {
+  -st-states: divider, type(enum(stretched, condensed));
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Avatar Item */
+.avatarContainer {
+  display: flex;
+  flex-direction: row;
+  z-index: 1;
+}
+
+.root:type(stretched) .avatarContainer {
+  margin-right: 6px;
+}
+
+.root:type(condensed) .avatarContainer {
+  margin-right: -6px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* moreItem */
+
+.moreItemContainer {
+  -st-states: size(enum(small, medium)), type(enum(stretched, condensed));
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid value(D10-10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.moreItemText {
+  color: value(D20);
+  text-align: center;
+  user-select: none;
+}
+
+.moreItemContainer:size(small) .moreItemText {
+  font-size: 10px;
+}
+
+.moreItemContainer:size(medium) .moreItemText {
+  font-size: 12px;
+}
+
+.moreItemContainer:size(small) {
+  height: 20px;
+  width: 20px;
+}
+
+.moreItemContainer:size(medium) {
+  height: 26px;
+  width: 26px;
+}
+
+/* Divider */
+
+.divider {
+  -st-states: size(enum(small, medium)), type(enum(stretched, condensed));
+  margin-right: 6px;
+  background-color: value(D60);
+}
+
+.divider:type(stretched) {
+  margin-left: 6px;
+  margin-right: 12px;
+}
+
+.divider:type(condensed) {
+  margin-left: 18px;
+  margin-right: 12px;
+}
+
+.divider:size(small) {
+  height: 24px;
+}
+
+.divider:size(medium) {
+  height: 30px;
+}

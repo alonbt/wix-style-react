@@ -1,0 +1,55 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60, B50;
+}
+
+:import {
+  -st-from: '../TableActionCell/TableActionCell.st.css';
+  -st-default: TableActionCell;
+  -st-named: onHover, notOnHover;
+}
+
+.emptyStateContainer {
+  padding: 42px;
+  border-top: 1px solid value(D60);
+}
+
+.content {
+  -st-states: titleBarVisible;
+}
+
+.content:not(:first-child):not(:titleBarVisible) {
+  border-top: 1px solid value(D60);
+}
+
+/*
+ * TableActionCell
+ */
+
+/* `onHover` HoverSlot */
+.tableRow TableActionCell::hoverSlot.onHover {
+  visibility: hidden;
+}
+
+.tableRow:hover TableActionCell::hoverSlot.onHover {
+  visibility: visible;
+}
+
+/* `notOnHover` HoverSlot */
+.tableRow TableActionCell::hoverSlot.notOnHover {
+  visibility: visible;
+}
+
+.tableRow:hover TableActionCell::hoverSlot.notOnHover {
+  visibility: hidden;
+}
+
+/* Placeholder icon */
+.tableRow:hover TableActionCell::placeholderIcon {
+  display: none;
+}
+
+.tableSubToolbar {
+  border-top: 1px solid value(D60);
+  padding: 9px 30px;
+}

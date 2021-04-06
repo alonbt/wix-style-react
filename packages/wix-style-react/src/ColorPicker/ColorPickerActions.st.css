@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px;
+}
+
+.root > * {
+  margin: 0 6px;
+}
+
+.root > *:last-child {
+  margin-right: 0;
+}

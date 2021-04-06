@@ -1,0 +1,12 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60;
+}
+
+.googleFooter {
+  height: 40px;
+  border-top: 1px solid value(D60);
+  background: url('../assets/powered_by_google.png') no-repeat;
+  background-position: calc(100% - 14px) 50%;
+  background-size: auto 18px;
+}

@@ -1,0 +1,44 @@
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: "../Sidebar/colors.st.css";
+  -st-named:
+    sidebarBackgroundColor, sidebarLightBackgroundColor
+}
+
+:import {
+    -st-from: '../Foundation/stylable/colors.st.css';
+    -st-named: D40
+}
+
+:import {
+  -st-from: "../Sidebar/Sidebar.st.css";
+  -st-named: sidebarWidth
+}
+
+.root {
+  -st-extends: Text;
+  -st-states: skin(enum(dark, light));
+
+  display: block;
+  padding: 9px 24px;
+  max-width: value(sidebarWidth);
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.root:skin(dark) {
+  background-color: value(sidebarBackgroundColor);
+}
+
+.root:skin(light) {
+  background-color: value(sidebarLightBackgroundColor);
+}
+
+.root:size(tiny):weight(bold) {
+  color: value(D40);
+  line-height: 18px;
+}

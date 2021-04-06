@@ -1,0 +1,9 @@
+.absolutePosition {
+  position: absolute;
+}
+
+.contentWrapper {
+  padding: 12px 24px;
+  text-align: center;
+  width: max-content;
+}

@@ -1,0 +1,41 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: F00, D10-30, D80, D55,  THEME-COLOR-30;
+}
+
+.root {
+  -st-states: disabled;
+  /* Positioning */
+  display: flex;
+  /* Sizing */
+  box-sizing: border-box;
+  /* Border & Spacing */
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px value(THEME-COLOR-30);
+  /* Styles */
+  background: value(D80);
+  /* Disable native focus */
+  outline:none;
+}
+
+.root:disabled {
+  box-shadow: 0 0 0 1px value(D10-30);
+}
+
+.divider {
+  -st-states: disabled, transparent;
+  /* Sizing */
+  flex-basis: auto;
+  width: 1px;
+  min-width: 1px;
+
+  background-color: value(THEME-COLOR-30);
+}
+
+.divider:disabled {
+  background-color: value(D10-30);
+}
+
+.divider:transparent {
+  background-color: transparent;
+}

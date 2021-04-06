@@ -1,0 +1,31 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, fallback, applyUnit, zeroAsTrue;
+}
+
+/* Defaults */
+:vars {
+    MainColor: color-5;
+    MainWidth: 1;
+}
+
+/*Overrides*/
+:vars {
+    /*
+    Divider color
+    @default color-5
+     */
+    MainDividerColor: value(MainColor);
+    /*
+    Divider width
+    @default 1px
+     */
+    MainDividerWidth: value(MainWidth);
+}
+
+.root {
+    width: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: color(fallback(value(MainDividerColor), value(MainColor)));
+    border-bottom-width: applyUnit(fallback(zeroAsTrue(value(MainDividerWidth)), value(MainWidth)), px);
+}

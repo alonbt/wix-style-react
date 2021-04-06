@@ -1,0 +1,16 @@
+:import {
+    -st-from: "../../common/palette.st.css";
+    -st-named: errorColor;
+}
+
+:import {
+    -st-from: "wix-ui-core/index.st.css";
+    -st-named: Input;
+}
+
+.root .errorMessage {
+    height: 18px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: value(errorColor);
+}

@@ -1,0 +1,154 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css";
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: "../../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/typography.st.css';
+  -st-named: text-medium-normal, text-medium-thin , text-small-normal,  text-small-thin;
+}
+
+:import {
+  -st-from: "../../Foundation/stylable/spacing.st.css";
+  -st-named: spacing06;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: D10-30, D40, B10, B20, R10, R20, F00;
+}
+
+:import {
+  -st-from: "./StepMarker.st.css";
+  -st-default: StepMarker;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states:
+    isMadefor,
+    type(enum(normal, error, disabled, completed)),
+    styleType(enum(circle, text)),
+    selected,
+    hovered,
+    clickable;
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-width: 0;
+  outline: none;
+  border: none;
+  padding: 0;
+  background: none;
+  text-align: left;
+  flex-shrink: 1;
+  transition: flex-shrink 200ms ease-out;
+}
+
+.root:not(:clickable) {
+  cursor: default;
+}
+
+.root:selected {
+  flex-shrink: 0;
+}
+
+.marker {
+  -st-extends: StepMarker;
+  flex-shrink: 0;
+}
+
+.root:styleType(circle):focus-visible .marker {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.root:styleType(text) .marker {
+  -st-mixin: text-medium-normal;
+}
+
+.root:styleType(text):isMadefor .marker {
+  -st-mixin: text-medium-thin;
+}
+
+.root:styleType(circle) .marker {
+  -st-mixin: text-small-normal;
+}
+
+.root:styleType(circle):isMadefor .marker {
+  -st-mixin: text-small-thin;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  position: relative;
+}
+
+.root:styleType(text):focus-visible .content::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  box-shadow: 0 0 0 3px value(F00);
+  border-radius: 2px;
+}
+
+.text {
+  -st-extends: Text;
+}
+
+.root:styleType(circle) .text {
+  line-height: 30px;
+}
+
+.root:styleType(text) .text  {
+  line-height: 24px;
+}
+
+.root:type(disabled):styleType(circle) .text {
+  color: value(D40);
+}
+
+.root:type(disabled):styleType(text) .text  {
+  color: value(D10-30);
+}
+
+.root:selected .text {
+  color: value(B10);
+}
+
+.root:hovered:clickable .text {
+  color: value(B20);
+}
+
+.root:type(error) .text {
+  color: value(R10);
+}
+
+.root:type(error):selected .text {
+  color: value(R10);
+}
+
+.root:type(error):hovered:clickable .text {
+  color: value(R20);
+}
+
+.arrow {
+  margin-right: value(spacing06);
+  color: value(D10-30);
+  flex-shrink: 0;
+}
+
+:global([dir="rtl"]) .arrow {
+  margin-right: 0;
+  margin-left: value(spacing06);
+}

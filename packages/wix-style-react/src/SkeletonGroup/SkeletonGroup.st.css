@@ -1,0 +1,31 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80;
+}
+
+.root {
+  --color: value(D80);
+  overflow: hidden;
+  position: relative;
+}
+
+.animator {
+  position: absolute;
+  left: -200px;
+  top: 0;
+  height: 100%;
+  width: 200px;
+  background: linear-gradient(to right, transparent 0%, var(--color, value(D80)) 40%, var(--color, value(D80)) 60%, transparent 100%);
+  animation: wave 1s ease 0.5s infinite;
+  opacity: 0.2;
+}
+
+@keyframes wave {
+  0% {
+    left: -200px;
+  }
+  
+  100% {
+    left: 100%;
+  }
+}

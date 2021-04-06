@@ -1,0 +1,10 @@
+:import {
+  -st-from: "../Grid.st.css";
+  -st-default: TPAGrid;
+}
+
+.root {
+  -st-mixin: TPAGrid(
+      MainDividerColor blue
+  );
+}

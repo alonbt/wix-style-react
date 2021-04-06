@@ -1,0 +1,82 @@
+:import {
+  -st-from: 'wix-ui-core/dist/src/components/pagination/Pagination.st.css';
+  -st-default: Pagination;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D10, D80, B10, B20, F00;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-small-thin;
+}
+
+.button-common-mixin {
+  -st-mixin: text-small-thin;
+  align-items: center;
+  justify-content: center;
+  margin: 3px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 50%;
+}
+
+.root {
+  -st-extends: Focusable;
+}
+
+.root:focus-visible .pagination::pageButton:focus,
+.root:focus-visible .pagination::navButton:focus{
+  box-shadow: 0 0 0 3px value(F00);
+  border-radius: 50%;
+}
+
+.pagination {
+  -st-extends: Pagination;
+}
+
+.pagination::pageButton {
+  -st-mixin: button-common-mixin;
+  color: value(D10);
+}
+
+.pagination::pageButton:hover,
+.pagination::navButton:hover {
+  color: value(D80);
+  background-color: value(B20);
+}
+
+.pagination::pageButton:focus, .pagination::navButton:focus {
+  outline: none;
+}
+
+.pagination::currentPage {
+  -st-mixin: button-common-mixin;
+  background-color: value(B10);
+  color: value(D80);
+}
+
+.pagination::navButton {
+  -st-mixin: button-common-mixin;
+  color: value(B20);
+}
+
+.pagination::emptyButton {
+  -st-mixin: button-common-mixin;
+}
+
+.pagination::gap {
+  -st-mixin: button-common-mixin;
+  color: value(D10);
+}
+
+:global([dir='rtl']) .arrow {
+  transform: scaleX(-1);
+}

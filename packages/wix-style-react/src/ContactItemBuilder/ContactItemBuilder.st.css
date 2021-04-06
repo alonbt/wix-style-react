@@ -1,0 +1,18 @@
+.contactItemOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 48px;
+  width: 100%;
+}
+
+.contactItemTitles {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.avatar {
+  margin-left: -6px;
+  margin-right: 13px;
+}

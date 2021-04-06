@@ -1,0 +1,81 @@
+:import {
+    -st-from: 'wix-ui-core/dist/src/components/circular-progress-bar/CircularProgressBar.st.css';
+    -st-default: CircularProgressBar;
+}
+
+:import {
+    -st-from: '../Foundation/stylable/colors.st.css';
+    -st-named:
+            B00, B30,
+            D20,
+            R00, R10, R30,
+}
+
+:import {
+    -st-from: '../Foundation/stylable/typography.st.css';
+    -st-named: heading-h6;
+}
+
+.progressBar {
+    -st-states: light, size(enum(small, medium, large));
+    -st-extends: CircularProgressBar;
+}
+
+.root {
+    display: inline-block;
+}
+
+.root .progressBar::foreArc {
+    stroke: value(B00);
+}
+
+.root .progressBar::backArc {
+    stroke: value(B30);
+}
+
+.root .progressBar:error::foreArc {
+    stroke: value(R00);
+}
+
+.root .progressBar:error::backArc {
+    stroke: value(R30);
+}
+
+.root .progressBar:light::backArc {
+    stroke: white;
+}
+
+.root .progressBar::statusIndicator {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.root .progressBar:success::statusIndicator {
+    color: value(B00);
+}
+
+.root .progressBar:error::statusIndicator {
+    color: value(R10);
+}
+
+.root .progressBar::statusIndicator svg {
+    height: 15px;
+    width: 20px;
+}
+
+.root .progressBar:size(small)::statusIndicator svg {
+    height: 9px;
+    width: 12px;
+}
+
+.root .progressBar::label,
+.root .progressBar::progressIndicator {
+    color: value(D20);
+  -st-mixin: heading-h6;
+    margin-top: 12px;
+}
+

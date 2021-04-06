@@ -1,0 +1,4 @@
+/* Declaring the root of the component to allow stylable extending ny consumers */
+.root {}
+/* a class for the image element that be rendered in case of image-src passed and not an element   */
+.image {}

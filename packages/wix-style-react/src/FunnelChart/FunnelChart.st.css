@@ -1,0 +1,26 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60, D70, D55;
+}
+
+.funnel {
+  display: flex;
+  height: 150px;
+  justify-content: space-between;
+  justify-items: flex-end;
+  border-bottom: 1px solid value(D60);
+}
+
+.labels {
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.labelWrapper {
+  z-index: 1;
+  text-align: left;
+  flex: 1 1 0px;
+  margin-right: 24px;
+  width: 0;
+}

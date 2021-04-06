@@ -1,0 +1,105 @@
+:import {
+    -st-from: '../Foundation/stylable/colors.st.css';
+    -st-named: B60, B30;
+}
+
+:vars {
+    borderRadiusSmall: 4px;
+    borderRadiusLarge: 6px;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 30px;
+}
+
+.root:hover {
+    background-color: value(B60);
+}
+
+.root:hover:active {
+    background-color: value(B30);
+}
+
+.mainPart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.titles {
+    flex: 1 1 auto;
+    overflow: hidden;
+    margin-left: 12px;
+    display: flex;
+    flex-flow: column;
+}
+
+.image {
+    -st-states: size(enum(tiny, small, portrait, large, cinema)),  imageShape(enum(rectangular, circle));
+    overflow: hidden;
+    margin: 0 8px 0 20px;
+    flex: 0 0 auto;
+}
+
+.image:size(tiny) {
+    width: 24px;
+    height: 24px;
+}
+
+.image:size(tiny):imageShape(rectangular) {
+    border-radius: value(borderRadiusSmall);
+}
+
+.image:size(small) {
+    width: 42px;
+    height: 42px;
+}
+
+.image:size(small):imageShape(rectangular) {
+    border-radius: value(borderRadiusSmall);
+}
+
+.image:size(portrait) {
+    width: 48px;
+    height: 60px;
+}
+
+.image:size(portrait):imageShape(rectangular) {
+    border-radius: value(borderRadiusLarge);
+}
+
+.image:size(large) {
+    width: 60px;
+    height: 60px;
+}
+
+.image:size(large):imageShape(rectangular) {
+    border-radius: value(borderRadiusLarge);
+}
+
+.image:size(cinema) {
+    width: 102px;
+    height: 60px;
+}
+
+.image:size(cinema):imageShape(rectangular) {
+    border-radius: value(borderRadiusLarge);
+}
+
+.image:imageShape(circle) {
+    border-radius: 50%;
+}
+
+.extra {
+    flex: 0 0 auto;
+    max-width: 180px;
+    margin-left: 18px;
+    overflow: hidden;
+}
+
+.belowSection {
+    cursor: default;
+}

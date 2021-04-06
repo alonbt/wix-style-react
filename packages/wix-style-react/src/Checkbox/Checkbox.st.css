@@ -1,0 +1,279 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D10-05, D10-30, D60, D80, F00, R10, R30, THEME-COLOR-10,
+    THEME-COLOR-20, THEME-COLOR-40, THEME-COLOR-50, THEME-COLOR-60;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: vAlign(enum(center, top)),
+    selectionArea(enum(none, always, hover)), disabled,
+    selection(enum(unchecked, checked, indeterminate)), checkboxhover, error,
+    selectionAreaSkin(enum(filled, outlined));
+  display: inline-flex;
+  outline: none;
+
+  /* Sets minimal height for the container in case there's no label */
+  min-height: 24px;
+}
+
+:global([dir='rtl']) .root {
+  direction: rtl;
+}
+
+/* Label */
+.root .label {
+  cursor: default;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.root .label .labelInner {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.children {
+  cursor: pointer;
+  padding-left: 12px;
+  width: 100%;
+}
+
+:global([dir='rtl']) .children {
+  padding-left: 0;
+  padding-right: 12px;
+}
+
+.checkbox {
+  position: relative;
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  min-height: 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1px solid value(THEME-COLOR-20);
+  background-color: value(D80);
+}
+
+.root:focus-visible .checkbox {
+  outline: none;
+  border-color: value(THEME-COLOR-10);
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  color: value(D80);
+  opacity: 0;
+}
+
+.inner > svg {
+  width: 8px;
+  height: 8px;
+}
+
+/* Vertical Align */
+.root:vAlign(center) .label,
+.root:vAlign(center) .label .labelInner {
+  align-items: center;
+}
+
+.root:vAlign(top) .outer {
+  margin-top: 4px;
+  display: flex;
+}
+
+/* Selection Area */
+.root:selectionArea(always),
+.root:selectionArea(hover) {
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.root:selectionArea(always) .label,
+.root:selectionArea(hover) .label {
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.root:selectionArea(always) .label .labelInner,
+.root:selectionArea(hover) .label .labelInner {
+  padding: 10px 14px;
+}
+
+.root:selectionArea(always):selectionAreaSkin(filled) {
+  background-color: value(THEME-COLOR-60);
+}
+
+.root:not(:disabled):selectionArea(always):selectionAreaSkin(filled):hover,
+.root:not(:disabled):selectionArea(hover):selectionAreaSkin(filled):hover {
+  background-color: value(THEME-COLOR-50);
+}
+
+.root:selectionArea(always) .children,
+.root:selectionArea(hover) .children {
+  padding-left: 12px;
+}
+
+.root:selectionArea(always) .outer,
+.root:selectionArea(hover) .outer {
+  padding: 4px 0;
+}
+
+.root:not(:disabled):selectionArea(always),
+.root:not(:disabled):selectionArea(hover),
+.root:not(:disabled):selectionArea(always) .label,
+.root:not(:disabled):selectionArea(hover) .label,
+.root:not(:disabled):selectionArea(always) .outer,
+.root:not(:disabled):selectionArea(hover) .outer {
+  cursor: pointer;
+}
+
+.root:selectionArea(always):selectionAreaSkin(outlined) .label {
+  border: 1px solid value(THEME-COLOR-40);
+  padding: 1px;
+}
+
+.root:not(:disabled):selectionArea(always):selectionAreaSkin(outlined):hover
+  .label,
+.root:not(:disabled):selectionArea(hover):selectionAreaSkin(outlined):hover
+  .label {
+  border: 1px solid value(THEME-COLOR-20);
+  padding: 1px;
+}
+
+.root:selectionArea(hover):selectionAreaSkin(filled):selection(checked),
+.root:selectionArea(hover):selectionAreaSkin(filled):selection(indeterminate),
+.root:selectionArea(always):selectionAreaSkin(filled):selection(checked),
+.root:selectionArea(always):selectionAreaSkin(filled):selection(indeterminate) {
+  background-color: value(THEME-COLOR-40);
+}
+
+.root:selectionArea(hover):selectionAreaSkin(outlined):selection(checked)
+  .label,
+.root:selectionArea(hover):selectionAreaSkin(outlined):selection(indeterminate)
+  .label,
+.root:selectionArea(always):selectionAreaSkin(outlined):selection(checked)
+  .label,
+.root:selectionArea(always):selectionAreaSkin(outlined):selection(indeterminate)
+  .label {
+  border: 2px solid value(THEME-COLOR-10);
+  padding: 0;
+}
+
+.root:not(:disabled):selectionArea(hover):selectionAreaSkin(outlined):selection(checked):hover
+  .label,
+.root:not(:disabled):selectionArea(hover):selectionAreaSkin(outlined):selection(indeterminate):hover
+  .label,
+.root:not(:disabled):selectionArea(always):selectionAreaSkin(outlined):selection(checked):hover
+  .label,
+.root:not(:disabled):selectionArea(always):selectionAreaSkin(outlined):selection(indeterminate):hover
+  .label {
+  border: 2px solid value(THEME-COLOR-20);
+  padding: 0;
+}
+
+.root:selectionArea(always):vAlign(top) .outer {
+  margin-top: 0;
+}
+
+:global([dir='rtl']) .root:selectionArea(always) .children,
+:global([dir='rtl']) .root:selectionArea(hover) .children {
+  padding-left: 0;
+  padding-right: 12px;
+}
+
+.root:selection(checked) .checkbox,
+.root:selection(indeterminate) .checkbox {
+  border: 1px solid value(THEME-COLOR-10);
+  background-color: value(THEME-COLOR-10);
+}
+
+.root:selection(checked) .checkbox .inner,
+.root:selection(indeterminate) .checkbox .inner {
+  opacity: 1;
+}
+
+.root:focus-visible:selectionArea(always):selectionAreaSkin(outlined),
+.root:focus-visible:selectionArea(hover):selectionAreaSkin(outlined) {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+/* Disabled */
+.root:disabled {
+  cursor: default;
+}
+
+.root:disabled .children {
+  pointer-events: none;
+}
+
+.root:disabled .checkbox {
+  pointer-events: none;
+  border-color: value(D10-30);
+  background-color: value(D10-05);
+}
+
+.root:disabled .checkbox .inner {
+  color: value(D10-30);
+}
+
+.root:disabled:selectionArea(always),
+.root:disabled:selectionArea(hover) {
+  background-color: transparent;
+}
+
+.root:disabled:selectionArea(always) .checkbox,
+.root:disabled:selectionArea(always):selection(checked),
+.root:disabled:selectionArea(always):selection(indeterminate),
+.root:disabled:selectionArea(hover) .checkbox,
+.root:disabled:selectionArea(hover):selection(checked),
+.root:disabled:selectionArea(hover):selection(indeterminate) {
+  background-color: transparent;
+}
+
+.root:disabled:selectionArea(always):selectionAreaSkin(outlined) .label,
+.root:disabled:selectionArea(always):selectionAreaSkin(outlined):selection(checked)
+  .label {
+  border: 1px solid value(D60);
+  padding: 1px;
+}
+.root:disabled:selectionArea(hover):selectionAreaSkin(outlined):selection(checked) {
+  box-shadow: none;
+}
+
+/* Error */
+.root:error .checkbox {
+  border-color: value(R10);
+}
+
+.root:error:focus-visible .checkbox {
+  outline: none;
+  border-color: value(R10);
+  box-shadow: 0 0 0 3px value(R30);
+}
+
+/* Hover */
+.root:selection(unchecked):not(:disabled):hover .checkbox {
+  background-color: value(THEME-COLOR-50);
+}
+
+.root:checkboxhover .checkbox {
+  background-color: value(THEME-COLOR-50);
+}

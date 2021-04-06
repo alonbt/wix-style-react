@@ -1,0 +1,32 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: D40, D60;
+}
+
+.root {
+  -st-states: highlight;
+
+  margin-left: -1px;
+  margin-right: -1px;
+  border-right: solid 1px transparent;
+  border-left: solid 1px transparent;
+  border-image: linear-gradient(
+    transparent 0 18px,
+    value(D60) 18px calc(100% - 18px),
+    transparent calc(100% - 18px) 100%
+  ) 1;
+  min-height: 48px;
+  position: relative;
+}
+
+.root:highlight {
+  border-image: linear-gradient(value(D60) 0 100%) 1;
+  z-index: 1;
+}
+
+.root:first-child {
+  border-left: none;
+}
+.root:last-child {
+  border-right: none;
+}

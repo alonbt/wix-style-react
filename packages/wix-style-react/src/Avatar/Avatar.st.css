@@ -1,0 +1,359 @@
+@namespace 'WSRAvatar';
+
+:import {
+  -st-from: '../Foundation/stylable/shadows.st.css';
+  -st-named: shadow10;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/components/avatar/avatar.st.css';
+  -st-default: Avatar;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: A1, A2, A3, A4, A5, A6, F00, D80, G10, R10, Y10, B40, D80, D10;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/gradients.st.css';
+  -st-named: GRAD_B10, GRAD_D10, GRAD_G10, GRAD_O10, GRAD_R10;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-small-bold, text-tiny-normal, text-medium-normal, text-medium-bold, text-tiny-bold, heading-h6;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-9;
+}
+
+.placeholder {
+  fill: value(F00);
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+}
+
+/**
+  in order to fix the gap underneath the avatar, when render with image.
+*/
+.root{
+  line-height: 0;
+}
+
+.avatarContainer {
+  -st-states:
+      size(enum(size90, size72, size60, size48, size36, size30, size24, size18)),
+      indication,
+      shape(enum(circle,square)),
+      presenceType(enum(busy, online, offline)),
+      presence,
+      clickable,
+      fade,
+      hasText;
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.avatarContainer:presence .coreAvatar {
+  padding-right: 2px;
+}
+
+.avatarContainer:clickable .avatar {
+  cursor: pointer;
+}
+
+.presence {
+  border: 2px solid value(D80);
+  position: absolute;
+  border-radius: 50px;
+  top: 0;
+  right: 0;
+}
+
+.indication {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.avatarContainer:fade .indication {
+  opacity: 0;
+  transition: opacity 100ms value(ease-9);
+}
+
+.iconButtonShadow{
+  border-radius: 50%;
+  box-shadow: value(shadow10);
+}
+
+.avatarContainer:size(size90) .indication,
+.avatarContainer:size(size72) .indication{
+  width: 30px;
+  height: 30px;
+}
+
+.avatarContainer:size(size60) .indication,
+.avatarContainer:size(size48) .indication{
+  width: 24px;
+  height: 24px;
+}
+
+.avatarContainer:size(size18) .presence,
+.avatarContainer:size(size24) .presence{
+  width: 6px;
+  height: 6px;
+}
+
+.avatarContainer:size(size30) .presence,
+.avatarContainer:size(size36) .presence{
+  width: 8px;
+  height: 8px;
+}
+
+.avatarContainer:size(size48) .presence,
+.avatarContainer:size(size60) .presence{
+  width: 10px;
+  height: 10px;
+}
+
+.avatarContainer:size(size72) .presence{
+  width: 12px;
+  height: 12px;
+  top: 1px;
+}
+
+.avatarContainer:size(size90) .presence{
+  width: 12px;
+  height: 12px;
+  top: 1px;
+  right: 4px;
+}
+
+.avatarContainer:size(size90):presence .coreAvatar{
+  padding-right: 0;
+}
+.avatarContainer:size(size48):presence .coreAvatar,
+.avatarContainer:size(size36):presence .coreAvatar,
+.avatarContainer:size(size30):presence .coreAvatar,
+.avatarContainer:size(size18):presence .coreAvatar{
+  padding-top: 1px;
+  padding-right: 5px;
+}
+
+.avatarContainer:size(size24):presence .coreAvatar{
+  padding-right: 4px;
+}
+
+.avatarContainer:presenceType(online) .presence{
+  background-color: value(G10);
+}
+.avatarContainer:presenceType(offline) .presence{
+  background-color: value(R10);
+}
+.avatarContainer:presenceType(busy) .presence{
+  background-color: value(Y10);
+}
+
+.avatarContainer:size(size90):indication,
+.avatarContainer:size(size72):indication,
+.avatarContainer:size(size60):indication {
+  padding-right:6px;
+}
+
+.avatarContainer:size(size48):indication {
+  padding-right:12px;
+}
+
+.avatarContainer:size(size90):indication:presence {
+  padding-right:6px;
+}
+
+.avatarContainer:size(size72):indication:presence,
+.avatarContainer:size(size60):indication:presence {
+  padding-right:4px;
+}
+
+.avatarContainer:size(size48):indication:presence {
+  padding-right:7px;
+}
+
+.avatarContainer:size(size48):indication .presence{
+  right: 10px;
+}
+
+.avatarContainer:size(size60):indication .presence,
+.avatarContainer:size(size72):indication .presence{
+  right: 6px;
+}
+
+/* Square Shape Presence*/
+
+.avatarContainer:size(size90):shape(square) .presence { top: -5px; right: 1px; }
+.avatarContainer:size(size72):shape(square) .presence { top: -5px; right: 1px; }
+.avatarContainer:size(size60):shape(square) .presence { top: -4px; right: 2px; }
+.avatarContainer:size(size48):shape(square) .presence { top: -3px; right: 8px; }
+.avatarContainer:size(size36):shape(square) .presence { top: -3px; right: 1px; }
+.avatarContainer:size(size30):shape(square) .presence { top: -3px; right: 1px; }
+.avatarContainer:size(size24):shape(square) .presence { top: -4px; right: 0; }
+.avatarContainer:size(size18):shape(square) .presence { top: -3px; right: 1px; }
+
+
+/* Square Shape Indication*/
+
+.avatarContainer:size(size90):shape(square) .indication { right: 0; bottom: -3px; }
+.avatarContainer:size(size72):shape(square) .indication { right: 0; bottom: -3px; }
+.avatarContainer:size(size60):shape(square) .indication { right: 0; bottom: -2px; }
+.avatarContainer:size(size48):shape(square) .indication { right: 3px; bottom: -2px; }
+
+.avatar {
+  -st-extends: Avatar;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 48px;
+  width: 48px;
+  border-radius: 30px;
+  outline: none;
+}
+
+.avatar:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.avatar:contentType(image)::content {
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+}
+
+/* Colors */
+.avatar:contentType(placeholder) {
+  background-color: value(B40);
+}
+
+.avatar:contentType(text).colorA1 { background-color: value(A1); }
+.avatar:contentType(text).colorA2 { background-color: value(A2); }
+.avatar:contentType(text).colorA3 { background-color: value(A3); }
+.avatar:contentType(text).colorA4 { background-color: value(A4); }
+.avatar:contentType(text).colorA5 { background-color: value(A5); }
+.avatar:contentType(text).colorA6 { background-color: value(A6); }
+
+/* Sizes */
+
+.avatarContainer:size(size90) .loaderContainer,
+.avatarContainer:size(size90) .avatar {
+  height: 90px;
+  width: 90px;
+  border-radius: 45px;
+}
+.avatarContainer:size(size72) .loaderContainer,
+.avatarContainer:size(size72) .avatar {
+  height: 72px;
+  width: 72px;
+  border-radius: 36px;
+}
+.avatarContainer:size(size60) .loaderContainer,
+.avatarContainer:size(size60) .avatar {
+  height: 60px;
+  width: 60px;
+  border-radius: 36px;
+}
+
+.avatarContainer:size(size48) .loaderContainer,
+.avatarContainer:size(size48) .avatar {
+  height: 48px;
+  width: 48px;
+  border-radius: 30px;
+}
+
+.avatarContainer:size(size36) .avatar {
+  height: 36px;
+  width: 36px;
+  border-radius: 21px;
+}
+.avatarContainer:size(size30) .avatar {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+
+.avatarContainer:size(size24) .avatar {
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+}
+
+.avatarContainer:size(size18) .avatar {
+  height: 18px;
+  width: 18px;
+  border-radius: 12px;
+}
+
+/* Shapes */
+.avatarContainer:shape(square) .loaderContainer,
+.avatarContainer:shape(square) .avatar {
+  border-radius: 4px;
+}
+
+.avatarContainer:size(size72):shape(square) .loaderContainer,
+.avatarContainer:size(size90):shape(square) .loaderContainer,
+.avatarContainer:size(size72):shape(square) .avatar,
+.avatarContainer:size(size90):shape(square) .avatar {
+    border-radius: 6px;
+}
+
+/* Sizes text */
+.avatar:contentType(text)::content {
+  -st-mixin: text-small-bold;
+  color: value(D80);
+}
+
+
+.avatarContainer:size(size90) .avatar:contentType(text)::content,
+.avatarContainer:size(size72) .avatar:contentType(text)::content  {
+  -st-mixin: text-medium-normal;
+}
+
+.avatarContainer:size(size90)[data-madefor="true"] .avatar:contentType(text)::content,
+.avatarContainer:size(size72)[data-madefor="true"] .avatar:contentType(text)::content  {
+  -st-mixin: text-medium-bold;
+}
+
+.avatarContainer:size(size36) .avatar:contentType(text)::content,
+.avatarContainer:size(size30) .avatar:contentType(text)::content,
+.avatarContainer:size(size24) .avatar:contentType(text)::content,
+.avatarContainer:size(size18) .avatar:contentType(text)::content  {
+  -st-mixin: heading-h6;
+  line-height: 18px;
+}
+
+.avatarContainer:size(size24):hasText .avatar:contentType(text)::content,
+.avatarContainer:size(size18) .avatar:contentType(text)::content  {
+  visibility: hidden;
+}
+
+.loaderContainer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.overlay{
+  opacity: 0.66;
+  background-color: value(D10);
+}
+
+.loader{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}

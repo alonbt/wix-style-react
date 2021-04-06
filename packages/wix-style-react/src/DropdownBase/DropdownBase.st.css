@@ -1,0 +1,42 @@
+:import {
+  -st-from: "../Popover/Popover.st.css";
+  -st-default: Popover;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
+  -st-named: popoverContent;
+}
+
+:import {
+  -st-from: "../DropdownLayout/DropdownLayout.st.css";
+  -st-default: DropdownLayout;
+}
+
+.root {
+  -st-extends: Popover;
+  -st-states: withWidth, withArrow;
+}
+
+.root::popoverContent {
+  overflow: hidden;
+
+  min-width: 192px;
+  width: 100%;
+}
+
+/* Reset width when the user define its own */
+.root:withWidth .popoverContent {
+  min-width: inherit;
+  width: inherit;
+}
+
+/* Add padding when an arrow is used */
+.root:withArrow::popover[data-placement*="top"] .popoverContent,
+.root:withArrow::popover[data-placement*="bottom"] .popoverContent {
+  padding: 10px 0;
+}
+
+.list {
+  -st-extends: DropdownLayout;
+}

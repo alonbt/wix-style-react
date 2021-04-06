@@ -1,0 +1,77 @@
+:import {
+  -st-from: '../../Foundation/stylable/typography.st.css';
+  -st-named: text-small-normal, text-small-thin, text-medium-normal, text-medium-thin;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: D10-30, D40;
+}
+
+.root {
+  -st-states: size(enum(small, medium, large)),
+              border(enum(standard, round, bottomLine)),
+              isMadefor, inPrefix, inSuffix, disabled;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: value(D40);
+  flex: 1 0 auto;
+}
+
+.root:inPrefix {
+  margin: auto 0 auto 6px;
+}
+
+:global([dir="rtl"]) .root:inPrefix {
+  margin: auto 6px auto 0;
+}
+
+.root:size(small):inSuffix {
+  margin: auto 3px auto 6px;
+}
+
+:global([dir="rtl"]) .root:size(small):inSuffix {
+  margin: auto 6px auto 3px;
+}
+
+.root:size(medium):inSuffix,
+.root:size(large):inSuffix {
+  margin: auto 6px;
+}
+
+:global([dir="rtl"]) .root:size(medium):inSuffix,
+:global([dir="rtl"]) .root:size(large):inSuffix {
+  margin: auto 6px;
+}
+
+.root:size(large):border(round):inSuffix {
+  margin: auto 6px auto 3px;
+}
+
+:global([dir="rtl"]) .root:size(large):border(round):inSuffix {
+  margin: auto 3px auto 6px;
+}
+
+.root:size(small) {
+  -st-mixin: text-small-normal;
+}
+
+.root:size(small):isMadefor {
+  -st-mixin: text-small-thin;
+}
+
+.root:size(medium),
+.root:size(large) {
+  -st-mixin: text-medium-normal;
+}
+
+.root:size(medium):isMadefor,
+.root:size(large):isMadefor {
+  -st-mixin: text-medium-thin;
+}
+
+.root:disabled {
+  color: value(D10-30);
+}

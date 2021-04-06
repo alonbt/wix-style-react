@@ -1,0 +1,40 @@
+:import {
+  -st-from: "../../../Badge/Badge.st.css";
+  -st-default: Badge;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: O10, D20;
+}
+
+:vars {
+  smallHeight: 16px;
+  smallPadding: 0px 8px;
+}
+
+.root {
+  -st-extends: Badge;
+}
+
+.root {
+  border-radius: 2px;
+  padding: 2px 8px;
+  line-height: 16px;
+  height: 20px;
+}
+
+.root:size(small) {
+  height: value(smallHeight);
+  padding: value(smallPadding);
+}
+
+.root:skin(urgent) {
+  border-color: value(O10);
+  background-color: value(O10);
+}
+
+.root:skin(general) {
+  border-color: value(D20);
+  background-color: value(D20);
+}

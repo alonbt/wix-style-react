@@ -1,0 +1,39 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B40, B10
+}
+
+.content > span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 250px;
+}
+
+.label {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.label svg {
+  padding: 3px;
+}
+
+.label:hover svg {
+  border-radius: 50%;
+  background: value(B40);
+}
+
+.info {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.icon {
+  margin-right: 10px;
+  color: value(B10);
+  padding-top: 3px;
+}

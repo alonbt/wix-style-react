@@ -1,0 +1,13 @@
+.root {
+  max-width: 1254px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-gap: 6px;
+}
+
+.divider {
+  margin-bottom: 30px;
+}

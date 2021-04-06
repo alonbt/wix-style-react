@@ -1,0 +1,147 @@
+:import {
+  -st-from: "../../common/formatters.st";
+  -st-named: color, fallback;
+}
+
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: TPAText;
+}
+
+/*Defaults*/
+:vars {
+  defaultBorderWidth: 0px;
+  defaultBorderRadius: 0px;
+  defaultImageOpacity: 100%;
+  errorBackgroundColor: color(color-2);
+  errorTextColor: color(color-1);
+  errorFontStyle: "{theme: 'Body-M', size:'14px', lineHeight: '1.5em'}";
+}
+
+/* Overrides */
+:vars {
+  /*
+    A background color by a color from the palette for the container
+  */
+  BackgroundColor: --overridable;
+  /*
+    A border color by a color from the palette for the container
+  */
+  BorderColor: --overridable;
+  /*
+    A border width in pixels for the container
+    @default 0px
+  */
+  BorderWidth: --overridable;
+  /*
+    A border radius in pixels for the container
+    @default 0px
+  */
+  BorderRadius: --overridable;
+  /*
+    An opacity between 0 to 100 for the image
+    @default 100%
+  */
+  ImageOpacity: --overridable;
+}
+
+:vars {
+  backgroundColor: color(value(BackgroundColor));
+  borderColor: color(value(BorderColor));
+  borderWidth: fallback(value(BorderWidth), value(defaultBorderWidth));
+  borderRadius: fallback(value(BorderRadius), value(defaultBorderRadius));
+  imageOpacity: fallback(value(ImageOpacity), value(defaultImageOpacity));
+  blurRadius: 3px;
+}
+
+@keyframes blurry-loading {
+  0% {
+    filter: blur(value(blurRadius));
+  }
+  100% {
+    filter: none;
+  }
+}
+
+.root {
+  display: grid;
+  height: 100%;
+}
+
+.root.contain .image {
+  object-fit: contain;
+}
+
+.root.cover .image {
+  object-fit: cover;
+}
+
+.root.fluid .image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.root.zoom {
+  overflow: hidden;
+}
+
+.root.zoom .image {
+  transition: transform 500ms cubic-bezier(.18,.73,.63,1);
+}
+
+.root.zoom:hover .image {
+  transform: scale(1.07);
+}
+
+.root.darken:hover .image {
+  filter: brightness(85%) contrast(115%);
+}
+
+.root.preload .image {
+  filter: blur(value(blurRadius));
+}
+
+.root.loaded .image {
+  animation-name: blurry-loading;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+}
+
+.root.overrideStyleParams:not(.isError) {
+  background-color: value(backgroundColor);
+  border: value(borderWidth) solid value(borderColor);
+  border-radius: value(borderRadius);
+  overflow: hidden;
+}
+
+.root.overrideStyleParams .image {
+  opacity: value(imageOpacity);
+}
+
+.root.isError {
+  background-color: value(errorBackgroundColor);
+  position: relative;
+}
+
+.root .errorWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.errorMessage {
+  -st-extends: TPAText;
+  -st-mixin: TPAText(MainTextColor value(errorTextColor), MainTextFont value(errorFontStyle));
+}
+
+/* temp workaround for icon color override */
+.root .errorWrapper svg g {
+  stroke: value(errorTextColor) !important;
+}

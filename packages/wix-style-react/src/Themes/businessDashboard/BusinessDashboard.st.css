@@ -1,0 +1,519 @@
+@st-global-custom-property --wsr-shadow10, --wsr-shadow20, --wsr-shadow30, --wsr-shadow40;
+
+:import {
+  -st-from: "./foundations/colors.st.css";
+  -st-named: S4, S5;
+}
+
+/* Components */
+:import {
+  -st-from: "../../Button/Button.st.css";
+  -st-default: Button;
+}
+
+:import {
+  -st-from: "../../CircularProgressBar/CircularProgressBar.st.css";
+  -st-default: CircularProgressBar;
+}
+
+:import {
+  -st-from: "../../Checkbox/Checkbox.st.css";
+  -st-default: Checkbox;
+}
+
+:import {
+  -st-from: "../../CounterBadge/CounterBadge.st.css";
+  -st-default: CounterBadge;
+}
+
+:import {
+  -st-from: "../../Divider/Divider.st.css";
+  -st-default: Divider;
+}
+
+:import {
+  -st-from: "../../LinearProgressBar/LinearProgressBar.st.css";
+  -st-default: LinearProgressBar;
+}
+
+:import {
+  -st-from: "../../Heading/Heading.st.css";
+  -st-default: Heading;
+}
+
+:import {
+  -st-from: "../../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: "../../TextButton/TextButton.st.css";
+  -st-default: TextButton;
+}
+
+:import {
+  -st-from: "../../IconButton/IconButton.st.css";
+  -st-default: IconButton;
+}
+
+:import {
+  -st-from: "../../Card/Header/Header.st.css";
+  -st-default: CardHeader;
+}
+
+:import {
+  -st-from: "../../Card/Content/Content.st.css";
+  -st-default: CardContent;
+}
+
+:import {
+  -st-from: "../../Carousel/Pagination/Pagination.st.css";
+  -st-default: Pagination;
+}
+
+:import {
+  -st-from: "../../Tooltip/Tooltip.st.css";
+  -st-default: Tooltip;
+}
+
+:import {
+  -st-from: "../../ListItemAction/ListItemAction.st.css";
+  -st-default: ListItemAction;
+}
+
+:import {
+  -st-from: "../../ListItemSection/ListItemSection.st.css";
+  -st-default: ListItemSection;
+}
+
+:import {
+  -st-from: "../../DropdownLayout/DropdownLayout.st.css";
+  -st-default: DropdownLayout;
+}
+
+:import {
+  -st-from: "../../PopoverMenu/PopoverMenu.st.css";
+  -st-default: PopoverMenu;
+}
+
+:import {
+  -st-from: "../../Sidebar/Sidebar.st.css";
+  -st-default: Sidebar;
+}
+
+:import {
+  -st-from: "../../SidebarBackButton/SidebarBackButton.st.css";
+  -st-default: SidebarBackButton;
+}
+
+:import {
+  -st-from: "../../SidebarDivider/SidebarDivider.st.css";
+  -st-default: SidebarDivider;
+}
+
+:import {
+  -st-from: "../../SidebarHeader/SidebarHeader.st.css";
+  -st-default: SidebarHeader;
+}
+
+:import {
+  -st-from: "../../SidebarSectionTitle/SidebarSectionTitle.st.css";
+  -st-default: SidebarSectionTitle;
+}
+
+:import {
+  -st-from: "../../SidebarSectionItem/SidebarSectionItem.st.css";
+  -st-default: SidebarSectionItem;
+}
+
+:import {
+  -st-from: "../../ListItemSelect/ListItemSelect.st.css";
+  -st-default: ListItemSelect;
+}
+
+:import {
+  -st-from: "../../Badge/Badge.st.css";
+  -st-default: Badge;
+}
+
+:import {
+  -st-from: "../../Loader/Loader.st.css";
+  -st-default: Loader;
+}
+
+:import {
+  -st-from: "../../Input/Input.st.css";
+  -st-default: Input;
+}
+
+:import {
+  -st-from: "../../Input/IconAffix/IconAffix.st.css";
+  -st-default: IconAffix;
+}
+
+:import {
+  -st-from: "../../EmptyState/EmptyState.st.css";
+  -st-default: EmptyState;
+}
+
+:import {
+  -st-from: "../../Modal/Modal.st.css";
+  -st-default: Modal;
+}
+
+:import {
+  -st-from: "../../TrendIndicator/TrendIndicator.st.css";
+  -st-default: TrendIndicator;
+}
+
+:import {
+  -st-from: "../../CloseButton/CloseButton.st.css";
+  -st-default: CloseButton;
+}
+
+:import {
+  -st-from: "../../Tag/Tag.st.css";
+  -st-default: Tag;
+}
+
+:import {
+  -st-from: "../../Thumbnail/Thumbnail.st.css";
+  -st-default: Thumbnail;
+}
+
+:import {
+  -st-from: "../../VerticalTabsItem/VerticalTabsItem.st.css";
+  -st-default: VerticalTabsItem;
+}
+
+:import {
+  -st-from: "../../CustomModalLayout/CustomModalLayout.st.css";
+  -st-default: CustomModalLayout;
+}
+
+:import {
+  -st-from: "../../TableListItem/TableListItem.st.css";
+  -st-default: TableListItem;
+}
+
+/* Overrides */
+:import {
+  -st-from: "./components/Button.st.css";
+  -st-default: ButtonOverrides;
+}
+
+:import {
+  -st-from: "./components/CircularProgressBar.st.css";
+  -st-default: CircularProgressBarOverrides;
+}
+
+:import {
+  -st-from: "./components/Checkbox.st.css";
+  -st-default: CheckboxOverrides;
+}
+
+:import {
+  -st-from: "./components/Divider.st.css";
+  -st-default: DividerOverrides;
+}
+
+:import {
+  -st-from: "./components/LinearProgressBar.st.css";
+  -st-default: LinearProgressBarOverrides;
+}
+
+:import {
+  -st-from: "./components/Heading.st.css";
+  -st-default: HeadingOverrides;
+}
+
+:import {
+  -st-from: "./components/Text.st.css";
+  -st-default: TextOverrides;
+}
+
+:import {
+  -st-from: "./components/TextButton.st.css";
+  -st-default: TextButtonOverrides;
+}
+
+:import {
+  -st-from: "./components/IconButton.st.css";
+  -st-default: IconButtonOverrides;
+}
+
+:import {
+  -st-from: "./components/Card/Header.st.css";
+  -st-default: CardHeaderOverrides;
+}
+
+:import {
+  -st-from: "./components/Card/Content.st.css";
+  -st-default: CardContentOverrides;
+}
+
+:import {
+  -st-from: "./components/Pagination.st.css";
+  -st-default: PaginationOverrides;
+}
+
+:import {
+  -st-from: "./components/Tooltip.st.css";
+  -st-default: TooltipOverrides;
+}
+
+:import {
+  -st-from: "./components/ListItemAction.st.css";
+  -st-default: ListItemActionOverrides;
+}
+
+:import {
+  -st-from: "./components/ListItemSection.st.css";
+  -st-default: ListItemSectionOverrides;
+}
+
+:import {
+  -st-from: "./components/PopoverMenu.st.css";
+  -st-default: PopoverMenuOverrides;
+}
+
+:import {
+  -st-from: "./components/DropdownLayout.st.css";
+  -st-default: DropdownLayoutOverrides;
+}
+
+:import {
+  -st-from: "./components/SidebarBackButton.st.css";
+  -st-default: SidebarBackButtonOverrides;
+}
+
+:import {
+  -st-from: "./components/Sidebar.st.css";
+  -st-default: SidebarOverrides;
+}
+
+:import {
+  -st-from: "./components/SidebarDivider.st.css";
+  -st-default: SidebarDividerOverrides;
+}
+
+:import {
+  -st-from: "./components/SidebarHeader.st.css";
+  -st-default: SidebarHeaderOverrides;
+}
+
+:import {
+  -st-from: "./components/SidebarSectionItem.st.css";
+  -st-default: SidebarSectionItemOverrides;
+}
+
+:import {
+  -st-from: "./components/SidebarSectionTitle.st.css";
+  -st-default: SidebarSectionTitleOverrides;
+}
+
+:import {
+  -st-from: "./components/ListItemSelect.st.css";
+  -st-default: ListItemSelectOverrides;
+}
+
+:import {
+  -st-from: "./components/Badge.st.css";
+  -st-default: BadgeOverrides;
+}
+
+:import {
+  -st-from: "./components/Loader.st.css";
+  -st-default: LoaderOverrides;
+}
+
+:import {
+  -st-from: "./components/Input/Input.st.css";
+  -st-default: InputOverrides;
+}
+
+:import {
+  -st-from: "./components/Input/IconAffix.st.css";
+  -st-default: IconAffixOverrides;
+}
+
+:import {
+  -st-from: "./components/EmptyState.st.css";
+  -st-default: EmptyStateOverrides;
+}
+
+:import {
+  -st-from: "./components/Modal.st.css";
+  -st-default: ModalOverrides;
+}
+
+:import {
+  -st-from: "./components/TrendIndicator.st.css";
+  -st-default: TrendIndicatorOverrides;
+}
+
+:import {
+  -st-from: "./components/CloseButton.st.css";
+  -st-default: CloseButtonOverrides;
+}
+
+:import {
+  -st-from: "./components/Tag.st.css";
+  -st-default: TagOverrides;
+}
+
+:import {
+  -st-from: "./components/Thumbnail.st.css";
+  -st-default: ThumbnailOverrides;
+}
+
+:import {
+  -st-from: "./components/VerticalTabsItem.st.css";
+  -st-default: VerticalTabsItemOverrides;
+}
+
+:import {
+  -st-from: "./components/CustomModalLayout.st.css";
+  -st-default: CustomModalLayoutOverrides;
+}
+
+:import {
+  -st-from: "./components/TableListItem.st.css";
+  -st-default: TableListItemOverrides;
+}
+
+@st-scope .root {
+  Button {
+    -st-mixin: ButtonOverrides();
+  }
+  CircularProgressBar {
+    -st-mixin: CircularProgressBarOverrides();
+  }
+  Checkbox {
+    -st-mixin: CheckboxOverrides();
+  }
+  Divider {
+    -st-mixin: DividerOverrides();
+  }
+  LinearProgressBar {
+    -st-mixin: LinearProgressBarOverrides();
+  }
+  Heading {
+    -st-mixin: HeadingOverrides();
+  }
+  Text {
+    -st-mixin: TextOverrides();
+  }
+  TextButton {
+    -st-mixin: TextButtonOverrides();
+  }
+  IconButton {
+    -st-mixin: IconButtonOverrides();
+  }
+  CardHeader {
+    -st-mixin: CardHeaderOverrides();
+  }
+  CardContent {
+    -st-mixin: CardContentOverrides();
+  }
+  Pagination {
+    -st-mixin: PaginationOverrides();
+  }
+  Tooltip {
+    -st-mixin: TooltipOverrides();
+  }
+  ListItemAction {
+    -st-mixin: ListItemActionOverrides();
+  }
+  ListItemSection {
+    -st-mixin: ListItemSectionOverrides();
+  }
+  DropdownLayout {
+    -st-mixin: DropdownLayoutOverrides();
+  }
+  Sidebar {
+    -st-mixin: SidebarOverrides();
+  }
+  SidebarBackButton {
+    -st-mixin: SidebarBackButtonOverrides();
+  }
+  SidebarDivider {
+    -st-mixin: SidebarDividerOverrides();
+  }
+  SidebarHeader {
+    -st-mixin: SidebarHeaderOverrides();
+  }
+  SidebarSectionTitle {
+    -st-mixin: SidebarSectionTitleOverrides();
+  }
+  SidebarSectionItem {
+    -st-mixin: SidebarSectionItemOverrides();
+  }
+  ListItemSelect {
+    -st-mixin: ListItemSelectOverrides();
+  }
+  Badge {
+    -st-mixin: BadgeOverrides();
+  }
+  Loader {
+    -st-mixin: LoaderOverrides();
+  }
+  Input {
+    -st-mixin: InputOverrides();
+  }
+  IconAffix {
+    -st-mixin: IconAffixOverrides();
+  }
+  EmptyState {
+    -st-mixin: EmptyStateOverrides();
+  }
+  TrendIndicator {
+    -st-mixin: TrendIndicatorOverrides();
+  }
+  CloseButton {
+    -st-mixin: CloseButtonOverrides();
+  }
+  Tag {
+    -st-mixin: TagOverrides();
+  }
+  Thumbnail {
+    -st-mixin: ThumbnailOverrides();
+  }
+  VerticalTabsItem {
+    -st-mixin: VerticalTabsItemOverrides();
+  }
+  CustomModalLayout {
+    -st-mixin: CustomModalLayoutOverrides();
+  }
+  TableListItem {
+    -st-mixin: TableListItemOverrides();
+  }
+}
+
+/* Portaled node support
+ * ----------------------
+ * This is an ugly yet powerful hack.
+ * In some cases, a component is portaled and loses the css structure (e.g. .root > Popover  =>  body > PopoverContent).
+ * To solve that, the portaled node needs to be wrapped with an additional div that maintains both componetn and theme structure (Popover3250267766---size-6-medium BusinessDashboard606879188__root > Popover2497687595__popoverContent).
+ * A better approach would be having two divs (and that would remove the following solution), but that's not easy to solve.
+*/
+@st-scope * {
+  Tooltip.root {
+    -st-mixin: TooltipOverrides();
+  }
+
+  PopoverMenu.root {
+    -st-mixin: PopoverMenuOverrides();
+  }
+
+  .root {
+    --wsr-shadow10: 0 0 8px 0 value(S5);
+    --wsr-shadow20: 0 2px 12px 0 value(S4);
+    --wsr-shadow30: 0 0 12px 0 value(S5);
+    --wsr-shadow40: 0 0 24px 0 value(S5);
+  }
+
+  Modal.root {
+    -st-mixin: ModalOverrides();
+  }
+}

@@ -1,0 +1,146 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80, B30, D10-30, R10, R30, Y10, B50, B10, F00, D10, D40,
+    THEME-COLOR-10, THEME-COLOR-30, THEME-COLOR-50;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-medium-normal, text-medium-thin;
+}
+
+:vars {
+  minWidth: 378px;
+  minHeight: 46px;
+  backgroundColor: value(D80);
+  border: 1px solid value(THEME-COLOR-30);
+  borderRadius: 6px;
+  padding: 12px;
+  errorBorderColor: value(R10);
+  warningBorderColor: value(Y10);
+}
+
+.root {
+  -st-states: hidePlaceholder, disabled, hasError, hasWarning, isMadefor;
+  min-height: value(minHeight);
+  min-width: value(minWidth);
+  background-color: value(backgroundColor);
+  border-radius: value(borderRadius);
+}
+
+.root :global(.public-DraftEditorPlaceholder-root) {
+  padding: value(padding);
+  position: absolute;
+  pointer-events: none;
+  color: value(D40);
+  -st-mixin: text-medium-normal;
+}
+
+.root:isMadefor :global(.public-DraftEditorPlaceholder-root) {
+  -st-mixin: text-medium-thin;
+}
+
+.root:disabled :global(.public-DraftEditorPlaceholder-root) {
+  color: value(D10-30);
+}
+
+.root:disabled :global(.public-DraftEditor-content) {
+  color: value(D10-30);
+  border-color: value(D10-30);
+}
+
+.root:disabled :global(.public-DraftEditor-content):hover {
+  background-color: value(backgroundColor);
+  cursor: default;
+}
+
+.root:disabled .toolbar {
+  border-color: value(D10-30);
+}
+
+.root:disabled .link {
+  color: value(D10-30);
+}
+
+.root:hasError .toolbar {
+  border-color: value(errorBorderColor);
+}
+
+.root:hasError :global(.public-DraftEditor-content) {
+  border-left-color: value(errorBorderColor);
+  border-bottom-color: value(errorBorderColor);
+  border-right-color: value(errorBorderColor);
+}
+
+.root:hasError :global(.public-DraftEditor-content):focus {
+  border-color: value(errorBorderColor);
+  box-shadow: 0 0 0 3px value(R30);
+}
+
+.root:hasWarning .toolbar {
+  border-color: value(warningBorderColor);
+}
+
+.root:hasWarning :global(.public-DraftEditor-content) {
+  border-left-color: value(warningBorderColor);
+  border-bottom-color: value(warningBorderColor);
+  border-right-color: value(warningBorderColor);
+}
+
+.root:hasWarning :global(.public-DraftEditor-content):focus {
+  border-color: value(warningBorderColor);
+  box-shadow: 0 0 0 3px value(R30);
+}
+
+.root:hidePlaceholder :global(.public-DraftEditorPlaceholder-root) {
+  display: none;
+}
+
+.statusIndicator {
+  position: absolute;
+  top: 9px;
+  right: 12px;
+}
+
+.toolbar {
+  display: flex;
+  border: value(border);
+  border-bottom: 0;
+  border-top-left-radius: value(borderRadius);
+  border-top-right-radius: value(borderRadius);
+}
+
+.editorWrapper {
+  position: relative;
+}
+
+.editorWrapper :global(.public-DraftEditor-content) {
+  background-color: value(backgroundColor);
+  min-height: var(--minHeight, value(minHeight));
+  max-height: var(--maxHeight);
+  padding: value(padding);
+  border: value(border);
+  border-bottom-left-radius: value(borderRadius);
+  border-bottom-right-radius: value(borderRadius);
+  overflow: auto;
+  color: value(D10);
+  -st-mixin: text-medium-thin;
+}
+
+.editorWrapper :global(.public-DraftEditor-content):hover {
+  background-color: value(THEME-COLOR-50);
+  cursor: pointer;
+}
+
+.editorWrapper :global(.public-DraftEditor-content):focus {
+  background-color: value(D80);
+  cursor: text;
+  border-color: value(THEME-COLOR-10);
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.link {
+  text-decoration: none;
+  color: value(B10);
+  -st-mixin: text-medium-thin;
+}

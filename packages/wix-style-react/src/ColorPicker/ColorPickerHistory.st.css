@@ -1,0 +1,8 @@
+.root {
+  height: 12px;
+  display: flex;
+}
+
+.root > div {
+  width: 50%;
+}

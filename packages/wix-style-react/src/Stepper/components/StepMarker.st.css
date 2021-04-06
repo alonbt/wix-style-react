@@ -1,0 +1,118 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: B10, B20, D55, D80, R10, R20, D10-30;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/spacing.st.css';
+  -st-named: spacing03, spacing12;
+}
+
+.root {
+  -st-states:
+    type(enum(normal, error, disabled, completed)),
+    styleType(enum(circle, text)),
+    selected,
+    hovered;
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.root:styleType(circle) {
+  border-radius: 50%;
+  border: 1px solid value(B10);
+  width: 30px;
+  height: 30px;
+  margin-right: value(spacing12);
+  color: value(B10);
+}
+
+:global([dir="rtl"]) .root:styleType(circle) {
+  margin-right: 0;
+  margin-left: value(spacing12);
+}
+
+.root:styleType(text) {
+  min-width: 24px;
+  margin-right: value(spacing03);
+}
+
+:global([dir="rtl"]) .root:styleType(text) {
+  margin-right: 0;
+  margin-left: value(spacing03);
+}
+
+/* completed style */
+.root:type(completed):styleType(text) {
+  color: value(B10);
+}
+
+/* hovered style */
+
+.root:styleType(circle):hovered {
+  background-color: value(B20);
+  color: value(D80);
+  border: none;
+}
+
+.root:styleType(text):hovered {
+  color: value(B20);
+}
+
+/* selected style */
+
+.root:styleType(circle):selected {
+  background-color: value(B10);
+  color: value(D80);
+  border: none;
+}
+
+.root:styleType(text):selected {
+  color: value(B10);
+}
+
+/* error style */
+
+.root:type(error) {
+  color: value(R10);
+}
+
+.root:type(error):styleType(circle) {
+  border-color: value(R10);
+}
+
+.root:type(error):styleType(circle):selected {
+  background-color: value(R10);
+  color: value(D80);
+  border: none;
+}
+
+.root:type(error):styleType(text):selected {
+  color: value(R10);
+}
+
+.root:type(error):styleType(circle):hovered:not(:selected) {
+  background-color: value(R20);
+  color: value(D80);
+  border: none;
+}
+
+.root:type(error):styleType(text):hovered:not(:selected) {
+  color: value(R20);
+}
+
+/* disabled style */
+
+.root:type(disabled):styleType(circle) {
+  background-color: value(D55);
+  color: value(D80);
+  border: none;
+}
+
+.root:type(disabled):styleType(text) {
+  color: value(D10-30);
+}

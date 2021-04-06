@@ -1,0 +1,27 @@
+:import {
+  -st-from: "../../../Loader/Loader.st.css";
+  -st-default: Loader;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: D60, B20;
+}
+
+.root {
+  -st-extends: Loader;
+}
+
+.root:status(success):not(:size(tiny))::statusIndicator {
+  color: value(B20);
+}
+
+.root:status(success)::darkArc,
+.root:status(loading)::darkArc {
+  stroke: value(B20);
+}
+
+.root:status(success)::lightArc,
+.root:status(loading)::lightArc {
+  stroke: value(D60);
+}

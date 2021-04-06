@@ -1,0 +1,17 @@
+{
+  "name": "wix-ui-tpa-test-perfer",
+  "private": true,
+  "scripts": {
+    "build": "NODE_OPTIONS=--max_old_space_size=8000 NODE_ENV=production yoshi build",
+    "test": "perfer --chunked --verbose --json",
+    "analyze": "NODE_ENV=production yoshi build --analyze"
+  },
+  "devDependencies": {
+    "wix-ui-tpa": "^2.29.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "yoshi"
+    ]
+  }
+}

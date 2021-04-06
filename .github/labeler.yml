@@ -1,0 +1,11 @@
+WSR:
+  - packages/wix-style-react/**/*.*
+  - packages/wix-style-react/*.*
+
+WUT:
+  - packages/wix-ui-tpa/**/*.*
+  - packages/wix-ui-tpa/*.*
+
+BUI:
+  - packages/wix-base-ui/**/*.*
+  - packages/wix-base-ui/*.*

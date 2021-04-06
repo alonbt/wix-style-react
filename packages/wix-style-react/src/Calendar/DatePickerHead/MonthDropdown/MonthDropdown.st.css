@@ -1,0 +1,8 @@
+:import {
+  -st-from: "../../DatePickerDropdown/DatePickerDropdown.st.css";
+  -st-default: DatePickerDropdown;
+}
+
+.root {
+  -st-extends: DatePickerDropdown;
+}

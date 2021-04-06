@@ -1,0 +1,38 @@
+:import {
+  -st-from: "../../../Tooltip/Tooltip.st.css";
+  -st-default: Tooltip;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D20;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/components/popover/Popover.st.css";
+  -st-named: arrow;
+}
+
+.root {
+  -st-extends: Tooltip;
+}
+
+.root::popoverContent {
+  background: value(D20);
+}
+
+.root:size(small)::popoverContent {
+  padding: 8px 12px;
+  line-height: 16px;
+}
+
+.root:size(medium)::popoverContent {
+  padding: 12px 20px;
+  line-height: 20px;
+}
+
+/* Popover Arrow  */
+.root::popover .arrow,
+.root::popover[data-placement] .arrow {
+  border-color: transparent value(D20) value(D20) transparent;
+}

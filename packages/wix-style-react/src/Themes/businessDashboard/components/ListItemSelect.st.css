@@ -1,0 +1,57 @@
+:import {
+  -st-from: "../../../ListItemSelect/ListItemSelect.st.css";
+  -st-default: ListItemSelect;
+}
+
+:import {
+  -st-from: "../../../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: B10, B20, B50, D10-40, D10, D20, D40, D80;
+}
+
+.root {
+  -st-extends: ListItemSelect;
+  padding-left: 12px;
+  padding-right: 20px;
+}
+
+.root::titleWrapper {
+  margin: 8px 4px;
+}
+
+.root::title {
+  color: value(D20);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.root:selected,
+.root:selected:highlighted ,
+.root:selected:hover {
+  background-color: value(B20);
+}
+
+.root:selected::title,
+.root:selected:highlighted::title,
+.root:selected:hover::title {
+  color: value(D80);
+}
+
+.root:highlighted,
+.root:hover {
+  background-color: value(B50);
+}
+.root:highlighted::title,
+.root:hover::title,
+.root:highlighted::title strong,
+.root:hover::title strong {
+  color: value(B10);
+}
+
+.root:disabled::title {
+  color: value(D10-40);
+}

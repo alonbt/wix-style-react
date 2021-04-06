@@ -1,0 +1,30 @@
+:import {
+  -st-from: "../../Heading/Heading.st.css";
+  -st-default: Heading;
+}
+
+.root {
+  -st-states: reducedSpacingAndImprovedLayout;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 27px 30px;
+}
+
+.root:reducedSpacingAndImprovedLayout {
+  padding: 18px 24px;
+}
+
+.suffix {
+  height: 0;
+  display: flex;
+  align-items: center;
+}
+
+.titleWrapper {
+  min-width: 0;
+}
+
+.title {
+  -st-extends: Heading;
+}

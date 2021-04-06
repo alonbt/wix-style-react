@@ -1,0 +1,212 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B30, B50, D10-05, D10-30, D10, D20, D60, D70, D80, Y30, Y40, R30,
+    R40, THEME-COLOR-30, THEME-COLOR-40;
+}
+
+:import {
+  -st-from: '../Text/Text.st.css';
+  -st-default: Text;
+}
+
+.root {
+  -st-states: withRemoveButton, withThumb, disabled, clickable, hoverable,
+    size(enum(tiny, small, medium, large)),
+    theme(enum(standard, error, warning, dark, neutral, light, lightOutlined));
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color ease 300ms;
+  max-width: stretch;
+  min-height: 18px;
+}
+
+.root .thumb {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.root .removeButton {
+  flex: 0 0 auto;
+}
+
+.text {
+  -st-extends: Text;
+}
+
+/* Sizes */
+.root:size(tiny) {
+  padding: 0 9px;
+  border-radius: 9px;
+  max-height: 18px;
+}
+.root:size(tiny):theme(lightOutlined) {
+  padding: 0 8px;
+}
+.root:size(tiny):withThumb {
+  padding-inline-start: 3px;
+}
+.root:size(tiny):theme(lightOutlined):withThumb {
+  padding-inline-start: 2px;
+}
+.root:size(tiny):withRemoveButton {
+  padding-inline-end: 3px;
+}
+.root:size(tiny):theme(lightOutlined):withRemoveButton {
+  padding-inline-end: 2px;
+}
+.root:size(tiny) .thumb {
+  height: 12px;
+  width: 12px;
+  margin-inline-end: 6px;
+}
+
+.root:size(small) {
+  padding: 3px 12px;
+  border-radius: 12px;
+  max-height: 24px;
+}
+.root:size(small):theme(lightOutlined) {
+  padding: 2px 11px;
+}
+.root:size(small):withThumb {
+  padding-inline-start: 3px;
+}
+.root:size(small):theme(lightOutlined):withThumb {
+  padding-inline-start: 2px;
+}
+.root:size(small):withRemoveButton {
+  padding-inline-end: 3px;
+}
+.root:size(small):theme(lightOutlined):withRemoveButton {
+  padding-inline-end: 2px;
+}
+.root:size(small) .thumb {
+  width: 18px;
+  height: 18px;
+  margin-inline-end: 6px;
+}
+.root:size(small) .removeButton {
+  margin-inline-start: 6px;
+}
+
+.root:size(medium) {
+  padding: 6px 12px;
+  border-radius: 15px;
+  max-height: 30px;
+}
+.root:size(medium):theme(lightOutlined) {
+  padding: 5px 11px;
+}
+.root:size(medium):withThumb {
+  padding-inline-start: 6px;
+}
+.root:size(medium):theme(lightOutlined):withThumb {
+  padding-inline-start: 5px;
+}
+.root:size(medium):withRemoveButton {
+  padding-inline-end: 6px;
+}
+.root:size(medium):theme(lightOutlined):withRemoveButton {
+  padding-inline-end: 5px;
+}
+.root:size(medium) .thumb {
+  height: 18px;
+  width: 18px;
+  margin-inline-end: 12px;
+}
+.root:size(medium) .removeButton {
+  margin-inline-start: 6px;
+}
+
+.root:size(large) {
+  padding: 6px 18px;
+  border-radius: 18px;
+  max-height: 36px;
+}
+.root:size(large):theme(lightOutlined) {
+  padding: 5px 17px;
+}
+.root:size(large):withThumb {
+  padding-inline-start: 6px;
+}
+.root:size(large):theme(lightOutlined):withThumb {
+  padding-inline-start: 5px;
+}
+.root:size(large):withRemoveButton {
+  padding-inline-end: 6px;
+}
+.root:size(large):theme(lightOutlined):withRemoveButton {
+  padding-inline-end: 5px;
+}
+.root:size(large) .thumb {
+  height: 24px;
+  width: 24px;
+  margin-inline-end: 12px;
+}
+.root:size(large) .removeButton {
+  margin-inline-start: 12px;
+}
+.root:clickable {
+  cursor: pointer;
+}
+
+/* Themes */
+.root:theme(standard) {
+  background-color: value(THEME-COLOR-40);
+}
+.root:theme(standard):hoverable:hover {
+  background-color: value(THEME-COLOR-30);
+}
+
+.root:theme(warning) {
+  background-color: value(Y40);
+}
+.root:theme(warning):hoverable:hover {
+  background-color: value(Y30);
+}
+
+.root:theme(error) {
+  background-color: value(R40);
+}
+.root:theme(error):hoverable:hover {
+  background-color: value(R30);
+}
+
+.root:theme(dark) {
+  background-color: value(D20);
+  color: value(D80);
+}
+.root:theme(dark):hoverable:hover {
+  background-color: value(D10);
+}
+
+.root:theme(neutral) {
+  background-color: value(D70);
+}
+.root:theme(neutral):hoverable:hover {
+  background-color: value(D60);
+}
+
+.root:theme(light) {
+  background-color: value(D80);
+}
+.root:theme(light):hoverable:hover {
+  background-color: value(B50);
+}
+.root:theme(lightOutlined) {
+  border: 1px solid value(D60);
+  background-color: value(D80);
+}
+.root:theme(lightOutlined):hoverable:hover {
+  background-color: value(B50);
+  border-color: value(B30);
+}
+
+.root:disabled {
+  background-color: value(D10-05);
+  color: value(D10-30);
+}

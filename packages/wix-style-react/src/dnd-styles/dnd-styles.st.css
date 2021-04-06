@@ -1,0 +1,54 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B00, B40, B50, D70;
+}
+
+.item {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.itemPlaceholder {
+  border: 1px solid transparent;
+  background-color: value(B40);
+  color: transparent;
+  cursor: grabbing;
+}
+
+.itemPreview {
+}
+
+.list {
+  position: relative;
+  display: inline-block;
+}
+
+.gridItemPlaceholder {
+  border: 1px solid transparent;
+  background-color: value(D70);
+  color: transparent;
+  cursor: grabbing;
+}
+
+.gridItemPlaceholder.isInitialPositionToDrop {
+   background-color: value(B40);
+}
+
+.withGridItemStrip::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  border-radius: 2px;
+  background: value(B00);
+  right: -12px;
+}
+
+.withGridItemStrip.withGridItemStripRight::after {
+  right: 0;
+  left: -12px;
+}
+
+.gridItemPreview {
+  background-color: value(B50);
+}

@@ -1,0 +1,47 @@
+:import {
+  -st-from: "../../../EmptyState/EmptyState.st.css";
+  -st-default: EmptyState;
+}
+
+:import {
+  -st-from: "../foundations/typography.st.css";
+  -st-named: heading-h4;
+}
+
+:import {
+  -st-from: "../foundations/spacing.st.css";
+  -st-named: SP1, SP2, SP4, SP6;
+}
+
+.root {
+  -st-extends: EmptyState;
+  padding: value(SP6);
+}
+
+.root::sectionTitle,
+.root::title {
+  -st-mixin: heading-h4;
+}
+
+.root::subtitleContainer,
+.root::titleContainer {
+  margin-bottom: value(SP1);
+}
+
+.root::subtitle {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.root::childrenContainer {
+  margin-top: value(SP4);
+}
+
+.root:theme(section)::childrenContainer {
+  margin-top: value(SP1);
+}
+
+.root::imageContainer {
+  min-height: 0px;
+  margin-bottom: value(SP2);
+}

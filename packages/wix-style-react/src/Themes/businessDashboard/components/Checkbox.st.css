@@ -1,0 +1,70 @@
+:import {
+  -st-from: "../../../Checkbox/Checkbox.st.css";
+  -st-default: Checkbox;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: B10, B05, B50, D10-40, D80, D20, R10;
+}
+
+.root {
+  -st-extends: Checkbox;
+}
+
+.root::checkbox {
+  border: 1px solid value(B10);
+}
+
+.root:error::checkbox {
+  border: 1px solid value(R10);
+}
+
+.root:focus-visible::checkbox {
+  box-shadow: 0 0 0 3px value(B50);
+}
+
+/* Padding */
+.root::children {
+  padding-left: 8px;
+}
+
+:global([dir='rtl']) .root::children {
+  padding-right: 8px;
+}
+
+/* Selected */
+.root:selection(indeterminate)::checkbox,
+.root:selection(checked)::checkbox {
+  background-color: value(B10);
+}
+
+/* Hover */
+.root:checkboxhover::checkbox,
+.root:selection(unchecked):hover::checkbox {
+  background-color: value(B50);
+}
+
+.root:selection(indeterminate):not(:disabled):hover::checkbox,
+.root:selection(checked):not(:disabled):hover::checkbox {
+  background-color: value(B05);
+}
+
+/* Disabled */
+.root:disabled::checkbox {
+  border-color: transparent;
+  background-color: value(D10-40);
+}
+
+.root:disabled:selection(unchecked)::checkbox {
+  border-color: value(D10-40);
+  background-color: value(D80);
+}
+
+.root:disabled::inner {
+  color: value(D80);
+}
+
+.root:disabled::children {
+  color: value(D20);
+}

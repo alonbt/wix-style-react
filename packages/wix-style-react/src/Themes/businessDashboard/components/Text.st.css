@@ -1,0 +1,100 @@
+:import {
+  -st-from: "../../../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D10, D10-40, D20, D30, D40, D80, B10, B20, R10, G20;
+}
+
+.root {
+  -st-extends: Text;
+}
+
+/******* Skins *******/
+/* Standard */
+.root:skin(standard) {
+  color: value(D10);
+}
+.root:skin(standard):light {
+  color: value(D80);
+}
+.root:skin(standard):secondary {
+  color: value(D30);
+}
+.root:skin(standard):light:secondary,
+.root:skin(standard):light:secondary:size(tiny) {
+  color: value(D40);
+}
+.root:skin(standard):size(tiny) {
+  color: value(D20);
+}
+.root:skin(standard):size(tiny):light {
+  color: value(D80);
+}
+.root:skin(standard):size(tiny):secondary {
+  color: value(D30);
+}
+
+/****** Weights ******/
+/* Thin */
+.root:weight(thin):size(tiny) {
+  line-height: 16px;
+}
+.root:weight(thin):size(small) {
+  line-height: 20px;
+}
+
+/* Normal */
+.root:weight(normal):size(tiny) {
+  line-height: 16px;
+}
+.root:weight(normal):size(small) {
+  line-height: 20px;
+}
+
+/* Primary */
+.root:skin(primary) {
+  color: value(B10);
+}
+
+/******** Link ********/
+.root > a {
+  color: value(B10);
+  text-decoration: none;
+}
+
+.root > a:hover {
+  color: value(B20);
+}
+
+/* Bold */
+.root:weight(bold):size(tiny) {
+  line-height: 16px;
+}
+.root:weight(bold):size(small) {
+  line-height: 20px;
+}
+
+.root:skin(standard):weight(bold) {
+  color: value(D10);
+}
+
+.root:skin(standard):weight(bold):light {
+  color: value(D80);
+}
+
+/* Disabled */
+.root:skin(disabled) {
+  color: value(D10-40);
+}
+
+/* Error */
+.root:skin(error) {
+  color: value(R10);
+}
+
+.root:skin(success) {
+  color: value(G20);
+}

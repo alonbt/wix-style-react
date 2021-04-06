@@ -1,0 +1,60 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D20, D50;
+}
+
+.root {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.column {
+  display: table-cell;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+}
+
+.iconWrapper {
+  display: flex;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.line {
+  height: 1px;
+  flex-grow: 1;
+  -st-states: skin(enum(dark, light));
+}
+
+.line:skin(light) {
+  background-color: value(D50);
+}
+
+.line:skin(dark) {
+  background-color: value(D20);
+}
+
+.column:first-child .line:first-child,
+.column:last-child .line:last-child {
+  background: none;
+}
+
+.label {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 3px 6px 6px 6px;
+  justify-content: center;
+}

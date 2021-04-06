@@ -1,9 +1,0 @@
-@import '../../Grid/Grid.scss';
-
-$content-padding: 30px;
-
-.content {
-  @extend .container;
-
-  padding: $content-padding;
-}

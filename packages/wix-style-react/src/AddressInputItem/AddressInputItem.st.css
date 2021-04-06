@@ -1,0 +1,24 @@
+:import {
+  -st-from: "../ListItemSelect/ListItemSelect.st.css";
+  -st-default: ListItemSelect;
+}
+
+.root{
+  -st-states: optionLayout(enum(single-line, double-line));
+  -st-extends: ListItemSelect;
+}
+
+.root:optionLayout(single-line)::titleWrapper{
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.root:optionLayout(single-line)::title{
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.root:optionLayout(single-line)::subtitle, .root:optionLayout(double-line)::subtitle{
+  font-size: 16px;
+}

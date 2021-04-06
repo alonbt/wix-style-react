@@ -1,0 +1,229 @@
+:import {
+  -st-from: 'wix-ui-core/dist/src/components/button-next/button-next.st.css';
+  -st-default: ButtonNext;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: P10, P20, D80, D10, D20, F00, D10-30, D80-70, R10, R20,
+    THEME-COLOR-10, THEME-COLOR-20;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-tiny-thin, text-tiny-normal, text-small-thin,
+    text-small-normal, text-medium-thin, text-medium-normal;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-9, speed-fast-1;
+}
+
+.root {
+  -st-extends: ButtonNext;
+  -st-states: skin(string), underline(string), weight(string), size(string), fluid, ellipsis;
+
+  color: value(THEME-COLOR-10);
+  white-space: nowrap;
+
+  background-color: transparent;
+  border-color: transparent;
+
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+
+  transition-duration: value(speed-fast-1);
+  transition-timing-function: value(ease-9);
+  transition-property: background-color, color, border-color;
+
+  outline: none;
+  padding: 0;
+  height: 24px;
+
+  user-select: none;
+}
+
+.root:hover {
+  color: value(THEME-COLOR-20);
+}
+
+.root:active {
+  color: value(THEME-COLOR-20);
+}
+
+.root:disabled {
+  color: value(D10-30);
+}
+
+.root:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.root:ellipsis {
+  max-width: 100%;
+}
+
+.root:fluid,
+.root:fluid::content {
+  width: 100%;
+}
+
+/* Underline: onHover */
+
+.root:underline(onHover):hover,
+.root:underline(onHover):active {
+  text-decoration: underline;
+}
+
+.root:underline(onHover):disabled {
+  text-decoration: none;
+}
+
+/* Underline: always */
+
+.root:underline(always),
+.root:underline(always):hover,
+.root:underline(always):active,
+.root:underline(always):disabled {
+  text-decoration: underline;
+}
+
+/* skin: premium */
+
+.root:skin(premium) {
+  color: value(P10);
+}
+
+.root:skin(premium):hover {
+  color: value(P20);
+}
+
+.root:skin(premium):active {
+  color: value(P10);
+}
+
+.root:skin(premium):disabled {
+  color: value(D10-30);
+}
+
+/* skin: premium */
+
+.root:skin(destructive) {
+  color: value(R10);
+}
+
+.root:skin(destructive):hover {
+  color: value(R20);
+}
+
+.root:skin(destructive):active {
+  color: value(R10);
+}
+
+.root:skin(destructive):disabled {
+  color: value(D10-30);
+}
+
+/* Skin: light */
+
+.root:skin(light) {
+  color: value(D80);
+}
+
+.root:skin(light):hover {
+  color: value(D80);
+}
+
+.root:skin(light):active {
+  color: value(D80);
+}
+
+.root:skin(light):disabled {
+  color: value(D80-70);
+}
+
+/* skin: dark */
+
+.root:skin(dark) {
+  color: value(D10);
+}
+
+.root:skin(dark):hover {
+  color: value(D20);
+}
+
+.root:skin(dark):active {
+  color: value(D10);
+}
+
+.root:skin(dark):disabled {
+  color: value(D10-30);
+}
+
+.root:size(medium):weight(thin) {
+  -st-mixin: text-medium-thin;
+}
+
+.root:size(medium):weight(normal) {
+  -st-mixin: text-medium-normal;
+}
+
+.root:size(small):weight(thin) {
+  -st-mixin: text-small-thin;
+  height: 18px;
+}
+
+.root:size(small):weight(normal) {
+  -st-mixin: text-small-normal;
+  height: 18px;
+}
+
+.root:size(tiny):weight(thin) {
+  -st-mixin: text-tiny-thin;
+  height: 18px;
+}
+
+.root:size(tiny):weight(normal) {
+  -st-mixin: text-tiny-normal;
+  height: 18px;
+}
+
+/* affixes */
+
+.root::prefix {
+  box-sizing: content-box;
+  padding-right: 6px;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.root::suffix {
+  box-sizing: content-box;
+  padding-left: 6px;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.root:size(small)::prefix {
+  width: 18px;
+  height: 18px;
+}
+
+.root:size(small)::suffix {
+  width: 18px;
+  height: 18px;
+}
+
+.root:size(tiny)::prefix {
+  width: 18px;
+  height: 18px;
+}
+
+.root:size(tiny)::suffix {
+  width: 18px;
+  height: 18px;
+}

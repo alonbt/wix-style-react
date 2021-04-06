@@ -1,0 +1,30 @@
+:import {
+  -st-from: "../../../TableListItem/TableListItem.st.css";
+  -st-default: TableListItem;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: B60;
+}
+
+:import {
+  -st-from: '../foundations/spacing.st.css';
+  -st-named: SP3, SP6;
+}
+
+.root {
+  -st-extends: TableListItem;
+}
+
+.root:verticalPadding(small) {
+  padding: value(SP3) value(SP6);
+}
+
+.root:verticalPadding(small)::align {
+  margin: 0;
+}
+
+.root:verticalPadding(small):clickable:hover {
+  background-color: value(B60);
+}

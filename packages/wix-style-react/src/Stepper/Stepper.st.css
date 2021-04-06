@@ -1,0 +1,14 @@
+.root {
+  -st-states: fit(enum(compact, stretched));
+  display: flex;
+  min-width: 0;
+}
+
+.root:fit(stretched) {
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.root:fit(stretched)::after {
+  content: '';
+}

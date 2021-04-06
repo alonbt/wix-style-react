@@ -1,0 +1,10 @@
+:import {
+    -st-from: "../RadioButtonGroup.st.css";
+    -st-default: RadioButtonGroup;
+}
+
+.root {
+    -st-mixin: RadioButtonGroup(
+        LabelColor blue
+    );
+}

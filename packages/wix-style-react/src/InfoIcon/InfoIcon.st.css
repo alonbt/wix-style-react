@@ -1,0 +1,14 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10;
+}
+
+.root {
+  display: inline-block;
+  line-height: 0;
+  color: value(THEME-COLOR-10);
+}
+
+.icon {
+  vertical-align: middle;
+}

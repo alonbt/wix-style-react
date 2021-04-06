@@ -1,0 +1,17 @@
+:import {
+  -st-from: "../../../SidebarBackButton/SidebarBackButton.st.css";
+  -st-default: SidebarBackButton;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: sidebarBackgroundColor;
+}
+
+.root {
+  -st-extends: SidebarBackButton;
+}
+
+.root:skin(dark) {
+  background: value(sidebarBackgroundColor);
+}

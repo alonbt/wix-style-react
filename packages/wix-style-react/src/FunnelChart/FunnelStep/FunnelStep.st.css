@@ -1,0 +1,44 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: D70;
+}
+
+.root {
+  -st-states: nextBarIsFlat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.funnelStepRotated {
+  width: 102%;
+  transform: translateY(1px);
+  clip-path: polygon(0 0, 0 100%, 102% 100%);
+}
+
+.funnelStep {
+  box-sizing: border-box;
+  background: value(D70);
+}
+
+.funnelStepPlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 102%;
+  transform: translate(-1px, 2px);
+  background: value(D70);
+  clip-path: polygon(0 0, 0 100%, 102% 100%);
+}
+
+.root:nextBarIsFlat .funnelStepPlaceholder {
+  transform: translate(-1px, 0px);
+}
+
+.badgeWrapper {
+  position: absolute;
+  left: 50%;
+  transform: translate(calc(-50% - 12px), calc(-50%));
+}

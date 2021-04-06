@@ -1,0 +1,97 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D10-66;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-1, ease-2;
+}
+
+/* Portal element */
+.root {
+  -st-states: scrollable;
+}
+
+.root :global(.ReactModal__Content) {
+  opacity: 0.66;
+  transform: scale(0.93);
+}
+
+.root :global(.ReactModal__Content--after-open) {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.35s value(ease-1), transform 0.35s value(ease-1);
+}
+
+.root :global(.ReactModal__Content--before-close) {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s value(ease-1), transform 0.3s value(ease-1);
+}
+
+.root :global(.ReactModal__Overlay) {
+  background: transparent;
+  opacity: 1;
+}
+
+@custom-selector :--modal-overlay :global(.ReactModal__Overlay--after-open);
+
+.root :--modal-overlay {
+  background: value(D10-66);
+  transition: background 0.2s value(ease-1);
+}
+
+.root :global(.ReactModal__Overlay--before-close) {
+  background: transparent;
+  transition: background 0.15s value(ease-2);
+}
+
+:global(.ReactModal__Body--open) {
+  overflow: hidden;
+}
+
+.childrenContainer {
+  -st-states: screen(enum(desktop, mobile, full));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.childrenContainer:screen(full) {
+  padding: 0px;
+}
+
+.childrenContainer:screen(desktop) {
+  padding: 48px;
+}
+
+.childrenContainer:screen(mobile) {
+  padding: 30px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 40px;
+  right: 38px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  color: white;
+}
+
+.root:not(:scrollable) :global(.ReactModal__Overlay) {
+  overflow: hidden;
+}
+
+/* Inner modal element */
+.modal {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.modal div {
+  box-sizing: border-box;
+}

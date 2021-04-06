@@ -1,0 +1,108 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: G30, R30, D10, D80;
+}
+
+:import{
+  -st-from: "../Tooltip/Tooltip.st.css";
+  -st-default: Tooltip;
+  -st-named: arrow, popoverContent, popover;
+}
+
+:vars {
+  headerHeight: 66px;
+  titleWidth: 20%;
+  actionsWidth: 60%;
+}
+
+.root {
+  -st-states: hasLeft, hasRight;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
+
+.header {
+  position: sticky;
+  background: value(D10);
+  height: value(headerHeight);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  color: value(D80);
+  padding: 18px 24px;
+}
+
+.title {
+  width: value(titleWidth);
+  max-width: value(titleWidth);
+}
+
+.actions {
+  width: value(actionsWidth);
+  max-width: value(actionsWidth);
+  display: flex;
+  justify-content: center;
+}
+
+.closeButton {
+  width: value(titleWidth);
+  max-width: value(titleWidth);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.innerOverlay {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - value(headerHeight));
+  overflow-y: auto;
+  padding: 24px 24px 0 24px;
+}
+
+.content {
+  max-width: 100%;
+  max-height: calc(100% - 24px);
+  position: relative;
+}
+
+.content::after {
+  height: 24px;
+  content: ' ';
+  display: block;
+}
+
+.navigationButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.navigationButton.left-arrow{
+  display: block;
+  left: 36px;
+}
+
+.navigationButton.right-arrow{
+  display: block;
+  right: 36px;
+}
+
+.modalTooltip {
+  -st-extends: Tooltip;
+}
+
+.modalTooltip  > .popover > .popoverContent {
+  background: value(D80);
+}
+
+.modalTooltip::popover .arrow{
+  border-color: transparent value(D80) value(D80) transparent;
+}
+
+.modalTooltip::popover[data-placement] .arrow {
+  border-color: transparent value(D80) value(D80) transparent;
+}

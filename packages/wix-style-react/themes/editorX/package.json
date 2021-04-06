@@ -1,0 +1,6 @@
+{
+  "name": "editor-x",
+  "main": "../../dist/src/Themes/editorX/index.js",
+  "module": "../../dist/es/src/Themes/editorX/index.js",
+  "typings": "../../dist/es/src/Themes/editorX/index.d.ts"
+}

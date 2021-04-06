@@ -1,0 +1,381 @@
+:import {
+  -st-from: './Input.mixins.js';
+  -st-named: boxSizingMixin, placeholderMixin, borderRadiusMixin;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D10-20, D10-30, D40, THEME-TEXT-COLOR-PRIMARY, D60, D70, D80, F00,
+  R10, R30, Y10, Y30,
+  THEME-COLOR-10, THEME-COLOR-30, THEME-COLOR-40, THEME-COLOR-50;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-small-normal, text-small-thin, text-medium-normal, text-medium-thin;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
+}
+
+:import {
+  -st-from: '../CloseButton/CloseButton.st.css';
+  -st-default: CloseButton;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/border.st.css';
+  -st-named: THEME-RADIUS-06;
+}
+
+.root {
+  -st-states: size(enum(small, medium, large)), hasFocus,
+              status(enum(error, warning)), forceHover, readOnly,
+              disabled, isMadefor,
+              border(enum(standard, round, bottomLine)),
+              noLeftBorderRadius, noRightBorderRadius;
+  -st-mixin: boxSizingMixin('border-box'), borderRadiusMixin(value(THEME-RADIUS-06));
+  position: relative;
+  display: flex;
+  border: solid 1px value(THEME-COLOR-30);
+  background-color: value(D80);
+  color: value(THEME-TEXT-COLOR-PRIMARY);
+}
+
+.input {
+  -st-mixin: placeholderMixin(value(D40));
+  color: value(THEME-TEXT-COLOR-PRIMARY);
+  display: block;
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+  width: inherit;
+  /* FF only */
+  overflow-block: scroll;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+/* Text selection */
+.input::selection {
+  background: value(THEME-COLOR-40);
+}
+
+/* Size */
+.root:size(small),
+.root:size(small) .input {
+  -st-mixin: text-small-normal;
+}
+
+.root:size(small) .input:-webkit-autofill::first-line {
+  -st-mixin: text-small-normal;
+}
+
+.root:size(small):isMadefor,
+.root:size(small):isMadefor .input {
+  -st-mixin: text-small-thin;
+}
+
+.root:size(small):isMadefor .input:-webkit-autofill::first-line {
+  -st-mixin: text-small-thin;
+}
+
+.root:size(small) .input {
+  padding: 5px 3px 5px 6px;
+}
+
+.root:size(medium),
+.root:size(medium) .input {
+  -st-mixin: text-medium-normal;
+}
+
+.root:size(medium) .input:-webkit-autofill::first-line {
+  -st-mixin: text-medium-normal;
+}
+
+.root:size(medium):isMadefor,
+.root:size(medium):isMadefor .input {
+  -st-mixin: text-medium-thin;
+}
+
+.root:size(medium):isMadefor .input:-webkit-autofill::first-line {
+  -st-mixin: text-medium-thin;
+}
+
+.root:size(medium) .input {
+  padding: 5px 3px 5px 6px;
+}
+
+.root:size(large),
+.root:size(large) .input {
+  -st-mixin: text-medium-normal;
+}
+
+.root:size(large) .input:-webkit-autofill::first-line  {
+  -st-mixin: text-medium-normal;
+}
+
+.root:size(large):isMadefor,
+.root:size(large):isMadefor .input {
+  -st-mixin: text-medium-thin;
+}
+
+.root:size(large):isMadefor .input:-webkit-autofill::first-line {
+  -st-mixin: text-medium-thin;
+}
+
+.root:size(large) .input {
+  padding: 8px 3px 8px 6px;
+}
+
+.root:size(small) .wrapper,
+.root:size(medium) .wrapper {
+  padding: 0 6px;
+}
+
+.root:size(large) .wrapper {
+  padding: 0 9px;
+}
+
+/* Focus */
+.root:hasFocus:not(:border(bottomLine)) {
+  outline: none;
+  border-color: value(THEME-COLOR-10);
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.root:border(bottomLine)::before {
+  content: ' ';
+  transition: width .2s value(ease-8);
+  width: 0;
+  position: absolute;
+  height: 1px;
+  background: value(THEME-COLOR-10);
+  bottom: 0;
+}
+
+.root:border(bottomLine):status(error)::before {
+  background: value(R10);
+}
+
+.root:border(bottomLine):status(warning)::before {
+  background: value(Y10);
+}
+
+.root:border(bottomLine):hasFocus::before {
+  width: 100%;
+}
+
+/* Hover */
+.root:hover:not(:hasFocus):not(:disabled):not(:border(bottomLine)),
+.root:forceHover:not(.disabled):not(:border(bottomLine)) {
+  background-color: value(THEME-COLOR-50);
+}
+
+.root:hover.readOnly:not(:disabled) {
+   border: solid 1px value(THEME-COLOR-30);
+}
+
+.root:not(:hasFocus):border(bottomLine):not(:disabled):hover {
+   border-bottom-color: value(D60);
+}
+
+.root:not(:hasFocus):border(bottomLine):not(:disabled):status(error):hover {
+   border-bottom-color: value(R30);
+}
+
+.root:not(:hasFocus):border(bottomLine):not(:disabled):status(warning):hover {
+   border-bottom-color: value(Y30);
+}
+
+.root:hover.readOnly.disabled {
+   border: solid 1px value(D60);
+ }
+
+/* Read Only */
+.root:readOnly {
+  border: solid 1px value(D60);
+  background-color: value(D70);
+}
+
+/* Border */
+.root:border(round) {
+  -st-mixin: borderRadiusMixin(40px);
+}
+
+.root:border(bottomLine) {
+  -st-mixin: borderRadiusMixin(0px);
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.root:noLeftBorderRadius {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.root:noRightBorderRadius {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Disabled */
+.root:disabled {
+  color: value(D10-30);
+}
+
+.root:disabled:not(:border(bottomLine)) {
+  border-color: value(D10-20);
+  background-color: value(D80);
+  color: value(D10-30);
+}
+
+.root:disabled .input {
+  -st-mixin: placeholderMixin(value(D10-30));
+  color: value(D10-30);
+}
+
+.root:disabled:border(bottomLine) {
+  border-bottom-color: value(D10-20);
+}
+
+/* Suffixes */
+.suffixes {
+  user-select: none;
+  white-space: nowrap;
+}
+
+.suffix {
+  display: flex;
+}
+
+/* Status */
+.root:size(small) .statusWrapper {
+  margin: auto 0 auto 6px;
+}
+
+:global([dir='rtl']) :size(small) .statusWrapper {
+  margin: auto 6px auto 0;
+}
+
+.root:size(medium) .statusWrapper,
+.root:size(large) .statusWrapper {
+  margin: auto 3px auto 6px;
+}
+
+:global([dir='rtl']) :size(medium) .statusWrapper,
+:global([dir='rtl']) :size(large) .statusWrapper {
+  margin: auto 6px auto 3px;
+}
+
+.root:not(:disabled):status(error):not(:border(bottomLine)) {
+  border-color: value(R10);
+  box-shadow: none;
+}
+
+.root:not(:disabled):status(error):not(:border(bottomLine)):hasFocus {
+  border-color: value(R10);
+  box-shadow: 0 0 0 3px value(R30);
+}
+
+.root:not(:disabled):status(warning):not(:border(bottomLine)) {
+  border-color: value(Y10);
+  box-shadow: none;
+}
+
+.root:not(:disabled):status(warning):not(:border(bottomLine)):hasFocus {
+  border-color: value(Y10);
+  box-shadow: 0 0 0 3px value(Y30);
+}
+
+/* Clear Button */
+.root .clearButtonWrapper {
+  margin: auto 0 auto 3px;
+}
+
+:global([dir='rtl']) .clearButtonWrapper {
+  margin: auto 3px auto 0;
+}
+
+/* Menu Arrow */
+.root:size(small) .menuArrow svg {
+  transform: translateY(-1px);
+}
+
+.root:size(small) .menuArrow,
+.root:size(medium) .menuArrow {
+  padding: 5px 6px;
+}
+
+.root:size(medium):border(round) .menuArrow {
+  padding: 5px 9px 5px 6px;
+}
+
+:global([dir='rtl']) :size(medium):border(round) .menuArrow {
+  padding: 5px 6px 5px 9px;
+}
+
+.root:size(medium) .menuArrow svg {
+  transform: translateY(-2px);
+}
+
+.root:size(large) .menuArrow {
+  padding: 8px 6px 8px 9px;
+}
+
+:global([dir='rtl']) :size(large) .menuArrow {
+  padding: 8px 9px 8px 6px;
+}
+
+.root:size(large):border(round) .menuArrow {
+  padding: 8px 9px;
+}
+
+.root:size(large) .menuArrow svg {
+  transform: translateY(-2px);
+}
+
+.root:not(:disabled) .menuArrow {
+  color: value(THEME-COLOR-10);
+}
+
+/* Remove native arrows for a number input */
+.root input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.root input::-webkit-outer-spin-button,
+.root input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px value(D80) inset;
+  box-shadow: 0 0 0px 1000px value(D80) inset;
+}
+
+/* remove safari autofill icon */
+.input::-webkit-contacts-auto-fill-button {
+  display: none !important;
+}
+
+/* Remove IE10+ automatically x button */
+.input::-ms-clear {
+  display: none;
+}
+
+.clearButton {
+  -st-extends: CloseButton;
+}

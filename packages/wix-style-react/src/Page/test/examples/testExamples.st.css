@@ -1,0 +1,15 @@
+:import {
+  -st-from: '../../../Foundation/stylable/default-scroll-bar.st.css';
+  -st-named: defaultScrollBar;
+}
+.pageContainer {
+  height: calc(100vh - 16px) ;
+}
+
+.pageContainer.withFixedScrollBar [data-class=page-scrollable-content] {
+  -st-mixin: defaultScrollBar;
+}
+
+.backgroundGradient {
+  background: linear-gradient(97deg, #e7e7ff 0%, #ddedff 52%, #ddedff 100%);
+}

@@ -1,0 +1,1 @@
+export { FunnelLabel } from './FunnelLabel';

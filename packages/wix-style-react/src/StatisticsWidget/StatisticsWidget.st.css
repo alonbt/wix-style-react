@@ -1,0 +1,9 @@
+.root {
+  -st-states: size(enum(tiny, large));
+  display: flex;
+  text-align: center;
+}
+
+.root:size(tiny) {
+  padding: 0 6px;
+}

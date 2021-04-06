@@ -1,0 +1,41 @@
+.root {
+  -st-states: expandable, expanded, size(enum(small, medium, large));
+}
+
+.root:expandable {
+  display: inline-block;
+}
+
+.root:expandable .content {
+  transition: width .3s;
+}
+
+.root:expandable [data-input-parent] > div:nth-of-type(1) input {
+  transition: opacity .3s;
+}
+
+.root:expanded .content {
+  cursor: pointer;
+}
+
+.root:expanded [data-input-parent] > div:nth-of-type(1) {
+  border-color: transparent;
+}
+
+.root:expanded [data-input-parent] > div:nth-of-type(1) input {
+  opacity: 0;
+  min-width: 0 !important;
+  pointer-events: none;
+}
+
+.root:size(medium):expanded .content {
+  width: 36px;
+}
+
+.root:size(small):expanded .content {
+  width: 30px;
+}
+
+.root:not(:expanded) {
+  display: block !important;
+}

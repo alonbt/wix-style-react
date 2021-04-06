@@ -1,0 +1,100 @@
+:import {
+  -st-from: 'wix-ui-core/dist/src/components/linear-progress-bar/LinearProgressBar.st.css';
+  -st-default: LinearProgressBar;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-medium-bold;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named:
+          B05, R05, G05,
+          D10, D20, D80,
+          D10-10, D80-30,
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
+}
+
+.root {
+  -st-states: light, skin(enum(success, standard));
+  -st-extends: LinearProgressBar;
+  padding: 0 6px;
+  height: 30px;
+}
+
+.root::barForeground {
+  transition: width 0.5s value(ease-8);
+}
+
+.root:skin(standard)::barForeground {
+  background: value(B05);
+}
+
+.root:skin(success)::barForeground {
+  background: value(G05);
+}
+
+.root::barBackground {
+  background: value(D10-10);
+}
+
+.root::barBackground,
+.root::barForeground
+{
+  border-radius: 2px;
+  height: 4px;
+}
+
+.root:error::barForeground {
+  background: value(R05);
+}
+
+.root:light::barBackground {
+  background: value(D80-30);
+}
+
+.root::progressIndicationSection {
+  margin-left: 18px;
+}
+
+:global([dir="rtl"]) .root::progressIndicationSection {
+  margin-right: 18px;
+  margin-left: 0;
+}
+
+.root::indicationContainer {
+  -st-mixin: text-medium-bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: value(D20);
+  font-size: 10px;
+  line-height: unset;
+}
+
+.root:skin(standard):success::indicationContainer {
+  background: value(B05);
+  color: value(D80);
+}
+
+.root:skin(success):success::indicationContainer {
+  background: value(G05);
+  color: value(D80);
+}
+
+.root::progressPercentage {
+  color: value(D10);
+}
+
+.root:light::progressPercentage {
+  color: value(D80);
+}

@@ -1,0 +1,67 @@
+import 'regenerator-runtime/runtime';
+import {
+  protractorTestkitFactoryCreator,
+  protractorUniTestkitFactoryCreator,
+} from 'wix-ui-test-utils/protractor';
+
+// here for historical reasons, should probably deprecate it
+export {
+  waitForVisibilityOf,
+  scrollToElement,
+} from 'wix-ui-test-utils/protractor';
+
+const load = module => {
+  const MODULE_META_KEYS = ['__esModule'];
+
+  const moduleFields = Object.keys(module).reduce((total, key) => {
+    if (!MODULE_META_KEYS.includes(key)) {
+      return total.concat(module[key]);
+    }
+    return total;
+  }, []);
+
+  let defaultOrFirstExport;
+  if (module.default) {
+    defaultOrFirstExport = module.default;
+  } else if (moduleFields.length === 1) {
+    defaultOrFirstExport = moduleFields[0];
+  } else {
+    defaultOrFirstExport = module;
+  }
+  return defaultOrFirstExport;
+};
+
+// Legacy
+<%
+  components
+  .filter(component => !component.noTestkit)
+  .filter(component => !component.noProtractorTestkit)
+  .filter(component => !component.manualExport)
+  .map(component => {
+    const camelName = utils.toCamel(component.name);
+    const driverPath = component.protractorTestkitPath || component.testkitPath || [
+      '../src',
+      component.name,
+      component.name + (component.protractorLegacyTestkit ? '.protractor.driver' : '.uni.driver'),
+    ].join('\/');
+
+    const testkitName = camelName + 'TestkitFactory';
+    const factoryName = component.protractorLegacyTestkit ? 'protractorTestkitFactoryCreator' : 'protractorUniTestkitFactoryCreator';
+    const exportName = component.protractorTestkitExportName || testkitName;
+%>
+export const <%= exportName %> = <%= factoryName %>(load(require('<%= driverPath %>')));<% }) %>
+
+// Unidriver
+<% components
+        .filter(component => !component.noTestkit)
+        .filter(component => !component.manualExport)
+        .filter(component => !component.noUnidriver)
+.map(component => {
+  const componentName = component.exportName || utils.toPascal(component.name);
+  const driverPath = component.unidriverPath || [
+    '../src',
+    component.name,
+    component.name + '.uni.driver'
+  ].join('\/');
+%>
+export const <%= componentName %>Testkit = protractorUniTestkitFactoryCreator(load(require('<%= driverPath %>')));<% }) %>

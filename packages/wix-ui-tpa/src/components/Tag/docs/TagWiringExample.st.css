@@ -1,0 +1,15 @@
+:import {
+  -st-from: "../Tag.st.css";
+  -st-named: overrideStyleParams;
+}
+
+.root {
+  -st-mixin: overrideStyleParams(
+    BackgroundColor '"--backgroundColor"',
+    BorderColor '"--borderColor"',
+    BorderWidth '"--borderWidth"',
+    BorderRadius '"unit(--borderRadius, px)"',
+    TextFont '"--textFont"',
+    TextColor '"--textColor"'
+  );
+}

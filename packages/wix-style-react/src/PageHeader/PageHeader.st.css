@@ -1,0 +1,129 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B10, D80-70, D80;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/mixins/calc_rgba.js";
+  -st-default: calc_rgba;
+}
+
+:import {
+  -st-from: "../IconButton/IconButton.st.css";
+  -st-default: IconButton;
+}
+
+.root {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  min-height: 30px;
+}
+
+.header {
+  /* Allow flex-child to shrink when there is a truncated descendant
+  See: https://css-tricks.com/flexbox-truncated-text/#article-header-id-3 */
+  min-width: 0;
+  flex: 1;
+}
+
+.breadcrumbsContainer {
+  -st-states: withoutBreadcrumbs;
+  margin-left: -10px;
+}
+
+.breadcrumbsContainer:withoutBreadcrumbs {
+  position: absolute;
+}
+
+.titleContainer {
+  -st-states: minimized;
+  display: flex;
+}
+
+.titleContainer:minimized {
+  position: absolute;
+}
+
+.titleBackButton {
+  -st-extends: IconButton;
+  -st-states: darkTheme;
+  position: relative;
+  top: 6px;
+  left: -12px;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  color: value(B10);
+  border: none;
+  background-color: transparent;
+}
+
+.titleBackButton:hover {
+  color: value(B10);
+  background-color: calc_rgba(value(D80), 1);
+}
+
+.titleBackButton:active {
+  color: value(B10);
+  background-color: value(D80-70)
+}
+
+.titleBackButton:darkTheme {
+  color: value(D80);
+}
+
+.titleBackButton:darkTheme:hover {
+  background-color: calc_rgba(value(D80), 0.3);
+}
+
+.titleBackButton:darkTheme:active {
+  background-color: calc_rgba(value(D80), 0.2);
+}
+
+.titleBackButtonIcon {
+  display: block;
+  width: 36px;
+  height: 36px;
+  position: relative;
+  left: -1px;
+}
+
+.titleColumn {
+  /* Allow flex-child to shrink when there is a truncated descendant
+  See: https://css-tricks.com/flexbox-truncated-text/#article-header-id-3 */
+  min-width: 0;
+}
+
+.title {
+  height: 48px;
+}
+
+.actionsBar {
+  -st-states: withBreadcrumbs, minimized;
+  height: 30px;
+  margin-top: 6px;
+  margin-left: auto;
+}
+
+.actionsBar:withBreadcrumbs {
+  margin-top: 36px;
+}
+
+.actionsBar:minimized {
+  margin-top: -3px;
+}
+
+:global([dir='rtl']) .breadcrumbsContainer {
+  margin-left: 0;
+  margin-right: -10px;
+}
+
+:global([dir='rtl']) .titleBackButton {
+  right: -12px;
+}
+
+:global([dir='rtl']) .titleBackButtonIcon {
+  transform: scaleX(-1);
+  right: -1px;
+}

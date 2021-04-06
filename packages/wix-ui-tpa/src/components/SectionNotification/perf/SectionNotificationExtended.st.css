@@ -1,0 +1,11 @@
+:import {
+  -st-from: "../SectionNotification.st.css";
+  -st-default: SectionNotification;
+}
+
+.root {
+  -st-mixin: SectionNotification(
+        BackgroundColor blue,
+        TextColor blue
+  );
+}

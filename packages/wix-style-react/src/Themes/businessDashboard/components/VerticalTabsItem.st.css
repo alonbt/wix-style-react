@@ -1,0 +1,65 @@
+:import {
+  -st-from: "../../../VerticalTabsItem/VerticalTabsItem.st.css";
+  -st-default: VerticalTabsItem;
+}
+
+:import {
+  -st-from: "../../../Text/Text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D80, B50;
+}
+
+.root {
+  -st-extends: VerticalTabsItem;
+  position: relative;
+  padding: 0 0 0 16px;
+  overflow: hidden;
+  max-height: 52px;
+}
+
+.root::prefixIcon {
+  padding: 0;
+  margin: 16px 12px 16px 0;
+}
+
+.root::text {
+  padding: 8px 36px 8px 0;
+  width: 100%;
+}
+
+.root:selected,
+.root:not(:action):not(:title):hover {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background: value(B50);
+}
+
+.root:selected::before,
+.root:not(:action):not(:title):hover::before {
+    position: absolute;
+    right: 0;
+    content: "";
+    display: block;
+    background: white;
+    width:14px;
+    height:52px;
+    margin:0 0 0 0px;
+}
+
+.root:selected::after,
+.root:not(:action):not(:title):hover::after {
+    position: absolute;
+    right: -1px;
+    content: "";
+    display: block;
+    background: value(B50);
+    width:30px;
+    height:30px;
+    border-radius: 4px;
+    margin:0 0 0 0px;
+    transform:rotate(45deg) skew(18deg, 18deg);
+}

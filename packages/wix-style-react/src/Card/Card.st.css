@@ -1,0 +1,47 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/border.st.css";
+  -st-named: radius08;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/shadows.st.css";
+  -st-named: shadow20;
+}
+
+.card {
+  -st-states: stretchVertically(boolean), hideOverflow(boolean), showShadow(boolean);
+  position: relative;
+  background: value(D80);
+  border-radius: value(radius08);
+}
+
+.card:stretchVertically {
+  height: 100%;
+  flex-grow: 1;
+}
+
+.card:hideOverflow {
+  overflow: hidden;
+}
+
+.card:showShadow {
+  box-shadow: value(shadow20);
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px;
+}
+
+:global(.rtl) .controls ,
+:global([dir='rtl']) .controls {
+  left: 0;
+  right: auto;
+}

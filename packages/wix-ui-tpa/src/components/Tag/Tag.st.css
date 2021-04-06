@@ -1,0 +1,273 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, fallback, font, applyOpacity, unit;
+}
+
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
+/* Defaults - default params */
+:vars {
+  defaultSolidBackgroundColor: applyOpacity(color(color-5), 0.1);
+  defaultLightBackgroundColor: color(color-1);
+
+  defaultSolidBorderColor: color(color-5);
+  defaultLightBorderColor: applyOpacity(color(color-5), 0.3);
+
+  defaultTextColor: color(color-5);
+
+  defaultBorderRadius: 0;
+
+  defaultSmallFont: "{theme: 'Body-M', size: '12px', lineHeight: '16px'}";
+  defaultMediumFont: "{theme: 'Body-M', size: '14px', lineHeight: '20px'}";
+  defaultLargeFont: "{theme: 'Body-M', size: '16px', lineHeight: '24px'}";
+}
+
+/* Overrides - deceleration of overridable parameters by the consumer */
+:vars {
+  /*
+    Background color
+    @default color-5
+  */
+  BackgroundColor: --overridable;
+
+  /*
+    Border color
+    @default color-5
+  */
+  BorderColor: --overridable;
+
+  /*
+    Main text color
+    @default color-5
+  */
+  TextColor: --overridable;
+
+  /*
+    Border radius
+    @default 0
+  */
+  BorderRadius: --overridable;
+
+  /*
+    Border width
+    @default 1
+  */
+  BorderWidth: --overridable;
+
+  /*
+    Border opacity
+    @default 0.3
+  */
+  BorderOpacity: --overridable;
+
+  /*
+  Main text font
+  @default small: {theme: 'Body-M', size: '12px', lineHeight: '16px'}, medium: {theme: 'Body-M', size: '14px', lineHeight: '20px'}, large: {theme: 'Body-M', size: '16px', lineHeight: '24px'}
+  */
+  TextFont: --overridable;
+}
+
+/* Overrides */
+:vars {
+  solidBackgroundColor: color(fallback(value(BackgroundColor), value(defaultSolidBackgroundColor)));
+  lightBackgroundColor: color(fallback(value(BackgroundColor), value(defaultLightBackgroundColor)));
+
+  solidBorderColor: color(fallback(value(BorderColor), value(defaultSolidBorderColor)));
+  lightBorderColor: color(fallback(value(BorderColor), value(defaultLightBorderColor)));
+
+  borderRadius: fallback(value(BorderRadius), value(defaultBorderRadius));
+  lightBorderWidth: unit(fallback(value(BorderWidth), 1), px);
+  solidBorderWidth: unit(fallback(value(BorderWidth), 0), px);
+
+  textColor: color(fallback(value(TextColor), value(defaultTextColor)));
+
+  smallFont: fallback(font(value(TextFont)), font(value(defaultSmallFont)));
+  mediumFont: fallback(font(value(TextFont)), font(value(defaultMediumFont)));
+  largeFont: fallback(font(value(TextFont)), font(value(defaultLargeFont)));
+}
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  background-color: #fff;
+  width: fit-content;
+  position: relative;
+  box-sizing: border-box;
+  border-style: solid;
+  padding: 0;
+}
+
+.root::before,
+.root::after {
+  content: '';
+  width: 12px;
+  display: inline-block;
+}
+
+.root.withIcon::after {
+  width: 4px;
+}
+
+.small {
+  font: font(value(defaultSmallFont));
+  height: calc((16 / 12) * 1em + 8px);
+}
+
+.medium {
+  font: font(value(defaultMediumFont));
+  height: calc((20 / 14) * 1em + 12px);
+}
+
+.large {
+  font: font(value(defaultLargeFont));
+  height: calc((24 / 16) * 1em + 12px);
+}
+
+.opaque {
+  position: absolute;
+  background: #000;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transition: opacity 300ms;
+}
+
+.root.clickable {
+  cursor: pointer;
+}
+
+.root.clickable:focus .opaque,
+.root.clickable:hover .opaque {
+  opacity: 0.12;
+}
+
+.label {
+  position: relative;
+}
+
+.root .removeIcon {
+  color: value(defaultTextColor);
+}
+
+.root.small .label {
+  -st-mixin: Text(
+    MainTextColor value(defaultTextColor),
+    MainTextFont font(value(defaultSmallFont))
+  );
+}
+
+.root.medium .label {
+  -st-mixin: Text(
+    MainTextColor value(defaultTextColor),
+    MainTextFont font(value(defaultMediumFont))
+  );
+}
+
+.root.large .label {
+  -st-mixin: Text(
+    MainTextColor value(defaultTextColor),
+    MainTextFont font(value(defaultLargeFont))
+  );
+}
+
+.root.solid {
+  background-color: value(defaultSolidBackgroundColor);
+  border-width: 0;
+}
+
+.root.light {
+  border-width: 1px;
+  border-color: value(defaultLightBorderColor);
+}
+
+.root,
+.opaque {
+  border-radius: value(defaultBorderRadius);
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: inherit;
+}
+
+.iconWrapper::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+}
+
+.removeIcon {
+  width: 1.5em;
+  height: 1.5em;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.removeIcon path {
+  fill: currentColor;
+}
+
+.root.overrideStyleParams {
+  border-radius: value(borderRadius);
+}
+
+.root.light.overrideStyleParams {
+  background-color: value(lightBackgroundColor);
+  border-width: value(lightBorderWidth);
+  border-color: value(lightBorderColor);
+}
+
+.root.solid.overrideStyleParams {
+  background-color: value(solidBackgroundColor);
+  border-color: value(solidBorderColor);
+  border-width: value(solidBorderWidth);
+}
+
+.root.overrideStyleParams .removeIcon {
+  color: value(textColor);
+}
+
+.root.small.overrideStyleParams .label {
+  -st-mixin: Text(
+          MainTextColor value(textColor),
+          MainTextFont value(smallFont)
+  );
+}
+
+.root.medium.overrideStyleParams .label {
+  -st-mixin: Text(
+          MainTextColor value(textColor),
+          MainTextFont value(mediumFont)
+  );
+}
+
+.root.large.overrideStyleParams .label {
+  -st-mixin: Text(
+          MainTextColor value(textColor),
+          MainTextFont value(largeFont)
+  );
+}
+
+.root.overrideStyleParams,
+.root.overrideStyleParams .opaque {
+  border-radius: value(borderRadius);
+}
+
+.small.overrideStyleParams {
+  font: value(smallFont);
+}
+
+.medium.overrideStyleParams {
+  font: value(mediumFont);
+}
+
+.large.overrideStyleParams {
+  font: value(largeFont);
+}

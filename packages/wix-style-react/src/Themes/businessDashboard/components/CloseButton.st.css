@@ -1,0 +1,32 @@
+:import {
+  -st-from: "../../../CloseButton/CloseButton.st.css";
+  -st-default: CloseButton;
+}
+
+:import {
+  -st-from: '../foundations/colors.st.css';
+  -st-named: D10, B40;
+}
+
+.root {
+  -st-extends: CloseButton;
+}
+
+/* Skin: dark */
+
+.root:skin(dark) {
+  color: value(D10);
+}
+
+.root:skin(dark):hover {
+  color: value(D10);
+}
+
+.root:skin(dark):active {
+  color: value(D10);
+}
+
+.root:skin(dark):size(large):focus {
+  border-radius: 15px;
+  border: 3px solid value(B40);
+}

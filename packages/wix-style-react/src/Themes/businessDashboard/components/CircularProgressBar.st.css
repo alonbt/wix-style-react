@@ -1,0 +1,69 @@
+:import {
+  -st-from: "../../../CircularProgressBar/CircularProgressBar.st.css";
+  -st-default: CircularProgressBar;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: G20, G40, D10, D60;
+}
+
+.root {
+  -st-extends: CircularProgressBar;
+  position: relative;
+}
+
+.root::progressBar {
+  display: block;
+  position: relative;
+}
+
+.root::progressBar::backArc {
+    stroke: value(D60);
+}
+
+.root::progressBar::foreArc {
+    stroke: value(G20);
+}
+
+.root::progressBar:success::foreArc {
+    stroke: value(G40);
+}
+
+.root::progressBar::statusIndicator {
+  color: value(G20);
+}
+
+.root::progressBar::label, .root::progressBar::progressIndicator {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: value(D10);
+}
+
+.root::progressBar:success::label, .root::progressBar:success::progressIndicator {
+  display: none;
+}
+
+.root::progressBar:error::label, .root::progressBar:error::progressIndicator {
+  display: none;
+}
+
+.root::progressBar:size(medium) {
+  height: 56px;
+  width: 56px;
+}
+
+/* TODO - requires a change in wix-ui-core to remove inline sizes */
+.root::progressBar:size(medium)::arcsContainer {
+  height: 56px !important;
+  width: 56px !important;
+}
+
+.root::progressBar:size(medium)::label, .root::progressBar:size(medium)::progressIndicator {
+  font-size: 14px;
+}

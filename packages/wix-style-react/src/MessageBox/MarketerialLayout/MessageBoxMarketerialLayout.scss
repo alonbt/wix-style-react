@@ -1,0 +1,127 @@
+@import '../../common';
+@import '../MessageBoxCommon';
+
+.root {
+  box-shadow: $Shadow40;
+  background-color: $D80;
+  border-radius: 8px;
+}
+
+$no-header-height: 54px;
+$headerHeight: 120px;
+$headerImageHeight: 185px;
+
+.headerBase {
+  border-radius: 8px 8px 0 0;
+  height: $no-header-height;
+  position: relative;
+}
+
+.header {
+  height: $headerHeight;
+  margin-bottom: $headerImageHeight - $headerHeight;
+}
+
+.header-purple {
+  background-color: $P10;
+}
+
+.header-white {
+  background-color: $D80;
+}
+
+.header-blue {
+  background-color: $B10;
+}
+
+.header-image {
+  width: 300px;
+  height: $headerImageHeight;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  top: 20%;
+  img {
+    max-width: 300px;
+    max-height: $headerImageHeight;
+  }
+}
+
+.header-image-component {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 10;
+}
+
+.body-padding {
+  padding: 0 108px;
+}
+
+.title {
+  margin-bottom: 19px;
+  text-align: center;
+  color: $D10;
+}
+
+.content {
+  text-align: center;
+  color: $D10;
+  margin-bottom: 48px;
+}
+
+.buttons-container {
+  text-align: center;
+  padding-bottom: 44px;
+}
+
+.empty-buttons-container {
+  padding-bottom: 0.1px;
+}
+
+.secondary-button-container {
+  margin-top: 18px;
+}
+
+.flexContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.dynamicBody {
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 2em;
+}
+
+.fixedHeader {
+  flex-shrink: 0;
+}
+
+.fixedFooter {
+  flex-shrink: 0;
+}
+
+.bottomChildren {
+  margin-top: -28px;
+}
+
+@include withRTL {
+  .close {
+    left: 18px;
+    right: auto;
+  }
+}

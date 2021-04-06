@@ -1,0 +1,72 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B10;
+}
+
+:import {
+  -st-from: '../Input/Input.st.css';
+  -st-default: Input;
+}
+
+:vars {
+  hoverAmPmIndicationColor: value(B10);
+}
+
+.root {
+  -st-states: disabled, rtl, showSeconds;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  line-height: 15px;
+}
+
+.root:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.root:rtl {
+  flex-direction: row-reverse;
+}
+
+.root:showSeconds .input::input {
+  width: 73px;
+}
+
+.input {
+  -st-extends: Input;
+}
+
+.input::input {
+  width: 55px;
+}
+
+.time {
+  -st-states: focus, hover, stretch;
+  cursor: pointer;
+  display: block;
+  width: inherit;
+  white-space: nowrap;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.time:stretch {
+   width: 100%;
+}
+
+.root:rtl .time {
+   flex-direction: row-reverse;
+ }
+
+.ampm {
+  text-transform: uppercase;
+}
+
+.ampm.ampm:hover {
+  color: value(hoverAmPmIndicationColor);
+}
+
+.suffixEndWrapper div {
+  flex-grow: 0;
+}

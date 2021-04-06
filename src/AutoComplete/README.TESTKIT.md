@@ -1,5 +1,0 @@
-# AutoComplete Testkits
-
-> Autocomplete
-
- TBD

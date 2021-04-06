@@ -1,0 +1,30 @@
+
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: B20, D10-30, D30, B10, THEME-COLOR-10, THEME-COLOR-20;
+}
+
+.button {
+  -st-states: active, disabled;
+  background: transparent;
+  color: value(D30);
+  height: 40px;
+  width: 54px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  outline: none;
+}
+
+.button:not(:disabled):hover{
+  cursor: pointer;
+  color: value(THEME-COLOR-20);
+}
+
+.button:active{
+  color:value(THEME-COLOR-10);
+}
+
+.button:disabled{ 
+  color:value(D10-30)
+}

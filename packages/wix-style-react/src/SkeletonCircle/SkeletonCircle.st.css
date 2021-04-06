@@ -1,0 +1,7 @@
+.root {
+  -st-states: skin(enum(dark, light));
+  position: relative;
+  overflow: hidden;
+  border-radius: 100%;
+}
+

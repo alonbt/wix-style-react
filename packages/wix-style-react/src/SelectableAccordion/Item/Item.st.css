@@ -1,0 +1,101 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: B60, D80;
+}
+
+:vars {
+  tinyVerticalPadding: 12px;
+  smallVerticalPadding: 15px;
+  newMediumVerticalPadding: 18px;
+  mediumVerticalPadding: 24px;
+}
+
+.item {
+  -st-states: reducedSpacingAndImprovedLayout, hovered, verticalPadding(enum(medium, small, tiny)), disabled;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.item:hovered:not(:disabled) .selector,
+.item:hovered:not(:disabled) .header {
+  background-color: value(B60);
+}
+
+.item:disabled .selector,
+.item:disabled .header {
+  cursor: default;
+}
+
+.item:last-child .divider {
+  display: none;
+}
+
+.selector, .header {
+  transition: background-color 0.3s;
+}
+
+.selector {
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-inline-start: 30px;
+  padding-inline-end: 18px;
+}
+
+.item:reducedSpacingAndImprovedLayout .selector{
+  padding-inline-start: 24px;
+  padding-inline-end: 18px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  padding-inline-start: 0;
+  padding-inline-end: 30px;
+}
+
+.item:reducedSpacingAndImprovedLayout .header {
+  padding-inline-start: 0;
+  padding-inline-end: 24px;
+}
+
+.item:verticalPadding(medium) .header {
+  padding-block-start: value(mediumVerticalPadding);
+  padding-block-end: value(mediumVerticalPadding);
+}
+.item:verticalPadding(medium):reducedSpacingAndImprovedLayout .header {
+  padding-block-start: value(newMediumVerticalPadding);
+  padding-block-end: value(newMediumVerticalPadding);
+}
+
+.item:verticalPadding(small) .header {
+  padding-block-start: value(smallVerticalPadding);
+  padding-block-end: value(smallVerticalPadding);
+}
+
+.item:verticalPadding(tiny) .header {
+  padding-block-start: value(tinyVerticalPadding);
+  padding-block-end: value(tinyVerticalPadding);
+}
+
+.content {
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+
+.text {
+  overflow: hidden;
+}
+
+.inner {
+  padding: 0 30px 24px 0;
+}
+
+.item:reducedSpacingAndImprovedLayout .inner{
+  padding: 0 24px 18px 0;
+}

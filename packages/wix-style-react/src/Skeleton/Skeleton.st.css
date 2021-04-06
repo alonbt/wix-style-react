@@ -1,0 +1,99 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80, D60;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-9;
+}
+
+.line {
+  -st-states: alignment(enum(start, middle)),
+    spacing(enum(small, medium, large));
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 11px;
+  overflow: hidden;
+  background: value(D80);
+}
+
+.line::after {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent 50%
+  );
+  height: 11px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  animation: moveRight 1s value(ease-9) infinite;
+  transform: translateX(-100%);
+  content: ' ';
+}
+
+.line:alignment(middle) {
+  justify-content: center;
+}
+
+.line:spacing(small) {
+  margin-bottom: 10px;
+}
+
+.line:spacing(small):first-child {
+  margin-bottom: 23px;
+}
+
+.line:spacing(medium) {
+  margin-bottom: 16px;
+}
+
+.line:spacing(medium):first-child {
+  margin-bottom: 36px;
+}
+
+.line:spacing(large) {
+  margin-bottom: 22px;
+}
+
+.line:spacing(large):first-child {
+  margin-bottom: 50px;
+}
+
+.chunk {
+  -st-states: size(enum(small, medium, large, full));
+  height: 100%;
+  background: value(D60);
+  border-radius: 30px;
+}
+
+.chunk:size(small) {
+  width: 30%;
+}
+
+.chunk:size(medium) {
+  width: 45%;
+}
+
+.chunk:size(large) {
+  width: 75%;
+}
+
+.chunk:size(full) {
+  width: 100%;
+}
+
+:global([dir='rtl']) .line::after {
+  animation-direction: reverse;
+}
+
+@keyframes moveRight {
+  to {
+    transform: translateX(100%);
+  }
+}

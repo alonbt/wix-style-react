@@ -1,0 +1,18 @@
+<%
+  components
+  .filter(component => !component.noTestkit)
+  .filter(component => !component.noProtractorTestkit)
+  .filter(component => !component.manualExport)
+  .map(component => {
+    // Component Name
+    const componentName = utils.toPascal(component.name);
+    const legacyComponentName = utils.toCamel(component.name);
+    // Export Name
+    const exportName = (component.exportName || componentName) + 'Testkit';
+    const legacyExportName = (component.exportName || legacyComponentName) + 'TestkitFactory';
+%>
+export const <%= exportName %>: any;
+export const <%= legacyExportName %>: any;<% }) %>
+
+
+

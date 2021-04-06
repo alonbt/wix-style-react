@@ -1,0 +1,13 @@
+:import {
+  -st-from: "../../../../Card/Content/Content.st.css";
+  -st-default: Content;
+}
+
+.root {
+  -st-extends: Content;
+  padding: 12px 24px 24px;
+}
+
+.root:emptyStateContent {
+  padding: 28px 24px;
+}

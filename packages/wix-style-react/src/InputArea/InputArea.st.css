@@ -1,0 +1,182 @@
+:import {
+  -st-from: '../Input/Input.mixins.js';
+  -st-named: boxSizingMixin, placeholderMixin;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-TEXT-COLOR-PRIMARY, THEME-TEXT-COLOR-SECONDARY-LIGHT,
+  THEME-COLOR-10, THEME-COLOR-30, THEME-COLOR-40, THEME-COLOR-50, D60, D70, D80, F00, D40, R10, R30, Y10,
+  Y30, D10-20, D10-30;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-small-normal, text-small-thin, text-medium-normal, text-medium-thin;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/default-scroll-bar.st.css';
+  -st-named: defaultScrollBar;
+}
+
+.root {
+  -st-states: isMadefor, disabled, size(enum(small, medium, normal)), resizable,
+    status(enum(error, warning, loading)), hasFocus, forceHover, readOnly;
+
+  -st-mixin: boxSizingMixin('border-box');
+  position: relative;
+}
+
+.root .inputArea {
+  background-color: value(D80);
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border: solid 1px value(THEME-COLOR-30);
+  border-radius: 6px;
+}
+
+.root textarea {
+  -st-mixin: defaultScrollBar, placeholderMixin(value(THEME-TEXT-COLOR-SECONDARY-LIGHT));
+
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 20px;
+  min-height: 36px;
+  padding: 6px 12px;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  cursor: auto;
+  resize: none;
+  color: value(THEME-TEXT-COLOR-PRIMARY);
+}
+
+.root textarea::-webkit-scrollbar-thumb {
+  height: 30px;
+}
+
+.root textarea::-webkit-scrollbar {
+  border-radius: 0 6px 6px 0;
+}
+
+.root:size(small) textarea {
+  -st-mixin: text-small-normal;
+}
+
+.root:size(small):isMadefor textarea {
+  -st-mixin: text-small-thin;
+}
+
+.root,
+.root:size(medium) textarea,
+.root:size(normal) textarea {
+  -st-mixin: text-medium-normal;
+}
+
+.root:isMadefor,
+.root:size(medium):isMadefor textarea,
+.root:size(normal):isMadefor textarea {
+  -st-mixin: text-medium-thin;
+}
+
+.root textarea::selection {
+  background: value(THEME-COLOR-40);
+}
+
+.root:status(error) textarea,
+.root:status(warning) textarea,
+.root:status(loading) textarea {
+  padding-inline-end: 34px;
+}
+
+/* Counter */
+.counter {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  font-size: 14px;
+  line-height: 1.3;
+  color: value(D40);
+}
+
+:global([dir='rtl']) .counter {
+  right: unset;
+  left: 0;
+}
+
+/* Focus */
+.root:hasFocus .inputArea {
+  outline: none;
+  border-color: value(THEME-COLOR-10);
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+/* Disabled */
+.root:disabled .inputArea {
+  border-color: value(D10-20);
+}
+
+.root:disabled textarea {
+  -st-mixin: placeholderMixin(value(D10-30));
+  color: value(D10-30);
+}
+
+/* Status */
+.status {
+  position: absolute;
+  right: 6px;
+  top: 0;
+  margin: 6px;
+}
+
+:global([dir='rtl']) .status {
+  right: unset;
+  left: 6px;
+}
+
+.root:not(:disabled):status(error) .inputArea {
+  border-color: value(R10);
+  box-shadow: none;
+}
+
+.root:not(:disabled):status(error):hasFocus .inputArea {
+  border-color: value(R10);
+  box-shadow: 0 0 0 3px value(R30);
+}
+
+.root:not(:disabled):status(warning) .inputArea {
+  border-color: value(Y10);
+  box-shadow: none;
+}
+
+.root:not(:disabled):status(warning):hasFocus .inputArea {
+  border-color: value(Y10);
+  box-shadow: 0 0 0 3px value(Y30);
+}
+
+/* Hover */
+.root:hover:not(:hasFocus):not(:disabled) .inputArea,
+.root:forceHover:not(.disabled) .inputArea {
+  background-color: value(THEME-COLOR-50);
+}
+
+.root:hover.readOnly:not(:disabled) .inputArea {
+  border: solid 1px value(THEME-COLOR-30);
+}
+
+.root:hover.readOnly.disabled .inputArea {
+  border: solid 1px value(D60);
+}
+
+/* Read Only */
+.root:readOnly .inputArea {
+  border: solid 1px value(D60);
+  background-color: value(D70);
+}
+
+.root:resizable:not(:disabled) textarea {
+  resize: vertical;
+}

@@ -1,0 +1,16 @@
+.statusMessage {
+  display: flex;
+  line-height: 24px !important;
+  align-items: flex-start;
+  margin-top: 2px;
+}
+
+.statusMessageIcon {
+  margin-right: 5px;
+  display: flex;
+  margin-left: -2px;
+}
+
+.errorMessageContent {
+  line-height: 18px;
+}

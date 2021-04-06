@@ -1,0 +1,118 @@
+:vars {
+  modalBoxPadding: 48px;
+  helpIconSize: 24px;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/spacing.st.css";
+  -st-named: SP1, SP2
+}
+
+:import {
+  -st-from: "../Foundation/stylable/border.st.css";
+  -st-named: radius08;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/shadows.st.css";
+  -st-named: shadow40;
+}
+
+:import {
+  -st-from: "./LayoutBlocks/Header/Header.st.css";
+  -st-default: Header;
+}
+
+:import {
+  -st-from: "./LayoutBlocks/Content/Content.st.css";
+  -st-default: Content;
+}
+
+:import {
+  -st-from: "./LayoutBlocks/Footer/Footer.st.css";
+  -st-default: Footer;
+}
+
+:import {
+  -st-from: "./LayoutBlocks/Footnote/Footnote.st.css";
+  -st-default: Footnote;
+}
+
+:import {
+  -st-from: "./LayoutBlocks/Illustration/Illustration.st.css";
+  -st-default: Illustration;
+}
+
+:import {
+  -st-from: "../CloseButton/CloseButton.st.css";
+  -st-default: CloseButton;
+}
+
+.root {
+  -st-states: theme(enum(standard, premium, destructive)), controlButtonAmount(number(min(0), max(2)));
+  background-color: value(D80);
+  position: relative;
+  max-height: calc(100vh - (value(modalBoxPadding) * 2));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: value(radius08);
+  box-shadow: value(shadow40);
+}
+
+.controlButtons {
+  position: absolute;
+  right: value(SP2);
+  top: value(SP2);
+}
+
+:global([dir='rtl']) .controlButtons {
+  left: value(SP2);
+  right: unset;
+}
+
+.helpButton {
+  -st-extends: CloseButton;
+}
+
+.closeButton {
+  -st-extends: CloseButton;
+  margin-left: value(SP1);
+}
+
+
+:global([dir='rtl']) .closeButton {
+  margin-left: unset;
+  margin-right: value(SP1);
+}
+
+.helpIcon {
+  width: value(helpIconSize);
+  height: value(helpIconSize);
+}
+
+/** Exposing stylable api of the LayoutBlock for extending purposes */
+.header {
+  -st-extends: Header;
+}
+
+.content {
+  -st-extends: Content;
+}
+
+.footer {
+  -st-extends: Footer;
+}
+
+.footnote {
+  -st-extends: Footnote;
+}
+
+.illustration {
+  -st-extends: Illustration;
+}

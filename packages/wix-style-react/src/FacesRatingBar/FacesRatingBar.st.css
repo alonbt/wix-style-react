@@ -1,0 +1,105 @@
+:import {
+  -st-from: "wix-ui-core/hocs.st.css";
+  -st-named: Focusable;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D20, D10-20, B10, B40, R05, R40, Y05, Y40, G05, G50, F00;
+}
+
+:import {
+  -st-from: "../Foundation/stylable/spacing.st.css";
+  -st-named: spacing12;
+}
+
+.root {
+}
+
+.buttonWrapper {
+  -st-extends: Focusable;
+  outline: none;
+  min-width: 0;
+  border: none;
+  padding: 0;
+  background: none;
+  font-size: 0;
+}
+
+.faceContainer {
+  -st-states: type(enum(readOnly, interactive)), hovered, selected, iconType(enum(disapointed, frowning, neutral, smiling, grining));
+  margin-right: value(spacing12);
+  width: 22px;
+  height: 22px;
+  border-radius: 22px;
+}
+
+.buttonWrapper:last-child .faceContainer{
+  margin-right: 0;
+}
+
+.buttonWrapper:focus-visible .faceContainer{
+  box-shadow: 0 0 0 3px value(F00);
+  border-radius: 2px;
+}
+
+.faceIcon {
+  color: value(D20);
+}
+
+.faceContainer:type(interactive):selected {
+  background-color: value(B40);
+}
+
+.faceContainer:type(interactive):selected .faceIcon {
+  color: value(B10);
+}
+
+.faceContainer:type(interactive):hovered {
+  cursor: pointer;
+}
+
+.faceContainer:type(interactive):hovered .faceIcon {
+  color: value(B10);
+}
+
+
+/*!** read only mode *!*/
+.faceContainer:type(readOnly) .faceIcon {
+  color: value(D10-20);
+}
+
+.faceContainer:type(readOnly):selected:iconType(disapointed) {
+  background-color: value(R40);
+}
+.faceContainer:type(readOnly):selected:iconType(disapointed) .faceIcon {
+  color: value(R05);
+}
+
+.faceContainer:type(readOnly):selected:iconType(frowning) {
+  background-color: value(R40);
+}
+.faceContainer:type(readOnly):selected:iconType(frowning) .faceIcon {
+  color: value(R05);
+}
+
+.faceContainer:type(readOnly):selected:iconType(neutral) {
+  background-color: value(Y40);
+}
+.faceContainer:type(readOnly):selected:iconType(neutral) .faceIcon {
+  color: value(Y05);
+}
+
+.faceContainer:type(readOnly):selected:iconType(smiling) {
+  background-color: value(G50);
+}
+.faceContainer:type(readOnly):selected:iconType(smiling) .faceIcon {
+  color: value(G05);
+}
+
+.faceContainer:type(readOnly):selected:iconType(grining) {
+  background-color: value(G50);
+}
+.faceContainer:type(readOnly):selected:iconType(grining) .faceIcon {
+  color: value(G05);
+}

@@ -1,0 +1,31 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-00, THEME-COLOR-20, THEME-COLOR-30;
+}
+
+.root {
+  display: flex;
+  justify-content: center;
+}
+
+.root:global(.slick-dots) {
+  position: static;
+  margin-top: 24px;
+  height: 4px;
+}
+
+.root:global(.slick-dots) :global(li.slick-active) {
+  background-color: value(THEME-COLOR-00);
+}
+
+.root .dot {
+    width: 12px;
+    height: 4px;
+    background-color: value(THEME-COLOR-30);
+    border-radius: 2px;
+    margin: 0 3px;
+}
+
+.root .dot:hover {
+  background-color: value(THEME-COLOR-20);
+}

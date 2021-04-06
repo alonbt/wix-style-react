@@ -1,0 +1,76 @@
+import {ReactWrapper} from 'enzyme';
+import {BaseUniDriver} from 'wix-ui-test-utils/base-driver';
+import {BaseDriver} from 'wix-ui-test-utils/driver-factory';
+
+type EnzymeTestkitFactory<T extends BaseDriver> = (
+  params: EnzymeTestkitParams,
+) => T;
+
+type EnzymeUniTestkitFactory<T extends BaseUniDriver> = (
+  params: EnzymeTestkitParams,
+) => T;
+
+interface EnzymeTestkitParams {
+  wrapper: ReactWrapper;
+  dataHook: string;
+}
+
+type DeprecatedEnzymeTestkit = any;
+<%
+  const deprecated = [
+    'Draggable',
+    'FieldLabelAttributes'
+  ];
+
+  const withGenerics = [
+    'MediaOverlay'
+  ]
+
+  const legacyWithGenerics = [
+    'AddItem',
+    'Highlighter',
+    'ImageViewer',
+    'InputArea',
+    'MediaOverlay',
+    'MessageBoxFunctionalLayout',
+    'Modal',
+    'Table',
+    'TableActionCell'
+  ]
+
+  components
+    .filter(component => !component.noTestkit)
+    .filter(component => !component.manualExport)
+    .filter(component => !deprecated.includes(component.name))
+    .map(component => {
+      const isLegacy = component.enzymeLegacyTestkit;
+      // Component Name
+      const componentName = component.exportName || utils.toPascal(component.name);
+      const legacyComponentName = utils.toCamel(component.name) + 'TestkitFactory';
+      // Import Name
+      const importName = component.name + 'UniDriver'
+      const legacyImportName = isLegacy ? component.name + 'Driver' : importName
+      // Path
+      const importPath = component.unidriverPath || `../src/${component.name}/${component.name}.uni.driver`
+      const legacyImportPath = component.testkitPath || `../src/${component.name}/${component.name}.driver`
+      // Factory
+      const factory = 'EnzymeUniTestkitFactory'
+      const legacyFactory = isLegacy ? 'EnzymeTestkitFactory' : factory
+      // Generics
+      const generics = withGenerics.includes(component.name) ? '<ReactWrapper>' : '';
+      const legacyGenerics = legacyWithGenerics.includes(component.name) ? '<ReactWrapper>' : '';
+
+%>
+<%- !component.noUnidriver ? `import { ${importName} } from '${importPath}';` : ''%>
+<%- isLegacy ? `import { ${legacyImportName} } from '${legacyImportPath}';` : ''%>
+<%- !component.noUnidriver ? `export const ${componentName}Testkit: ${factory}<${importName}${generics}>;` : ''%>
+<%- `export const ${legacyComponentName}: ${legacyFactory}<${legacyImportName}${legacyGenerics}>;` %>
+<% }) %>
+
+<%
+  components
+    .filter(component => deprecated.includes(component.name))
+    .map(component => {
+      const camelName = utils.toCamel(component.name)
+%>
+export const <%= camelName %>TestkitFactory: DeprecatedEnzymeTestkit;<% }) %>

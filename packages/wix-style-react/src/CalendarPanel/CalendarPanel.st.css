@@ -1,0 +1,31 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D60, D80;
+}
+
+.root {
+  background-color: value(D80);
+  border-radius: 8px;
+  max-width: 775px;
+  display: inline-block;
+}
+
+.calendarWithPresets {
+  display: flex;
+}
+
+.presets {
+  width: 174px;
+  height: 342px;
+  box-sizing: border-box;
+  padding-top: 18px;
+  border-right: value(D60) 1px solid;
+}
+
+.calendar *:focus {
+  outline: none !important;
+}
+
+.footer {
+  border-top: value(D60) 1px solid;
+}

@@ -1,0 +1,122 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D10-10, D10, D50, THEME-COLOR-10, THEME-COLOR-40 ;
+}
+
+:vars {
+  sliderPadding: 4.5px;
+  sliderRailHeight: 3px;
+  sliderMarginTop: 9px;
+  sliderMarginBottom: 6px;
+  sliderMarkLine: 6px;
+  sliderMarkTextMarginTop: 12px;
+  sliderMarkTextSize: 18px;
+}
+
+:global(.wsr-slider) {
+  position: relative;
+  height: calc(value(sliderRailHeight) + 2 * value(sliderPadding));
+  width: 100%;
+  touch-action: none;
+  box-sizing: border-box;
+  margin: value(sliderMarginTop) 0 value(sliderMarginBottom) 0;
+}
+
+:global(.wsr-slider):not(:global(.wsr-slider-disabled)){
+   cursor: pointer;
+}
+
+/* extending clickable area */
+:global(.wsr-slider)::before {
+     content: '';
+     position: absolute;
+     top: -12px;
+     bottom: -12px;
+     left: 0;
+     right: 0;
+}
+
+:global(.wsr-slider-with-marks) {
+  height: calc(value(sliderRailHeight) + 2 * value(sliderPadding) + value(sliderMarginBottom) + value(sliderMarkLine) + value(sliderMarkTextMarginTop) +  value(sliderMarkTextSize));
+  margin-bottom: 0;
+}
+
+/* extending clickable area*/
+:global(.wsr-slider-with-marks)::before {
+   content: '';
+   position: absolute;
+   top: -12px;
+   bottom: 0;
+   left: 0;
+   right: 0;
+ }
+
+:global(.wsr-slider-rail) {
+  position: absolute;
+  width: 100%;
+  background-color: value(THEME-COLOR-40);
+  height: value(sliderRailHeight);
+  border-radius: 10px;
+  margin: value(sliderPadding) 0;
+}
+
+:global(.wsr-slider-track) {
+  position: absolute;
+  left: 0;
+  background-color: value(THEME-COLOR-10);
+  height: value(sliderRailHeight);
+  border-radius: 10px;
+  margin: value(sliderPadding) 0;
+}
+
+:global(.wsr-slider-mark) {
+  position: absolute;
+  top: calc(value(sliderRailHeight) + value(sliderMarkLine) + value(sliderPadding) + value(sliderMarginBottom));
+  left: 0;
+  width: 100%;
+}
+
+:global(.wsr-slider-mark-text) {
+  position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  color: value(D10);
+}
+
+:global(.wsr-slider-mark-text-active) {
+  color: value(D10);
+}
+
+:global(.wsr-slider-step) {
+  position: absolute;
+  width: 100%;
+  height: value(sliderRailHeight);
+  background: transparent;
+  margin: value(sliderPadding) 0;
+}
+
+:global(.wsr-slider-disabled .wsr-slider-rail) {
+  background-color: value(D10-10);
+}
+
+:global(.wsr-slider-disabled .wsr-slider-track) {
+  background-color: value(D50);
+}
+
+:global(.wsr-slider-disabled .wsr-slider-handle) {
+  color: value(D50);
+}
+
+.markLine {
+  position: relative;
+  margin: auto;
+  width: 1px;
+  height: value(sliderMarkLine);
+  background-color: value(D50);
+}
+
+.markValue {
+  position: relative;
+  margin-top: value(sliderMarkTextMarginTop);
+}

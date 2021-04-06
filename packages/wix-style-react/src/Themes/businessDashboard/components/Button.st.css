@@ -1,0 +1,136 @@
+:import {
+  -st-from: "../../../Button/Button.st.css";
+  -st-default: Button;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: B10, B05, B40, B50, D10-40, D55, D70, D80;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/typography.st.css";
+  -st-named: normal, bold;
+}
+
+.root {
+  -st-extends: Button;
+}
+
+.root:focus-visible {
+  box-shadow: 0 0 0 3px value(B40);
+}
+
+/* Skin standard primary */
+.root:skin(standard):priority(primary) {
+  -st-mixin: bold;
+
+  background-color: value(B10);
+  border-color: value(B10);
+  color: value(D80);
+}
+
+.root:skin(standard):priority(primary):hover {
+  background-color: value(B05);
+  border-color: value(B10);
+  color: value(D80);
+}
+
+.root:skin(standard):priority(primary):active {
+  background-color: value(B10);
+  border-color: value(B10);
+  color: value(D80);
+}
+
+.root:skin(standard):priority(primary):disabled {
+  background-color: value(D70);
+  border-color: transparent;
+  color: value(D10-40);
+}
+
+
+/* Skin: standard - secondary */
+
+.root:skin(standard):priority(secondary) {
+  -st-mixin: bold;
+
+  background-color: transparent;
+  border-color: value(D55);
+  color: value(B10);
+}
+
+.root:skin(standard):priority(secondary):hover {
+  color: value(B05);
+  border-color: value(B05);
+  background-color: transparent;
+}
+
+.root:skin(standard):priority(secondary):active {
+  background-color: transparent;
+  border-color: value(D55);
+  color: value(B10);
+}
+
+.root:skin(standard):priority(secondary):disabled {
+  color: value(D10-40);
+  background-color: transparent;
+  border-color: value(D55);
+}
+
+/* Skin: inverted */
+
+.root:skin(inverted) {
+  -st-mixin: bold;
+
+  border-color: value(D80);
+  background-color: value(D80);
+  color: value(B10);
+}
+
+.root:skin(inverted):hover {
+  color: value(D80);
+  border-color: transparent;
+  background-color: value(B05);
+}
+
+.root:skin(inverted):active {
+  background-color: value(D80);
+  border-color: value(D80);
+  color: value(B10);
+}
+
+.root:skin(inverted):disabled {
+  color: value(D10-40);
+  background-color: transparent;
+  border-color: value(D55);
+}
+
+/* Sizes */
+.root:size(medium) {
+  height: 28px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.root:size(small) {
+  height: 24px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+/* Suffix and prefix */
+.root:size(small)::suffix {
+  margin: 0 0 0 4px;
+}
+
+.root:size(small)::prefix {
+  margin: 0 4px 0 0;
+}
+
+.root:size(medium)::suffix {
+  margin: 0 0 0 4px;
+}
+
+.root:size(medium)::prefix {
+  margin: 0 4px 0 0;
+}

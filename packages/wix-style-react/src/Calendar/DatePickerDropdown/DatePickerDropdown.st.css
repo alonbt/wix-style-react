@@ -1,0 +1,21 @@
+:import {
+  -st-from: "../../DropdownBase/DropdownBase.st.css";
+  -st-default: DropdownBase;
+}
+
+:import {
+  -st-from: "../../TextButton/TextButton.st.css";
+  -st-default: TextButton;
+}
+
+.root {
+  padding: 0 6px;
+}
+
+.dropdown {
+  -st-extends: DropdownBase;
+}
+
+.caption {
+  -st-extends: TextButton;
+}

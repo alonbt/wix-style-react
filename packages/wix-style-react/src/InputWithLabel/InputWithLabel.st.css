@@ -1,0 +1,52 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D40;
+}
+:vars {
+  input-height: 54px;
+  status-message-height: 24px;
+}
+
+.groupIcon {
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: value(input-height);
+}
+
+.groupIcon:not(:first-of-type) {
+  position: relative;
+}
+
+.groupIcon:not(:first-of-type)::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  width: 1px;
+  box-sizing: border-box;
+  border-left: 1px solid value(D40);
+  left: 0;
+}
+
+.statusMessagePlaceholder {
+  padding-bottom: value(status-message-height);
+}
+
+.statusMessage {
+  display: flex;
+  align-items: center;
+  line-height: value(status-message-height) !important;
+  margin-top: 2px;
+}
+
+.statusMessageIcon {
+  margin-right: 5px;
+  display: flex;
+  margin-left: -2px;
+}
+
+.errorMessageContent {
+  line-height: 18px;
+}

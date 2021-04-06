@@ -1,0 +1,18 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: D70;
+}
+.exampleContainer {
+  min-width: 966px;
+  max-width: 1254px;
+  padding: 30px 48px;
+  background: value(D70);
+}
+
+.greyBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  background: value(D70);
+}

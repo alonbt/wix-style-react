@@ -1,0 +1,58 @@
+:import {
+  -st-from: "../../../Foundation/stylable/spacing.st.css";
+  -st-named: spacing12;
+}
+
+:import {
+  -st-from: '../../../Foundation/stylable/easing.st.css';
+  -st-named: ease-9;
+}
+
+.root {
+  -st-states: showDivider;
+}
+
+.innerContent {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+}
+
+.innerContent > :first-of-type:not(:last-of-type) {
+  margin-right: value(spacing12);
+}
+
+:global([dir='rtl']) .innerContent > :first-of-type:not(:last-of-type) {
+  margin-right: unset;
+  margin-left: value(spacing12);
+}
+
+.root:not(:showDivider) .divider {
+  opacity: 0;
+  transition: opacity 100ms value(ease-9);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+:global([dir='rtl']) .actions {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.actions > :first-of-type:not(:last-of-type) {
+  margin-right: value(spacing12);
+}
+
+:global([dir='rtl']) .actions > :first-of-type:not(:last-of-type) {
+  margin-right: unset;
+  margin-left: value(spacing12);
+}
+
+.sideActions {
+  flex: 1;
+}

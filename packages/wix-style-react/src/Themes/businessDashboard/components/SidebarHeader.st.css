@@ -1,0 +1,33 @@
+:import {
+  -st-from: "../../../SidebarHeader/SidebarHeader.st.css";
+  -st-default: SidebarHeader;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: sidebarBackgroundColor;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/colors.st.css";
+  -st-named: D40;
+}
+
+:import {
+  -st-from: "../../../Foundation/stylable/typography.st.css";
+  -st-named: bold;
+}
+
+.root {
+  -st-extends: SidebarHeader;
+}
+
+.root:skin(dark) {
+  background-color: value(sidebarBackgroundColor)
+}
+
+.root:skin(dark)::subtitle:size(tiny):weight(thin) {
+  -st-mixin: bold;
+  color: value(D40);
+  font-size: 10px;
+}

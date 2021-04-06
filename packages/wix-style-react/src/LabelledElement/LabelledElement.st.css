@@ -1,0 +1,63 @@
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-1;
+}
+
+:import {
+  -st-from: "../Input/Input.st.css";
+  -st-default: Input;
+  -st-named: input, menuArrow;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D30;
+}
+
+.root {
+  position: relative;
+  height: 54px;
+}
+
+.label {
+  -st-states: labelTop;
+
+  display: flex;
+  align-items: center;
+  position: absolute;
+  pointer-events: none;
+  left: 16px;
+  z-index: 1;
+  transition: transform 300ms value(ease-1);
+  transform-origin: left;
+  transform: translateY(15px);
+}
+
+.labelText {
+  transition: inherit;
+  transform-origin: inherit;
+}
+
+.label:labelTop {
+  transform: translateY(3px);
+}
+
+.label:labelTop .labelText {
+  transform: scale(0.75);
+  /* override <Text> color to a color that is not in the <Text> design  */
+  color: value(D30) !important;
+}
+
+.inputContainer {
+  -st-extends: Input;
+
+  height: 52px;
+}
+
+.inputContainer .input {
+  padding: 18px 0 0 4px !important;
+}
+
+.inputContainer .menuArrow {
+  padding: 14px 6px 14px 9px !important;
+}

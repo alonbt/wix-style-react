@@ -1,0 +1,67 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D30,D80;
+}
+
+:vars {
+  listItemHeight: 18px;
+  inidicatorSize: 7px;
+}
+
+.event {
+  display: flex;
+}
+.event .prefix{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 18px;
+  color: value(D30);
+}
+
+.event:not(:last-child) .prefix .line{
+  width: 1px;
+  flex: 1;
+  background-color: value(D30);
+}
+
+.event .prefix .defaultIndicator{
+  width: value(inidicatorSize);
+  height: value(inidicatorSize);
+  border-radius: 50%;
+  background: value(D30);
+  margin: calc((value(listItemHeight) - value(inidicatorSize)) / 2);
+}
+
+.label{
+  -st-states: withSuffix;
+}
+
+.event .label{
+  width: 100%;
+  margin-right: 18px;
+  line-height: var(--listItemHeight);
+}
+
+.event .label:withSuffix{
+  width: 75%;
+}
+
+.event:not(:last-child) .label{
+  --marginBottom: 30px;
+  margin-bottom: var(--marginBottom);
+}
+
+.event .labelText{
+  margin-right: 6px;
+}
+
+.event .suffix{
+  width: 25%;
+  text-align: right;
+  vertical-align: top;
+}
+
+.event .labelAction{
+  display: inline-block;
+}

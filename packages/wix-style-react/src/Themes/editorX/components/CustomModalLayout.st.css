@@ -1,0 +1,77 @@
+:import {
+  -st-from: "../foundations/typography.st.css";
+  -st-named: T06;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: D1;
+}
+
+:import {
+  -st-from: "../../../CustomModalLayout/CustomModalLayout.st.css";
+  -st-default: CustomModalLayout;
+}
+
+:vars {
+  /* Techincally, this could be transformed to CSS Variables, this is an API example which should be thinked */
+
+  /*Easy*/
+  iconButtonSize: 12px;
+  borderRadius: 4px;
+
+  /*requires some convention for internal parts. "_" is just an example*/
+  header_contentVerticalPadding: 16px;
+  content_contentVerticalPadding: 0;
+  shared_contentHorizontalPadding: 24px;
+
+  /*Too Specific?*/
+  titleColor: value(D1);
+  closeButtonLeftMargin: 12px;
+  controlButtonsHeight: 24px;
+}
+
+.root {
+  -st-extends: CustomModalLayout;
+}
+
+.root {
+  border-radius: value(borderRadius);
+}
+
+.root::header::innerContent {
+  padding: value(header_contentVerticalPadding) value(shared_contentHorizontalPadding);
+}
+
+.root::header::title {
+  /*
+  * Making this a CSS Var means opening a field for the Heading component
+  * --heading-line-height 24px;
+  * --heading-font-size: 16px;
+  * --heading-weight: 700;
+  */
+  -st-mixin: T06();
+  color: value(titleColor);
+}
+
+.root::controlButtons {
+  top: value(header_contentVerticalPadding);
+  right: value(shared_contentHorizontalPadding);
+  height: value(controlButtonsHeight);
+  align-items: center;
+}
+
+.root::closeButton {
+  margin-left: value(closeButtonLeftMargin);
+  width: value(iconButtonSize);
+  height: value(iconButtonSize);
+}
+
+.root:not(:removeContentPadding)::content::innerContent {
+  padding: value(content_contentVerticalPadding) value(shared_contentHorizontalPadding);
+}
+
+.root::closeButton, .root::helpButton {
+  width: value(iconButtonSize);
+  height: value(iconButtonSize);
+}

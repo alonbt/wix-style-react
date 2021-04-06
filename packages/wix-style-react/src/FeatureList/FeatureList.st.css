@@ -1,0 +1,28 @@
+:import {
+  -st-from: "../Foundation/stylable/spacing.st.css";
+  -st-named: spacing06, spacing18;
+}
+
+.root {
+}
+
+.featureItem {
+}
+
+.featureItemImageContainer {
+  margin-bottom: value(spacing18);
+}
+
+.featureItemImage {
+  width: 60px;
+  height: 60px;
+}
+
+.featureItemTextContainer {
+  flex-grow: 1;
+}
+
+.featureItemTitleContainer {
+  display: block;
+  margin-bottom: value(spacing06);
+}

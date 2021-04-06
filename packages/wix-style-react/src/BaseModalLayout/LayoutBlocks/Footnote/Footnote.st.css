@@ -1,0 +1,14 @@
+:import {
+  -st-from: "../../../Foundation/stylable/spacing.st.css";
+  -st-named: spacing12, spacing30;
+}
+
+.root {
+  width: 100%;
+}
+
+.innerContent {
+  padding: value(spacing12) value(spacing30);
+  display: flex;
+  justify-content: center;
+}

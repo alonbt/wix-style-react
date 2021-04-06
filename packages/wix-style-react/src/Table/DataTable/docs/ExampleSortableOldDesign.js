@@ -1,0 +1,74 @@
+import React from 'react';
+import DataTable from '..';
+import './Example.scss';
+
+const style = {
+  width: '966px',
+};
+
+const baseData = [
+  { firstName: 'Meghan', lastName: 'Bishop' },
+  { firstName: 'Sara', lastName: 'Porter' },
+  { firstName: 'Deborah', lastName: 'Rhodes' },
+  { firstName: 'Walter', lastName: 'Jenning' },
+  { firstName: 'Amanda', lastName: 'Woods' },
+];
+
+class DataTableSortableOldDesignExample extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { sort: {}, data: baseData };
+  }
+
+  handleSortClick(colNum) {
+    const desc = !this.state.sort[colNum];
+    const sort = Object.assign({}, this.state.sort, { [colNum]: desc });
+    const fields = {
+      1: 'firstName',
+      2: 'lastName',
+    };
+    const sortedData = this.sortDataByField(fields[colNum], desc);
+    this.setState({ sort, data: sortedData });
+  }
+
+  sortDataByField(field, desc) {
+    return this.state.data.sort((a, b) => desc ? ~~(field ? a[field] < b[field] : a < b) : ~~(field ? a[field] > b[field] : a > b)); // eslint-disable-line
+  }
+
+  render() {
+    return (
+      <div style={style}>
+        <DataTable
+          dataHook="story-data-table"
+          data={this.state.data}
+          onSortClick={(col, colNum) => this.handleSortClick(colNum)}
+          itemsPerPage={20}
+          columns={[
+            {
+              title: 'Row Number',
+              render: (row, rowNum) => '#' + (rowNum + 1),
+              width: '20%',
+              important: true,
+            },
+            {
+              title: 'First Name',
+              sortable: true,
+              sortDescending: !!this.state.sort[1],
+              render: row => <span>{row.firstName}</span>,
+              width: '40%',
+            },
+            {
+              title: 'Last Name',
+              sortable: true,
+              sortDescending: !!this.state.sort[2],
+              render: row => <span>{row.lastName}</span>,
+              width: '40%',
+            },
+          ]}
+        />
+      </div>
+    );
+  }
+}
+
+export default DataTableSortableOldDesignExample;

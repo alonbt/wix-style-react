@@ -1,0 +1,32 @@
+:import {
+  -st-from: "../../../Carousel/Pagination/Pagination.st.css";
+  -st-default: Pagination;
+}
+
+:import {
+  -st-from: "../foundations/colors.st.css";
+  -st-named: B05, B10, D55;
+}
+
+:import {
+  -st-from: "../foundations/spacing.st.css";
+  -st-named: SP5;
+}
+
+.root {
+  -st-extends: Pagination;
+  margin-top: value(SP5);
+}
+
+.root::dot {
+  width: 4px;
+  background-color: value(D55);
+}
+
+.root:global(.slick-dots) :global(li.slick-active) {
+  background-color: value(B10);
+}
+
+.root::dot:hover {
+  background-color: value(B05);
+}

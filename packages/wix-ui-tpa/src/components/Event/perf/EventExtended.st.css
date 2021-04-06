@@ -1,0 +1,16 @@
+:import {
+    -st-from: "../Event.st.css";
+    -st-default: TPAEvent;
+}
+
+.root {
+    -st-mixin: TPAEvent(
+            TimeFont '"--timeFont"',
+            TimeColor '"--timeColor"',
+            TitleFont '"--titleFont"',
+            TitleColor '"--titleColor"',
+            FulldayBgColor '"--fulldayBgColor"',
+            HoverOverlayColor '"--hoverOverlayColor"',
+            SelectedOverlayColor '"--selectedOverlayColor"'
+        );
+}

@@ -1,0 +1,185 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, THEME-COLOR-20, THEME-COLOR-30, THEME-COLOR-50,
+             B30, D10-05, D10-30, D60, R10, R30, Y10, Y30, F00;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/typography.st.css';
+  -st-named: text-medium-normal;
+}
+
+.input {
+  flex-grow: 1;
+  width: 1px;
+  min-width: 1px;
+}
+
+.disabled .input {
+  visibility: hidden;
+}
+
+.input div {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.input div:hover {
+  background-color: transparent !important;
+}
+
+.emptyInput {
+  width: 100%;
+}
+
+.readOnly {
+  position: relative;
+  padding-right: 55px;
+}
+
+.inputSuffix {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  box-sizing: border-box;
+  display: flex;
+  height: 34px;
+}
+
+.inputSuffix .menuArrow {
+  color: value(THEME-COLOR-10);
+  margin: auto 6px;
+}
+
+.inputSuffix .menuArrow svg {
+  transform: translateY(-1px);
+}
+
+.disabled .inputSuffix .menuArrow {
+  color: value(D10-30);
+}
+
+.sizeSmall .inputSuffix {
+  height: 28px;
+}
+
+.sizeLarge .inputSuffix {
+  height: 42px;
+}
+
+.inputSuffix .statusIndicator {
+  margin: auto 6px;
+}
+
+.suffixes {
+  height: 100%;
+}
+
+.hiddenDiv {
+  -st-mixin: text-medium-normal;
+
+  visibility: hidden;
+  padding: 0 12px;
+  white-space: pre;
+  height: 0;
+  font-size: 16px;
+}
+
+.hiddenDiv.smallFont {
+  font-size: 14px;
+}
+
+.tag {
+  margin: 3px 0;
+  margin-inline-start: 6px;
+}
+
+.inputWithTagsContainer {
+  width: 100%;
+  border: 1px solid value(THEME-COLOR-30);
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.inputWithTagsContainer.disabled {
+  background-color: value(D10-05);
+}
+
+.inputWithTagsContainer:hover:not(.hasFocus):not(.disabled) {
+  background: value(THEME-COLOR-50);
+}
+
+.hasMaxHeight {
+  overflow-y: auto;
+}
+
+.error {
+  border-color: value(R10);
+  position: relative;
+  padding-right: 55px;
+}
+
+.warning {
+  border-color: value(Y10);
+  position: relative;
+  padding-right: 55px;
+}
+
+.loading {
+  position: relative;
+  padding-right: 55px;
+}
+
+.disabled {
+  border-color: value(D10-30);
+}
+
+.hasFocus {
+  outline: none;
+  border-color: value(THEME-COLOR-10);
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.hasFocus.error {
+  outline: none;
+  border-color: value(R10);
+  box-shadow: 0 0 0 3px value(R30);
+}
+
+.hasFocus.warning {
+  outline: none;
+  border-color: value(Y10);
+  box-shadow: 0 0 0 3px value(Y30);
+}
+
+.customSuffix {
+  margin: auto 6px;
+}
+
+.tagsContainer {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tagsContainer .draggedTag {
+  background-color: value(B30);
+}
+
+.tagsContainer .draggedTagPlaceholder {
+  background-color: value(D60);
+}
+
+.tagsContainer .draggedTagPlaceholder:hover {
+  background-color: value(D60);
+}
+
+.tagsContainer .draggedTagPlaceholder * {
+  visibility: hidden;
+}

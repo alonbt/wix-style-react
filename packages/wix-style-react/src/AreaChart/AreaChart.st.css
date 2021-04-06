@@ -1,0 +1,52 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D40, B05, D80, D55, D10, B10, A1, B40;
+}
+:import {
+  -st-from: '../Foundation/stylable/mixins/calc_rgba';
+  -st-default: calc_rgba;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/easing.st.css';
+  -st-named: ease-8;
+}
+
+:vars {
+  canvas-top-gap: 6px;
+  canvas-bottom-gap: 31px;
+  datasetBg: calc_rgba(value(A1), 0.06);
+  pointBorderColor: calc_rgba(value(A1), 0);
+  pointBackgroundColor: calc_rgba(value(A1), 0);
+  datasetLineColor: value(A1);
+  pointHoverBackgroundColor: value(D80);
+  pointHoverBorderColor: value(A1);
+  gridLineZeroLineColor: value(D40);
+  gridLineFontColor: value(D55);
+  tooltipBg: value(D10);
+}
+
+.lineChart {
+  position: relative;
+  z-index: 0;
+}
+
+.lineChartCursor {
+  top: value(canvas-top-gap);
+  left: 50%;
+  width: 1px;
+  height: calc(100% - value(canvas-bottom-gap));
+  transition: opacity .1s value(ease-8);
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  background: value(D40);
+  will-change: opacity, left;
+}
+
+.lineChartAxis {
+  position: absolute;
+  z-index: -1;
+
+  background: value(D40);
+}

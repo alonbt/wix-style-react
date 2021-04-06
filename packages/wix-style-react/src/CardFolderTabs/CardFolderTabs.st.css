@@ -1,0 +1,98 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: B10, F00, D10, D60, D80, D10-30;
+}
+
+:import {
+  -st-from: '../Foundation/stylable/shadows.st.css';
+  -st-named: s1, s3;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+:import {
+  -st-from: '../Text/Text.st.css';
+  -st-default: Text;
+}
+
+.root {
+  --maxWidth: 138px;
+}
+
+.headerWrapper {
+  display: flex;
+  margin-inline-end: 30px;
+}
+
+.button {
+  -st-extends: Focusable;
+  -st-states: selected, disabled;
+
+  display: flex;
+  flex: 1 1 66px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 60px;
+  padding: 18px;
+  min-width: 66px;
+  max-width: var(--maxWidth);
+  border-radius: 8px 8px 0 0;
+  border: solid value(D60);
+  border-width: 0 1px 1px 0;
+  background-color: value(D80);
+  color: value(D10);
+  outline: none;
+  margin: 0;
+}
+
+:global([dir='rtl']) .button {
+  border-width: 0 0 1px 1px;
+}
+
+.buttonText {
+  -st-extends: Text;
+}
+
+.button:hover:not(:disabled) .buttonText,
+.button:selected .buttonText {
+  color: value(B10);
+}
+
+.button:disabled .buttonText {
+  color: value(D10-30);
+}
+
+.button:focus-visible {
+  border: 3px solid value(F00) !important;
+  padding: 15px 16px 16px 15px;
+  height: 60px !important;
+}
+
+.button:selected {
+  height: 62px;
+  margin-bottom: -2px;
+  border-width: 0 1px 2px 0;
+  border-bottom: solid transparent;
+  z-index: 1;
+  box-shadow: 2px 0 6px -2px value(s3), 2px 0 4px -2px value(s1);
+}
+
+:global([dir='rtl']) .button:selected {
+  border-width: 0 0 2px 1px;
+  box-shadow: 2px 0 6px -2px value(s3), -2px 0 4px -2px value(s1);
+}
+
+.tabContentWrapper {
+  background-color: value(D80);
+  border-radius: 0 8px 8px 8px;
+  z-index: 1;
+  position: relative;
+}
+
+:global([dir='rtl']) .tabContentWrapper {
+  border-radius: 8px 0 8px 8px;
+}

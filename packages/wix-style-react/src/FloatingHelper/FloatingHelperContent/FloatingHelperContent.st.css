@@ -1,0 +1,23 @@
+.root {
+  -st-states: hasBody(boolean), appearance(enum(dark,light));
+  display: flex;
+  flex-direction: row;
+}
+
+.root:hasBody .title {
+  margin-bottom: 6px;
+}
+
+.action {
+  margin-top: 18px;
+}
+
+.image {
+  margin-left: 18px;
+  display: flex;
+}
+
+.footer {
+  margin-top: 12px;
+  display: flex;
+}

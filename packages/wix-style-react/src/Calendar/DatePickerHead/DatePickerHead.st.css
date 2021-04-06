@@ -1,0 +1,84 @@
+:import {
+  -st-from: '../../Foundation/stylable/colors.st.css';
+  -st-named: THEME-COLOR-10, THEME-COLOR-40, THEME-COLOR-50, D80;
+}
+
+:import {
+  -st-from: '../../Foundation/stylable/easing.st.css';
+  -st-named: speed-fast-1;
+}
+
+:import {
+  -st-from: "./MonthDropdown/MonthDropdown.st.css";
+  -st-default: MonthDropdown;
+}
+
+:import {
+  -st-from: "./YearDropdown/YearDropdown.st.css";
+  -st-default: YearDropdown;
+}
+
+:import {
+  -st-from: "../../IconButton/IconButton.st.css";
+  -st-default: IconButton;
+}
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 24px 0;
+  background: value(D80);
+  border-radius: 8px 8px 0 0;
+  color: value(THEME-COLOR-10);
+}
+
+.yearAndMonthWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: 2;
+}
+
+.caption {
+  padding: 0 6px;
+}
+
+.monthDropdown {
+  -st-extends: MonthDropdown;
+}
+
+.yearDropdown {
+  -st-extends: YearDropdown;
+}
+
+.arrowLeft {
+  -st-extends: IconButton;
+  margin-right: auto;
+  order: 1;
+}
+
+.arrowRight {
+  -st-extends: IconButton;
+  margin-left: auto;
+  order: 3;
+}
+
+.arrowIcon {
+  display: block;
+  cursor: pointer;
+}
+
+:global([dir="rtl"]) .arrowIcon {
+  transform: scaleX(-1);
+}
+
+:global([dir="rtl"]) .arrowLeft {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+:global([dir="rtl"]) .arrowRight {
+  margin-left: 0;
+  margin-right: auto;
+}

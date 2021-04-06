@@ -1,0 +1,118 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: D80, D30, B40, D60, D50, D80-10;
+}
+
+:import {
+  -st-from: "../Text/Text.st.css";
+  -st-default: Text;
+}
+
+.root{
+    -st-states: size(enum(large, medium)), theme(enum(onDarkBackground, onWhiteBackground, onGrayBackground));
+}
+
+:vars {
+    color: value(D30);
+    backgroundColor: value(D80);
+}
+
+.breadcrumbsHover {
+    border-radius: 100px;
+    color: value(color);
+    background-color: value(backgroundColor);
+}
+
+:vars {
+    height: 36px;
+    sidePadding: 14px;
+}
+
+.breadcrumbs {
+    height: value(height);
+    padding: 0 value(sidePadding);
+}
+
+.item {
+    -st-states: active, disabled, link, button;
+    display: inline-flex;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.item Text {
+  margin: auto 0;
+}
+
+.root:size(large) .item {
+  -st-mixin: breadcrumbs(height 36px,sidePadding 14px);
+}
+
+.root:size(medium) .item{
+  -st-mixin: breadcrumbs(height 30px,sidePadding 10px);
+}
+
+.root:theme(onWhiteBackground) .item:not(:active):not(:disabled):hover{
+  -st-mixin: breadcrumbsHover(color value(D30),backgroundColor value(B40));
+}
+
+.root:theme(onGrayBackground) .item:not(:active):not(:disabled):hover {
+    -st-mixin: breadcrumbsHover(color value(D30),backgroundColor value(D80));
+}
+
+.root:theme(onDarkBackground) .item:not(:active):not(:disabled):hover {
+  -st-mixin: breadcrumbsHover( color value(D60),backgroundColor value(D80-10));
+}
+
+.root:theme(onDarkBackground) .item {
+    color: value(D60);
+}
+
+.item:not(:disabled):not(:active) {
+  cursor: pointer;
+}
+
+.item:disabled {
+  cursor: default;
+}
+
+.itemContainer {
+  -st-states: active;
+  display: inline-flex;
+  align-items: center;
+}
+
+.divider {
+  width: 6px;
+  min-height: 30px;
+  margin: 0 8px;
+  color: value(D50);
+}
+
+.item:button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.item:button:focus {
+    outline: 0;
+}
+
+.item:button:not(:disabled):not(:active) {
+    cursor: pointer;
+}
+
+.item:link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+:global([dir="rtl"]) .itemContainer {
+    direction: rtl;
+}
+
+:global([dir="rtl"]) .itemContainer .divider {
+    transform: scaleX(-1);
+}

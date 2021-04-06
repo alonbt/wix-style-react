@@ -1,0 +1,12 @@
+:import {
+  -st-from: "../../../ListItemSection/ListItemSection.st.css";
+  -st-default: ListItemSection;
+}
+
+.root {
+  -st-extends: ListItemSection;
+}
+
+.root:divider {
+  padding: 6px 12px 5px;
+}

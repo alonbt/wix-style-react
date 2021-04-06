@@ -1,0 +1,187 @@
+{
+    "id": "Pobr82y9fE8RjfS4KxDW",
+    "name": "Themes | Document a component in the theme story page",
+    "dod": "Have a code example that displays the themed variation of the component",
+    "description": "",
+    "summary": "",
+    "hunksOrder": [
+        "src/Themes/businessDashboard/docs/components/Button.js_0",
+        "src/Themes/businessDashboard/docs/components/Button.js_1",
+        "src/Themes/businessDashboard/docs/businessDashboard.story.js_0",
+        "src/Themes/businessDashboard/docs/businessDashboard.story.js_1"
+    ],
+    "tests": [],
+    "hints": [],
+    "play_mode": "walkthrough",
+    "swimmPatch": {
+        "src/Themes/businessDashboard/docs/components/Button.js": {
+            "diffType": "MODIFIED",
+            "fileDiffHeader": "diff --git a/src/Themes/businessDashboard/docs/components/Button.js b/src/Themes/businessDashboard/docs/components/Button.js\nindex a54005cd2..a54005cd2 100644\n--- a/src/Themes/businessDashboard/docs/components/Button.js\n+++ b/src/Themes/businessDashboard/docs/components/Button.js",
+            "hunks": [
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Create a code example that will be displayed in the theme story page. make sure it is understandable but also displays the different variations that were themed"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -1,92 +1,0 @@",
+                        "-export const playground = `",
+                        "-<div>",
+                        "-<ThemeProvider theme={theme()}>",
+                        "-  <Layout cols={4} gap=\"10px\" alignItems=\"center\">",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"small\">Small</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"medium\">Medium</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button priority=\"secondary\" size=\"small\">Secondary</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button priority=\"secondary\">Secondary</Button>",
+                        "-    </Box>",
+                        "-  </Layout>",
+                        "-  <Layout cols={4} gap=\"10px\" alignItems=\"center\">",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"small\" disabled>Small</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"medium\" disabled>Medium</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button priority=\"secondary\" size=\"small\" disabled>Secondary</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button priority=\"secondary\" disabled>Secondary</Button>",
+                        "-    </Box>",
+                        "-  </Layout>",
+                        "-  <Layout cols={4} gap=\"10px\" alignItems=\"center\">",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D60\">",
+                        "-      <Button size=\"small\" skin=\"inverted\">Inverted</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D60\">",
+                        "-      <Button size=\"medium\" skin=\"inverted\">Medium</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"small\" skin=\"inverted\" disabled>Small disabled</Button>",
+                        "-    </Box>",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"medium\" skin=\"inverted\" disabled>Medium disabled</Button>",
+                        "-    </Box>",
+                        "-  </Layout>",
+                        "-  <Layout cols={4} gap=\"10px\" alignItems=\"center\">",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"small\" prefixIcon={<Icons.ChevronDownSmall />}>",
+                        "-        Prefix",
+                        "-      </Button>",
+                        "-    </Box>  ",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button priority=\"secondary\" size=\"small\" prefixIcon={<Icons.ChevronDownSmall />}>",
+                        "-        Prefix",
+                        "-      </Button>",
+                        "-    </Box>  ",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"small\" suffixIcon={<Icons.ChevronDownSmall />}>",
+                        "-        Suffix",
+                        "-      </Button>",
+                        "-    </Box>  ",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button priority=\"secondary\" size=\"small\" suffixIcon={<Icons.ChevronDownSmall />}>",
+                        "-        Suffix",
+                        "-      </Button>",
+                        "-    </Box>  ",
+                        "-  </Layout>",
+                        "-  <Layout cols={4} gap=\"10px\" alignItems=\"center\">",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"small\" disabled prefixIcon={<Icons.ChevronDownSmall />}>",
+                        "-        Prefix",
+                        "-      </Button>",
+                        "-    </Box>  ",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button priority=\"secondary\" size=\"small\" disabled prefixIcon={<Icons.ChevronDownSmall />}>",
+                        "-        Prefix",
+                        "-      </Button>",
+                        "-    </Box>",
+                        "-     <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button size=\"small\" disabled suffixIcon={<Icons.ChevronDownSmall />}>",
+                        "-        Suffix",
+                        "-      </Button>",
+                        "-    </Box>  ",
+                        "-    <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "-      <Button priority=\"secondary\" disabled size=\"small\" suffixIcon={<Icons.ChevronDownSmall />}>",
+                        "-        Suffix",
+                        "-      </Button>",
+                        "-    </Box>  ",
+                        "-  </Layout>",
+                        "-</ThemeProvider>",
+                        "-</div>",
+                        "-`;"
+                    ]
+                },
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "In this step we In each playground, all components are injected to the code context. Please note that the `theme()` invocation will return the specific theme object, which is injected in the story page"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -1,6 +1,5 @@",
+                        " export const playground = `",
+                        " <div>",
+                        "-<ThemeProvider theme={theme()}>",
+                        "   <Layout cols={4} gap=\"10px\" alignItems=\"center\">",
+                        "     <Box padding=\"3px\" backgroundColor=\"D80\">",
+                        "       <Button size=\"small\">Small</Button>"
+                    ]
+                }
+            ]
+        },
+        "src/Themes/businessDashboard/docs/businessDashboard.story.js": {
+            "diffType": "MODIFIED",
+            "fileDiffHeader": "diff --git a/src/Themes/businessDashboard/docs/businessDashboard.story.js b/src/Themes/businessDashboard/docs/businessDashboard.story.js\nindex f167b9801..f167b9801 100644\n--- a/src/Themes/businessDashboard/docs/businessDashboard.story.js\n+++ b/src/Themes/businessDashboard/docs/businessDashboard.story.js",
+            "hunks": [
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Import the snippet example"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -14,7 +14,6 @@",
+                        " import { businessDashboardComponents } from '../../../../stories/utils/allComponents';",
+                        " import SectionHelper from '../../../SectionHelper';",
+                        " import * as carousel from './components/Carousel';",
+                        "-import * as buttons from './components/Button';",
+                        " import * as headings from './components/Heading';",
+                        " import * as texts from './components/Text';",
+                        " import * as textButtons from './components/TextButton';"
+                    ]
+                },
+                {
+                    "swimmHunkMetadata": {
+                        "hunkComments": [
+                            "Add an `example` section, which will evaluate the example code"
+                        ]
+                    },
+                    "hunkDiffLines": [
+                        "@@ -82,10 +82,6 @@",
+                        "           `),",
+                        "           divider(),",
+                        "           title('Playground'),",
+                        "-          example({",
+                        "-            text: TextComponent('Button'),",
+                        "-            source: buttons.playground,",
+                        "-          }),",
+                        "           example({",
+                        "             text: TextComponent('Carousel'),",
+                        "             source: carousel.playground,"
+                    ]
+                }
+            ]
+        }
+    },
+    "app_version": "0.2.7",
+    "file_version": "1.0.4"
+}

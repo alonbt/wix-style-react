@@ -1,0 +1,315 @@
+{
+  "name": "wix-style-react",
+  "description": "wix-style-react",
+  "version": "9.98.0",
+  "main": "./dist/src/index.js",
+  "module": "./dist/es/src/index.js",
+  "typings": "./dist/es/src/index.d.ts",
+  "sideEffects": [
+    "./.storybook/**/*.*",
+    "./stories/**/*.*",
+    "./dist/**/*.global.scss",
+    "./src/**/*.scss"
+  ],
+  "files": [
+    "dist",
+    "src",
+    "themes",
+    "AtlasAddressInput",
+    "scripts",
+    "babel.config.js",
+    "testkit",
+    "es",
+    "*.scss",
+    "*.js",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "------shared prebuilds (try to make them in watch mode)": "",
+    "prestorybook": "./scripts/ensure-dist.sh && npm run generate-autodocs-registry",
+    "generate-autodocs-registry": "node scripts/generate-autodocs-registry",
+    "storybook:build": "npm run prestorybook && build-storybook -s ./src/assets,./docs/assets",
+    "------new components generators": "",
+    "generate": "wuf generate --output src --codemods .wuf/generator/codemods --templates .wuf/generator/templates",
+    "postgenerate": "npm run update-components && git add . -A",
+    "------start/watch modes (can also be used for testing against start)": "",
+    "start": "./scripts/npm-start.sh",
+    "storybook": "npm run prestorybook && start-storybook -s ./src/assets,./docs/assets -p 6006",
+    "storybook:visual": "npm run prestorybook && start-storybook -c ./.storybook/visual -p 6007",
+    "storybook:e2e": "start-storybook -c ./.storybook/e2e -s ./src/assets -p 6008",
+    "------test": "",
+    "pretest": "if [ ! \"$agentType\" = \"pullrequest\" ]; then npm run lint && ./scripts/ensure-dist.sh; fi",
+    "test": "if [ ! \"$agentType\" = \"pullrequest\" ]; then npm run test:unit && npm run test:visual && npm run test:e2e && npm run test:types && npm run sanity; fi",
+    "test:unit": "jest",
+    "test:watch": "jest --watch",
+    "pretest:e2e": "./scripts/ensure-dist.sh",
+    "test:e2e": "build-storybook -c ./.storybook/e2e && npm run test:e2e-only",
+    "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
+    "pretest:visual": "npm run generate-autodocs-registry",
+    "test:visual": "eyes-storybook -c ./.storybook/visual",
+    "test:types": "tsc -p tsconfig.declarations.json",
+    "test:swimm": "SWIMM_PATH=./node_modules/.bin/swimm_cli && ./scripts/get-swimm.sh $SWIMM_PATH $FORCE && ./scripts/run-swimm.sh $SWIMM_PATH",
+    "sanity": "autotools-sanity --files './src/**/*.meta.js'",
+    "------build steps": "",
+    "prebuild": "npm run update-components",
+    "build": "npm run transpile && npm run build-puppeteer-testkit",
+    "postbuild": "npm run copy-public-styles",
+    "update-components": ".wuf/update-components.sh",
+    "lint": "eslint \"{src,test,testkit,stories}/**/*.js\" --cache --cache-location target/.eslintcache --fix",
+    "copy-public-styles": "cp src/*.scss .",
+    "transpile": "node ./scripts/transpile/index.js",
+    "build-puppeteer-testkit": "webpack --config ./testkit/webpack.config.js",
+    "storybook:build-visual": "build-storybook -c ./.storybook/visual",
+    "------publish": "",
+    "postpublish": "if [ \"$NPM_BUILD_TYPE\" == \"TAR_PUBLISH\" ]; then npm install && npm run build && npm run storybook:build && npx janet deploy --ci; fi",
+    "pr-storybook:publish": "if [  \"$agentType\" = \"pullrequest\" ]; then npm run storybook:build && npx janet deploy --ci; fi;",
+    "------CI Parallel tasks (as in .ci_config)": "",
+    "test1:unit": "npm run test:unit",
+    "test2:visual": "node ../../scripts/find-changed-visuals.js . .wuf/requires-for-visual-tests.js && npm run test:visual",
+    "test3:e2e": "YOSHI_PROTRACTOR_CONFIG=./protractor1.conf.js npm run test:e2e",
+    "test4:e2e": "YOSHI_PROTRACTOR_CONFIG=./protractor2.conf.js npm run test:e2e",
+    "test5:types": "npm run test:types && npm run pr-storybook:publish",
+    "test6:sanity": "npm run lint && npm run sanity",
+    "test8:chromatic": "npm run test:swimm"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "./scripts/pre-commit.sh"
+    }
+  },
+  "yoshi": {
+    "entry": {
+      "app": "index.js"
+    },
+    "externals": {
+      "react": "React",
+      "react-dom": "ReactDOM",
+      "Wix": "Wix"
+    },
+    "externalUnprocessedModules": [
+      "get-own-enumerable-property-symbols",
+      "stringify-object"
+    ],
+    "exports": "wix-style-react"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wix/wix-style-react.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wix/wix-style-react/issues"
+  },
+  "homepage": "https://github.com/wix/wix-style-react#readme",
+  "peerDependencies": {
+    "react": "^16.13.1 || ^17.0.0",
+    "react-dom": "^16.13.1 || ^17.0.0",
+    "@wix/ambassador": "^4.0.485",
+    "@wix/ambassador-wix-atlas-service-web": "^1.0.150"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "logLevel": "verbose"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.12.18",
+    "@date-fns/upgrade": "^1.0.3",
+    "@loadable/component": "^5.14.1",
+    "@stylable/dom-test-kit": "^3.12.2",
+    "@types/color": "^2.0.1",
+    "bootstrap-sass": "^3.4.1",
+    "chart.js": "^2.9.4",
+    "classnames": "^2.2.6",
+    "color": "^2.0.1",
+    "css-element-queries": "^1.2.3",
+    "d3": "^6.3.1",
+    "date-fns": "^2.16.1",
+    "difference": "^1.0.2",
+    "dnd-core": "^2.6.0",
+    "draft-convert": "^2.1.10",
+    "draft-js": "^0.11.7",
+    "draft-js-export-html": "^1.4.1",
+    "gradient-parser": "^0.1.5",
+    "hoist-non-react-methods": "^1.1.0",
+    "howler": "^2.2.1",
+    "lodash": "4.17.19",
+    "moment": "^2.29.1",
+    "omit": "^1.0.1",
+    "prop-types": "^15.7.2",
+    "rc-slider": "9.3.0",
+    "react-chartjs-2": "^2.11.1",
+    "react-day-picker": "^7.4.8",
+    "react-dnd": "^2.6.0",
+    "react-dnd-html5-backend": "^5.0.1",
+    "react-modal": "3.10.1",
+    "react-motion": "^0.5.2",
+    "react-portal": "^4.2.1",
+    "react-scroll-sync": "^0.8.0",
+    "react-slick": "^0.27.13",
+    "react-transition-group": "^2.9.0",
+    "react-window": "^1.8.6",
+    "shallowequal": "^1.1.0",
+    "slick-carousel": "^1.8.1",
+    "wix-animations": "^1.0.407",
+    "wix-eventually": "^2.3.0",
+    "wix-ui-core": "^3.0.186",
+    "wix-ui-icons-common": "^2.0.308",
+    "wix-ui-test-utils": "^1.0.178",
+    "yoshi-stylable-dependencies": "^4.86.0"
+  },
+  "devDependencies": {
+    "wix-storybook-utils": "^4.0.5",
+    "wix-ui-framework": "^3.5.2",
+    "react-autodocs-utils": "^3.6.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "yoshi",
+      "plugin:stylable/recommended"
+    ],
+    "env": {
+      "jest": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "legacyDecorators": true
+      }
+    },
+    "plugins": [
+      "eslint-plugin-wix-components-library"
+    ],
+    "rules": {
+      "wix-components-library/prop-types-restrict-to-default-import": 2,
+      "import/no-unresolved": 0,
+      "jsx-a11y/alt-text": 0,
+      "jsx-a11y/anchor-is-valid": 0,
+      "react/forbid-foreign-prop-types": 0,
+      "react/jsx-handler-names": 0,
+      "react/no-find-dom-node": 0,
+      "react/no-string-refs": 0,
+      "react/jsx-boolean-value": 2,
+      "no-restricted-properties": [
+        "error",
+        {
+          "object": "browser",
+          "property": "pause",
+          "message": "Do not commit browser.pause()."
+        },
+        {
+          "object": "browser",
+          "property": "sleep",
+          "message": "Do not commit browser.sleep()."
+        },
+        {
+          "object": "eyes",
+          "property": "fit",
+          "message": "Do not commit eyes.fit()."
+        }
+      ],
+      "no-restricted-globals": [
+        "error",
+        "fdescribe",
+        "fit",
+        {
+          "name": "Proxy",
+          "message": "Proxy not supported in IE11."
+        }
+      ],
+      "no-restricted-imports": [
+        "error",
+        {
+          "patterns": [
+            "wix-ui-core/*",
+            "!wix-ui-core/dist",
+            "!wix-ui-core/drivers"
+          ],
+          "paths": [
+            {
+              "name": "lodash/isObject",
+              "message": "Please use {isObject} from src/utils/operators"
+            },
+            {
+              "name": "lodash/mapValue",
+              "message": "Please use {mapValue} from src/utils/operators"
+            },
+            {
+              "name": "lodash/pick",
+              "message": "Please use {pick} from src/utils/operators"
+            },
+            {
+              "name": "lodash/pickBy",
+              "message": "Please use {pickBy} from src/utils/operators"
+            },
+            {
+              "name": "lodash/range",
+              "message": "Please use {range} from src/utils/operators"
+            },
+            {
+              "name": "lodash/times",
+              "message": "Please use {times} from src/utils/operators"
+            },
+            {
+              "name": "lodash/values",
+              "message": "Please use {values} from src/utils/operators"
+            }
+          ]
+        }
+      ],
+      "no-console": "error"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.uni.driver.js"
+        ],
+        "rules": {
+          "no-restricted-imports": [
+            "error",
+            {
+              "patterns": [
+                "*.st.css",
+                "*.scss"
+              ]
+            }
+          ],
+          "no-restricted-properties": [
+            "error",
+            {
+              "property": "getNative",
+              "message": "Do not use getNative() in Unidrivers unless a method needs to return an HTMLElement (In which case, that method also need to be deprecated!)."
+            }
+          ]
+        }
+      },
+      {
+        "files": [
+          "**/*private.uni.driver.js"
+        ],
+        "rules": {
+          "no-restricted-properties": [
+            "off",
+            {
+              "property": "getNative",
+              "message": "getNative is allowed in private drivers"
+            }
+          ]
+        }
+      },
+      {
+        "files": [
+          "*.d.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/ban-types": [
+            "error",
+            {
+              "types": {
+                "Omit": "Use OmitPolyfill from common.d.ts instead"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

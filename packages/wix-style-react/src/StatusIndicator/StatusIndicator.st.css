@@ -1,0 +1,22 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: R10, Y10;
+}
+
+.root {
+  -st-states: status(enum(error, warning));
+
+  width: 18px;
+  height: 18px;
+
+  /* Error is the default */
+  color: value(R10);
+}
+
+.root:status(warning) {
+  color: value(Y10);
+}
+
+.root:status(warning) svg {
+  margin: 1px 0;
+}

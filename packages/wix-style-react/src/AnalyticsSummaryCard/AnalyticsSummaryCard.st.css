@@ -1,0 +1,76 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: G30, R30, D80, F00;
+}
+
+:import {
+  -st-from: 'wix-ui-core/dist/src/hocs/Focusable/Focusable.st.css';
+  -st-default: Focusable;
+}
+
+.root {
+  -st-extends: Focusable;
+  -st-states: hovered, clickable;
+
+  background-color: value(D80);
+  position: relative;
+  padding: 18px 30px;
+  min-width: 216px;
+}
+
+.root:clickable:hovered {
+  background-color: #f4fafe;
+  cursor: pointer;
+}
+
+.title {
+  display: inline-block;
+}
+
+.valueLineContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.valueAndTrend {
+  display: flex;
+  align-items: center;
+}
+
+.trend {
+  padding: 0 6px;
+}
+
+.loader {
+  position: absolute;
+  z-index: 2;
+  right: 12px;
+  top: 12px;
+}
+
+.ctaButton {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 1;
+}
+
+.footer {
+  margin-top: 6px;
+}
+
+/* Focus */
+.root:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+.title:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+.ctaButton:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}
+
+.sparkline:focus-visible {
+  box-shadow: 0 0 0 3px value(F00);
+}

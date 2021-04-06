@@ -1,0 +1,207 @@
+:import {
+    -st-from: "../../common/formatters.st";
+    -st-named: color, fallback;
+}
+
+:import {
+    -st-from: "../Button/Button.st.css";
+    -st-default: TPAButton;
+}
+
+:import {
+    -st-from: "../Input/Input.st.css";
+    -st-default: TPAInput;
+    -st-named: backgroundColor, colorDisabled, colorPlaceholder, color as inputColor, errorColor, borderColor;
+}
+
+:import {
+    -st-from: "wix-ui-core/index.st.css";
+    -st-named: Tooltip;
+}
+
+:import {
+    -st-from: "../Tooltip/Tooltip.st.css";
+    -st-default: TPATooltip;
+}
+
+:vars {
+    BorderHoverColor: color-5;
+    DefaultButtonTextColor: 'value(inputColor)';
+    DefaultButtonTextDisabledColor: 'value(colorDisabled)';
+    DefaultButtonBorderColor: 'value(borderColor)';
+    DefaultBorderDisabledColor: 'value(colorDisabled)';
+    DefaultBackgroundColor: 'value(backgroundColor)';
+}
+
+/*Overrides*/
+:vars {
+    /*
+        The button’s text color
+    */
+    MainButtonTextColor: --overridable;
+    /*
+        The disabled button’s text color
+    */
+    MainButtonTextDisabledColor: --overridable;
+    /*
+        The button's border color
+    */
+    MainButtonBorderColor: --overridable;
+    /*
+        The disabled button's border color
+    */
+    MainBorderDisabledColor: --overridable;
+    /*
+        The button's background color
+        @default color-1
+    */
+    MainBackgroundColor: --overridable;
+}
+
+:vars {
+    borderHoverColor: color(value(BorderHoverColor));
+    CurrentButtonTextColor: color(fallback(value(MainButtonTextColor), value(DefaultButtonTextColor)));
+    CurrentButtonTextDisabledColor: color(fallback(value(MainButtonTextDisabledColor), value(DefaultButtonTextDisabledColor)));
+    CurrentButtonBorderColor: color(fallback(value(MainButtonBorderColor), value(DefaultButtonBorderColor)));
+    CurrentBorderDisabledColor: color(fallback(value(MainBorderDisabledColor), value(DefaultBorderDisabledColor)));
+    CurrentBackgroundColor: color(fallback(value(MainBackgroundColor), value(DefaultBackgroundColor)));
+}
+
+.wrapper {
+    position: relative;
+    min-width: 68px;
+}
+
+.root {
+    -st-extends: TPAButton;
+    -st-mixin: TPAButton(
+        MainBackgroundColor 'value(DefaultBackgroundColor)',
+        MainBorderWidth '1px',
+        MainBorderColor 'value(DefaultButtonBorderColor)',
+        MainTextColor 'value(DefaultButtonTextColor)'
+    );
+    -st-states: disabled, error, placeholder, rtl, icon;
+    display: flex;
+    cursor: pointer;
+    box-sizing: border-box;
+    outline: none;
+    appearance: none;
+    opacity: 1;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.root.overrideStyleParams {
+    -st-mixin: TPAButton(
+        MainBackgroundColor 'value(CurrentBackgroundColor)',
+        MainBorderWidth '1px',
+        MainBorderColor 'value(CurrentButtonBorderColor)',
+        MainTextColor 'value(CurrentButtonTextColor)'
+    );
+}
+
+.root:mobile {
+    padding: 8px 12px;
+    background-color: transparent;
+}
+
+.root:mobile:icon {
+    padding: 8px 36px;
+}
+
+.root:focus {
+    border-color: value(borderHoverColor);
+    background-color: value(backgroundColor);
+}
+
+.root:error,
+.root:error:focus {
+    border-color: value(errorColor);
+}
+
+.overrideStyleParams {
+    -st-extends: root;
+}
+
+.root:placeholder {
+    color: value(colorPlaceholder);
+}
+
+.root:disabled {
+    cursor: default;
+    color: value(DefaultButtonTextDisabledColor) !important;
+    border-color: value(DefaultBorderDisabledColor) !important;
+}
+
+.root:disabled:hover {
+    border-color: value(DefaultButtonTextDisabledColor) !important;
+}
+
+.root:disabled ~ .arrowIcon {
+    color: value(DefaultButtonTextDisabledColor) !important;
+}
+
+.root:disabled.overrideStyleParams {
+    color: value(CurrentButtonTextDisabledColor) !important;
+    border-color: value(CurrentBorderDisabledColor) !important;
+}
+
+.root:disabled.overrideStyleParams ~ .arrowIcon {
+    color: value(CurrentButtonTextDisabledColor) !important;
+    border-color: value(CurrentBorderDisabledColor) !important;
+}
+
+.arrowIcon {
+    color: value(DefaultButtonTextColor);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.root.overrideStyleParams ~ .arrowIcon {
+    color: value(CurrentButtonTextColor);
+}
+
+.arrowIcon path {
+    fill: currentColor;
+}
+
+.errorIcon {
+    -st-extends: Tooltip;
+    -st-mixin: TPATooltip;
+    color: value(errorColor);
+}
+
+.errorIcon::popover {
+    min-width: initial;
+}
+
+.errorIcon::popoverElement {
+    display: flex; /* vertical center error icon */
+}
+
+.root:rtl ~ .arrowIcon {
+    left: 7px;
+}
+
+.root:not(:rtl) ~ .arrowIcon {
+    right: 7px;
+}
+
+.root:rtl ~ .errorIconWrapper {
+    left: 32px;
+}
+
+.root:not(:rtl) ~ .errorIconWrapper {
+    right: 32px;
+}
+
+.errorIconWrapper {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    top: 0;
+    align-items: center;
+}

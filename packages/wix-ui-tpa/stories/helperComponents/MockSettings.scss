@@ -1,0 +1,104 @@
+$colorPickerWidth: 210px;
+$colorPickerMargin: 5px;
+$fontPickerMargin: 0 40px 40px 0;
+$numberPickerMargin: 0 40px 20px 0;
+$palettePickerMarginLeft: 96px;
+$palettePickerWidth: 96px + 12px + $palettePickerMarginLeft;
+
+.root {
+  .styleItem {
+    padding: 0 50px 30px;
+
+    .title {
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+
+    .numberPickerContainer {
+      display: flex;
+
+      .pickerList {
+        width: 100%;
+        margin-bottom: -20px;
+
+        > li {
+          margin: $numberPickerMargin;
+          flex-shrink: 0;
+          flex-basis: 130px;
+        }
+      }
+    }
+
+    .fontPickerContainer {
+      display: flex;
+      width: 100%;
+
+      .pickerList {
+        width: 100%;
+
+        > li {
+          margin: $fontPickerMargin;
+          flex-shrink: 0;
+          flex-basis: 169px;
+        }
+      }
+    }
+
+    .colorPalettePicker {
+      position: relative;
+      min-height: 150px;
+      display: inline-block;
+      padding-right: $palettePickerWidth;
+
+      .colorPickerContainer {
+        max-width: ($colorPickerWidth + ($colorPickerMargin * 2)) * 3;
+
+        .pickerList {
+          margin: 0;
+
+          > li {
+            width: $colorPickerWidth;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: $colorPickerMargin;
+
+            label {
+              margin-bottom: 0.6em;
+            }
+          }
+        }
+      }
+
+      .palettePickerContainer {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: $palettePickerWidth;
+        max-height: 100%;
+        overflow-y: auto;
+        text-align: right;
+
+        .palettePicker {
+          display: inline-block;
+
+          label {
+            display: block;
+            text-align: center;
+          }
+
+          :global(.color-picker-palette-picker) {
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .pickerList {
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  }
+}

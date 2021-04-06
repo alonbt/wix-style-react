@@ -1,0 +1,44 @@
+:import {
+  -st-from: '../Foundation/stylable/colors.st.css';
+  -st-named: G30,R30;
+}
+
+:import {
+  -st-from: "../Divider/Divider.st.css";
+  -st-default: Divider;
+}
+
+.root {
+  -st-states: showDivider;
+  padding-block-start: 24px;
+  flex-direction: column;
+  display: flex;
+}
+
+.content {
+  display: flex;
+}
+
+.root:not(:showDivider) {
+  padding-block-end: 12px ;
+}
+
+.titleColumn {
+  display: flex;
+  flex-direction: column;
+  /* Allow flex-child to shrink when there is a truncated descendant
+   See: https://css-tricks.com/flexbox-truncated-text/#article-header-id-3 */
+  min-width: 0;
+}
+
+.actionsBar {
+  margin-inline-start: auto;
+  margin-block-start: auto;
+  margin-block-end: auto;
+  padding-inline-start: 30px;
+}
+
+.divider {
+  -st-extends: Divider;
+  margin-block-start: 12px ;
+}
