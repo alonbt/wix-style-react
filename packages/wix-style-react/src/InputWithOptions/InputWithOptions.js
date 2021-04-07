@@ -573,6 +573,7 @@ InputWithOptions.propTypes = {
       'left-start',
     ]),
     dynamicWidth: PropTypes.bool,
+    zIndex: PropTypes.number
   }),
 };
 
